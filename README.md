@@ -4,6 +4,8 @@
 
 ## Navigation
 
-- `app/` hosts a self-contained R Shiny app.
-- `analysis/` contains pre-processing scripts to generate data and insights.
-- `data/` contains `raw/` and `processed/` sub-folders.
+- **`app/`** hosts a self-contained R Shiny app.
+- **`data/`** contains `raw/` and `processed/` sub-folders.
+- **`scrape/`** contains scripts to scrape raw data from the web and save them to `data/raw/`
+- **`analyse/`** contains pre-processing scripts to generate data and insights. Takes data from `data/raw/` and exports to `data/processed/`.
+- **`output/`** is a place for all non Shiny output (e.g., reports, plots, static files)
