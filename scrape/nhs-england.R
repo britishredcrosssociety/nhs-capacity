@@ -79,7 +79,14 @@ GET(
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
-beds <- read_excel(tf, sheet = "NHS Trust by Sector", skip = 14)
+eng_beds <- read_excel(tf, sheet = "NHS Trust by Sector", skip = 14)
 
 unlink(tf)
 rm(tf)
+
+# remove first two entries (one is totals, other is blank)
+eng_beds <- eng_beds %>% 
+  slice(-(1:2))
+
+eng_beds <- eng_beds %>% 
+  select(Code = `Org Code`, `Beds Occupied (%)` = Total...18)
