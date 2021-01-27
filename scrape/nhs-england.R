@@ -24,3 +24,14 @@ ambulance <- read_excel(tf, sheet = "Response Times")
 
 unlink(tf)
 rm(tf)
+
+# ---- Bed Occupancy ----
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Overnight-Web_File-Final-DE5WC.xlsx",
+  write_disk(tf <- tempfile(fileext = ".xlsx"))
+)
+
+beds <- read_excel(tf, sheet = "NHS Trust by Sector", skip = 14)
+
+unlink(tf)
+rm(tf)
