@@ -29,6 +29,10 @@ eng_ae <- eng_ae %>%
     `Number of patients spending >12 hours from decision to admit to admission`
   )
 
+# Save to raw
+eng_ae %>% 
+  write_csv("data/raw/nhs_eng_ae.csv")
+
 # ---- Ambulance Quality Indicators ----
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/AmbSYS-December-2020.xlsx",
@@ -36,7 +40,7 @@ GET(
 )
 
 # column names and types to use for loading all data
-ambo_colnames <- c("Code", "Ambulance Service", "Count of Incidents", "Blank", "Total (hours)", "Mean (min:sec)", "90th centile (min:sec))")
+ambo_colnames <- c("Code", "Ambulance Service", "Count of Incidents", "Blank", "Total (hours)", "Mean (min:sec)", "90th centile (min:sec)")
 ambo_types <- c("text", "text", "numeric", "numeric", "numeric", "date", "date")
 
 
@@ -80,6 +84,9 @@ eng_ambo_cat4 <- read_excel(tf,
   remove_empty("cols") %>%
   mutate(category = "cat4")
 
+unlink(tf)
+rm(tf)
+
 # combine stats
 eng_ambo <- bind_rows(
   eng_ambo_cat1,
@@ -89,8 +96,16 @@ eng_ambo <- bind_rows(
   eng_ambo_cat4
 )
 
-unlink(tf)
-rm(tf)
+# Reformat dates
+eng_ambo <-
+  eng_ambo %>% 
+  mutate(`Mean (min:sec)` = format(`Mean (min:sec)`, format= "%M:%S"),
+         `90th centile (min:sec)` = format(`90th centile (min:sec)`, format= "%M:%S"))
+
+
+# Save to raw
+eng_ambo %>% 
+  write_csv("data/raw/nhs_eng_ambulance.csv")
 
 # ---- Bed Occupancy ----
 GET(
@@ -109,3 +124,7 @@ eng_beds <- eng_beds %>%
 
 eng_beds <- eng_beds %>%
   select(Code = `Org Code`, `Beds Occupied (%)` = Total...18)
+
+# save to raw
+eng_beds %>% 
+  write_csv("data/raw/nhs_eng_beds.csv")
