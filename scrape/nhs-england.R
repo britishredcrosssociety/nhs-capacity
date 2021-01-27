@@ -6,14 +6,28 @@ library(janitor)
 
 # ---- A&E Attendance ----
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/Monthly-AE-December-2020.csv",
-  write_disk(tf <- tempfile(fileext = ".csv"))
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/December-2020-AE-by-provider-8c90a.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
-eng_a_and_e <- read_csv(tf)
+eng_ae <- read_excel(tf, sheet = "Provider Level Data", skip = 15)
 
 unlink(tf)
 rm(tf)
+
+# remove first two entries (one is totals, other is blank)
+eng_ae <- eng_ae %>%
+  slice(-(1:2))
+
+eng_ae <- eng_ae %>%
+  select(
+    Code,
+    `Total Attendances > 4 hours`,
+    `Percentage in 4 hours or less (type 1)`,
+    `Percentage in 4 hours or less (all)`,
+    `Number of patients spending >4 hours from decision to admit to admission`,
+    `Number of patients spending >12 hours from decision to admit to admission`
+  )
 
 # ---- Ambulance Quality Indicators ----
 GET(
@@ -22,43 +36,48 @@ GET(
 )
 
 # column names and types to use for loading all data
-ambo_colnames  <- c("Code", "Ambulance Service", "Count of Incidents", "Blank", "Total (hours)","Mean (min:sec)", "90th centile (min:sec))")
+ambo_colnames <- c("Code", "Ambulance Service", "Count of Incidents", "Blank", "Total (hours)", "Mean (min:sec)", "90th centile (min:sec))")
 ambo_types <- c("text", "text", "numeric", "numeric", "numeric", "date", "date")
 
 
-# Category 1 
+# Category 1
 eng_ambo_cat1 <- read_excel(tf,
-                           sheet = "Response Times", range = "C8:I18", 
-                           col_names = ambo_colnames, col_types = ambo_types) %>% 
-  remove_empty("cols") %>% 
+  sheet = "Response Times", range = "C8:I18",
+  col_names = ambo_colnames, col_types = ambo_types
+) %>%
+  remove_empty("cols") %>%
   mutate(category = "cat1")
 
 # Category 1T
 eng_ambo_cat1t <- read_excel(tf,
-                            sheet = "Response Times", range = "C22:I32", 
-                            col_names = ambo_colnames, col_types = ambo_types) %>% 
-  remove_empty("cols") %>% 
+  sheet = "Response Times", range = "C22:I32",
+  col_names = ambo_colnames, col_types = ambo_types
+) %>%
+  remove_empty("cols") %>%
   mutate(category = "cat1t")
 
 # Category 2
 eng_ambo_cat2 <- read_excel(tf,
-                           sheet = "Response Times", range = "C36:I46", 
-                           col_names = ambo_colnames, col_types = ambo_types) %>% 
-  remove_empty("cols") %>% 
+  sheet = "Response Times", range = "C36:I46",
+  col_names = ambo_colnames, col_types = ambo_types
+) %>%
+  remove_empty("cols") %>%
   mutate(category = "cat2")
 
 # Category 3
 eng_ambo_cat3 <- read_excel(tf,
-                           sheet = "Response Times", range = "C50:I60", 
-                           col_names = ambo_colnames, col_types = ambo_types) %>% 
-  remove_empty("cols") %>% 
+  sheet = "Response Times", range = "C50:I60",
+  col_names = ambo_colnames, col_types = ambo_types
+) %>%
+  remove_empty("cols") %>%
   mutate(category = "cat3")
 
 # Category 4
 eng_ambo_cat4 <- read_excel(tf,
-                           sheet = "Response Times", range = "C64:I74", 
-                           col_names = ambo_colnames, col_types = ambo_types) %>% 
-  remove_empty("cols") %>% 
+  sheet = "Response Times", range = "C64:I74",
+  col_names = ambo_colnames, col_types = ambo_types
+) %>%
+  remove_empty("cols") %>%
   mutate(category = "cat4")
 
 # combine stats
@@ -85,8 +104,8 @@ unlink(tf)
 rm(tf)
 
 # remove first two entries (one is totals, other is blank)
-eng_beds <- eng_beds %>% 
+eng_beds <- eng_beds %>%
   slice(-(1:2))
 
-eng_beds <- eng_beds %>% 
+eng_beds <- eng_beds %>%
   select(Code = `Org Code`, `Beds Occupied (%)` = Total...18)
