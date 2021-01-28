@@ -3,6 +3,7 @@ library(tidyverse)
 library(httr)
 library(readxl)
 library(janitor)
+library(lubridate)
 
 # ---- A&E Attendance ----
 GET(
@@ -30,7 +31,7 @@ eng_ae <- eng_ae %>%
   )
 
 # Save to raw
-eng_ae %>% 
+eng_ae %>%
   write_csv("data/raw/nhs_eng_ae.csv")
 
 # ---- Ambulance Quality Indicators ----
@@ -98,13 +99,15 @@ eng_ambo <- bind_rows(
 
 # Reformat dates
 eng_ambo <-
-  eng_ambo %>% 
-  mutate(mean_min_sec = format(mean_min_sec, format= "%M:%S"),
-         centile_90th_min_sec = format(centile_90th_min_sec, format= "%M:%S"))
+  eng_ambo %>%
+  mutate(
+    mean_min_sec = format(mean_min_sec, format = "%M:%S"),
+    centile_90th_min_sec = format(centile_90th_min_sec, format = "%M:%S")
+  )
 
 
 # Save to raw
-eng_ambo %>% 
+eng_ambo %>%
   write_csv("data/raw/nhs_eng_ambulance.csv")
 
 # ---- Bed Occupancy ----
@@ -126,7 +129,7 @@ eng_beds <- eng_beds %>%
   select(code = `Org Code`, perc_bed_occupied = Total...18)
 
 # save to raw
-eng_beds %>% 
+eng_beds %>%
   write_csv("data/raw/nhs_eng_beds.csv")
 
 # ---- DToC ----
@@ -140,15 +143,17 @@ eng_dtoc <- read_excel(tf, sheet = "Trust - by responsible org", skip = 13)
 unlink(tf)
 rm(tf)
 
-eng_dtoc <- eng_dtoc %>% 
-  slice(-(1:2)) %>% 
-  remove_empty("cols") %>% 
-  select(code = Code, 
-         nhs_dtoc_days = NHS...5, 
-         social_care_dtoc_days = `Social Care...6`)
+eng_dtoc <- eng_dtoc %>%
+  slice(-(1:2)) %>%
+  remove_empty("cols") %>%
+  select(
+    code = Code,
+    nhs_dtoc_days = NHS...5,
+    social_care_dtoc_days = `Social Care...6`
+  )
 
 # Save to raw
-eng_dtoc %>% 
+eng_dtoc %>%
   write_csv("data/raw/nhs_eng_dtoc.csv")
 
 # ---- Inpatients (elective) & Outpatients ----
@@ -164,18 +169,56 @@ unlink(tf)
 rm(tf)
 
 eng_in_out <-
-  eng_in_out %>% 
-  slice(-(1:2)) %>% 
-  select(code = `Org Code`, 
-         inpatient_admissions = Admissions,
-         inpatient_failed_to_attend = `Failed to Attend`,
-         outpatient_first_attendances_seen = `First Attendances Seen`,
-         outpatient_first_attendances_dna = `First Attendances DNA`,
-         outpatient_subsequent_attendances_seen = `Subsequent Attendances Seen`,
-         outpatient_subsequent_attendances_dna = `Subsequent Attendances DNA`)
+  eng_in_out %>%
+  slice(-(1:2)) %>%
+  select(
+    code = `Org Code`,
+    inpatient_admissions = Admissions,
+    inpatient_failed_to_attend = `Failed to Attend`,
+    outpatient_first_attendances_seen = `First Attendances Seen`,
+    outpatient_first_attendances_dna = `First Attendances DNA`,
+    outpatient_subsequent_attendances_seen = `Subsequent Attendances Seen`,
+    outpatient_subsequent_attendances_dna = `Subsequent Attendances DNA`
+  )
 
 # Save to raw
-eng_in_out %>% 
+eng_in_out %>%
   write_csv("data/raw/nhs_eng_in_out.csv")
 
-# ---- 
+# ---- Monthly Diagnostics ----
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/monthly-diagnostics-waiting-times-and-activity/monthly-diagnostics-data-2020-21/
+# Helper function for downloading and processing data
+get_waiting_list <- function(url, date) {
+  GET(url, write_disk(tf <- tempfile(fileext = ".xls")))
+
+  read_excel(tf, sheet = "Provider", skip = 13) %>%
+    select(code = `Provider Code`, trust_name = `Provider Name`, total_waiting_list = `Total Waiting List`) %>%
+    slice(-(1:2)) %>%
+    mutate(Date = dmy(date))
+}
+
+# Download waiting list stats for 2020
+eng_diagnostics_nov_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/Monthly-Diagnostics-Web-File-Provider-November-2020_P6PN01.xls", "01/11/2020")
+eng_diagnostics_oct_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/12/Monthly-Diagnostics-Web-File-Provider-October-2020_6CS21.xls", "01/10/2020")
+eng_diagnostics_sep_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Monthly-Diagnostics-Web-File-Provider-September-2020_1ME27.xls", "01/09/2020")
+eng_diagnostics_aug_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/10/Monthly-Diagnostics-Web-File-Provider-August-2020_o1lg9.xls", "01/08/2020")
+eng_diagnostics_jul_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/09/Monthly-Diagnostics-Web-File-Provider-July-2020.xls", "01/07/2020")
+eng_diagnostics_jun_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/08/Monthly-Diagnostics-Web-File-Provider-June-2020.xls", "01/06/2020")
+eng_diagnostics_may_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/07/Monthly-Diagnostics-Web-File-Provider-May-2020.xls", "01/05/2020")
+eng_diagnostics_apr_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/06/Monthly-Diagnostics-Web-File-Provider-April-2020.xls", "01/04/2020")
+
+eng_diagnostics <-
+  bind_rows(
+    eng_diagnostics_nov_20,
+    eng_diagnostics_oct_20,
+    eng_diagnostics_sep_20,
+    eng_diagnostics_aug_20,
+    eng_diagnostics_jul_20,
+    eng_diagnostics_jun_20,
+    eng_diagnostics_may_20,
+    eng_diagnostics_apr_20
+  )
+
+# Save to raw
+eng_diagnostics %>%
+  write_csv("data/raw/nhs_eng_diagnostics.csv")
