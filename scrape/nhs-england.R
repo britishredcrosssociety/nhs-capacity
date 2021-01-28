@@ -21,12 +21,12 @@ eng_ae <- eng_ae %>%
 
 eng_ae <- eng_ae %>%
   select(
-    Code,
-    `Total Attendances > 4 hours`,
-    `Percentage in 4 hours or less (type 1)`,
-    `Percentage in 4 hours or less (all)`,
-    `Number of patients spending >4 hours from decision to admit to admission`,
-    `Number of patients spending >12 hours from decision to admit to admission`
+    code = Code,
+    total_attendances_more_4_hours = `Total Attendances > 4 hours`,
+    perc_4_hours_or_less_type_1 = `Percentage in 4 hours or less (type 1)`,
+    perc_4_hours_or_less_all = `Percentage in 4 hours or less (all)`,
+    num_patients_more_4_hours_from_decision_to_admit_to_admission = `Number of patients spending >4 hours from decision to admit to admission`,
+    num_patients_more_12_hours_from_decision_to_admit_to_admission = `Number of patients spending >12 hours from decision to admit to admission`
   )
 
 # Save to raw
@@ -40,7 +40,7 @@ GET(
 )
 
 # column names and types to use for loading all data
-ambo_colnames <- c("Code", "Ambulance Service", "Count of Incidents", "Blank", "Total (hours)", "Mean (min:sec)", "90th centile (min:sec)")
+ambo_colnames <- c("code", "ambulance_service", "count_incidents", "blank", "total_hours", "mean_min_sec", "centile_90th_min_sec")
 ambo_types <- c("text", "text", "numeric", "numeric", "numeric", "date", "date")
 
 
@@ -99,8 +99,8 @@ eng_ambo <- bind_rows(
 # Reformat dates
 eng_ambo <-
   eng_ambo %>% 
-  mutate(`Mean (min:sec)` = format(`Mean (min:sec)`, format= "%M:%S"),
-         `90th centile (min:sec)` = format(`90th centile (min:sec)`, format= "%M:%S"))
+  mutate(mean_min_sec = format(mean_min_sec, format= "%M:%S"),
+         centile_90th_min_sec = format(centile_90th_min_sec, format= "%M:%S"))
 
 
 # Save to raw
@@ -123,7 +123,7 @@ eng_beds <- eng_beds %>%
   slice(-(1:2))
 
 eng_beds <- eng_beds %>%
-  select(Code = `Org Code`, `Beds Occupied (%)` = Total...18)
+  select(code = `Org Code`, perc_bed_occupied = Total...18)
 
 # save to raw
 eng_beds %>% 
@@ -143,7 +143,9 @@ rm(tf)
 eng_dtoc <- eng_dtoc %>% 
   slice(-(1:2)) %>% 
   remove_empty("cols") %>% 
-  select(Code, `NHS DToC days` = NHS...5, `Social Care DToC days` = `Social Care...6`)
+  select(code = Code, 
+         nhs_dtoc_days = NHS...5, 
+         social_care_dtoc_days = `Social Care...6`)
 
 # Save to raw
 eng_dtoc %>% 
@@ -164,7 +166,7 @@ rm(tf)
 eng_in_out <-
   eng_in_out %>% 
   slice(-(1:2)) %>% 
-  select(Code = `Org Code`, 
+  select(code = `Org Code`, 
          inpatient_admissions = Admissions,
          inpatient_failed_to_attend = `Failed to Attend`,
          outpatient_first_attendances_seen = `First Attendances Seen`,

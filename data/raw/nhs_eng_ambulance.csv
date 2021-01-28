@@ -1,4 +1,4 @@
-Code,Ambulance Service,Count of Incidents,Total (hours),Mean (min:sec),90th centile (min:sec),category
+code,ambulance_service,count_incidents,total_hours,mean_min_sec,centile_90th_min_sec,category
 RX9,East Midlands,6166,761.36,07:25,13:15,cat1
 RYC,East of England,6487,789.7102777777778,07:18,13:31,cat1
 R1F,Isle of Wight,148,21.31527777777778,08:38,15:30,cat1

@@ -1,4 +1,4 @@
-Code,inpatient_admissions,inpatient_failed_to_attend,outpatient_first_attendances_seen,outpatient_first_attendances_dna,outpatient_subsequent_attendances_seen,outpatient_subsequent_attendances_dna
+code,inpatient_admissions,inpatient_failed_to_attend,outpatient_first_attendances_seen,outpatient_first_attendances_dna,outpatient_subsequent_attendances_seen,outpatient_subsequent_attendances_dna
 NLG,0,0,223,25,127,2
 NQV,54,0,568,89,3329,174
 NT314,1188,0,1661,0,2985,0

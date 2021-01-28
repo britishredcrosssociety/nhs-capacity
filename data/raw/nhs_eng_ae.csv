@@ -1,4 +1,4 @@
-Code,Total Attendances > 4 hours,Percentage in 4 hours or less (type 1),Percentage in 4 hours or less (all),Number of patients spending >4 hours from decision to admit to admission,Number of patients spending >12 hours from decision to admit to admission
+code,total_attendances_more_4_hours,perc_4_hours_or_less_type_1,perc_4_hours_or_less_all,num_patients_more_4_hours_from_decision_to_admit_to_admission,num_patients_more_12_hours_from_decision_to_admit_to_admission
 RC9,-,-,-,111,0
 RGT,-,-,-,862,178
 NQ108,1,-,0.99936748893105631,1,1
