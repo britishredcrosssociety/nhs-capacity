@@ -148,3 +148,30 @@ eng_dtoc <- eng_dtoc %>%
 # Save to raw
 eng_dtoc %>% 
   write_csv("data/raw/nhs_eng_dtoc.csv")
+
+# ---- Inpatients (elective) & Outpatients ----
+# Provider based
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/05/QAR-PROV-Web-1920-Q4-aIu8F.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+eng_in_out <- read_excel(tf, sheet = "Full Extract", skip = 16)
+
+unlink(tf)
+rm(tf)
+
+eng_in_out <-
+  eng_in_out %>% 
+  slice(-(1:2)) %>% 
+  select(Code = `Org Code`, 
+         inpatient_admissions = Admissions,
+         inpatient_failed_to_attend = `Failed to Attend`,
+         outpatient_first_attendances_seen = `First Attendances Seen`,
+         outpatient_first_attendances_dna = `First Attendances DNA`,
+         outpatient_subsequent_attendances_seen = `Subsequent Attendances Seen`,
+         outpatient_subsequent_attendances_dna = `Subsequent Attendances DNA`)
+
+# Save to raw
+eng_in_out %>% 
+  write_csv("data/raw/nhs_eng_in_out.csv")
