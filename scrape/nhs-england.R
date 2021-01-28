@@ -128,3 +128,23 @@ eng_beds <- eng_beds %>%
 # save to raw
 eng_beds %>% 
   write_csv("data/raw/nhs_eng_beds.csv")
+
+# ---- DToC ----
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/09/Trust-Type-B-February-2020-4W5PA.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+eng_dtoc <- read_excel(tf, sheet = "Trust - by responsible org", skip = 13)
+
+unlink(tf)
+rm(tf)
+
+eng_dtoc <- eng_dtoc %>% 
+  slice(-(1:2)) %>% 
+  remove_empty("cols") %>% 
+  select(Code, `NHS DToC days` = NHS...5, `Social Care DToC days` = `Social Care...6`)
+
+# Save to raw
+eng_dtoc %>% 
+  write_csv("data/raw/nhs_eng_dtoc.csv")
