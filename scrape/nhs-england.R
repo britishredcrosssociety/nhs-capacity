@@ -6,6 +6,7 @@ library(janitor)
 library(lubridate)
 
 # ---- A&E Attendance ----
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/December-2020-AE-by-provider-8c90a.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
@@ -35,6 +36,7 @@ eng_ae %>%
   write_csv("data/raw/nhs_eng_ae.csv")
 
 # ---- Ambulance Quality Indicators ----
+# https://www.england.nhs.uk/statistics/statistical-work-areas/ambulance-quality-indicators/
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/AmbSYS-December-2020.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
@@ -111,6 +113,7 @@ eng_ambo %>%
   write_csv("data/raw/nhs_eng_ambulance.csv")
 
 # ---- Bed Occupancy ----
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Overnight-Web_File-Final-DE5WC.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
@@ -133,6 +136,7 @@ eng_beds %>%
   write_csv("data/raw/nhs_eng_beds.csv")
 
 # ---- DToC ----
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/delayed-transfers-of-care/
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/09/Trust-Type-B-February-2020-4W5PA.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
@@ -157,6 +161,7 @@ eng_dtoc %>%
   write_csv("data/raw/nhs_eng_dtoc.csv")
 
 # ---- Inpatients (elective) & Outpatients ----
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/hospital-activity/quarterly-hospital-activity/qar-data/
 # Provider based
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/05/QAR-PROV-Web-1920-Q4-aIu8F.xls",
@@ -188,7 +193,8 @@ eng_in_out %>%
 # ---- Monthly Diagnostics ----
 # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/monthly-diagnostics-waiting-times-and-activity/monthly-diagnostics-data-2020-21/
 # Helper function for downloading and processing data
-get_waiting_list <- function(url, date) {
+get_waiting_list <- 
+  function(url, date) {
   GET(url, write_disk(tf <- tempfile(fileext = ".xls")))
 
   read_excel(tf, sheet = "Provider", skip = 13) %>%
@@ -222,3 +228,7 @@ eng_diagnostics <-
 # Save to raw
 eng_diagnostics %>%
   write_csv("data/raw/nhs_eng_diagnostics.csv")
+
+# ---- Care home beds ----
+
+# ---- Nursing beds ----
