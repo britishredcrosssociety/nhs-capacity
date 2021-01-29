@@ -230,5 +230,16 @@ eng_diagnostics %>%
   write_csv("data/raw/nhs_eng_diagnostics.csv")
 
 # ---- Care home beds ----
+# Source: https://www.cqc.org.uk/about-us/transparency/using-cqc-data#directory
+# Care directory with filters
+GET("https://www.cqc.org.uk/sites/default/files/4_January_2021_HSCA_Active_Locations.xlsx",
+    write_disk(tf <- tempfile(fileext = ".xlsx")))
+
+cqc_filter <- read_excel(tf, sheet = "HSCA Active Locations", col_types = "text")
+
+unlink(tf)
+rm(tf)
+
+# https://github.com/britishredcrosssociety/resilience-index/blob/health-inequalities/prep%20capacity%20-%20health%20inequalities%20-%20accessibility.R
 
 # ---- Nursing beds ----
