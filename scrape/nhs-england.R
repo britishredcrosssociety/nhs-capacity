@@ -5,6 +5,9 @@ library(readxl)
 library(janitor)
 library(lubridate)
 
+# ---- Load helpers ----
+source("scrape/geodemographic.R")
+
 # ---- A&E Attendance ----
 # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
 GET(
@@ -113,7 +116,11 @@ eng_ambo %>%
   write_csv("data/raw/nhs_eng_ambulance.csv")
 
 # ---- Bed Occupancy ----
-# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/
+# Source:
+# - overnight: https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/
+# - day: https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-day-only/
+
+# Night
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Overnight-Web_File-Final-DE5WC.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
@@ -240,6 +247,22 @@ cqc_filter <- read_excel(tf, sheet = "HSCA Active Locations", col_types = "text"
 unlink(tf)
 rm(tf)
 
-# https://github.com/britishredcrosssociety/resilience-index/blob/health-inequalities/prep%20capacity%20-%20health%20inequalities%20-%20accessibility.R
+# Care home beds with nursing (per 1,000 older people)
+nursing_beds <- 
+  cqc_filter %>% 
+  group_by(`Location Local Authority`) %>% 
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>% 
+  left_join(geog_names, by = c("Location Local Authority" = "Name")) %>% 
+  left_join(la_pop, by = "Code") %>% 
+  mutate(`Care home beds per 1,000 people aged 65+` = `No. care home beds` / `No. people aged 65+` * 1000) %>% 
+  select(Code, Name = `Location Local Authority`, everything())
 
-# ---- Nursing beds ----
+# Domiciliary care services registered
+dom_care <- 
+  cqc_filter %>% 
+  filter(`Service type - Domiciliary care service` == "Y") %>% 
+  count(`Location Local Authority`) %>% 
+  left_join(geog_names, by = c("Location Local Authority" = "Name")) %>% 
+  select(Code, Name = `Location Local Authority`, `No. domiciliary services` = n)
+
