@@ -211,6 +211,7 @@ get_waiting_list <-
 }
 
 # Download waiting list stats for 2020
+eng_diagnostics_dec_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Monthly-Diagnostics-Web-File-Provider-December-2020_C9B31.xls", "01/12/2020")
 eng_diagnostics_nov_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/Monthly-Diagnostics-Web-File-Provider-November-2020_P6PN01.xls", "01/11/2020")
 eng_diagnostics_oct_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/12/Monthly-Diagnostics-Web-File-Provider-October-2020_6CS21.xls", "01/10/2020")
 eng_diagnostics_sep_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Monthly-Diagnostics-Web-File-Provider-September-2020_1ME27.xls", "01/09/2020")
@@ -222,6 +223,7 @@ eng_diagnostics_apr_20 <- get_waiting_list("https://www.england.nhs.uk/statistic
 
 eng_diagnostics <-
   bind_rows(
+    eng_diagnostics_dec_20,
     eng_diagnostics_nov_20,
     eng_diagnostics_oct_20,
     eng_diagnostics_sep_20,
@@ -239,7 +241,7 @@ eng_diagnostics %>%
 # ---- Care home beds ----
 # Source: https://www.cqc.org.uk/about-us/transparency/using-cqc-data#directory
 # Care directory with filters
-GET("https://www.cqc.org.uk/sites/default/files/4_January_2021_HSCA_Active_Locations.xlsx",
+GET("https://www.cqc.org.uk/sites/default/files/HSCA_Active_Locations_1_February_2021.xlsx",
     write_disk(tf <- tempfile(fileext = ".xlsx")))
 
 cqc_filter <- read_excel(tf, sheet = "HSCA Active Locations", col_types = "text")
