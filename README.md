@@ -10,6 +10,12 @@
 - **`analyse/`** contains scripts to generate data and insights. Takes data from `data/raw/` and exports to `data/processed/`. Exports other output to `output/`
 - **`output/`** is a place for all non Shiny output (e.g., reports, plots, static files)
 
+## Data sets
+
+Data set | Boundaries | Date | Source | raw
+--- | --- | --- | ---
+A&E Attendances and Emergency Admissions | Provider (NHS Trusts, NHS Foundation Trusts and Independent Sector Organisations) & STP | Jan 2021 | https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/ae-attendances-and-emergency-admissions-2020-21/ | https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/January-2021-AE-by-provider-O64J2.xls
+
 ## Contributing
 To contribute to this project, please follow [GitHub Flow](https://guides.github.com/introduction/flow/) when submitting changes.
 
