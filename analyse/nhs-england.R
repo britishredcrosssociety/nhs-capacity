@@ -240,7 +240,7 @@ eng_beds_nights <-
 
 # Replace '-' with NA and convert to double
 eng_beds_nights <-
-  eng_beds_nights %>% 
+  eng_beds_nights %>%
   mutate(
     perc_bed_occupied = str_replace_all(perc_bed_occupied, "-", NA_character_),
     perc_bed_occupied = as.double(perc_bed_occupied)
@@ -273,7 +273,7 @@ eng_beds_days <-
 
 # Replace '-' with NA and convert to double
 eng_beds_days <-
-  eng_beds_days %>% 
+  eng_beds_days %>%
   mutate(
     perc_bed_occupied = str_replace_all(perc_bed_occupied, "-", NA_character_),
     perc_bed_occupied = as.double(perc_bed_occupied)
@@ -295,7 +295,7 @@ eng_dtoc <- read_excel(tf, sheet = "Trust - by responsible org", skip = 13)
 unlink(tf)
 rm(tf)
 
-eng_dtoc <- 
+eng_dtoc <-
   eng_dtoc %>%
   slice(-(1:2)) %>%
   remove_empty("cols") %>%
