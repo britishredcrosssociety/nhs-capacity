@@ -20,7 +20,8 @@ unlink(tf)
 rm(tf)
 
 # remove first two entries (one is totals, other is blank)
-eng_ae <- eng_ae %>%
+eng_ae <-
+  eng_ae %>%
   slice(-(1:2))
 
 # Remove empty rows at the end of the spreadsheet
@@ -29,9 +30,10 @@ eng_ae <-
   drop_na()
 
 # Keep vars of interest
-eng_ae <- eng_ae %>%
+eng_ae <-
+  eng_ae %>%
   select(
-    code = Code,
+    provider_code = Code,
     total_attendances_more_4_hours = `Total Attendances > 4 hours`,
     perc_4_hours_or_less_type_1 = `Percentage in 4 hours or less (type 1)`,
     perc_4_hours_or_less_all = `Percentage in 4 hours or less (all)`,
@@ -54,7 +56,59 @@ eng_ae <-
   eng_ae %>% 
   mutate(
     across(
-      .cols = !code,
+      .cols = !provider_code,
+      as.double
+    )
+  )
+
+# Save to raw
+eng_ae %>%
+  write_csv("data/processed/nhs_eng_ae_provider.csv")
+
+# - STP -
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/December-2020-AE-by-provider-8c90a.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+eng_ae_stp <- read_excel(tf, sheet = "STP Level Data", skip = 15)
+
+unlink(tf)
+rm(tf)
+
+# remove first two entries (one is totals, other is blank)
+eng_ae_stp <-
+  eng_ae_stp %>%
+  slice(-(1:2))
+
+# Keep vars of interest
+eng_ae_stp <-
+  eng_ae_stp %>%
+  select(
+    stp_code = Code,
+    total_attendances_more_4_hours = `Total Attendances > 4 hours`,
+    perc_4_hours_or_less_type_1 = `Percentage in 4 hours or less (type 1)`,
+    perc_4_hours_or_less_all = `Percentage in 4 hours or less (all)`,
+    num_patients_more_4_hours_from_decision_to_admit_to_admission = `Number of patients spending >4 hours from decision to admit to admission`,
+    num_patients_more_12_hours_from_decision_to_admit_to_admission = `Number of patients spending >12 hours from decision to admit to admission`
+  )
+
+# Replace '-' character with NA
+eng_ae_stp <-
+  eng_ae_stp %>%
+  mutate(
+    across(
+      .cols = everything(),
+      ~ str_replace_all(.x, "-", NA_character_)
+    )
+  ) 
+
+# Change cols to double
+eng_ae_stp <-
+  eng_ae_stp %>% 
+  mutate(
+    across(
+      .cols = !stp_code,
       as.double
     )
   )
