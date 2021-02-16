@@ -248,7 +248,7 @@ eng_beds_nights <-
 
 # Save
 eng_beds_nights %>%
-  write_csv("data/processed/nhs_eng_beds_nights.csv")
+  write_csv("data/processed/nhs_eng_beds_nights_provider.csv")
 
 # - Day -
 GET(
@@ -281,7 +281,7 @@ eng_beds_days <-
 
 # save to raw
 eng_beds_days %>%
-  write_csv("data/processed/nhs_eng_beds_days.csv")
+  write_csv("data/processed/nhs_eng_beds_days_provider.csv")
 
 # # ---- DToC ----
 # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/delayed-transfers-of-care/
@@ -308,7 +308,7 @@ eng_dtoc <-
 # Save to raw
 eng_dtoc %>%
   write_csv("data/processed/nhs_eng_dtoc_provider.csv")
-#
+
 # # ---- Inpatients (elective) & Outpatients ----
 # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/hospital-activity/quarterly-hospital-activity/qar-data/
 # Provider based
@@ -337,7 +337,7 @@ eng_in_out <-
 
 # Save to raw
 eng_in_out %>%
-  write_csv("data/raw/nhs_eng_in_out.csv")
+  write_csv("data/processed/nhs_eng_in_out_provider.csv")
 #
 # # ---- Monthly Diagnostics ----
 # # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/monthly-diagnostics-waiting-times-and-activity/monthly-diagnostics-data-2020-21/
