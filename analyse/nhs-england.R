@@ -284,59 +284,60 @@ eng_beds_days %>%
   write_csv("data/processed/nhs_eng_beds_days.csv")
 
 # # ---- DToC ----
-# # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/delayed-transfers-of-care/
-# GET(
-#   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/09/Trust-Type-B-February-2020-4W5PA.xls",
-#   write_disk(tf <- tempfile(fileext = ".xls"))
-# )
-#
-# eng_dtoc <- read_excel(tf, sheet = "Trust - by responsible org", skip = 13)
-#
-# unlink(tf)
-# rm(tf)
-#
-# eng_dtoc <- eng_dtoc %>%
-#   slice(-(1:2)) %>%
-#   remove_empty("cols") %>%
-#   select(
-#     code = Code,
-#     nhs_dtoc_days = NHS...5,
-#     social_care_dtoc_days = `Social Care...6`
-#   )
-#
-# # Save to raw
-# eng_dtoc %>%
-#   write_csv("data/raw/nhs_eng_dtoc.csv")
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/delayed-transfers-of-care/
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/09/Trust-Type-B-February-2020-4W5PA.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+eng_dtoc <- read_excel(tf, sheet = "Trust - by responsible org", skip = 13)
+
+unlink(tf)
+rm(tf)
+
+eng_dtoc <- 
+  eng_dtoc %>%
+  slice(-(1:2)) %>%
+  remove_empty("cols") %>%
+  select(
+    provider_code = Code,
+    nhs_dtoc_days = NHS...5,
+    social_care_dtoc_days = `Social Care...6`
+  )
+
+# Save to raw
+eng_dtoc %>%
+  write_csv("data/processed/nhs_eng_dtoc_provider.csv")
 #
 # # ---- Inpatients (elective) & Outpatients ----
-# # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/hospital-activity/quarterly-hospital-activity/qar-data/
-# # Provider based
-# GET(
-#   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/05/QAR-PROV-Web-1920-Q4-aIu8F.xls",
-#   write_disk(tf <- tempfile(fileext = ".xls"))
-# )
-#
-# eng_in_out <- read_excel(tf, sheet = "Full Extract", skip = 16)
-#
-# unlink(tf)
-# rm(tf)
-#
-# eng_in_out <-
-#   eng_in_out %>%
-#   slice(-(1:2)) %>%
-#   select(
-#     code = `Org Code`,
-#     inpatient_admissions = Admissions,
-#     inpatient_failed_to_attend = `Failed to Attend`,
-#     outpatient_first_attendances_seen = `First Attendances Seen`,
-#     outpatient_first_attendances_dna = `First Attendances DNA`,
-#     outpatient_subsequent_attendances_seen = `Subsequent Attendances Seen`,
-#     outpatient_subsequent_attendances_dna = `Subsequent Attendances DNA`
-#   )
-#
-# # Save to raw
-# eng_in_out %>%
-#   write_csv("data/raw/nhs_eng_in_out.csv")
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/hospital-activity/quarterly-hospital-activity/qar-data/
+# Provider based
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/05/QAR-PROV-Web-1920-Q4-aIu8F.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+eng_in_out <- read_excel(tf, sheet = "Full Extract", skip = 16)
+
+unlink(tf)
+rm(tf)
+
+eng_in_out <-
+  eng_in_out %>%
+  slice(-(1:2)) %>%
+  select(
+    org_code = `Org Code`,
+    inpatient_admissions = Admissions,
+    inpatient_failed_to_attend = `Failed to Attend`,
+    outpatient_first_attendances_seen = `First Attendances Seen`,
+    outpatient_first_attendances_dna = `First Attendances DNA`,
+    outpatient_subsequent_attendances_seen = `Subsequent Attendances Seen`,
+    outpatient_subsequent_attendances_dna = `Subsequent Attendances DNA`
+  )
+
+# Save to raw
+eng_in_out %>%
+  write_csv("data/raw/nhs_eng_in_out.csv")
 #
 # # ---- Monthly Diagnostics ----
 # # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/monthly-diagnostics-waiting-times-and-activity/monthly-diagnostics-data-2020-21/
