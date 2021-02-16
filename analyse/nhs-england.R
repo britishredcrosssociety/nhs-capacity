@@ -217,7 +217,7 @@ eng_ambo %>%
 # - overnight: https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/
 # - day: https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-day-only/
 
-# Night
+# - Night -
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Overnight-Web_File-Final-DE5WC.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
@@ -241,11 +241,47 @@ eng_beds_nights <-
 # Replace '-' with NA and convert to double
 eng_beds_nights <-
   eng_beds_nights %>% 
-  mutate(perc_bed_occupied = str_replace_all(perc_bed_occupied, "-", NA_character_))
+  mutate(
+    perc_bed_occupied = str_replace_all(perc_bed_occupied, "-", NA_character_),
+    perc_bed_occupied = as.double(perc_bed_occupied)
+  )
+
+# Save
+eng_beds_nights %>%
+  write_csv("data/processed/nhs_eng_beds_nights.csv")
+
+# - Day -
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Day-Only-Web_File-Final-DE5WC.xlsx",
+  write_disk(tf <- tempfile(fileext = ".xlsx"))
+)
+
+eng_beds_days <- read_excel(tf, sheet = "NHS Trust by Sector", skip = 14)
+
+unlink(tf)
+rm(tf)
+
+# remove first two entries (one is totals, other is blank)
+eng_beds_days <-
+  eng_beds_days %>%
+  slice(-(1:2))
+
+# Select cols
+eng_beds_days <-
+  eng_beds_days %>%
+  select(org_code = `Org Code`, perc_bed_occupied = Total...18)
+
+# Replace '-' with NA and convert to double
+eng_beds_days <-
+  eng_beds_days %>% 
+  mutate(
+    perc_bed_occupied = str_replace_all(perc_bed_occupied, "-", NA_character_),
+    perc_bed_occupied = as.double(perc_bed_occupied)
+  )
 
 # save to raw
-eng_beds %>%
-  write_csv("data/raw/nhs_eng_beds.csv")
+eng_beds_days %>%
+  write_csv("data/processed/nhs_eng_beds_days.csv")
 
 # # ---- DToC ----
 # # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/delayed-transfers-of-care/
