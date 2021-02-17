@@ -338,47 +338,40 @@ eng_in_out <-
 # Save to raw
 eng_in_out %>%
   write_csv("data/processed/nhs_eng_in_out_provider.csv")
-#
+
+
+# To Do:
+# - Should RTT waiting list times be included, instead of/in addition to monthly
+#   diagnostics data below? Be sure to update README data sets.
+#   source: https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/rtt-data-2020-21/
+#   See waiting time analysis already completed: https://github.com/britishredcrosssociety/covid-19-reach/tree/master/analysis/nhs-waiting-times
+# - Look through Health Index word doc for missing indicators
+
 # # ---- Monthly Diagnostics ----
-# # Source: https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/monthly-diagnostics-waiting-times-and-activity/monthly-diagnostics-data-2020-21/
-# # Helper function for downloading and processing data
-# get_waiting_list <-
-#   function(url, date) {
-#   GET(url, write_disk(tf <- tempfile(fileext = ".xls")))
-#
-#   read_excel(tf, sheet = "Provider", skip = 13) %>%
-#     select(code = `Provider Code`, trust_name = `Provider Name`, total_waiting_list = `Total Waiting List`) %>%
-#     slice(-(1:2)) %>%
-#     mutate(Date = dmy(date))
-# }
-#
-# # Download waiting list stats for 2020
-# eng_diagnostics_dec_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Monthly-Diagnostics-Web-File-Provider-December-2020_C9B31.xls", "01/12/2020")
-# eng_diagnostics_nov_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/01/Monthly-Diagnostics-Web-File-Provider-November-2020_P6PN01.xls", "01/11/2020")
-# eng_diagnostics_oct_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/12/Monthly-Diagnostics-Web-File-Provider-October-2020_6CS21.xls", "01/10/2020")
-# eng_diagnostics_sep_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Monthly-Diagnostics-Web-File-Provider-September-2020_1ME27.xls", "01/09/2020")
-# eng_diagnostics_aug_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/10/Monthly-Diagnostics-Web-File-Provider-August-2020_o1lg9.xls", "01/08/2020")
-# eng_diagnostics_jul_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/09/Monthly-Diagnostics-Web-File-Provider-July-2020.xls", "01/07/2020")
-# eng_diagnostics_jun_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/08/Monthly-Diagnostics-Web-File-Provider-June-2020.xls", "01/06/2020")
-# eng_diagnostics_may_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/07/Monthly-Diagnostics-Web-File-Provider-May-2020.xls", "01/05/2020")
-# eng_diagnostics_apr_20 <- get_waiting_list("https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/06/Monthly-Diagnostics-Web-File-Provider-April-2020.xls", "01/04/2020")
-#
-# eng_diagnostics <-
-#   bind_rows(
-#     eng_diagnostics_dec_20,
-#     eng_diagnostics_nov_20,
-#     eng_diagnostics_oct_20,
-#     eng_diagnostics_sep_20,
-#     eng_diagnostics_aug_20,
-#     eng_diagnostics_jul_20,
-#     eng_diagnostics_jun_20,
-#     eng_diagnostics_may_20,
-#     eng_diagnostics_apr_20
-#   )
-#
-# # Save to raw
-# eng_diagnostics %>%
-#   write_csv("data/raw/nhs_eng_diagnostics.csv")
+# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/monthly-diagnostics-waiting-times-and-activity/monthly-diagnostics-data-2020-21/
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Monthly-Diagnostics-Web-File-Provider-December-2020_C9B31.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+eng_diagnostics <- read_excel(tf, sheet = "Provider", skip = 13)
+
+unlink(tf)
+rm(tf)
+
+eng_diagnostics <-
+  eng_diagnostics %>%
+  select(
+    code = `Provider Code`,
+    trust_name = `Provider Name`,
+    total_waiting_list = `Total Waiting List`,
+    perc_waiting_6_plus_weeks = `Percentage waiting 6+ weeks`
+  ) %>%
+  slice(-(1:2))
+
+# Save
+eng_diagnostics %>%
+  write_csv("data/processed/nhs_eng_diagnostics.csv")
 #
 # # ---- Care home beds ----
 # # Source: https://www.cqc.org.uk/about-us/transparency/using-cqc-data#directory
