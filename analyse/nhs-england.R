@@ -414,7 +414,7 @@ rm(tf)
 
 # Remove long vars making printing difficult to read
 eng_care_home <-
-  eng_care_home %>% 
+  eng_care_home %>%
   select(-contains("(note;"))
 
 # Care home beds LA
@@ -422,29 +422,55 @@ eng_care_home_beds_la <-
   eng_care_home %>%
   group_by(`Location Local Authority`) %>%
   mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>% 
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>%
   rename(lad_name = `Location Local Authority`, care_home_beds = `No. care home beds`)
 
 # Save
 eng_care_home_beds_la %>%
   write_csv("data/processed/nhs_eng_care_home_beds_la.csv")
 
+# Care home beds without nursing LA
+eng_care_home_beds_without_nursing_la <-
+  eng_care_home %>%
+  filter(`Service type - Care home service with nursing` == "Y") %>%
+  group_by(`Location Local Authority`) %>%
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
+  summarise(`No. care home beds without nursing` = sum(`Care homes beds`, na.rm = TRUE)) %>%
+  rename(lad_name = `Location Local Authority`, care_home_beds_without_nursing = `No. care home beds without nursing`)
+
+# Save
+eng_care_home_beds_without_nursing_la %>%
+  write_csv("data/processed/nhs_eng_care_home_beds_without_nursing_la.csv")
+
 # Care home beds CCG
 eng_care_home_beds_ccg <-
   eng_care_home %>%
   group_by(`Location ONSPD CCG Code`) %>%
   mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>% 
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>%
   rename(ccg_code = `Location ONSPD CCG Code`, care_home_beds = `No. care home beds`)
 
 # Save
 eng_care_home_beds_la %>%
   write_csv("data/processed/nhs_eng_care_home_beds_ccg.csv")
 
-# Domiciliary care services registered
-eng_dom_care <-
+# Care home beds without nursing CCG
+eng_care_home_beds_without_nursing_ccg <-
   eng_care_home %>%
-  filter(`Service type - Domiciliary care service` == "Y") %>%
-  count(`Location Local Authority`) %>%
-  left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
-  select(Code, Name = `Location Local Authority`, `No. domiciliary services` = n)
+  filter(`Service type - Care home service with nursing` == "Y") %>%
+  group_by(`Location ONSPD CCG Code`) %>%
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
+  summarise(`No. care home beds without nursing` = sum(`Care homes beds`, na.rm = TRUE)) %>%
+  rename(ccg_code = `Location ONSPD CCG Code`, care_home_beds_without_nursing = `No. care home beds without nursing`)
+
+# Save
+eng_care_home_beds_without_nursing_ccg %>%
+  write_csv("data/processed/nhs_eng_care_home_beds_without_nursing_ccg.csv")
+
+# # Domiciliary care services registered
+# eng_dom_care <-
+#   eng_care_home %>%
+#   filter(`Service type - Domiciliary care service` == "Y") %>%
+#   count(`Location Local Authority`) %>%
+#   left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
+#   select(Code, Name = `Location Local Authority`, `No. domiciliary services` = n)
