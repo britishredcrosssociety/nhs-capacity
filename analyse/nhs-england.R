@@ -412,12 +412,18 @@ eng_care_home <- read_excel(tf, sheet = "HSCA Active Locations", col_types = "te
 unlink(tf)
 rm(tf)
 
+# Remove long vars making printing difficult to read
+eng_care_home <-
+  eng_care_home %>% 
+  select(-contains("(note;"))
+
 # Care home beds LA
 eng_care_home_beds_la <-
   eng_care_home %>%
   group_by(`Location Local Authority`) %>%
   mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE))
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>% 
+  rename(lad_name = `Location Local Authority`, care_home_beds = `No. care home beds`)
 
 # Save
 eng_care_home_beds_la %>%
@@ -428,16 +434,17 @@ eng_care_home_beds_ccg <-
   eng_care_home %>%
   group_by(`Location ONSPD CCG Code`) %>%
   mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE))
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>% 
+  rename(ccg_code = `Location ONSPD CCG Code`, care_home_beds = `No. care home beds`)
 
 # Save
 eng_care_home_beds_la %>%
   write_csv("data/processed/nhs_eng_care_home_beds_ccg.csv")
 
-# # Domiciliary care services registered
-# dom_care <-
-#   cqc_filter %>%
-#   filter(`Service type - Domiciliary care service` == "Y") %>%
-#   count(`Location Local Authority`) %>%
-#   left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
-#   select(Code, Name = `Location Local Authority`, `No. domiciliary services` = n)
+# Domiciliary care services registered
+eng_dom_care <-
+  eng_care_home %>%
+  filter(`Service type - Domiciliary care service` == "Y") %>%
+  count(`Location Local Authority`) %>%
+  left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
+  select(Code, Name = `Location Local Authority`, `No. domiciliary services` = n)
