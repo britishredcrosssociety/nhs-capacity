@@ -372,33 +372,57 @@ eng_diagnostics <-
 # Save
 eng_diagnostics %>%
   write_csv("data/processed/nhs_eng_diagnostics.csv")
-#
-# # ---- Care home beds ----
-# # Source: https://www.cqc.org.uk/about-us/transparency/using-cqc-data#directory
-# # Care directory with filters
-# GET("https://www.cqc.org.uk/sites/default/files/HSCA_Active_Locations_1_February_2021.xlsx",
-#     write_disk(tf <- tempfile(fileext = ".xlsx")))
-#
-# cqc_filter <- read_excel(tf, sheet = "HSCA Active Locations", col_types = "text")
-#
-# unlink(tf)
-# rm(tf)
-#
-# # Care home beds with nursing (per 1,000 older people)
-# nursing_beds <-
-#   cqc_filter %>%
-#   group_by(`Location Local Authority`) %>%
-#   mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-#   summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>%
-#   left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
-#   left_join(la_pop, by = "Code") %>%
-#   mutate(`Care home beds per 1,000 people aged 65+` = `No. care home beds` / `No. people aged 65+` * 1000) %>%
-#   select(Code, Name = `Location Local Authority`, everything())
-#
-# # Domiciliary care services registered
-# dom_care <-
-#   cqc_filter %>%
-#   filter(`Service type - Domiciliary care service` == "Y") %>%
-#   count(`Location Local Authority`) %>%
-#   left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
-#   select(Code, Name = `Location Local Authority`, `No. domiciliary services` = n)
+
+# ---- Referral to Treatment Waiting Times (RTT) ----
+# Extract data
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Full-CSV-data-file-Dec20-ZIP-2705K-98040.zip",
+  write_disk(tf <- tempfile(fileext = ".zip"))
+)
+unzip(tf, exdir = tempdir())
+unlink(tf)
+
+eng_rtt <- read_csv(list.files(tempdir(), pattern = "*.csv", full.names = TRUE))
+
+# Calculate STP/ICS totals
+eng_rtt <- 
+  eng_rtt %>% 
+  mutate(`Gt 18 Weeks SUM 1` = rowSums(across(`Gt 18 To 19 Weeks SUM 1`:`Gt 52 Weeks SUM 1`), na.rm = TRUE)) %>% 
+  group_by(`Provider Parent Org Code`, `Provider Parent Name`, `Treatment Function Name`) %>% 
+  summarise(`Total waiting > 52 weeks` = sum(`Gt 52 Weeks SUM 1`, na.rm = TRUE),
+            `Total waiting > 18 weeks` = sum(`Gt 18 Weeks SUM 1`, na.rm = TRUE))
+
+# Save
+eng_rtt %>% 
+  write_csv("data/processed/nhs_eng_rtt.csv")
+  
+
+# ---- Care home beds ----
+# Source: https://www.cqc.org.uk/about-us/transparency/using-cqc-data#directory
+# Care directory with filters
+GET("https://www.cqc.org.uk/sites/default/files/HSCA_Active_Locations_1_February_2021.xlsx",
+    write_disk(tf <- tempfile(fileext = ".xlsx")))
+
+cqc_filter <- read_excel(tf, sheet = "HSCA Active Locations", col_types = "text")
+
+unlink(tf)
+rm(tf)
+
+# Care home beds with nursing (per 1,000 older people)
+nursing_beds <-
+  cqc_filter %>%
+  group_by(`Location Local Authority`) %>%
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>%
+  left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
+  left_join(la_pop, by = "Code") %>%
+  mutate(`Care home beds per 1,000 people aged 65+` = `No. care home beds` / `No. people aged 65+` * 1000) %>%
+  select(Code, Name = `Location Local Authority`, everything())
+
+# Domiciliary care services registered
+dom_care <-
+  cqc_filter %>%
+  filter(`Service type - Domiciliary care service` == "Y") %>%
+  count(`Location Local Authority`) %>%
+  left_join(geog_names, by = c("Location Local Authority" = "Name")) %>%
+  select(Code, Name = `Location Local Authority`, `No. domiciliary services` = n)
