@@ -371,7 +371,7 @@ eng_diagnostics <-
 
 # Save
 eng_diagnostics %>%
-  write_csv("data/processed/nhs_eng_diagnostics.csv")
+  write_csv("data/processed/nhs_eng_diagnostics_provider.csv")
 
 # ---- Referral to Treatment Waiting Times (RTT) ----
 # Extract data
@@ -396,7 +396,7 @@ eng_rtt <-
 
 # Save
 eng_rtt %>%
-  write_csv("data/processed/nhs_eng_rtt.csv")
+  write_csv("data/processed/nhs_eng_rtt_provider.csv")
 
 
 # ---- Care home beds ----
