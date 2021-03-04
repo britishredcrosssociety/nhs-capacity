@@ -5,6 +5,9 @@
 ## Overview
 An NHS Trust level view of current health system capacity. This differs from the upcoming Health Index that focuses on community needs and capacity.
 
+## Coverage
+The first version will only cover England.
+
 ## Navigation
 
 - **`app/`** hosts a self-contained R Shiny app.
