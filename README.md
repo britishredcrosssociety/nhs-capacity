@@ -2,12 +2,14 @@
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
+## Overview
+An NHS Trust level view of current health system capacity. This differs from the upcoming Health Index that focuses on community needs and capacity.
+
 ## Navigation
 
 - **`app/`** hosts a self-contained R Shiny app.
-- **`data/`** contains `raw/` and `processed/` sub-folders.
-- **`analyse/`** contains scripts to generate data and insights. Takes data from `data/raw/` and the web and exports to `data/processed/`. Exports other output to `output/`
-- **`output/`** is a place for all non Shiny output (e.g., reports, plots, static files)
+- **`data/`** contains `raw/` for single indicator files and `processed/` for aggregated files to read into the Shiny app.
+- **`analyse/`** contains scripts to generate data and insights.
 
 ## Data sets
 
