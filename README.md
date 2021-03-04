@@ -11,7 +11,7 @@ The first version will only cover England.
 ## Navigation
 
 - **`app/`** hosts a self-contained R Shiny app.
-- **`data/`** contains `raw/` for single indicator files and `processed/` for aggregated files to read into the Shiny app.
+- **`data/`** contains all data.
 - **`analyse/`** contains scripts to generate data and insights.
 
 ## Data sets
