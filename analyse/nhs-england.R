@@ -50,7 +50,7 @@ ae <-
   mutate(
     across(
       .cols = !c(org_code, name),
-      ~ str_replace_all(.x, "-", NA_character_)
+      ~str_replace_all(.x, "-", NA_character_)
     )
   )
 
@@ -67,3 +67,64 @@ ae <-
 # Save
 ae %>%
   write_csv("data/nhs-ae.csv")
+
+# ---- Bec Occupancy ----
+# Source:
+# - https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/
+
+# Note: In general hospitals will experience capacity pressures at lower overall
+# occupancy rates than would previously have been the case.
+
+# - Night -
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Overnight-Web_File-Final-DE5WC.xlsx",
+  write_disk(tf <- tempfile(fileext = ".xlsx"))
+)
+
+beds_nights <- read_excel(tf, sheet = "NHS Trust by Sector", skip = 14)
+
+unlink(tf)
+rm(tf)
+
+# remove first two entries (one is totals, other is blank)
+beds_nights <-
+  beds_nights %>%
+  slice(-(1:2))
+
+# Select cols
+beds_nights <-
+  beds_nights %>%
+  select(
+    org_code = `Org Code`,
+    name = `Org Name`,
+    perc_bed_occupied_total = Total...18,
+    perc_bed_occupied_general_acute = `General & Acute...19`,
+    perc_bed_occupied_learning_disabilities = `Learning Disabilities...20`,
+    perc_bed_occupied_maternity = Maternity...21,
+    perc_bed_occupied_mental_illness = `Mental Illness...22`,
+  )
+
+# Replace '-' character with NA
+beds_nights <-
+  beds_nights %>%
+  mutate(
+    across(
+      .cols = !c(org_code, name),
+      ~str_replace_all(.x, "-", NA_character_)
+    )
+  )
+
+# Change cols to double
+beds_nights <-
+  beds_nights %>%
+  mutate(
+    across(
+      .cols = !c(org_code, name),
+      as.double
+    )
+  )
+
+# Save
+beds_nights %>%
+  write_csv("data/nhs_beds_nights.csv")
+
