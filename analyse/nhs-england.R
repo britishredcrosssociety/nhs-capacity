@@ -195,17 +195,17 @@ rm(tf)
 
 # Make colnames snake_case and drop cols
 cancer_wait_times <-
-  cancer_wait_times %>% 
+  cancer_wait_times %>%
   clean_names()
 
 # Filter latest month
 cancer_wait_times <-
-  cancer_wait_times %>% 
+  cancer_wait_times %>%
   filter(month == "DEC")
 
 # Drop cols
-cancer_wait_times <- 
-  cancer_wait_times %>% 
+cancer_wait_times <-
+  cancer_wait_times %>%
   select(
     org_code,
     standard,
@@ -215,15 +215,26 @@ cancer_wait_times <-
   )
 
 # Summarise
-cancer_wait_times <- 
-  cancer_wait_times %>% 
+cancer_wait_times <-
+  cancer_wait_times %>%
   group_by(
     org_code,
     standard
-  ) %>% 
+  ) %>%
   summarise(
     total_treated = sum(total_treated),
     within_standard = sum(within_standard),
     breaches = sum(breaches)
-    ) %>% 
+  ) %>%
   ungroup()
+
+# Rename 'standard' 2WW name
+cancer_wait_times <-
+  cancer_wait_times %>%
+  mutate(
+    standard = if_else(standard == "2WW", "2 week wait", standard)
+  )
+
+# Save
+cancer_wait_times %>%
+  write_csv("data/nhs_cancer_wait_times.csv")
