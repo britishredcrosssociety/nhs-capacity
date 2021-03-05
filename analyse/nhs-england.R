@@ -68,7 +68,7 @@ ae <-
 ae %>%
   write_csv("data/nhs-ae.csv")
 
-# ---- Bec Occupancy ----
+# ---- Bed Occupancy ----
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/
 
@@ -180,3 +180,5 @@ beds_days <-
 # Save
 beds_days %>%
   write_csv("data/nhs_beds_days.csv")
+
+# ---- 
