@@ -50,7 +50,7 @@ ae <-
   mutate(
     across(
       .cols = !c(org_code, name),
-      ~str_replace_all(.x, "-", NA_character_)
+      ~ str_replace_all(.x, "-", NA_character_)
     )
   )
 
@@ -110,7 +110,7 @@ beds_nights <-
   mutate(
     across(
       .cols = !c(org_code, name),
-      ~str_replace_all(.x, "-", NA_character_)
+      ~ str_replace_all(.x, "-", NA_character_)
     )
   )
 
@@ -127,4 +127,3 @@ beds_nights <-
 # Save
 beds_nights %>%
   write_csv("data/nhs_beds_nights.csv")
-
