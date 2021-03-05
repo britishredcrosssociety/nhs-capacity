@@ -127,3 +127,56 @@ beds_nights <-
 # Save
 beds_nights %>%
   write_csv("data/nhs_beds_nights.csv")
+
+# - Day -
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Day-Only-Web_File-Final-DE5WC.xlsx",
+  write_disk(tf <- tempfile(fileext = ".xlsx"))
+)
+
+beds_days <- read_excel(tf, sheet = "NHS Trust by Sector", skip = 14)
+
+unlink(tf)
+rm(tf)
+
+# remove first two entries (one is totals, other is blank)
+beds_days <-
+  beds_days %>%
+  slice(-(1:2))
+
+# Select cols
+beds_days <-
+  beds_days %>%
+  select(
+    org_code = `Org Code`,
+    name = `Org Name`,
+    perc_bed_occupied_total = Total...18,
+    perc_bed_occupied_general_acute = `General & Acute...19`,
+    perc_bed_occupied_learning_disabilities = `Learning Disabilities...20`,
+    perc_bed_occupied_maternity = Maternity...21,
+    perc_bed_occupied_mental_illness = `Mental Illness...22`,
+  )
+
+# Replace '-' character with NA
+beds_days <-
+  beds_days %>%
+  mutate(
+    across(
+      .cols = !c(org_code, name),
+      ~ str_replace_all(.x, "-", NA_character_)
+    )
+  )
+
+# Change cols to double
+beds_days <-
+  beds_days %>%
+  mutate(
+    across(
+      .cols = !c(org_code, name),
+      as.double
+    )
+  )
+
+# Save
+beds_days %>%
+  write_csv("data/nhs_beds_days.csv")
