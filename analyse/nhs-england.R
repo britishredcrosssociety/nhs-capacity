@@ -5,8 +5,11 @@ library(readxl)
 library(janitor)
 
 # ---- A&E Attendance ----
-# - Provider -
-# Source: https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
+# Source:
+# - https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
+
+# Date: January 2021
+
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/January-2021-AE-by-provider-O64J2.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
@@ -72,6 +75,8 @@ ae %>%
 # ---- Bed Occupancy ----
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/
+
+# Date: December 2020
 
 # Note: In general hospitals will experience capacity pressures at lower overall
 # occupancy rates than would previously have been the case.
@@ -183,6 +188,11 @@ beds_days %>%
   write_csv("data/nhs_beds_days.csv")
 
 # ---- Cancer Waiting Times ----
+# Source:
+# - https://www.england.nhs.uk/statistics/statistical-work-areas/cancer-waiting-times/
+
+# Date: December 2020
+
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Cancer-Waiting-Times-Apr-Dec-2020-Data-Extract-Provider.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
@@ -238,3 +248,19 @@ cancer_wait_times <-
 # Save
 cancer_wait_times %>%
   write_csv("data/nhs_cancer_wait_times.csv")
+
+# ---- Monthly Outpatient Referrals Data ----
+# Source:
+# - https://www.england.nhs.uk/statistics/statistical-work-areas/outpatient-referrals/
+
+# Date: Decemeber 2020
+
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/MRR_Prov-Web-file-December-20-EZJ4P.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+monthly_outpatient <- read_excel(tf, sheet = "Provider", skip = 13)
+
+unlink(tf)
+rm(tf)
