@@ -283,4 +283,4 @@ monthly_outpatient <-
 
 # Save
 monthly_outpatient %>%
-  write_csv("data/nhs_monthly_outpatients.csv")
+  write_csv("data/nhs_monthly_outpatients_referrals.csv")
