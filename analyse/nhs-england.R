@@ -2,6 +2,7 @@
 library(tidyverse)
 library(httr)
 library(readxl)
+library(janitor)
 
 # ---- A&E Attendance ----
 # - Provider -
@@ -181,4 +182,48 @@ beds_days <-
 beds_days %>%
   write_csv("data/nhs_beds_days.csv")
 
-# ---- 
+# ---- Cancer Waiting Times ----
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Cancer-Waiting-Times-Apr-Dec-2020-Data-Extract-Provider.xlsx",
+  write_disk(tf <- tempfile(fileext = ".xlsx"))
+)
+
+cancer_wait_times <- read_excel(tf)
+
+unlink(tf)
+rm(tf)
+
+# Make colnames snake_case and drop cols
+cancer_wait_times <-
+  cancer_wait_times %>% 
+  clean_names()
+
+# Filter latest month
+cancer_wait_times <-
+  cancer_wait_times %>% 
+  filter(month == "DEC")
+
+# Drop cols
+cancer_wait_times <- 
+  cancer_wait_times %>% 
+  select(
+    org_code,
+    standard,
+    total_treated,
+    within_standard,
+    breaches
+  )
+
+# Summarise
+cancer_wait_times <- 
+  cancer_wait_times %>% 
+  group_by(
+    org_code,
+    standard
+  ) %>% 
+  summarise(
+    total_treated = sum(total_treated),
+    within_standard = sum(within_standard),
+    breaches = sum(breaches)
+    ) %>% 
+  ungroup()
