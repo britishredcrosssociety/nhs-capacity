@@ -264,3 +264,23 @@ monthly_outpatient <- read_excel(tf, sheet = "Provider", skip = 13)
 
 unlink(tf)
 rm(tf)
+
+# Make colnames snake_case and drop cols
+monthly_outpatient <-
+  monthly_outpatient %>%
+  clean_names()
+
+# Remove first two entries (one is totals, other is blank)
+monthly_outpatient <-
+  monthly_outpatient %>%
+  slice(-(1:2))
+
+# Sort cols
+monthly_outpatient <-
+  monthly_outpatient %>%
+  select(-c(year:region_name)) %>%
+  rename(name = org_name)
+
+# Save
+monthly_outpatient %>%
+  write_csv("data/nhs_monthly_outpatients.csv")
