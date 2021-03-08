@@ -250,6 +250,49 @@ cancer_wait_times %>%
   write_csv("data/nhs_cancer_wait_times.csv")
 
 # ---- Diagnostic Waiting Times ----
+# Source:
+# - https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/
+
+# Date: December 2020
+
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Monthly-Diagnostics-Web-File-Provider-December-2020_C9B31.xls",
+  write_disk(tf <- tempfile(fileext = ".xls"))
+)
+
+diagnostics <- read_excel(tf, sheet = "Provider", skip = 13)
+
+unlink(tf)
+rm(tf)
+
+# Remove first two rows (summary & blank)
+diagnostics <-
+  diagnostics %>%
+  slice(-(1:2))
+
+# Select cols
+diagnostics <-
+  diagnostics %>%
+  select(
+    org_code = `Provider Code`,
+    name = `Provider Name`,
+    count_total_waiting_list = `Total Waiting List`,
+    count_waiting_6_plus_weeks = `Number waiting 6+ Weeks`,
+    count_waiting_13_plus_weeks = `Number waiting 13+ Weeks`
+  )
+
+# Calculate relative scores
+diagnostics <-
+  diagnostics %>%
+  mutate(
+    perc_waiting_6_plus_weeks = count_waiting_6_plus_weeks / count_total_waiting_list,
+    per_waiting_13_plus_weeks = count_waiting_13_plus_weeks / count_total_waiting_list
+  )
+
+# Save
+diagnostics %>%
+  write_csv("data/nhs_diagnostic_waiting_times.csv")
+
 # ---- Outpatient Referrals ----
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/outpatient-referrals/
@@ -316,21 +359,21 @@ rtt <-
 
 # Clean names
 rtt <-
-  rtt %>% 
+  rtt %>%
   clean_names()
 
 # Calculate 18 week count
 rtt <-
   rtt %>%
-  rowwise() %>% 
+  rowwise() %>%
   mutate(
     gt_18_weeks_sum_1 = sum(c_across(gt_18_to_19_weeks_sum_1:gt_52_weeks_sum_1), na.rm = TRUE)
-  ) %>% 
+  ) %>%
   ungroup()
 
 # Select cols
-rtt <- 
-  rtt %>% 
+rtt <-
+  rtt %>%
   select(
     org_code = provider_org_code,
     name = provider_org_name,
@@ -342,23 +385,23 @@ rtt <-
 
 # Calculate summaries across trusts
 rtt <-
-  rtt %>% 
+  rtt %>%
   group_by(
     org_code,
     name,
     rtt_type,
     treatment
-  ) %>% 
+  ) %>%
   summarise(
     more_52_weeks = sum(more_52_weeks, na.rm = TRUE),
     more_18_weeks = sum(more_18_weeks, na.rm = TRUE)
-  ) %>% 
+  ) %>%
   ungroup()
 
 # Keep only treatment totals (not breakdowns)
 rtt <-
-  rtt %>% 
-  filter(treatment == "Total") %>% 
+  rtt %>%
+  filter(treatment == "Total") %>%
   select(-treatment)
 
 # Save
