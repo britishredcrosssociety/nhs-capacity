@@ -407,7 +407,7 @@ rtt <-
 
 # Calculate relative wait times
 rtt <-
-  rtt %>% 
+  rtt %>%
   mutate(
     perc_wait_more_18_weeks = more_18_weeks / total,
     perc_wait_more_52_weeks = more_52_weeks / total
@@ -415,7 +415,7 @@ rtt <-
 
 # Reorder and rename cols
 rtt <-
-  rtt %>% 
+  rtt %>%
   select(
     org_code,
     name,
