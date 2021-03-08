@@ -249,7 +249,8 @@ cancer_wait_times <-
 cancer_wait_times %>%
   write_csv("data/nhs_cancer_wait_times.csv")
 
-# ---- Monthly Outpatient Referrals Data ----
+# ---- Diagnostic Waiting Times ----
+# ---- Outpatient Referrals ----
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/outpatient-referrals/
 
