@@ -255,6 +255,9 @@ cancer_wait_times %>%
 
 # Date: Decemeber 2020
 
+# Description:
+# - Count of referrals for first consultant-led outpatient appointments
+
 GET(
   "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/MRR_Prov-Web-file-December-20-EZJ4P.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
@@ -284,3 +287,79 @@ monthly_outpatient <-
 # Save
 monthly_outpatient %>%
   write_csv("data/nhs_monthly_outpatients_referrals.csv")
+
+# ---- Referral to Treatment Waiting Times ----
+# Source:
+# - https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/
+
+# Date: December 2020
+
+# Description:
+# - Monitors the length of time from consultant-led referral through to elective
+#   treatment.
+
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Full-CSV-data-file-Dec20-ZIP-2705K-98040.zip",
+  write_disk(tf <- tempfile(fileext = ".zip"))
+)
+unzip(tf, exdir = tempdir())
+unlink(tf)
+
+rtt <-
+  read_csv(
+    list.files(tempdir(),
+      pattern = "*.csv",
+      full.names = TRUE
+    )
+  )
+
+# Clean names
+rtt <-
+  rtt %>% 
+  clean_names()
+
+# Calculate 18 week count
+rtt <-
+  rtt %>%
+  rowwise() %>% 
+  mutate(
+    gt_18_weeks_sum_1 = sum(c_across(gt_18_to_19_weeks_sum_1:gt_52_weeks_sum_1), na.rm = TRUE)
+  ) %>% 
+  ungroup()
+
+# Select cols
+rtt <- 
+  rtt %>% 
+  select(
+    org_code = provider_org_code,
+    name = provider_org_name,
+    rtt_type = rtt_part_description,
+    treatment = treatment_function_name,
+    more_52_weeks = gt_52_weeks_sum_1,
+    more_18_weeks = gt_18_weeks_sum_1
+  )
+
+# Calculate summaries across trusts
+rtt <-
+  rtt %>% 
+  group_by(
+    org_code,
+    name,
+    rtt_type,
+    treatment
+  ) %>% 
+  summarise(
+    more_52_weeks = sum(more_52_weeks, na.rm = TRUE),
+    more_18_weeks = sum(more_18_weeks, na.rm = TRUE)
+  ) %>% 
+  ungroup()
+
+# Keep only treatment totals (not breakdowns)
+rtt <-
+  rtt %>% 
+  filter(treatment == "Total") %>% 
+  select(-treatment)
+
+# Save
+rtt %>%
+  write_csv("data/nhs_referral_treatment_waiting_times.csv")
