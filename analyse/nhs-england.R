@@ -380,8 +380,15 @@ rtt <-
     rtt_type = rtt_part_description,
     treatment = treatment_function_name,
     more_52_weeks = gt_52_weeks_sum_1,
-    more_18_weeks = gt_18_weeks_sum_1
+    more_18_weeks = gt_18_weeks_sum_1,
+    total_all
   )
+
+# Keep only treatment totals (not breakdowns)
+rtt <-
+  rtt %>%
+  filter(treatment == "Total") %>%
+  select(-treatment)
 
 # Calculate summaries across trusts
 rtt <-
@@ -389,20 +396,36 @@ rtt <-
   group_by(
     org_code,
     name,
-    rtt_type,
-    treatment
+    rtt_type
   ) %>%
   summarise(
     more_52_weeks = sum(more_52_weeks, na.rm = TRUE),
-    more_18_weeks = sum(more_18_weeks, na.rm = TRUE)
+    more_18_weeks = sum(more_18_weeks, na.rm = TRUE),
+    total = sum(total_all, na.rm = TRUE)
   ) %>%
   ungroup()
 
-# Keep only treatment totals (not breakdowns)
+# Calculate relative wait times
 rtt <-
-  rtt %>%
-  filter(treatment == "Total") %>%
-  select(-treatment)
+  rtt %>% 
+  mutate(
+    perc_wait_more_18_weeks = more_18_weeks / total,
+    perc_wait_more_52_weeks = more_52_weeks / total
+  )
+
+# Reorder and rename cols
+rtt <-
+  rtt %>% 
+  select(
+    org_code,
+    name,
+    rtt_type,
+    count_wait_more_18_weeks = more_18_weeks,
+    count_wait_more_52_weeks = more_52_weeks,
+    perc_wait_more_18_weeks,
+    perc_wait_more_52_weeks,
+    count_total = total
+  )
 
 # Save
 rtt %>%
