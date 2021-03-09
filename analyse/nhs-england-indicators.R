@@ -330,7 +330,7 @@ monthly_outpatient <-
 
 # Save
 monthly_outpatient %>%
-  write_csv("data/nhs_monthly_outpatients_referrals.csv")
+  write_csv("data/nhs_outpatients_referrals.csv")
 
 # ---- Referral to Treatment Waiting Times ----
 # Source:
