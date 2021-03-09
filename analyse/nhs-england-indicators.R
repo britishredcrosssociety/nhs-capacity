@@ -70,7 +70,7 @@ ae <-
 
 # Save
 ae %>%
-  write_csv("data/nhs-ae.csv")
+  write_csv("data/nhs_ae.csv")
 
 # ---- Bed Occupancy ----
 # Source:
