@@ -12,13 +12,14 @@ points_nhs_trusts %>%
   rename(
     org_code = nhs_trust_code,
     org_name = nhs_trust_name
-  ) %>% 
-write_sf("data/points_nhs_trusts.geojson")
+  ) %>%
+  write_sf("data/points_nhs_trusts.geojson")
 
-# Save to app
+# Save only open trusts to app
 points_nhs_trusts %>%
   rename(
     org_code = nhs_trust_code,
     org_name = nhs_trust_name
-  ) %>% 
+  ) %>%
+  filter(status == "open") %>%
   write_sf("app/data/points_nhs_trusts.geojson")
