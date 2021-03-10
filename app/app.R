@@ -4,6 +4,8 @@ library(sf)
 library(leaflet)
 library(ggplot2)
 library(dplyr)
+library(scales)
+library(DT)
 
 # ---- Load data sets ----
 points_trusts <-
@@ -86,7 +88,10 @@ ui <- fluidPage(
               "Plot",
               plotOutput("ae_plot", height = "200px")
             ),
-            tabPanel("Data")
+            tabPanel(
+              "Data",
+              DTOutput("ae_table")
+            )
           )
         ),
 
@@ -159,7 +164,7 @@ server <- function(input, output) {
   # observe({
   #   print(input$map_marker_click$id)
   # })
-  
+
   # Map
   output$map <- renderLeaflet({
     leaflet() %>%
@@ -173,29 +178,43 @@ server <- function(input, output) {
         layerId = ~org_code
       )
   })
-  
+
   # Observe map click events
   selected_trust <- reactive({
-    if(is.null(input$map_marker_click$id)){
+    if (is.null(input$map_marker_click$id)) {
       return("RJZ")
-    } else{
+    } else {
       return(input$map_marker_click$id)
     }
-    })
+  })
 
-
+  # A&E
   output$ae_plot <- renderPlot({
     ae %>%
       filter(`Trust Code` == selected_trust()) %>%
-      select(starts_with("perc")) %>%
-      pivot_longer(
-        cols = everything(),
-        names_to = "variable",
-        values_to = "value"
-      ) %>%
-      ggplot(aes(x = variable, y = value)) +
+      filter(grepl("%", name)) %>%
+      ggplot(aes(x = name, y = value)) +
       geom_col() +
-      coord_flip()
+      coord_flip() +
+      scale_y_continuous(labels = percent) +
+      labs(
+        x = NULL,
+        y = NULL
+      )
+  })
+
+  output$ae_table <- renderDT({
+    datatable(
+      ae %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`,
+          Metric = name,
+          value
+        ),
+      options = list(dom = "t")
+    )
   })
 }
 
@@ -203,5 +222,6 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 # TODO:
+# - Add titles to tabsetPanels
 # - Find a method to sensibly handle missing values in ggplot
 # - Theme the app using bslib in line with the BRC Design Library
