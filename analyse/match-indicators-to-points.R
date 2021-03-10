@@ -61,6 +61,9 @@ open_trusts %>%
     `No. patients >= 4h from decisiion to admit to admission` = num_patients_more_4_hours_from_decision_to_admit_to_admission, 
     `No. patients >= 12h from decisiion to admit to admission` = num_patients_more_12_hours_from_decision_to_admit_to_admission
   ) %>% 
+  pivot_longer(
+    cols = !starts_with("Trust")
+  ) %>%
   write_rds("app/data/ae.rds")
 
 # Beds Days
