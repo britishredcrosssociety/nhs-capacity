@@ -1,10 +1,11 @@
 # ---- Load libraries ----
 library(shiny)
 library(sf)
+library(leaflet)
 
 # ---- Load data sets ----
 points_trusts <-
-  read_sf("data/points_nhs_trusts.geojson")
+  read_sf("data/open_nhs_trusts_points.geojson")
 
 ae <-
   readRDS("data/ae.rds")
@@ -54,7 +55,8 @@ ui <- fluidPage(
 
     # - Map -
     column(
-      width = 4
+      width = 4,
+      leafletOutput("map", height = 800)
     ),
 
     # - Plots -
@@ -108,6 +110,14 @@ ui <- fluidPage(
 
 # ---- Server ----
 server <- function(input, output) {
+  
+  # Map
+  output$map <- renderLeaflet({
+    leaflet(data = points_trusts) %>% 
+      setView(lat = 54.00366, lng = -2.547855, zoom = 6) %>%
+      addProviderTiles(providers$CartoDB.Positron) %>%
+      addMarkers(popup = ~org_name, label = ~org_name)
+  })
 
 }
 
