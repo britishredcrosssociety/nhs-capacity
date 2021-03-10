@@ -28,6 +28,15 @@ outpatient_referrals <-
 rtt <-
   readRDS("data/referral_treatment_waiting_times.rds")
 
+# ---- Create Markers ----
+# Compatible markers: https://fontawesome.com/v4.7.0/icons/
+icons <-
+  awesomeIcons(
+    icon = "h-square",
+    lib = "fa",
+    iconColor = "#FFFFFF",
+    markerColor = "#FF0000"
+  )
 # ---- UI ----
 ui <- fluidPage(
 
@@ -110,15 +119,21 @@ ui <- fluidPage(
 
 # ---- Server ----
 server <- function(input, output) {
-  
+
+
+
   # Map
   output$map <- renderLeaflet({
-    leaflet(data = points_trusts) %>% 
+    leaflet() %>%
       setView(lat = 54.00366, lng = -2.547855, zoom = 6) %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
-      addMarkers(popup = ~org_name, label = ~org_name)
+      addAwesomeMarkers(
+        data = points_trusts,
+        popup = ~org_name,
+        label = ~org_name,
+        icon = icons
+      )
   })
-
 }
 
 # Run the application
