@@ -2,6 +2,8 @@
 library(shiny)
 library(sf)
 library(leaflet)
+library(ggplot2)
+library(dplyr)
 
 # ---- Load data sets ----
 points_trusts <-
@@ -77,12 +79,25 @@ ui <- fluidPage(
 
         # - Col 1 -
         column(
-          width = 6
+          width = 6,
+
+          tabsetPanel(
+            tabPanel(
+              "Plot",
+              plotOutput("ae_plot", height = "200px")
+            ),
+            tabPanel("Data")
+          )
         ),
 
         # - Col 2 -
         column(
-          width = 6
+          width = 6,
+
+          tabsetPanel(
+            tabPanel("Plot"),
+            tabPanel("Data")
+          )
         )
       ),
 
@@ -91,12 +106,22 @@ ui <- fluidPage(
 
         # - Col 1 -
         column(
-          width = 6
+          width = 6,
+
+          tabsetPanel(
+            tabPanel("Plot"),
+            tabPanel("Data")
+          )
         ),
 
         # - Col 2 -
         column(
-          width = 6
+          width = 6,
+
+          tabsetPanel(
+            tabPanel("Plot"),
+            tabPanel("Data")
+          )
         )
       ),
 
@@ -105,12 +130,22 @@ ui <- fluidPage(
 
         # - Col 1 -
         column(
-          width = 6
+          width = 6,
+
+          tabsetPanel(
+            tabPanel("Plot"),
+            tabPanel("Data")
+          )
         ),
 
         # - Col 2 -
         column(
-          width = 6
+          width = 6,
+
+          tabsetPanel(
+            tabPanel("Plot"),
+            tabPanel("Data")
+          )
         )
       )
     ) # - Plots -
@@ -120,8 +155,11 @@ ui <- fluidPage(
 # ---- Server ----
 server <- function(input, output) {
 
-
-
+  # Debug
+  # observe({
+  #   print(input$map_marker_click$id)
+  # })
+  
   # Map
   output$map <- renderLeaflet({
     leaflet() %>%
@@ -131,10 +169,39 @@ server <- function(input, output) {
         data = points_trusts,
         popup = ~org_name,
         label = ~org_name,
-        icon = icons
+        icon = icons,
+        layerId = ~org_code
       )
+  })
+  
+  # Observe map click events
+  selected_trust <- reactive({
+    if(is.null(input$map_marker_click$id)){
+      return("RJZ")
+    } else{
+      return(input$map_marker_click$id)
+    }
+    })
+
+
+  output$ae_plot <- renderPlot({
+    ae %>%
+      filter(org_code == selected_trust()) %>%
+      select(starts_with("perc")) %>%
+      pivot_longer(
+        cols = everything(),
+        names_to = "variable",
+        values_to = "value"
+      ) %>%
+      ggplot(aes(x = variable, y = value)) +
+      geom_col() +
+      coord_flip()
   })
 }
 
 # Run the application
 shinyApp(ui = ui, server = server)
+
+# TODO:
+# - Find a method to sensibly handle missing values in ggplot
+# - Theme the app using bslib
