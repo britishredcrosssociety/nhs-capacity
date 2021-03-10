@@ -47,6 +47,20 @@ open_trusts %>%
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
   ) %>%
+  rename(
+    `Trust Name` = org_name,                                                     
+    `Trust Code` = org_code,                                                      
+    `No. Type 1 Attendance` = attendances_type_1,                                           
+    `No. Type 2 Attendance` = attendances_type_2,                                           
+    `No. Type 3 Attendance` = attendences_type_3,                                            
+    `No. Attendance Total` = attendences_total,                                           
+    `% Type 1 <= 4 hours` = perc_4_hours_or_less_type_1,                                   
+    `% Type 2 <= 4 hours` = perc_4_hours_or_less_type_2,                                 
+    `% Type 3 <= 4 hours` = perc_4_hours_or_less_type_3,                                   
+    `% Total <= 4 hours` = perc_4_hours_or_less_all,                                      
+    `No. patients >= 4h from decisiion to admit to admission` = num_patients_more_4_hours_from_decision_to_admit_to_admission, 
+    `No. patients >= 12h from decisiion to admit to admission` = num_patients_more_12_hours_from_decision_to_admit_to_admission
+  ) %>% 
   write_rds("app/data/ae.rds")
 
 # Beds Days

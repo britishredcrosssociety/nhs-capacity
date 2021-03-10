@@ -186,7 +186,7 @@ server <- function(input, output) {
 
   output$ae_plot <- renderPlot({
     ae %>%
-      filter(org_code == selected_trust()) %>%
+      filter(`Trust Code` == selected_trust()) %>%
       select(starts_with("perc")) %>%
       pivot_longer(
         cols = everything(),
@@ -204,4 +204,4 @@ shinyApp(ui = ui, server = server)
 
 # TODO:
 # - Find a method to sensibly handle missing values in ggplot
-# - Theme the app using bslib
+# - Theme the app using bslib in line with the BRC Design Library
