@@ -1,7 +1,6 @@
 # ---- Load libraries ----
 library(shiny)
 library(sf)
-library(dplyr)
 
 # ---- Load data sets ----
 points_trusts <-
@@ -29,27 +28,83 @@ rtt <-
   readRDS("data/referral_treatment_waiting_times.rds")
 
 # ---- UI ----
-ui <- navbarPage(
+ui <- fluidPage(
 
-  # - Title -
-  title = "NHS Capacity Analysis",
-
-  # - Tab Panels -
-  # Explore Home Page
-  tabPanel(
-    title = "Explore",
-    
-    fluidPage(
-      
-    )
-    
+  # - Top bar with logos -
+  fluidRow(
+    tags$h4("Logos go here")
   ),
-  
-  # User Guide
-  tabPanel(
-    "Guide"
-  )
-)
+
+  # - Instructions -
+  fluidRow(
+    tags$h3("What is the capacity of Your Local NHS Trust?"),
+    tags$p("by the British Red Cross, date."),
+    tags$p("NHS Trusts are under pressure and are exceeding their capacity to
+           cope. Enter your Trust in the box below, or select it on the map,
+           to see how much pressure it is under.")
+  ),
+
+  # - Trust Search Box -
+  fluidRow(
+    tags$h3("Trust search box goes here")
+  ),
+
+  # - Map & Plots -
+  fluidRow(
+
+    # - Map -
+    column(
+      width = 4
+    ),
+
+    # - Plots -
+    column(
+      width = 8,
+
+      # - Row 1 -
+      fluidRow(
+
+        # - Col 1 -
+        column(
+          width = 6
+        ),
+
+        # - Col 2 -
+        column(
+          width = 6
+        )
+      ),
+
+      # - Row 2 -
+      fluidRow(
+
+        # - Col 1 -
+        column(
+          width = 6
+        ),
+
+        # - Col 2 -
+        column(
+          width = 6
+        )
+      ),
+
+      # - Row 3 -
+      fluidRow(
+
+        # - Col 1 -
+        column(
+          width = 6
+        ),
+
+        # - Col 2 -
+        column(
+          width = 6
+        )
+      )
+    ) # - Plots -
+  ) # - Maps & Plots -
+) # fluidPage
 
 # ---- Server ----
 server <- function(input, output) {
