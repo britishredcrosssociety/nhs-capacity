@@ -43,7 +43,14 @@ ui <- fluidPage(
 
   # - Top bar with logos -
   fluidRow(
-    column(width = 4),
+    column(
+      width = 4,
+      tags$div(
+        style = "padding-top: 15px; padding-right: 10px;",
+        icon("h-square", "fa-2x"),
+        tags$style(".fa-h-square {color:#262626}")
+      )
+      ),
     column(
       width = 4,
       align = "center",
@@ -56,7 +63,19 @@ ui <- fluidPage(
         ) # a
       ) # Div
     ), # Column
-    column(width = 4)
+    column(
+      width = 4,
+      align = "right",
+      tags$div(
+        style = "padding-top: 15px; padding-right: 10px;",
+        tags$a(
+          href = "https://github.com/britishredcrosssociety/nhs-capacity",
+          target = "_blank",
+          icon("github", "fa-2x"),
+          tags$style(".fa-github {color:#262626}")
+        )
+      )
+      )
   ), # fluidRow
 
   # - Instructions -
@@ -183,7 +202,20 @@ ui <- fluidPage(
     ) # - Plots -
   ), # - Maps & Plots -
 
-  fluidRow(h5("Footer and licensing go here"))
+  fluidRow(
+    column(
+      width = 12,
+      align = "center",
+      tags$p(
+        style = "font-size: 9px;",
+        a(
+          href = "https://github.com/britishredcrosssociety/nhs-capacity/blob/main/LICENSE",
+          target = "_blank",
+          "This work is licensed under GPL-3.0."
+        )
+      )
+    )
+  )
 ) # fluidPage
 
 # ---- Server ----
@@ -298,3 +330,5 @@ shinyApp(ui = ui, server = server)
 # - Add titles to tabsetPanels
 # - Find a method to sensibly handle missing values in ggplot
 # - Theme the app using bslib in line with the BRC Design Library
+# - Add White space around/plots maps by using padding or columns offsets
+# - Change license link colour and update license
