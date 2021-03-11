@@ -133,8 +133,7 @@ open_trusts %>%
     )
   ) %>%
   mutate(
-    across(where(is.double), ~ round(.x, 1)),
-    across(where(is.double), as.character)
+    across(where(is.double), ~ round(.x, 1))
   ) %>%
   select(
     `Trust Name` = org_name,
