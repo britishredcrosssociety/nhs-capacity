@@ -82,7 +82,8 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
-
+          
+          h3("Accident and Emergency"),
           tabsetPanel(
             tabPanel(
               "Plot",
@@ -99,6 +100,7 @@ ui <- fluidPage(
         column(
           width = 6,
 
+          h3("Tabset Panel Name"),
           tabsetPanel(
             tabPanel("Plot"),
             tabPanel("Data")
@@ -113,6 +115,7 @@ ui <- fluidPage(
         column(
           width = 6,
 
+          h3("Tabset Panel Name"),
           tabsetPanel(
             tabPanel("Plot"),
             tabPanel("Data")
@@ -123,6 +126,7 @@ ui <- fluidPage(
         column(
           width = 6,
 
+          h3("Tabset Panel Name"),
           tabsetPanel(
             tabPanel("Plot"),
             tabPanel("Data")
@@ -137,6 +141,7 @@ ui <- fluidPage(
         column(
           width = 6,
 
+          h3("Tabset Panel Name"),
           tabsetPanel(
             tabPanel("Plot"),
             tabPanel("Data")
@@ -147,6 +152,7 @@ ui <- fluidPage(
         column(
           width = 6,
 
+          h3("Tabset Panel Name"),
           tabsetPanel(
             tabPanel("Plot"),
             tabPanel("Data")
@@ -197,6 +203,7 @@ server <- function(input, output) {
       geom_col() +
       coord_flip() +
       scale_y_continuous(labels = percent) +
+      theme_minimal() +
       labs(
         x = NULL,
         y = NULL
@@ -212,7 +219,8 @@ server <- function(input, output) {
           -`Trust Code`,
           Metric = name,
           value
-        ),
+        ) %>% 
+        mutate(value = round(value, digits = 2)),
       options = list(dom = "t")
     )
   })
