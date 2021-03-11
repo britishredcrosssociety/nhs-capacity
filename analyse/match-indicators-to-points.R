@@ -145,6 +145,35 @@ open_trusts %>%
   ) %>%
   write_rds("app/data/cancer_wait_times.rds")
 
+# Long form
+open_trusts %>%
+  left_join(
+    nhs_cancer_wait_times,
+    by = "org_code"
+  ) %>%
+  mutate(
+    org_name = str_to_title(org_name),
+    org_name = str_replace(org_name, "Nhs", "NHS"),
+    standard = case_when(
+      standard == "2WW" ~ "2 Week Wait",
+      standard == "2WW Breast" ~ "2 Week Wait Breast",
+      TRUE ~ standard
+    )
+  ) %>%
+  mutate(
+    across(where(is.double), ~ round(.x, 1))
+  ) %>%
+  select(
+    `Trust Name` = org_name,
+    `Trust Code` = org_code,
+    Standard = standard,
+    `Total Treated` = total_treated,
+    `Within Standard` = within_standard,
+    Breaches = breaches
+  ) %>% 
+  pivot_longer(cols = where(is.double)) %>% 
+  write_rds("app/data/cancer_wait_times_long_form.rds")
+
 # Diagnostic wait times
 open_trusts %>%
   left_join(

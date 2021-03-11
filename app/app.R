@@ -20,6 +20,9 @@ beds <-
 cancer_wait_times <-
   readRDS("data/cancer_wait_times.rds")
 
+cancer_wait_times_long_form <-
+  readRDS("data/cancer_wait_times_long_form.rds")
+
 diagnostic_wait_times <-
   readRDS("data/diagnostic_wait_times.rds")
 
@@ -93,7 +96,7 @@ ui <- fluidPage(
         style = "width:520px; padding-top: 12px;",
         "NHS Trusts are under pressure and are exceeding their capacity to
         cope. Enter your Trust in the box below, or select it on the map,
-        to explore the different pressures it is facing. Click on the data tabs
+        to explore the different pressures it is facing. Click on the 'Data' tabs
         above each plot to see more metrics."
       )
     ),
@@ -155,10 +158,10 @@ ui <- fluidPage(
         column(
           width = 6,
 
-          h3("Tabset Panel Name"),
+          h3("Cancer Wait Times"),
           tabsetPanel(
-            tabPanel("Plot"),
-            tabPanel("Data")
+            tabPanel("Plot", plotOutput("cancer_plot", height = "200px")),
+            tabPanel("Data", DTOutput("cancer_table"))
           )
         ),
 
@@ -255,7 +258,8 @@ server <- function(input, output) {
       filter(`Trust Code` == selected_trust()) %>%
       filter(grepl("%", name)) %>%
       ggplot(aes(x = name, y = value)) +
-      geom_col() +
+      geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
+      geom_point(size = 5, colour = "#406574") + 
       coord_flip() +
       scale_y_continuous(labels = percent) +
       theme_minimal() +
@@ -283,7 +287,7 @@ server <- function(input, output) {
     )
   })
 
-  # Beds Days
+  # Beds
   output$beds_plot <- renderPlot({
     beds %>%
       filter(`Trust Code` == selected_trust()) %>%
@@ -294,7 +298,8 @@ server <- function(input, output) {
           name == "% General Acute Day Beds Occupied"
       ) %>%
       ggplot(aes(x = name, y = value)) +
-      geom_col() +
+      geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
+      geom_point(size = 5, colour = "#406574") + 
       coord_flip() +
       scale_y_continuous(labels = percent) +
       theme_minimal() +
@@ -321,14 +326,48 @@ server <- function(input, output) {
       options = list(dom = "t")
     )
   })
+  
+  # Cancer wait times
+  output$cancer_plot <- renderPlot({
+    cancer_wait_times_long_form %>%
+      filter(`Trust Code` == selected_trust()) %>%
+      ggplot(aes(x = Standard, y = value, colour = name)) +
+      geom_linerange(
+        aes(x = Standard, ymin = 0, ymax = value, colour = name), 
+        position = position_dodge(width = 1)
+      ) +
+      geom_point(position = position_dodge(width = 1), size = 3) +
+      coord_flip() +
+      theme_minimal() +
+      labs(x = NULL) +
+      scale_colour_manual(values = c("#475C74", "#9CAAAE", "#6A9EAA"))
+  })
+  
+  output$cancer_table <- renderDT({
+    datatable(
+      cancer_wait_times %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`
+        ),
+      options = list(dom = "t")
+    )
+  })
+  
+  
 }
 
 # Run the application
 shinyApp(ui = ui, server = server)
 
 # TODO:
-# - Add titles to tabsetPanels
+# - Add Trust Search Box
+# - Remove row numbers from DT tables
 # - Find a method to sensibly handle missing values in ggplot
 # - Theme the app using bslib in line with the BRC Design Library
 # - Add White space around/plots maps by using padding or columns offsets
 # - Change license link colour and update license
+# - Should the plots add a comparison to the mean scores / distributions for
+#   all the other Trusts (normalised by population size or using percentages)?
+#   Use Lollipop plot?
