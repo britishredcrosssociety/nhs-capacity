@@ -14,11 +14,8 @@ points_trusts <-
 ae <-
   readRDS("data/ae.rds")
 
-beds_days <-
-  readRDS("data/beds_days.rds")
-
-beds_nights <-
-  readRDS("data/beds_nights.rds")
+beds <-
+  readRDS("data/beds.rds")
 
 cancer_wait_times <-
   readRDS("data/cancer_wait_times.rds")
@@ -39,7 +36,7 @@ icons <-
     icon = "h-square",
     lib = "fa",
     iconColor = "#FFFFFF",
-    markerColor = "#FF0000"
+    markerColor = "cadetblue"
   )
 # ---- UI ----
 ui <- fluidPage(
@@ -50,14 +47,17 @@ ui <- fluidPage(
     column(
       width = 4,
       align = "center",
-      tags$a(
-        href = "https://redcross.org.uk",
-        target = "_blank",
-        img(src = "brc-team-logo.jpg", width = 400)
-      )
-    ),
+      tags$div(
+        style = "padding-top: 10px;",
+        tags$a(
+          href = "https://redcross.org.uk",
+          target = "_blank",
+          img(src = "brc-team-logo.jpg", width = 400)
+        ) # a
+      ) # Div
+    ), # Column
     column(width = 4)
-  ),
+  ), # fluidRow
 
   # - Instructions -
   fluidRow(
@@ -69,14 +69,14 @@ ui <- fluidPage(
       tags$p(
         style = "font-size:12px;",
         "By Mike Page, Matt Thomas, Elle Gordon, & Freya Neason, 2021."
-        ),
+      ),
       tags$p(
-        style = "width:500px; padding-top: 12px;",
+        style = "width:520px; padding-top: 12px;",
         "NHS Trusts are under pressure and are exceeding their capacity to
         cope. Enter your Trust in the box below, or select it on the map,
-        to see this pressure. Be sure to click the data tabs above each plot
-        to see even more metrics."
-        )
+        to explore the different pressures it is facing. Click on the data tabs
+        above each plot to see more metrics."
+      )
     ),
     column(width = 2)
   ),
@@ -121,10 +121,10 @@ ui <- fluidPage(
         column(
           width = 6,
 
-          h3("Day Beds"),
+          h3("Bed Occupancies (Day & Night)"),
           tabsetPanel(
-            tabPanel("Plot", plotOutput("beds_days_plot", height = "200px")),
-            tabPanel("Data", DTOutput("beds_days_table"))
+            tabPanel("Plot", plotOutput("beds_plot", height = "200px")),
+            tabPanel("Data", DTOutput("beds_table"))
           )
         )
       ),
@@ -245,17 +245,22 @@ server <- function(input, output) {
         ) %>%
         mutate(
           value = round(value, digits = 3),
-          value = if_else(str_detect(Metric, "^%"), value * 100, value)
+          value = if_else(grepl("^%", Metric), value * 100, value)
         ),
       options = list(dom = "t")
     )
   })
 
   # Beds Days
-  output$beds_days_plot <- renderPlot({
-    beds_days %>%
+  output$beds_plot <- renderPlot({
+    beds %>%
       filter(`Trust Code` == selected_trust()) %>%
-      filter(name == "% Total Day Beds Occupied") %>%
+      filter(
+        name == "% Total Day Beds Occupied" |
+          name == "% Total Night Beds Occupied" |
+          name == "% General Acute Night Beds Occupied" |
+          name == "% General Acute Day Beds Occupied"
+      ) %>%
       ggplot(aes(x = name, y = value)) +
       geom_col() +
       coord_flip() +
@@ -267,9 +272,9 @@ server <- function(input, output) {
       )
   })
 
-  output$beds_days_table <- renderDT({
+  output$beds_table <- renderDT({
     datatable(
-      beds_days %>%
+      beds %>%
         filter(`Trust Code` == selected_trust()) %>%
         select(
           -`Trust Name`,

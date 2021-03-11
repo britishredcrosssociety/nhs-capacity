@@ -66,8 +66,9 @@ open_trusts %>%
   ) %>%
   write_rds("app/data/ae.rds")
 
-# Beds Days
-open_trusts %>%
+# Beds
+beds_days <-
+  open_trusts %>%
   left_join(
     nhs_beds_days,
     by = "org_code"
@@ -88,10 +89,8 @@ open_trusts %>%
   ) %>%
   pivot_longer(
     cols = !starts_with("Trust")
-  ) %>%
-  write_rds("app/data/beds_days.rds")
+  )
 
-# Beds Nights
 open_trusts %>%
   left_join(
     nhs_beds_nights,
@@ -102,7 +101,21 @@ open_trusts %>%
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
   ) %>%
-  write_rds("app/data/beds_nights.rds")
+  rename(
+    `Trust Name` = org_name,
+    `Trust Code` = org_code,
+    `% Total Night Beds Occupied` = perc_bed_occupied_total,
+    `% General Acute Night Beds Occupied` = perc_bed_occupied_general_acute,
+    `% Learning Disabilities Night Beds Occupied` = perc_bed_occupied_learning_disabilities,
+    `% Maternity Night Beds Occupied` = perc_bed_occupied_maternity,
+    `% Mental Illness Night Beds Occupied` = perc_bed_occupied_mental_illness
+  ) %>%
+  pivot_longer(
+    cols = !starts_with("Trust")
+  ) %>%
+  bind_rows(beds_days) %>%
+  arrange(`Trust Code`) %>%
+  write_rds("app/data/beds.rds")
 
 # Cancer wait times
 open_trusts %>%
