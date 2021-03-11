@@ -46,21 +46,48 @@ ui <- fluidPage(
 
   # - Top bar with logos -
   fluidRow(
-    tags$h4("Logos go here")
+    column(width = 4),
+    column(
+      width = 4,
+      align = "center",
+      tags$a(
+        href = "https://redcross.org.uk",
+        target = "_blank",
+        img(src = "brc-team-logo.jpg", width = 400)
+      )
+    ),
+    column(width = 4)
   ),
 
   # - Instructions -
   fluidRow(
-    tags$h3("What is the capacity of Your Local NHS Trust?"),
-    tags$p("by the British Red Cross, date."),
-    tags$p("NHS Trusts are under pressure and are exceeding their capacity to
-           cope. Enter your Trust in the box below, or select it on the map,
-           to see how much pressure it is under.")
+    column(width = 2),
+    column(
+      width = 8,
+      align = "center",
+      tags$h1("What is the Capacity of Your Local NHS Trust?"),
+      tags$p(
+        style = "font-size:12px;",
+        "By Mike Page, Matt Thomas, Elle Gordon, & Freya Neason, 2021."
+        ),
+      tags$p(
+        style = "width:500px; padding-top: 12px;",
+        "NHS Trusts are under pressure and are exceeding their capacity to
+        cope. Enter your Trust in the box below, or select it on the map,
+        to see this pressure. Be sure to click the data tabs above each plot
+        to see even more metrics."
+        )
+    ),
+    column(width = 2)
   ),
 
   # - Trust Search Box -
   fluidRow(
-    tags$h3("Trust search box goes here")
+    column(
+      width = 12,
+      align = "center",
+      tags$h3("Trust search box goes here")
+    )
   ),
 
   # - Map & Plots -
@@ -82,17 +109,11 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
-          
+
           h3("Accident and Emergency"),
           tabsetPanel(
-            tabPanel(
-              "Plot",
-              plotOutput("ae_plot", height = "200px")
-            ),
-            tabPanel(
-              "Data",
-              DTOutput("ae_table")
-            )
+            tabPanel("Plot", plotOutput("ae_plot", height = "200px")),
+            tabPanel("Data", DTOutput("ae_table"))
           )
         ),
 
@@ -100,10 +121,10 @@ ui <- fluidPage(
         column(
           width = 6,
 
-          h3("Tabset Panel Name"),
+          h3("Day Beds"),
           tabsetPanel(
-            tabPanel("Plot"),
-            tabPanel("Data")
+            tabPanel("Plot", plotOutput("beds_days_plot", height = "200px")),
+            tabPanel("Data", DTOutput("beds_days_table"))
           )
         )
       ),
@@ -160,7 +181,9 @@ ui <- fluidPage(
         )
       )
     ) # - Plots -
-  ) # - Maps & Plots -
+  ), # - Maps & Plots -
+
+  fluidRow(h5("Footer and licensing go here"))
 ) # fluidPage
 
 # ---- Server ----
@@ -219,8 +242,45 @@ server <- function(input, output) {
           -`Trust Code`,
           Metric = name,
           value
-        ) %>% 
-        mutate(value = round(value, digits = 2)),
+        ) %>%
+        mutate(
+          value = round(value, digits = 3),
+          value = if_else(str_detect(Metric, "^%"), value * 100, value)
+        ),
+      options = list(dom = "t")
+    )
+  })
+
+  # Beds Days
+  output$beds_days_plot <- renderPlot({
+    beds_days %>%
+      filter(`Trust Code` == selected_trust()) %>%
+      filter(name == "% Total Day Beds Occupied") %>%
+      ggplot(aes(x = name, y = value)) +
+      geom_col() +
+      coord_flip() +
+      scale_y_continuous(labels = percent) +
+      theme_minimal() +
+      labs(
+        x = NULL,
+        y = NULL
+      )
+  })
+
+  output$beds_days_table <- renderDT({
+    datatable(
+      beds_days %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`,
+          Metric = name,
+          value
+        ) %>%
+        mutate(
+          value = round(value, digits = 3),
+          value = value * 100
+        ),
       options = list(dom = "t")
     )
   })
