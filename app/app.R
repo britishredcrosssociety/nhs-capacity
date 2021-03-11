@@ -50,7 +50,7 @@ ui <- fluidPage(
         icon("h-square", "fa-2x"),
         tags$style(".fa-h-square {color:#262626}")
       )
-      ),
+    ),
     column(
       width = 4,
       align = "center",
@@ -75,7 +75,7 @@ ui <- fluidPage(
           tags$style(".fa-github {color:#262626}")
         )
       )
-      )
+    )
   ), # fluidRow
 
   # - Instructions -
