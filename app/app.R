@@ -262,7 +262,7 @@ server <- function(input, output) {
       filter(grepl("%", name)) %>%
       ggplot(aes(x = name, y = value)) +
       geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
-      geom_point(size = 5, colour = "#406574") + 
+      geom_point(size = 5, colour = "#406574") +
       coord_flip() +
       scale_y_continuous(labels = percent) +
       theme_minimal() +
@@ -303,7 +303,7 @@ server <- function(input, output) {
       ) %>%
       ggplot(aes(x = name, y = value)) +
       geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
-      geom_point(size = 5, colour = "#406574") + 
+      geom_point(size = 5, colour = "#406574") +
       coord_flip() +
       scale_y_continuous(labels = percent) +
       theme_minimal() +
@@ -331,14 +331,14 @@ server <- function(input, output) {
       rownames = FALSE
     )
   })
-  
+
   # Cancer wait times
   output$cancer_plot <- renderPlot({
     cancer_wait_times_long_form %>%
       filter(`Trust Code` == selected_trust()) %>%
       ggplot(aes(x = Standard, y = value, colour = name)) +
       geom_linerange(
-        aes(x = Standard, ymin = 0, ymax = value, colour = name), 
+        aes(x = Standard, ymin = 0, ymax = value, colour = name),
         position = position_dodge(width = 1)
       ) +
       geom_point(position = position_dodge(width = 1), size = 3) +
@@ -347,10 +347,10 @@ server <- function(input, output) {
       labs(
         x = NULL,
         y = "No. People"
-        ) +
+      ) +
       scale_colour_manual(values = c("#475C74", "#9CAAAE", "#6A9EAA"))
   })
-  
+
   output$cancer_table <- renderDT({
     datatable(
       cancer_wait_times %>%
@@ -363,14 +363,14 @@ server <- function(input, output) {
       rownames = FALSE
     )
   })
-  
+
   # Diagnostic wait times
   output$diagnostic_plot <- renderPlot({
     diagnostic_wait_times %>%
       filter(`Trust Code` == selected_trust()) %>%
       ggplot(aes(x = name, y = value)) +
       geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
-      geom_point(size = 5, colour = "#406574") + 
+      geom_point(size = 5, colour = "#406574") +
       coord_flip() +
       theme_minimal() +
       labs(
@@ -378,7 +378,7 @@ server <- function(input, output) {
         y = "No. People"
       )
   })
-  
+
   output$diagnostic_table <- renderDT({
     datatable(
       diagnostic_wait_times %>%
@@ -391,14 +391,14 @@ server <- function(input, output) {
       rownames = FALSE
     )
   })
-  
+
   # Consultant-led Outpatient Referrals
   output$outpatient_plot <- renderPlot({
     outpatient_referrals %>%
       filter(`Trust Code` == selected_trust()) %>%
       ggplot(aes(x = name, y = value)) +
       geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
-      geom_point(size = 5, colour = "#406574") + 
+      geom_point(size = 5, colour = "#406574") +
       coord_flip() +
       theme_minimal() +
       labs(
@@ -406,7 +406,7 @@ server <- function(input, output) {
         y = "No. People"
       )
   })
-  
+
   output$outpatient_table <- renderDT({
     datatable(
       outpatient_referrals %>%
@@ -419,15 +419,15 @@ server <- function(input, output) {
       rownames = FALSE
     )
   })
-  
+
   # rtt
   output$rtt_plot <- renderPlot({
     rtt_long_form %>%
       filter(`Trust Code` == selected_trust()) %>%
-      filter(grepl("%", name)) %>% 
+      filter(grepl("%", name)) %>%
       ggplot(aes(x = `Referral Treatment Type`, y = value, colour = name)) +
       geom_linerange(
-        aes(x = `Referral Treatment Type`, ymin = 0, ymax = value, colour = name), 
+        aes(x = `Referral Treatment Type`, ymin = 0, ymax = value, colour = name),
         position = position_dodge(width = 1)
       ) +
       geom_point(position = position_dodge(width = 1), size = 3) +
@@ -440,7 +440,7 @@ server <- function(input, output) {
       ) +
       scale_colour_manual(values = c("#475C74", "#9CAAAE"))
   })
-  
+
   output$rtt_table <- renderDT({
     datatable(
       rtt %>%
@@ -453,7 +453,6 @@ server <- function(input, output) {
       rownames = FALSE
     )
   })
-  
 }
 
 # Run the application
