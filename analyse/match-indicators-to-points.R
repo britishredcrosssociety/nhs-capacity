@@ -232,4 +232,43 @@ open_trusts %>%
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
   ) %>%
+  mutate(
+    across(where(is.double), ~ round(.x, 1))
+  ) %>%
+  select(
+    `Trust Name` = org_name,
+    `Trust Code` = org_code,
+    `Referral Treatment Type` = rtt_type,
+    `Waiting 18+ Weeks` = count_wait_more_18_weeks,
+    `Waiting 52+ weeks` = count_wait_more_52_weeks,
+    `% Waiting 18+ Weeks` = perc_wait_more_18_weeks,
+    `% Waiting 52+ Weeks` = perc_wait_more_52_weeks,
+    `Total Waiting List` = count_total
+  ) %>%
   write_rds("app/data/referral_treatment_waiting_times.rds")
+
+open_trusts %>%
+  left_join(
+    nhs_referral_treatment_waiting_times,
+    by = "org_code"
+  ) %>%
+  select(-name) %>%
+  mutate(
+    org_name = str_to_title(org_name),
+    org_name = str_replace(org_name, "Nhs", "NHS")
+  ) %>%
+  mutate(
+    across(where(is.double), ~ round(.x, 1))
+  ) %>%
+  select(
+    `Trust Name` = org_name,
+    `Trust Code` = org_code,
+    `Referral Treatment Type` = rtt_type,
+    `Waiting 18+ Weeks` = count_wait_more_18_weeks,
+    `Waiting 52+ weeks` = count_wait_more_52_weeks,
+    `% Waiting 18+ Weeks` = perc_wait_more_18_weeks,
+    `% Waiting 52+ Weeks` = perc_wait_more_52_weeks,
+    `Total Waiting List` = count_total
+  ) %>%
+  pivot_longer(cols = where(is.double)) %>%
+  write_rds("app/data/referral_treatment_waiting_times_long_form.rds")

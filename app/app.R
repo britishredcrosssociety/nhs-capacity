@@ -32,6 +32,9 @@ outpatient_referrals <-
 rtt <-
   readRDS("data/referral_treatment_waiting_times.rds")
 
+rtt_long_form <-
+  readRDS("data/referral_treatment_waiting_times_long_form.rds")
+
 # ---- Create Markers ----
 # Compatible markers: https://fontawesome.com/v4.7.0/icons/
 icons <-
@@ -195,10 +198,10 @@ ui <- fluidPage(
         column(
           width = 6,
 
-          h3("Tabset Panel Name"),
+          h3("Consultant-led Referral to Treatment Waiting Times"),
           tabsetPanel(
-            tabPanel("Plot"),
-            tabPanel("Data")
+            tabPanel("Plot", plotOutput("rtt_plot", height = "200px")),
+            tabPanel("Data", DTOutput("rtt_table"))
           )
         )
       )
@@ -417,6 +420,39 @@ server <- function(input, output) {
     )
   })
   
+  # rtt
+  output$rtt_plot <- renderPlot({
+    rtt_long_form %>%
+      filter(`Trust Code` == selected_trust()) %>%
+      filter(grepl("%", name)) %>% 
+      ggplot(aes(x = `Referral Treatment Type`, y = value, colour = name)) +
+      geom_linerange(
+        aes(x = `Referral Treatment Type`, ymin = 0, ymax = value, colour = name), 
+        position = position_dodge(width = 1)
+      ) +
+      geom_point(position = position_dodge(width = 1), size = 3) +
+      coord_flip() +
+      theme_minimal() +
+      scale_y_continuous(labels = percent) +
+      labs(
+        x = NULL,
+        y = NULL
+      ) +
+      scale_colour_manual(values = c("#475C74", "#9CAAAE"))
+  })
+  
+  output$rtt_table <- renderDT({
+    datatable(
+      rtt %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`
+        ),
+      options = list(dom = "t"),
+      rownames = FALSE
+    )
+  })
   
 }
 
@@ -426,6 +462,7 @@ shinyApp(ui = ui, server = server)
 # TODO:
 # - Add Trust Search Box
 # - Add Data set dates (last updated/available)
+# - Rejig plot layouts to be 2x3 rather than 3x2?
 # - Remove row numbers from DT tables
 # - Find a method to sensibly handle missing values in ggplot
 # - Theme the app using bslib in line with the BRC Design Library
