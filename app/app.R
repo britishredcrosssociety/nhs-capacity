@@ -169,10 +169,10 @@ ui <- fluidPage(
         column(
           width = 6,
 
-          h3("Tabset Panel Name"),
+          h3("Diagnostic Wait Times"),
           tabsetPanel(
-            tabPanel("Plot"),
-            tabPanel("Data")
+            tabPanel("Plot", plotOutput("diagnostic_plot", height = "200px")),
+            tabPanel("Data", DTOutput("diagnostic_table"))
           )
         )
       ),
@@ -283,7 +283,8 @@ server <- function(input, output) {
           value = round(value, digits = 3),
           value = if_else(grepl("^%", Metric), value * 100, value)
         ),
-      options = list(dom = "t")
+      options = list(dom = "t"),
+      rownames = FALSE
     )
   })
 
@@ -323,7 +324,8 @@ server <- function(input, output) {
           value = round(value, digits = 3),
           value = value * 100
         ),
-      options = list(dom = "t")
+      options = list(dom = "t"),
+      rownames = FALSE
     )
   })
   
@@ -339,7 +341,10 @@ server <- function(input, output) {
       geom_point(position = position_dodge(width = 1), size = 3) +
       coord_flip() +
       theme_minimal() +
-      labs(x = NULL) +
+      labs(
+        x = NULL,
+        y = "No. People"
+        ) +
       scale_colour_manual(values = c("#475C74", "#9CAAAE", "#6A9EAA"))
   })
   
@@ -351,7 +356,36 @@ server <- function(input, output) {
           -`Trust Name`,
           -`Trust Code`
         ),
-      options = list(dom = "t")
+      options = list(dom = "t"),
+      rownames = FALSE
+    )
+  })
+  
+  # Diagnostic wait times
+  output$diagnostic_plot <- renderPlot({
+    diagnostic_wait_times %>%
+      filter(`Trust Code` == selected_trust()) %>%
+      ggplot(aes(x = name, y = value)) +
+      geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
+      geom_point(size = 5, colour = "#406574") + 
+      coord_flip() +
+      theme_minimal() +
+      labs(
+        x = NULL,
+        y = "No. People"
+      )
+  })
+  
+  output$diagnostic_table <- renderDT({
+    datatable(
+      diagnostic_wait_times %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`
+        ),
+      options = list(dom = "t"),
+      rownames = FALSE
     )
   })
   
@@ -363,6 +397,7 @@ shinyApp(ui = ui, server = server)
 
 # TODO:
 # - Add Trust Search Box
+# - Add Data set dates (last updated/available)
 # - Remove row numbers from DT tables
 # - Find a method to sensibly handle missing values in ggplot
 # - Theme the app using bslib in line with the BRC Design Library

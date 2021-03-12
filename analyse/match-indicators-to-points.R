@@ -185,6 +185,16 @@ open_trusts %>%
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
   ) %>%
+  select(
+    `Trust Name` = org_name,
+    `Trust Code` = org_code,
+    `Waiting List Total` = count_total_waiting_list,
+    `Waiting 6+ weeks` = count_waiting_6_plus_weeks,
+    `Waiting 13+ weeks` = count_waiting_13_plus_weeks
+  ) %>% 
+  pivot_longer(
+    cols = !starts_with("Trust")
+  ) %>% 
   write_rds("app/data/diagnostic_wait_times.rds")
 
 # Monthly outpatient referrals
