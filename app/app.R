@@ -27,7 +27,7 @@ diagnostic_wait_times <-
   readRDS("data/diagnostic_wait_times.rds")
 
 outpatient_referrals <-
-  readRDS("data/diagnostic_wait_times.rds")
+  readRDS("data/outpatients_referrals.rds")
 
 rtt <-
   readRDS("data/referral_treatment_waiting_times.rds")
@@ -184,10 +184,10 @@ ui <- fluidPage(
         column(
           width = 6,
 
-          h3("Tabset Panel Name"),
+          h3("Consultant-led Outpatient Referrals"),
           tabsetPanel(
-            tabPanel("Plot"),
-            tabPanel("Data")
+            tabPanel("Plot", plotOutput("outpatient_plot", height = "200px")),
+            tabPanel("Data", DTOutput("outpatient_table"))
           )
         ),
 
@@ -379,6 +379,34 @@ server <- function(input, output) {
   output$diagnostic_table <- renderDT({
     datatable(
       diagnostic_wait_times %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`
+        ),
+      options = list(dom = "t"),
+      rownames = FALSE
+    )
+  })
+  
+  # Consultant-led Outpatient Referrals
+  output$outpatient_plot <- renderPlot({
+    outpatient_referrals %>%
+      filter(`Trust Code` == selected_trust()) %>%
+      ggplot(aes(x = name, y = value)) +
+      geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
+      geom_point(size = 5, colour = "#406574") + 
+      coord_flip() +
+      theme_minimal() +
+      labs(
+        x = NULL,
+        y = "No. People"
+      )
+  })
+  
+  output$outpatient_table <- renderDT({
+    datatable(
+      outpatient_referrals %>%
         filter(`Trust Code` == selected_trust()) %>%
         select(
           -`Trust Name`,

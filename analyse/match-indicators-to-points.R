@@ -170,8 +170,8 @@ open_trusts %>%
     `Total Treated` = total_treated,
     `Within Standard` = within_standard,
     Breaches = breaches
-  ) %>% 
-  pivot_longer(cols = where(is.double)) %>% 
+  ) %>%
+  pivot_longer(cols = where(is.double)) %>%
   write_rds("app/data/cancer_wait_times_long_form.rds")
 
 # Diagnostic wait times
@@ -191,10 +191,10 @@ open_trusts %>%
     `Waiting List Total` = count_total_waiting_list,
     `Waiting 6+ weeks` = count_waiting_6_plus_weeks,
     `Waiting 13+ weeks` = count_waiting_13_plus_weeks
-  ) %>% 
+  ) %>%
   pivot_longer(
     cols = !starts_with("Trust")
-  ) %>% 
+  ) %>%
   write_rds("app/data/diagnostic_wait_times.rds")
 
 # Monthly outpatient referrals
@@ -207,6 +207,17 @@ open_trusts %>%
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
+  ) %>%
+  select(
+    `Trust Name` = org_name,
+    `Trust Code` = org_code,
+    `GP Referrals Made (All)` = gp_referrals_made_all,
+    `Other Referrals Made (All)` = other_referrals_made_all,
+    `GP Referrals Made (Specific Acute)` = gp_referrals_made_specific_acute,
+    `Other Referrals Made (Specific Acute)` = other_referrals_made_specific_acute
+  ) %>%
+  pivot_longer(
+    cols = !starts_with("Trust")
   ) %>%
   write_rds("app/data/outpatients_referrals.rds")
 
