@@ -47,6 +47,21 @@ icons <-
 # ---- UI ----
 ui <- fluidPage(
 
+  # CSS Styles
+  tags$head(
+    tags$style(
+      HTML("
+      #card {
+          box-shadow:3px 3px 7px grey;
+          padding: 10px 20px 10px 20px;
+      }
+      #map {
+          box-shadow:3px 3px 7px grey;
+      }
+      ")
+    )
+  ),
+
   # - Top bar with logos -
   fluidRow(
     column(
@@ -90,13 +105,16 @@ ui <- fluidPage(
     column(
       width = 8,
       align = "center",
-      tags$h1("What is the Capacity of Your Local NHS Trust?"),
+      tags$h1(
+        style = "padding-top: 12px;",
+        "What is the Capacity of Your Local NHS Trust?"
+      ),
       tags$p(
         style = "font-size:12px;",
         "By Mike Page, Matt Thomas, Elle Gordon, & Freya Neason, 2021."
       ),
       tags$p(
-        style = "width:520px; padding-top: 12px;",
+        style = "width:520px; padding-top: 12px; padding-bottom:12px",
         "NHS Trusts are under pressure and are exceeding their capacity to
         cope. Enter your Trust in the box below, or select it on the map,
         to explore the different pressures it is facing. Click on the 'Data' tabs
@@ -129,7 +147,7 @@ ui <- fluidPage(
     # - Map -
     column(
       width = 4,
-      leafletOutput("map", height = 800)
+      leafletOutput("map", height = 905)
     ),
 
     # - Plots -
@@ -142,22 +160,26 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
-
-          h3("Accident and Emergency"),
-          tabsetPanel(
-            tabPanel("Plot", plotOutput("ae_plot", height = "200px")),
-            tabPanel("Data", DTOutput("ae_table"))
+          tags$div(
+            id = "card",
+            h4("Accident and Emergency"),
+            tabsetPanel(
+              tabPanel("Plot", plotOutput("ae_plot", height = "200px")),
+              tabPanel("Data", DTOutput("ae_table"))
+            )
           )
         ),
 
         # - Col 2 -
         column(
           width = 6,
-
-          h3("Bed Occupancies (Day & Night)"),
-          tabsetPanel(
-            tabPanel("Plot", plotOutput("beds_plot", height = "200px")),
-            tabPanel("Data", DTOutput("beds_table"))
+          tags$div(
+            id = "card",
+            h4("Bed Occupancies (Day & Night)"),
+            tabsetPanel(
+              tabPanel("Plot", plotOutput("beds_plot", height = "200px")),
+              tabPanel("Data", DTOutput("beds_table"))
+            )
           )
         )
       ),
@@ -168,22 +190,26 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
-
-          h3("Cancer Wait Times"),
-          tabsetPanel(
-            tabPanel("Plot", plotOutput("cancer_plot", height = "200px")),
-            tabPanel("Data", DTOutput("cancer_table"))
+          tags$div(
+            id = "card",
+            h4("Cancer Wait Times"),
+            tabsetPanel(
+              tabPanel("Plot", plotOutput("cancer_plot", height = "200px")),
+              tabPanel("Data", DTOutput("cancer_table"))
+            )
           )
         ),
 
         # - Col 2 -
         column(
           width = 6,
-
-          h3("Diagnostic Wait Times"),
-          tabsetPanel(
-            tabPanel("Plot", plotOutput("diagnostic_plot", height = "200px")),
-            tabPanel("Data", DTOutput("diagnostic_table"))
+          tags$div(
+            id = "card",
+            h4("Diagnostic Wait Times"),
+            tabsetPanel(
+              tabPanel("Plot", plotOutput("diagnostic_plot", height = "200px")),
+              tabPanel("Data", DTOutput("diagnostic_table"))
+            )
           )
         )
       ),
@@ -194,22 +220,26 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
-
-          h3("Consultant-led Outpatient Referrals"),
-          tabsetPanel(
-            tabPanel("Plot", plotOutput("outpatient_plot", height = "200px")),
-            tabPanel("Data", DTOutput("outpatient_table"))
+          tags$div(
+            id = "card",
+            h4("Consultant-led Outpatient Referrals"),
+            tabsetPanel(
+              tabPanel("Plot", plotOutput("outpatient_plot", height = "200px")),
+              tabPanel("Data", DTOutput("outpatient_table"))
+            )
           )
         ),
 
         # - Col 2 -
         column(
           width = 6,
-
-          h3("Consultant-led Referral to Treatment Waiting Times"),
-          tabsetPanel(
-            tabPanel("Plot", plotOutput("rtt_plot", height = "200px")),
-            tabPanel("Data", DTOutput("rtt_table"))
+          tags$div(
+            id = "card",
+            h4("Consultant-led Referral to Treatment Waiting Times"),
+            tabsetPanel(
+              tabPanel("Plot", plotOutput("rtt_plot", height = "200px")),
+              tabPanel("Data", DTOutput("rtt_table"))
+            )
           )
         )
       )
@@ -220,6 +250,7 @@ ui <- fluidPage(
     column(
       width = 12,
       align = "center",
+      br(),
       tags$p(
         style = "font-size: 9px;",
         a(
@@ -470,7 +501,6 @@ shinyApp(ui = ui, server = server)
 # - Add Trust Search Box
 # - Add Data set dates (last updated/available)
 # - Rejig plot layouts to be 2x3 rather than 3x2?
-# - Remove row numbers from DT tables
 # - Find a method to sensibly handle missing values in ggplot
 # - Theme the app using bslib in line with the BRC Design Library
 # - Add White space around/plots maps by using padding or columns offsets
