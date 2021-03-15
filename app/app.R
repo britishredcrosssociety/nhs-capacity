@@ -111,7 +111,15 @@ ui <- fluidPage(
     column(
       width = 12,
       align = "center",
-      tags$h3("Trust search box goes here")
+      selectizeInput(
+        "selectbox",
+        label = NULL,
+        choices = points_trusts$org_name,
+        options = list(
+          placeholder = "Select an NHS Trust",
+          onInitialize = I('function() { this.setValue(""); }')
+        )
+      )
     )
   ),
 
