@@ -52,11 +52,11 @@ ui <- fluidPage(
     tags$style(
       HTML("
       #card {
-          box-shadow:3px 3px 7px grey;
+          box-shadow: 2px 2px 5px grey;
           padding: 10px 20px 10px 20px;
       }
       #map {
-          box-shadow:3px 3px 7px grey;
+          box-shadow: 2px 2px 5px grey;
       }
       ")
     )
