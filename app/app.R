@@ -59,6 +59,10 @@ ui <- fluidPage(
       #map {
           box-shadow: 2px 2px 5px grey;
       }
+      #footer {
+          background-color: #262626;
+          height: 165px;
+      }
       ")
     )
   ),
@@ -247,17 +251,22 @@ ui <- fluidPage(
   ), # - Maps & Plots -
 
   fluidRow(
+    id = "footer",
     column(
       width = 12,
       align = "center",
       br(),
       tags$p(
-        style = "font-size: 9px;",
+        style = "font-size: 12px; ",
         a(
+          style = "color: #FFFFFF",
           href = "https://github.com/britishredcrosssociety/nhs-capacity/blob/main/LICENSE",
           target = "_blank",
           "This work is licensed under GPL-3.0."
         )
+      ),
+      tags$div(
+        img(src = "footer.jpg", width = 1000)
       )
     )
   )
@@ -271,14 +280,19 @@ server <- function(input, output) {
   #   print(input$map_marker_click$id)
   # })
   
-  observe({
-    
-    if(input$selectbox == "") {
-      print("RJZ")
-    } else {
-      print(input$selectbox)
-    }
-  })
+  # observe({
+  #   if(input$selectbox == "" & is.null(input$map_marker_click$id)) {
+  #     print("RJZ")
+  #   } else if(input$selectbox != "") {
+  #     points_trusts %>% 
+  #       filter(org_name == input$selectbox) %>% 
+  #       pull(org_code) %>% 
+  #       print()
+  #   } else if(!is.null(input$map_marker_click$id)) {
+  #     input$map_marker_click$id %>% 
+  #       print()
+  #   }
+  # })
 
   # Map
   output$map <- renderLeaflet({
@@ -507,13 +521,12 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 # TODO:
-# - Add Trust Search Box
+# - Sort out Leaflet / Searchbox logic. Test with the observer.
 # - Add Data set dates (last updated/available)
-# - Rejig plot layouts to be 2x3 rather than 3x2?
 # - Find a method to sensibly handle missing values in ggplot
-# - Theme the app using bslib in line with the BRC Design Library
-# - Add White space around/plots maps by using padding or columns offsets
-# - Change license link colour and update license
+# - Update plots to use echarts4r with a vatiety of graphics.
 # - Should the plots add a comparison to the mean scores / distributions for
 #   all the other Trusts (normalised by population size or using percentages)?
 #   Use Lollipop plot?
+# - Should ambulance trust data be added, with another card below the 
+#   map?
