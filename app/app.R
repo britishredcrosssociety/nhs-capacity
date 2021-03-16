@@ -132,7 +132,7 @@ ui <- fluidPage(
       selectizeInput(
         "selectbox",
         label = NULL,
-        choices = points_trusts$org_name,
+        choices = sort(points_trusts$org_name),
         options = list(
           placeholder = "Select an NHS Trust",
           onInitialize = I('function() { this.setValue(""); }')
@@ -270,6 +270,15 @@ server <- function(input, output) {
   # observe({
   #   print(input$map_marker_click$id)
   # })
+  
+  observe({
+    
+    if(input$selectbox == "") {
+      print("RJZ")
+    } else {
+      print(input$selectbox)
+    }
+  })
 
   # Map
   output$map <- renderLeaflet({
