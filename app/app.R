@@ -54,6 +54,7 @@ ui <- fluidPage(
       #card {
           box-shadow: 2px 2px 5px grey;
           padding: 10px 20px 10px 20px;
+          margin: 0px 0px 20px 0px;
       }
       #map {
           box-shadow: 2px 2px 5px grey;
@@ -67,9 +68,8 @@ ui <- fluidPage(
     column(
       width = 4,
       tags$div(
-        style = "padding-top: 15px; padding-right: 10px;",
-        icon("h-square", "fa-2x"),
-        tags$style(".fa-h-square {color:#262626}")
+        style = "padding-top: 10px; padding-right: 10px;",
+        img(src = "capacity-logo.jpg", width = 150)
       )
     ),
     column(
@@ -147,7 +147,7 @@ ui <- fluidPage(
     # - Map -
     column(
       width = 4,
-      leafletOutput("map", height = 905)
+      leafletOutput("map", height = 945)
     ),
 
     # - Plots -
