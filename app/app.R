@@ -573,15 +573,11 @@ shinyApp(ui = ui, server = server)
 
 # TODO:
 # - Sort out Leaflet / Searchbox logic. Test with the observer.
-# - Add Data set dates (last updated/available)
-# - Find a method to sensibly handle missing values in ggplot
+# - Add Data set dates (last updated/available) & Sort out card titles
 # - Update plots to use echarts4r with a vatiety of graphics.
 # - Should the plots add a comparison to the mean scores / distributions for
 #   all the other Trusts (normalised by population size or using percentages)?
-#   Use Lollipop plot?
 # - Should ambulance trust data be added, with another card below the
 #   map?
-
-# Can the scales and ggplot libraries be removed if using echarts4r?
+# - Can the scales and ggplot libraries be removed if using echarts4r?
 # should the tabsetPanels be turned to pills?
-# Sort out card titles
