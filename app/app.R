@@ -128,7 +128,7 @@ ui <- fluidPage(
       tags$p(
         style = "width:520px; padding-top: 12px; padding-bottom:12px",
         "NHS Trusts are under pressure and are exceeding their capacity to
-        cope. Enter your Trust in the box below, or select it on the map,
+        cope. Enter your Trust in the box below, or click it on the map,
         to explore the different pressures it is facing. Click on the 'Data' tabs
         above each plot to see more metrics."
       )
@@ -580,4 +580,5 @@ shinyApp(ui = ui, server = server)
 # - Should ambulance trust data be added, with another card below the
 #   map?
 # - Can the scales and ggplot libraries be removed if using echarts4r?
-# should the tabsetPanels be turned to pills?
+# - should the tabsetPanels be turned to pills with colours style?
+# - Deploy to shinyapps.io /nhs-capacity
