@@ -6,6 +6,7 @@ library(ggplot2)
 library(dplyr)
 library(scales)
 library(DT)
+library(echarts4r)
 
 # ---- Load data sets ----
 points_trusts <-
@@ -46,6 +47,13 @@ icons <-
   )
 # ---- UI ----
 ui <- fluidPage(
+
+  # Use colours from BRC style guide:
+  # - https://design-system.redcross.org.uk/styles/colours/
+  e_theme_register(
+    theme = '{"color":["#AD1220","#5C747A","#193351","#6A9EAA"]}',
+    name = "brc_theme"
+  ),
 
   # CSS Styles
   tags$head(
@@ -168,7 +176,7 @@ ui <- fluidPage(
             id = "card",
             h4("Accident and Emergency"),
             tabsetPanel(
-              tabPanel("Plot", plotOutput("ae_plot", height = "200px")),
+              tabPanel("Plot", echarts4rOutput("ae_plot", height = "200px")),
               tabPanel("Data", DTOutput("ae_table"))
             )
           )
@@ -279,17 +287,17 @@ server <- function(input, output) {
   # observe({
   #   print(input$map_marker_click$id)
   # })
-  
+
   # observe({
   #   if(input$selectbox == "" & is.null(input$map_marker_click$id)) {
   #     print("RJZ")
   #   } else if(input$selectbox != "") {
-  #     points_trusts %>% 
-  #       filter(org_name == input$selectbox) %>% 
-  #       pull(org_code) %>% 
+  #     points_trusts %>%
+  #       filter(org_name == input$selectbox) %>%
+  #       pull(org_code) %>%
   #       print()
   #   } else if(!is.null(input$map_marker_click$id)) {
-  #     input$map_marker_click$id %>% 
+  #     input$map_marker_click$id %>%
   #       print()
   #   }
   # })
@@ -301,7 +309,6 @@ server <- function(input, output) {
       addProviderTiles(providers$CartoDB.Positron) %>%
       addAwesomeMarkers(
         data = points_trusts,
-        popup = ~org_name,
         label = ~org_name,
         icon = icons,
         layerId = ~org_code
@@ -318,20 +325,64 @@ server <- function(input, output) {
   })
 
   # A&E
-  output$ae_plot <- renderPlot({
-    ae %>%
+  # output$ae_plot <- renderPlot({
+  #   ae %>%
+  #     filter(`Trust Code` == selected_trust()) %>%
+  #     filter(grepl("%", name)) %>%
+  #     ggplot(aes(x = name, y = value)) +
+  #     geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
+  #     geom_point(size = 5, colour = "#406574") +
+  #     coord_flip() +
+  #     scale_y_continuous(labels = percent) +
+  #     theme_minimal() +
+  #     labs(
+  #       x = NULL,
+  #       y = NULL
+  #     )
+  # })
+
+  output$ae_plot <- renderEcharts4r({
+    # ae %>%
+    #   filter(`Trust Code` == selected_trust()) %>%
+    #   arrange(value) %>%
+    #   mutate(name = factor(name, levels = name)) %>%
+    #   na.omit() %>%
+    #   filter(grepl("%", name)) %>%
+    #   e_charts(name) %>%
+    #   e_bar(value, itemStyle = list(opacity = .6)) %>%
+    #   e_flip_coords() %>%
+    #   e_legend(FALSE) %>%
+    #   e_tooltip(trigger = "item") %>%
+    #   e_x_axis(formatter = e_axis_formatter("percent")) %>%
+    # e_theme("infographic") %>%
+    # e_grid(left = 120)
+
+    ae_temp <-
+      ae %>%
       filter(`Trust Code` == selected_trust()) %>%
-      filter(grepl("%", name)) %>%
-      ggplot(aes(x = name, y = value)) +
-      geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
-      geom_point(size = 5, colour = "#406574") +
-      coord_flip() +
-      scale_y_continuous(labels = percent) +
-      theme_minimal() +
-      labs(
-        x = NULL,
-        y = NULL
-      )
+      arrange(value) %>%
+      mutate(name = factor(name, levels = name)) %>%
+      na.omit() %>%
+      filter(grepl("%", name))
+
+    if (nrow(ae_temp) != 0) {
+      ae_temp %>%
+        e_charts(name) %>%
+        e_bar(value, itemStyle = list(opacity = .6)) %>%
+        e_flip_coords() %>%
+        e_legend(FALSE) %>%
+        e_tooltip(trigger = "item") %>%
+        e_x_axis(formatter = e_axis_formatter("percent")) %>%
+        e_theme("brc_theme") %>%
+        e_grid(left = 120)
+    } else {
+      e_charts(data = NULL) %>%
+        e_draft(
+          text = "Unfortunately, this data doesn't exist!",
+          size = "30px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$ae_table <- renderDT({
@@ -528,5 +579,9 @@ shinyApp(ui = ui, server = server)
 # - Should the plots add a comparison to the mean scores / distributions for
 #   all the other Trusts (normalised by population size or using percentages)?
 #   Use Lollipop plot?
-# - Should ambulance trust data be added, with another card below the 
+# - Should ambulance trust data be added, with another card below the
 #   map?
+
+# Can the scales and ggplot libraries be removed if using echarts4r?
+# should the tabsetPanels be turned to pills?
+# Sort out card titles
