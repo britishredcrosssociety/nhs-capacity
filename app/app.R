@@ -21,9 +21,6 @@ beds <-
 cancer_wait_times <-
   readRDS("data/cancer_wait_times.rds")
 
-cancer_wait_times_long_form <-
-  readRDS("data/cancer_wait_times_long_form.rds")
-
 diagnostic_wait_times <-
   readRDS("data/diagnostic_wait_times.rds")
 
@@ -189,7 +186,7 @@ ui <- fluidPage(
             id = "card",
             h4("Bed Occupancies (Day & Night)"),
             tabsetPanel(
-              tabPanel("Plot", plotOutput("beds_plot", height = "200px")),
+              tabPanel("Plot", echarts4rOutput("beds_plot", height = "200px")),
               tabPanel("Data", DTOutput("beds_table"))
             )
           )
@@ -206,7 +203,7 @@ ui <- fluidPage(
             id = "card",
             h4("Cancer Wait Times"),
             tabsetPanel(
-              tabPanel("Plot", plotOutput("cancer_plot", height = "200px")),
+              tabPanel("Plot", echarts4rOutput("cancer_plot", height = "200px")),
               tabPanel("Data", DTOutput("cancer_table"))
             )
           )
@@ -325,22 +322,6 @@ server <- function(input, output) {
   })
 
   # A&E
-  # output$ae_plot <- renderPlot({
-  #   ae %>%
-  #     filter(`Trust Code` == selected_trust()) %>%
-  #     filter(grepl("%", name)) %>%
-  #     ggplot(aes(x = name, y = value)) +
-  #     geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
-  #     geom_point(size = 5, colour = "#406574") +
-  #     coord_flip() +
-  #     scale_y_continuous(labels = percent) +
-  #     theme_minimal() +
-  #     labs(
-  #       x = NULL,
-  #       y = NULL
-  #     )
-  # })
-
   output$ae_plot <- renderEcharts4r({
     ae_temp <-
       ae %>%
@@ -348,7 +329,15 @@ server <- function(input, output) {
       arrange(value) %>%
       mutate(name = factor(name, levels = name)) %>%
       na.omit() %>%
-      filter(grepl("%", name))
+      filter(grepl("%", name)) %>% 
+      mutate(
+        name = case_when(
+          name == "% Type 1 <= 4 hours" ~ "Type 1",
+          name == "% Type 2 <= 4 hours" ~ "Type 2",
+          name == "% Type 3 <= 4 hours" ~ "Type 3",
+          name == "% Total <= 4 hours" ~ "Total"
+        )
+      )
 
     if (nrow(ae_temp) != 0) {
       ae_temp %>%
@@ -357,9 +346,18 @@ server <- function(input, output) {
         e_flip_coords() %>%
         e_legend(FALSE) %>%
         e_tooltip(trigger = "item") %>%
-        e_x_axis(formatter = e_axis_formatter("percent")) %>%
+        e_x_axis(
+          formatter = e_axis_formatter("percent"),
+          nameLocation = "middle",
+          nameTextStyle = list(padding = 20)
+          ) %>% 
+        e_axis_labels(x = "Percentage less than or equal to 4 hours") %>% 
         e_theme("brc_theme") %>%
-        e_grid(left = 120)
+        e_grid(
+          left = 50,
+          top = 20,
+          bottom = 60
+          )
     } else {
       e_charts(data = NULL) %>%
         e_draft(
@@ -380,36 +378,66 @@ server <- function(input, output) {
           Metric = name,
           value
         ) %>%
-        na.omit() %>% 
         mutate(
           value = round(value, digits = 3),
           value = if_else(grepl("^%", Metric), value * 100, value)
-        ),
+        ) %>% 
+        na.omit(),
       options = list(dom = "t"),
       rownames = FALSE
     )
   })
 
   # Beds
-  output$beds_plot <- renderPlot({
-    beds %>%
-      filter(`Trust Code` == selected_trust()) %>%
+  output$beds_plot <- renderEcharts4r({
+    beds_temp <- 
+      beds %>% 
+      filter(`Trust Code` == selected_trust()) %>% 
       filter(
         name == "% Total Day Beds Occupied" |
           name == "% Total Night Beds Occupied" |
           name == "% General Acute Night Beds Occupied" |
           name == "% General Acute Day Beds Occupied"
-      ) %>%
-      ggplot(aes(x = name, y = value)) +
-      geom_segment(aes(x = name, xend = name, y = 0, yend = value)) +
-      geom_point(size = 5, colour = "#406574") +
-      coord_flip() +
-      scale_y_continuous(labels = percent) +
-      theme_minimal() +
-      labs(
-        x = NULL,
-        y = NULL
+      ) %>% 
+      arrange(value) %>%
+      mutate(name = factor(name, levels = name)) %>% 
+      na.omit() %>% 
+      mutate(
+        name = case_when(
+          name == "% Total Day Beds Occupied" ~ "Total Day",
+          name == "% Total Night Beds Occupied" ~ "Total Night",
+          name == "% General Acute Night Beds Occupied" ~ "General Acute Night",
+          name == "% General Acute Day Beds Occupied" ~ "General Acute Day"
+        )
       )
+    
+    if (nrow(beds_temp) != 0) {
+      beds_temp %>%
+        e_charts(name) %>%
+        e_bar(value, itemStyle = list(opacity = .6)) %>%
+        e_flip_coords() %>%
+        e_legend(FALSE) %>%
+        e_tooltip(trigger = "item") %>%
+        e_x_axis(
+          formatter = e_axis_formatter("percent"),
+          nameLocation = "middle",
+          nameTextStyle = list(padding = 20)
+        ) %>% 
+        e_axis_labels(x = "Percentage of Beds Occupied") %>% 
+        e_theme("brc_theme") %>%
+        e_grid(
+          left = 120,
+          top = 20,
+          bottom = 60
+        )
+    } else {
+      e_charts(data = NULL) %>%
+        e_draft(
+          text = "Unfortunately, this data doesn't exist!",
+          size = "30px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$beds_table <- renderDT({
@@ -425,29 +453,47 @@ server <- function(input, output) {
         mutate(
           value = round(value, digits = 3),
           value = value * 100
-        ),
+        ) %>% 
+        na.omit(),
       options = list(dom = "t"),
       rownames = FALSE
     )
   })
 
   # Cancer wait times
-  output$cancer_plot <- renderPlot({
-    cancer_wait_times_long_form %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      ggplot(aes(x = Standard, y = value, colour = name)) +
-      geom_linerange(
-        aes(x = Standard, ymin = 0, ymax = value, colour = name),
-        position = position_dodge(width = 1)
-      ) +
-      geom_point(position = position_dodge(width = 1), size = 3) +
-      coord_flip() +
-      theme_minimal() +
-      labs(
-        x = NULL,
-        y = "No. People"
-      ) +
-      scale_colour_manual(values = c("#475C74", "#9CAAAE", "#6A9EAA"))
+  output$cancer_plot <- renderEcharts4r({
+    cancer_temp <-
+      cancer_wait_times %>% 
+      filter(`Trust Code` == selected_trust()) %>% 
+      mutate(value = `Within Standard` / `Total Treated`) %>% 
+      rename(name = Standard) %>% 
+      arrange(value) %>%
+      mutate(name = factor(name, levels = name)) %>%
+      na.omit()
+    
+    if (nrow(cancer_temp) != 0) {
+      cancer_temp %>%
+        e_charts(name) %>%
+        e_bar(value, itemStyle = list(opacity = .6)) %>%
+        e_flip_coords() %>%
+        e_legend(FALSE) %>%
+        e_tooltip(trigger = "item") %>%
+        e_x_axis(formatter = e_axis_formatter("percent"), nameLocation = "middle") %>%
+        e_axis_labels(x = "Within Standard") %>% 
+        e_theme("brc_theme") %>%
+        e_grid(
+          left = 120,
+          top = 10,
+          bottom = 10
+          )
+    } else {
+      e_charts(data = NULL) %>%
+        e_draft(
+          text = "Unfortunately, this data doesn't exist!",
+          size = "30px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$cancer_table <- renderDT({
@@ -457,7 +503,8 @@ server <- function(input, output) {
         select(
           -`Trust Name`,
           -`Trust Code`
-        ),
+        ) %>% 
+        na.omit(),
       options = list(dom = "t"),
       rownames = FALSE
     )
@@ -558,13 +605,22 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 # TODO:
+# - Sort out cancer plot.
+# - Sort out other plots.
+# - Give plots different colour themes to differentiate them.
 # - Sort out Leaflet / Searchbox logic. Test with the observer.
-# - Add Data set dates (last updated/available) & Sort out card titles
-# - Update plots to use echarts4r with a vatiety of graphics.
+# - Add Data set dates (last updated/available) & Sort out card titles (center & style them)
+# - Remove scales and ggplot libraries be removed if using echarts4r
+# - should the tabsetPanels be turned to pills with colours style?
+# - Bug with Beds plot.
+#   Test on 'University Hopsitals Dorset NHS Foundation Trust', code 'R0D'. Run
+#   the debug observer and notice how the plot doesn't update to blank, even
+#   though the table does.
+# - Bug with Cancer plot. Test on 'Solent NHS Trust', code '1RC'
+# - Deploy to shinyapps.io /nhs-capacity
 # - Should the plots add a comparison to the mean scores / distributions for
 #   all the other Trusts (normalised by population size or using percentages)?
 # - Should ambulance trust data be added, with another card below the
 #   map?
-# - Can the scales and ggplot libraries be removed if using echarts4r?
-# - should the tabsetPanels be turned to pills with colours style?
-# - Deploy to shinyapps.io /nhs-capacity
+# - Should historial data be used?
+# - Update the indicators with latest month?
