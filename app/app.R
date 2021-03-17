@@ -342,21 +342,6 @@ server <- function(input, output) {
   # })
 
   output$ae_plot <- renderEcharts4r({
-    # ae %>%
-    #   filter(`Trust Code` == selected_trust()) %>%
-    #   arrange(value) %>%
-    #   mutate(name = factor(name, levels = name)) %>%
-    #   na.omit() %>%
-    #   filter(grepl("%", name)) %>%
-    #   e_charts(name) %>%
-    #   e_bar(value, itemStyle = list(opacity = .6)) %>%
-    #   e_flip_coords() %>%
-    #   e_legend(FALSE) %>%
-    #   e_tooltip(trigger = "item") %>%
-    #   e_x_axis(formatter = e_axis_formatter("percent")) %>%
-    # e_theme("infographic") %>%
-    # e_grid(left = 120)
-
     ae_temp <-
       ae %>%
       filter(`Trust Code` == selected_trust()) %>%
@@ -395,6 +380,7 @@ server <- function(input, output) {
           Metric = name,
           value
         ) %>%
+        na.omit() %>% 
         mutate(
           value = round(value, digits = 3),
           value = if_else(grepl("^%", Metric), value * 100, value)
