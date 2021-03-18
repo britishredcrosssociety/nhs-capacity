@@ -46,7 +46,7 @@ ui <- fluidPage(
   # Use colours from BRC style guide:
   # - https://design-system.redcross.org.uk/styles/colours/
   e_theme_register(
-    theme = '{"color":["#AD1220","#5C747A","#193351","#6A9EAA"]}',
+    theme = '{"color":["#5C747A","#193351","#6A9EAA"]}',
     name = "brc_theme"
   ),
 
@@ -298,20 +298,34 @@ server <- function(input, output) {
   #   print(input$map_marker_click$id)
   # })
 
-  # observe({
-  #   if(input$selectbox == "" & is.null(input$map_marker_click$id)) {
-  #     print("RJZ")
-  #   } else if(input$selectbox != "") {
-  #     points_trusts %>%
-  #       filter(org_name == input$selectbox) %>%
-  #       pull(org_code) %>%
-  #       print()
-  #   } else if(!is.null(input$map_marker_click$id)) {
-  #     input$map_marker_click$id %>%
-  #       print()
-  #   }
-  # })
+  observe({
+    if(input$selectbox == "" & is.null(input$map_marker_click$id)) {
+      print("RJZ")
+    } else if(input$selectbox != "") {
+      points_trusts %>%
+        filter(org_name == input$selectbox) %>%
+        pull(org_code) %>%
+        print()
+    } else if(!is.null(input$map_marker_click$id)) {
+      input$map_marker_click$id %>%
+        print()
+    }
+  })
 
+  # Observe map click events
+  selected_trust <- reactive({
+    if(input$selectbox == "") {
+      return("RJZ")
+    } else {
+      return(
+        points_trusts %>%
+          filter(org_name == input$selectbox) %>%
+          pull(org_code)
+      )
+    }
+  })
+  
+  
   # Map
   output$map <- renderLeaflet({
     leaflet() %>%
@@ -323,15 +337,6 @@ server <- function(input, output) {
         icon = icons,
         layerId = ~org_code
       )
-  })
-
-  # Observe map click events
-  selected_trust <- reactive({
-    if (is.null(input$map_marker_click$id)) {
-      return("RJZ")
-    } else {
-      return(input$map_marker_click$id)
-    }
   })
 
   # A&E
@@ -730,6 +735,9 @@ shinyApp(ui = ui, server = server)
 
 # TODO:
 # - Sort out Leaflet / Searchbox logic. Test with the observer.
+#   The issue is that a method is needed to refresh the state each time the map
+#   is clicked or the select box is updated.
+#   read: https://stackoverflow.com/questions/54782156/selectinput-and-leaflet-not-connecting
 # - Bug with Beds plot.
 #   Test on 'University Hopsitals Dorset NHS Foundation Trust', code 'R0D'. Run
 #   the debug observer and notice how the plot doesn't update to blank, even
