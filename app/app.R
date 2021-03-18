@@ -299,14 +299,14 @@ server <- function(input, output) {
   # })
 
   observe({
-    if(input$selectbox == "" & is.null(input$map_marker_click$id)) {
+    if (input$selectbox == "" & is.null(input$map_marker_click$id)) {
       print("RJZ")
-    } else if(input$selectbox != "") {
+    } else if (input$selectbox != "") {
       points_trusts %>%
         filter(org_name == input$selectbox) %>%
         pull(org_code) %>%
         print()
-    } else if(!is.null(input$map_marker_click$id)) {
+    } else if (!is.null(input$map_marker_click$id)) {
       input$map_marker_click$id %>%
         print()
     }
@@ -314,7 +314,7 @@ server <- function(input, output) {
 
   # Observe map click events
   selected_trust <- reactive({
-    if(input$selectbox == "") {
+    if (input$selectbox == "") {
       return("RJZ")
     } else {
       return(
@@ -324,8 +324,8 @@ server <- function(input, output) {
       )
     }
   })
-  
-  
+
+
   # Map
   output$map <- renderLeaflet({
     leaflet() %>%
