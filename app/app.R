@@ -66,6 +66,9 @@ ui <- fluidPage(
           background-color: #262626;
           height: 165px;
       }
+      a {
+          color: #5C747A;
+      }
       ")
     )
   ),
@@ -154,7 +157,7 @@ ui <- fluidPage(
     # - Map -
     column(
       width = 4,
-      leafletOutput("map", height = 945)
+      leafletOutput("map", height = 1015)
     ),
 
     # - Plots -
@@ -167,9 +170,11 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
+          align = "center",
           tags$div(
             id = "card",
             h4("Accident and Emergency"),
+            h6("Last published: Jan 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("ae_plot", height = "200px")),
               tabPanel("Data", DTOutput("ae_table"))
@@ -180,9 +185,11 @@ ui <- fluidPage(
         # - Col 2 -
         column(
           width = 6,
+          align = "center",
           tags$div(
             id = "card",
             h4("Bed Occupancies (Day & Night)"),
+            h6("Last published: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("beds_plot", height = "200px")),
               tabPanel("Data", DTOutput("beds_table"))
@@ -197,9 +204,11 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
+          align = "center",
           tags$div(
             id = "card",
             h4("Cancer Wait Times"),
+            h6("Last published: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("cancer_plot", height = "200px")),
               tabPanel("Data", DTOutput("cancer_table"))
@@ -210,9 +219,11 @@ ui <- fluidPage(
         # - Col 2 -
         column(
           width = 6,
+          align = "center",
           tags$div(
             id = "card",
             h4("Diagnostic Wait Times"),
+            h6("Last published: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("diagnostic_plot", height = "200px")),
               tabPanel("Data", DTOutput("diagnostic_table"))
@@ -227,9 +238,11 @@ ui <- fluidPage(
         # - Col 1 -
         column(
           width = 6,
+          align = "center",
           tags$div(
             id = "card",
             h4("Consultant-led Outpatient Referrals"),
+            h6("Last published: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("outpatient_plot", height = "200px")),
               tabPanel("Data", DTOutput("outpatient_table"))
@@ -240,9 +253,11 @@ ui <- fluidPage(
         # - Col 2 -
         column(
           width = 6,
+          align = "center",
           tags$div(
             id = "card",
             h4("Consultant-led Referral to Treatment Waiting Times"),
+            h6("Last published: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("rtt_plot", height = "200px")),
               tabPanel("Data", DTOutput("rtt_table"))
@@ -714,13 +729,7 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 # TODO:
-# - Sort out cancer plot.
-# - Sort out other plots.
-# - Give plots different colour themes to differentiate them.
 # - Sort out Leaflet / Searchbox logic. Test with the observer.
-# - Add Data set dates (last updated/available) & Sort out card titles (center & style them)
-# - Remove scales and ggplot libraries be removed if using echarts4r
-# - should the tabsetPanels be turned to pills with colours style?
 # - Bug with Beds plot.
 #   Test on 'University Hopsitals Dorset NHS Foundation Trust', code 'R0D'. Run
 #   the debug observer and notice how the plot doesn't update to blank, even
