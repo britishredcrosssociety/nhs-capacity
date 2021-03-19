@@ -286,38 +286,62 @@ ui <- fluidPage(
 ) # fluidPage
 
 # ---- Server ----
-server <- function(input, output) {
+server <- function(input, output, session) {
 
   # Debug
+  # s_trust <- reactiveVal()
+  #
+  # observeEvent(input$selectbox, {
+  #   if(input$selectbox == ""){
+  #     s_trust("RJZ")
+  #   } else {
+  #     points_trusts %>%
+  #       filter(org_name == input$selectbox) %>%
+  #       pull(org_code) %>%
+  #       s_trust()
+  #   }
+  # })
+  #
+  # observeEvent(input$map_marker_click$id, {
+  #   if(is.null(input$map_marker_click$id)){
+  #     s_trust("RJZ")
+  #   } else {
+  #     input$map_marker_click$id %>%
+  #       s_trust()
+  #   }
+  # })
+  #
   # observe({
-  #   print(input$map_marker_click$id)
+  #   print(s_trust())
   # })
 
-  #Debug
-  observe({
-    if (input$selectbox == "" & is.null(input$map_marker_click$id)) {
-      print("RJZ")
-    } else if (input$selectbox != "") {
+
+  # Track which Trust has been selected
+  selected_trust <- reactiveVal()
+
+  observeEvent(input$selectbox, {
+    if (input$selectbox == "") {
+      selected_trust("RJZ")
+    } else {
       points_trusts %>%
         filter(org_name == input$selectbox) %>%
         pull(org_code) %>%
-        print()
-    } else if (!is.null(input$map_marker_click$id)) {
-      input$map_marker_click$id %>%
-        print()
+        selected_trust()
     }
   })
 
-  # Observe map click events
-  selected_trust <- reactive({
-    if (input$selectbox == "") {
-      return("RJZ")
+  observeEvent(input$map_marker_click$id, {
+    if (is.null(input$map_marker_click$id)) {
+      selected_trust("RJZ")
     } else {
-      return(
-        points_trusts %>%
-          filter(org_name == input$selectbox) %>%
-          pull(org_code)
-      )
+      input$map_marker_click$id %>%
+        selected_trust()
+
+      clicked_trust <- points_trusts %>%
+        filter(org_code == input$map_marker_click$id) %>%
+        pull(org_name)
+
+      updateSelectizeInput(session, "selectbox", selected = clicked_trust)
     }
   })
 
@@ -728,11 +752,7 @@ server <- function(input, output) {
 # Run the application
 shinyApp(ui = ui, server = server)
 
-# TODO:
-# - Sort out Leaflet / Searchbox logic. Test with the observer.
-#   The issue is that a method is needed to refresh the state each time the map
-#   is clicked or the select box is updated.
-#   read: https://stackoverflow.com/questions/54782156/selectinput-and-leaflet-not-connecting
+# BUGS:
 # - Bug with Beds plot.
 #   Test on 'University Hopsitals Dorset NHS Foundation Trust', code 'R0D'. Run
 #   the debug observer and notice how the plot doesn't update to blank, even
@@ -740,10 +760,3 @@ shinyApp(ui = ui, server = server)
 # - Bug with Cancer plot. Test on 'Solent NHS Trust', code '1RC'
 # - Bug with Diagnostic plot, code '1RA'
 # - Bug with Consultant-led Outpatient Referrals
-# - Deploy to shinyapps.io /nhs-capacity
-# - Should the plots add a comparison to the mean scores / distributions for
-#   all the other Trusts (normalised by population size or using percentages)?
-# - Should ambulance trust data be added, with another card below the
-#   map?
-# - Should historial data be used?
-# - Update the indicators with latest month?
