@@ -121,10 +121,9 @@ ui <- fluidPage(
       ),
       tags$p(
         style = "width:520px; padding-top: 12px; padding-bottom:12px",
-        "NHS Trusts are under pressure and are exceeding their capacity to
-        cope. Enter your Trust in the box below, or click it on the map,
-        to explore the different pressures it is facing. Click on the 'Data' tabs
-        above each plot to see more metrics."
+        "NHS Trusts are facing substantial pressure. Enter your Trust in the box
+        below, or click it on the map, to explore the different pressures it is 
+        facing. Click on the 'Data' tabs above each plot to see more metrics."
       )
     ),
     column(width = 2)
@@ -170,7 +169,7 @@ ui <- fluidPage(
           tags$div(
             id = "card",
             h4("Accident and Emergency"),
-            h6("Last published: Jan 2021"),
+            h6("Latest data: Jan 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("ae_plot", height = "200px")),
               tabPanel("Data", DTOutput("ae_table"))
@@ -185,7 +184,7 @@ ui <- fluidPage(
           tags$div(
             id = "card",
             h4("Bed Occupancies (Day & Night)"),
-            h6("Last published: Dec 2020"),
+            h6("Latest data: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("beds_plot", height = "200px")),
               tabPanel("Data", DTOutput("beds_table"))
@@ -204,7 +203,7 @@ ui <- fluidPage(
           tags$div(
             id = "card",
             h4("Cancer Wait Times"),
-            h6("Last published: Dec 2020"),
+            h6("Latest data: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("cancer_plot", height = "200px")),
               tabPanel("Data", DTOutput("cancer_table"))
@@ -219,7 +218,7 @@ ui <- fluidPage(
           tags$div(
             id = "card",
             h4("Diagnostic Wait Times"),
-            h6("Last published: Dec 2020"),
+            h6("Latest data: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("diagnostic_plot", height = "200px")),
               tabPanel("Data", DTOutput("diagnostic_table"))
@@ -238,7 +237,7 @@ ui <- fluidPage(
           tags$div(
             id = "card",
             h4("Consultant-led Outpatient Referrals"),
-            h6("Last published: Dec 2020"),
+            h6("Latest data: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("outpatient_plot", height = "200px")),
               tabPanel("Data", DTOutput("outpatient_table"))
@@ -253,7 +252,7 @@ ui <- fluidPage(
           tags$div(
             id = "card",
             h4("Consultant-led Referral to Treatment Waiting Times"),
-            h6("Last published: Dec 2020"),
+            h6("Latest data: Dec 2020"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("rtt_plot", height = "200px")),
               tabPanel("Data", DTOutput("rtt_table"))
