@@ -116,12 +116,8 @@ ui <- fluidPage(
       width = 8,
       align = "center",
       tags$h1(
-        style = "padding-top: 12px;",
+        style = "padding-top: 12px; padding-bottom: 8px",
         "What is the Capacity of Your Local NHS Trust?"
-      ),
-      tags$p(
-        style = "font-size:12px;",
-        "By Mike Page, Matt Thomas, Elle Gordon, & Freya Neason, 2021."
       ),
       tags$p(
         style = "width:520px; padding-top: 12px; padding-bottom:12px",
@@ -298,6 +294,7 @@ server <- function(input, output) {
   #   print(input$map_marker_click$id)
   # })
 
+  #Debug
   observe({
     if (input$selectbox == "" & is.null(input$map_marker_click$id)) {
       print("RJZ")
@@ -324,7 +321,6 @@ server <- function(input, output) {
       )
     }
   })
-
 
   # Map
   output$map <- renderLeaflet({
