@@ -15,7 +15,7 @@ hi_clean <- hi %>%
   select(
     county_ua_code = ...1,
     overall_health_index = ...6,
-    health_lives = `Healthy Lives...9`,
+    healthy_lives = `Healthy Lives...9`,
     healthy_places = `Healthy Places...10`,
     healthy_people = `Healthy People...11`
   )  %>% 
