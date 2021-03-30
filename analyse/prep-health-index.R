@@ -3,6 +3,7 @@ library(tidyverse)
 library(readxl)
 library(geographr)
 library(sf)
+library(rmapshaper)
 
 # ---- Load data ----
 hi <- read_excel("data/health_index.xlsx", sheet = "2018", skip = 11)
@@ -43,7 +44,8 @@ hi_complete <-
   )
 
 # ---- Join to shapefile and save ----
-boundaries_counties_ua %>%
+boundaries_counties_ua %>% 
+  ms_simplify() %>% 
   filter(str_detect(county_ua_code, "^E")) %>% 
   left_join(
     hi_complete,

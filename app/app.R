@@ -7,9 +7,11 @@ library(DT)
 library(echarts4r)
 
 # ---- Load data sets ----
+# Map points
 points_trusts <-
   read_sf("data/open_nhs_trusts_points.geojson")
 
+# Indicators
 ae <-
   readRDS("data/ae.rds")
 
@@ -30,6 +32,10 @@ rtt <-
 
 rtt_long_form <-
   readRDS("data/referral_treatment_waiting_times_long_form.rds")
+
+# Health Index
+health_index <-
+  readRDS("data/health_index.rds")
 
 # ---- Create Markers ----
 # Compatible markers: https://fontawesome.com/v4.7.0/icons/
