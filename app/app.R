@@ -361,7 +361,56 @@ server <- function(input, output, session) {
         label = ~org_name,
         icon = icons,
         layerId = ~org_code
-      )
+      ) %>% 
+      addPolygons(
+        data = health_index,
+        group = "Health Index Overall",
+        fillColor = ~colorQuantile("YlOrRd", overall_health_index)(overall_health_index),
+        weight = 0.7,
+        opacity = 0.8,
+        color = "black",
+        dashArray = "0.1",
+        fillOpacity = 0.4
+      ) %>% 
+      addPolygons(
+        data = health_index,
+        group = "Healthy Lives",
+        fillColor = ~colorQuantile("YlOrRd", healthy_lives)(healthy_lives),
+        weight = 0.7,
+        opacity = 0.8,
+        color = "black",
+        dashArray = "0.1",
+        fillOpacity = 0.4
+      ) %>% 
+      addPolygons(
+        data = health_index,
+        group = "Healthy Places",
+        fillColor = ~colorQuantile("YlOrRd", healthy_places)(healthy_places),
+        weight = 0.7,
+        opacity = 0.8,
+        color = "black",
+        dashArray = "0.1",
+        fillOpacity = 0.4
+      ) %>% 
+      addPolygons(
+        data = health_index,
+        group = "Healthy People",
+        fillColor = ~colorQuantile("YlOrRd", healthy_people)(healthy_people),
+        weight = 0.7,
+        opacity = 0.8,
+        color = "black",
+        dashArray = "0.1",
+        fillOpacity = 0.4
+      )  %>% 
+      addLayersControl(
+    baseGroups = c(
+      "Health Index Overall",
+      "Healthy Lives",
+      "Healthy Places", 
+      "Healthy People"
+      ),
+    options = layersControlOptions(collapsed = TRUE)
+  )
   })
 
   # A&E
