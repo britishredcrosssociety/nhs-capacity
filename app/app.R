@@ -131,7 +131,7 @@ ui <- fluidPage(
         "Enter your Trust in the box below, or click it on the map, to explore
         the different pressures it is facing. Click on the 'Data' tabs above
         each plot to see more metrics. Use the toggle in the
-        top-right corner of the map to view different domains of the", 
+        top-right corner of the map to view different domains of the",
         a(
           href = "https://healthindex.lcp.uk.com/",
           target = "_blank",
@@ -395,61 +395,61 @@ server <- function(input, output, session) {
         label = ~org_name,
         icon = icons,
         layerId = ~org_code
-      ) %>% 
+      ) %>%
       addPolygons(
         data = health_index,
         group = "Health Index Overall",
-        fillColor = ~colorQuantile("magma", overall_health_index, n = 5)(overall_health_index),
+        fillColor = ~ colorQuantile("magma", overall_health_index, n = 5)(overall_health_index),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
         dashArray = "0.1",
         fillOpacity = 0.4
-      ) %>% 
+      ) %>%
       addPolygons(
         data = health_index,
         group = "Healthy Lives",
-        fillColor = ~colorQuantile("magma", healthy_lives, n = 5)(healthy_lives),
+        fillColor = ~ colorQuantile("magma", healthy_lives, n = 5)(healthy_lives),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
         dashArray = "0.1",
         fillOpacity = 0.4
-      ) %>% 
+      ) %>%
       addPolygons(
         data = health_index,
         group = "Healthy Places",
-        fillColor = ~colorQuantile("magma", healthy_places, n = 5)(healthy_places),
+        fillColor = ~ colorQuantile("magma", healthy_places, n = 5)(healthy_places),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
         dashArray = "0.1",
         fillOpacity = 0.4
-      ) %>% 
+      ) %>%
       addPolygons(
         data = health_index,
         group = "Healthy People",
-        fillColor = ~colorQuantile("magma", healthy_people, n = 5)(healthy_people),
+        fillColor = ~ colorQuantile("magma", healthy_people, n = 5)(healthy_people),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
         dashArray = "0.1",
         fillOpacity = 0.4
-      )  %>% 
-       addLegend(
+      ) %>%
+      addLegend(
         colors = c("#000004", "#51127C", "#B6367A", "#FB8861", "#FCFDBF"),
         labels = c("Least healthy", "", "", "", "Most Healthy"),
         position = "bottomleft"
-      ) %>% 
+      ) %>%
       addLayersControl(
-    baseGroups = c(
-      "Health Index Overall",
-      "Healthy Lives",
-      "Healthy Places", 
-      "Healthy People"
-      ),
-    options = layersControlOptions(collapsed = TRUE)
-  )
+        baseGroups = c(
+          "Health Index Overall",
+          "Healthy Lives",
+          "Healthy Places",
+          "Healthy People"
+        ),
+        options = layersControlOptions(collapsed = TRUE)
+      )
   })
 
   # A&E
