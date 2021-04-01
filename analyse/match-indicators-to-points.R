@@ -78,6 +78,8 @@ open_trusts %>%
     org_name = str_replace(org_name, "Nhs", "NHS")
   ) %>% 
   rename(
+    `Trust Name` = org_name,
+    `Trust Code` = org_code,
     Category = category,
     `Count of Indicents` = count_incidents,
     `Total Response Time (h)` = total_hours,

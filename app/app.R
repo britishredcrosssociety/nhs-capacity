@@ -15,6 +15,9 @@ points_trusts <-
 ae <-
   readRDS("data/ae.rds")
 
+ambulance <-
+  readRDS("data/ambulance.rds")
+
 beds <-
   readRDS("data/beds.rds")
 
@@ -183,13 +186,12 @@ ui <- fluidPage(
           align = "center",
           tags$div(
             id = "card",
-            h4("Ambo data goes here"),
-            h6("Latest data: Jan 2021")
-            # ,
-            # tabsetPanel(
-            #   tabPanel("Plot", echarts4rOutput("ae_plot", height = "200px")),
-            #   tabPanel("Data", DTOutput("ae_table"))
-            # )
+            h4("Ambulance Response Times"),
+            h6("Latest data: Feb 2021"),
+            tabsetPanel(
+              tabPanel("Plot", echarts4rOutput("ambulance_plot", height = "200px")),
+              tabPanel("Data", DTOutput("ambulance_table"))
+            )
           )
         )
       )
@@ -508,6 +510,26 @@ server <- function(input, output, session) {
           -`Trust Code`,
           Metric = name,
           value
+        ) %>%
+        mutate(
+          value = round(value, digits = 3),
+          value = if_else(grepl("^%", Metric), value * 100, value)
+        ) %>%
+        na.omit(),
+      options = list(dom = "t"),
+      rownames = FALSE
+    )
+  })
+
+  # Ambulance
+
+  output$ambulance_table <- renderDT({
+    datatable(
+      ambulance %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`
         ) %>%
         mutate(
           value = round(value, digits = 3),
