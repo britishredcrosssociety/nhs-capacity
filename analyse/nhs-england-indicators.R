@@ -84,7 +84,7 @@ GET(
 )
 
 # column names and types to use for loading all data
-ambo_colnames <- c("provider_code", "ambulance_service", "count_incidents", "blank", "total_hours", "mean_min_sec", "centile_90th_min_sec")
+ambo_colnames <- c("org_code", "ambulance_service", "count_incidents", "blank", "total_hours", "mean_min_sec", "centile_90th_min_sec")
 ambo_types <- c("text", "text", "numeric", "numeric", "numeric", "date", "date")
 
 # Category 1
