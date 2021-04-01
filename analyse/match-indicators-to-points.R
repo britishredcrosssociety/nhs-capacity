@@ -67,16 +67,30 @@ open_trusts %>%
   write_rds("app/data/ae.rds")
 
 # Ambulance
-open_trusts %>% 
+# Re-read in file as coltype needs specifying
+nhs_ambulance <- read_csv(
+  "data/nhs_ambulance.csv",
+  col_types = cols(
+    org_code = col_character(),
+    ambulance_service = col_character(),
+    count_incidents = col_double(),
+    total_hours = col_double(),
+    mean_min_sec = col_character(),
+    centile_90th_min_sec = col_character(),
+    category = col_character()
+  )
+)
+
+open_trusts %>%
   left_join(
     nhs_ambulance,
     by = "org_code"
-  ) %>% 
-  select(-ambulance_service) %>% 
+  ) %>%
+  select(-ambulance_service) %>%
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>% 
+  ) %>%
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -85,7 +99,8 @@ open_trusts %>%
     `Total Response Time (h)` = total_hours,
     `Mean Response Time (min:sec)` = mean_min_sec,
     `90th Centile Response Time (min:sec)` = centile_90th_min_sec
-  ) %>% 
+  ) %>%
+  mutate(`Total Response Time (h)` = round(`Total Response Time (h)`)) %>% 
   write_rds("app/data/ambulance.rds")
 
 # Beds

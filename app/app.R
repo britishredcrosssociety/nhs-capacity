@@ -5,7 +5,6 @@ library(leaflet)
 library(dplyr)
 library(DT)
 library(echarts4r)
-library(lubridate)
 
 # ---- Load data sets ----
 # Map points
@@ -523,6 +522,41 @@ server <- function(input, output, session) {
   })
 
   # Ambulance
+  # output$ambulance_plot <- renderEcharts4r({
+  #   ambulance_temp <-
+  #     ambulance %>%
+  #     filter(`Trust Code` == selected_trust()) %>%
+  #     arrange(`Total Response Time (h)`) %>%
+  #     mutate(Category = factor(Category, levels = Category)) %>%
+  #     na.omit()
+
+  #     if (nrow(ambulance_temp) != 0) {
+  #     ambulance_temp %>%
+  #       e_charts(Category) %>%
+  #       e_bar(`Total Response Time (h)`, itemStyle = list(opacity = .6)) %>%
+  #       e_flip_coords() %>%
+  #       e_legend(FALSE) %>%
+  #       e_tooltip(trigger = "item") %>%
+  #       e_x_axis(
+  #         nameLocation = "middle",
+  #         nameTextStyle = list(padding = 20)
+  #       ) %>%
+  #       e_axis_labels(x = "Total Response Time (h)") %>%
+  #       e_theme("brc_theme") %>%
+  #       e_grid(
+  #         left = 145,
+  #         top = 20,
+  #         bottom = 60
+  #       )
+  #   } else {
+  #     e_charts(data = NULL) %>%
+  #       e_draft(
+  #         text = "Unfortunately, this data doesn't exist!",
+  #         size = "30px",
+  #         color = "#5C747A"
+  #       )
+  #   }
+  # })
 
   output$ambulance_table <- renderDT({
     datatable(
@@ -531,7 +565,7 @@ server <- function(input, output, session) {
         select(
           -`Trust Name`,
           -`Trust Code`
-        ) %>%
+        ) %>% 
         na.omit(),
       options = list(dom = "t"),
       rownames = FALSE
