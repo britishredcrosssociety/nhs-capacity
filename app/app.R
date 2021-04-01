@@ -67,6 +67,7 @@ ui <- fluidPage(
       }
       #map {
           box-shadow: 2px 2px 5px grey;
+          margin: 0px 0px 20px 0px;
       }
       #footer {
           background-color: #262626;
@@ -161,13 +162,40 @@ ui <- fluidPage(
   # - Map & Plots -
   fluidRow(
 
-    # - Map -
+    # - Map and single plot underneath map -
     column(
       width = 4,
-      leafletOutput("map", height = 670)
+
+      # - Map -
+      fluidRow(
+
+        # Wrapping in column(), again, provides padding to the left of the map
+        column(
+          width = 12,
+          leafletOutput("map", height = 670)
+        )
+      ),
+
+      # - Single plot under map -
+      fluidRow(
+        column(
+          width = 12,
+          align = "center",
+          tags$div(
+            id = "card",
+            h4("Ambo data goes here"),
+            h6("Latest data: Jan 2021")
+            # ,
+            # tabsetPanel(
+            #   tabPanel("Plot", echarts4rOutput("ae_plot", height = "200px")),
+            #   tabPanel("Data", DTOutput("ae_table"))
+            # )
+          )
+        )
+      )
     ),
 
-    # - Plots -
+    # - Grid of plots -
     column(
       width = 8,
 
