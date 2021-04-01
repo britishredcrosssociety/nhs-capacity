@@ -66,6 +66,26 @@ open_trusts %>%
   ) %>%
   write_rds("app/data/ae.rds")
 
+# Ambulance
+open_trusts %>% 
+  left_join(
+    nhs_ambulance,
+    by = "org_code"
+  ) %>% 
+  select(-ambulance_service) %>% 
+  mutate(
+    org_name = str_to_title(org_name),
+    org_name = str_replace(org_name, "Nhs", "NHS")
+  ) %>% 
+  rename(
+    Category = category,
+    `Count of Indicents` = count_incidents,
+    `Total Response Time (h)` = total_hours,
+    `Mean Response Time (min:sec)` = mean_min_sec,
+    `90th Centile Response Time (min:sec)` = centile_90th_min_sec
+  ) %>% 
+  write_rds("app/data/ambulance.rds")
+
 # Beds
 beds_days <-
   open_trusts %>%

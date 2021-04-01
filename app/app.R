@@ -388,7 +388,7 @@ server <- function(input, output, session) {
   # Map
   output$map <- renderLeaflet({
     leaflet() %>%
-      setView(lat = 53.0, lng = -1.5, zoom = 6) %>%
+      setView(lat = 52.75, lng = -2.0, zoom = 6) %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
       addAwesomeMarkers(
         data = points_trusts,
