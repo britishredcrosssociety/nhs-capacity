@@ -72,6 +72,105 @@ ae <-
 ae %>%
   write_csv("data/nhs_ae.csv")
 
+# ---- Ambulance Quality Indicators
+# Source:
+# - https://www.england.nhs.uk/statistics/statistical-work-areas/ambulance-quality-indicators/
+
+# Date: February 2021
+
+GET(
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/AmbSYS-Feb21.xlsx",
+  write_disk(tf <- tempfile(fileext = ".xlsx"))
+)
+
+# column names and types to use for loading all data
+ambo_colnames <- c("provider_code", "ambulance_service", "count_incidents", "blank", "total_hours", "mean_min_sec", "centile_90th_min_sec")
+ambo_types <- c("text", "text", "numeric", "numeric", "numeric", "date", "date")
+
+# Category 1
+eng_ambo_cat1 <-
+  read_excel(
+    tf,
+    sheet = "Response Times",
+    range = "C8:I18",
+    col_names = ambo_colnames,
+    col_types = ambo_types
+  ) %>%
+  remove_empty("cols") %>%
+  mutate(category = "cat1")
+
+# Category 1T
+eng_ambo_cat1t <-
+  read_excel(
+    tf,
+    sheet = "Response Times",
+    range = "C22:I32",
+    col_names = ambo_colnames,
+    col_types = ambo_types
+  ) %>%
+  remove_empty("cols") %>%
+  mutate(category = "cat1t")
+
+# Category 2
+eng_ambo_cat2 <-
+  read_excel(
+    tf,
+    sheet = "Response Times",
+    range = "C36:I46",
+    col_names = ambo_colnames,
+    col_types = ambo_types
+  ) %>%
+  remove_empty("cols") %>%
+  mutate(category = "cat2")
+
+# Category 3
+eng_ambo_cat3 <-
+  read_excel(
+    tf,
+    sheet = "Response Times",
+    range = "C50:I60",
+    col_names = ambo_colnames,
+    col_types = ambo_types
+  ) %>%
+  remove_empty("cols") %>%
+  mutate(category = "cat3")
+
+# Category 4
+eng_ambo_cat4 <-
+  read_excel(
+    tf,
+    sheet = "Response Times",
+    range = "C64:I74",
+    col_names = ambo_colnames,
+    col_types = ambo_types
+  ) %>%
+  remove_empty("cols") %>%
+  mutate(category = "cat4")
+
+unlink(tf)
+rm(tf)
+
+# combine stats
+eng_ambo <- bind_rows(
+  eng_ambo_cat1,
+  eng_ambo_cat1t,
+  eng_ambo_cat2,
+  eng_ambo_cat3,
+  eng_ambo_cat4
+)
+
+# Reformat dates
+eng_ambo <-
+  eng_ambo %>%
+  mutate(
+    mean_min_sec = format(mean_min_sec, format = "%M:%S"),
+    centile_90th_min_sec = format(centile_90th_min_sec, format = "%M:%S")
+  )
+
+# Save
+eng_ambo %>%
+  write_csv("data/nhs_ambulance.csv")
+
 # ---- Bed Occupancy ----
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/
