@@ -113,7 +113,7 @@ ui <- fluidPage(
         )
       )
     )
-  ), # fluidRow
+  ),
 
   # - Instructions -
   fluidRow(
@@ -126,10 +126,16 @@ ui <- fluidPage(
         "What is the Capacity of Your Local NHS Trust?"
       ),
       tags$p(
-        style = "width:520px; padding-top: 12px; padding-bottom:12px",
-        "NHS Trusts are facing substantial pressure. Enter your Trust in the box
-        below, or click it on the map, to explore the different pressures it is 
-        facing. Click on the 'Data' tabs above each plot to see more metrics."
+        style = "width:600px; padding-top: 12px; padding-bottom:12px",
+        "Enter your Trust in the box below, or click it on the map, to explore
+        the different pressures it is facing. Click on the 'Data' tabs above
+        each plot to see more metrics. Use the toggle in the
+        top-right corner of the map to view different domains of the", 
+        a(
+          href = "https://healthindex.lcp.uk.com/",
+          target = "_blank",
+          "ONS Health Index."
+        )
       )
     ),
     column(width = 2)
@@ -158,7 +164,7 @@ ui <- fluidPage(
     # - Map -
     column(
       width = 4,
-      leafletOutput("map", height = 1015)
+      leafletOutput("map", height = 670)
     ),
 
     # - Plots -
@@ -354,7 +360,7 @@ server <- function(input, output, session) {
   # Map
   output$map <- renderLeaflet({
     leaflet() %>%
-      setView(lat = 54.00366, lng = -2.547855, zoom = 6) %>%
+      setView(lat = 53.0, lng = -1.5, zoom = 6) %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
       addAwesomeMarkers(
         data = points_trusts,
@@ -365,7 +371,7 @@ server <- function(input, output, session) {
       addPolygons(
         data = health_index,
         group = "Health Index Overall",
-        fillColor = ~colorQuantile("YlOrRd", overall_health_index)(overall_health_index),
+        fillColor = ~colorQuantile("magma", overall_health_index, n = 5)(overall_health_index),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
@@ -375,7 +381,7 @@ server <- function(input, output, session) {
       addPolygons(
         data = health_index,
         group = "Healthy Lives",
-        fillColor = ~colorQuantile("YlOrRd", healthy_lives)(healthy_lives),
+        fillColor = ~colorQuantile("magma", healthy_lives, n = 5)(healthy_lives),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
@@ -385,7 +391,7 @@ server <- function(input, output, session) {
       addPolygons(
         data = health_index,
         group = "Healthy Places",
-        fillColor = ~colorQuantile("YlOrRd", healthy_places)(healthy_places),
+        fillColor = ~colorQuantile("magma", healthy_places, n = 5)(healthy_places),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
@@ -395,13 +401,18 @@ server <- function(input, output, session) {
       addPolygons(
         data = health_index,
         group = "Healthy People",
-        fillColor = ~colorQuantile("YlOrRd", healthy_people)(healthy_people),
+        fillColor = ~colorQuantile("magma", healthy_people, n = 5)(healthy_people),
         weight = 0.7,
         opacity = 0.8,
         color = "black",
         dashArray = "0.1",
         fillOpacity = 0.4
       )  %>% 
+       addLegend(
+        colors = c("#000004", "#51127C", "#B6367A", "#FB8861", "#FCFDBF"),
+        labels = c("Least healthy", "", "", "", "Most Healthy"),
+        position = "bottomleft"
+      ) %>% 
       addLayersControl(
     baseGroups = c(
       "Health Index Overall",
