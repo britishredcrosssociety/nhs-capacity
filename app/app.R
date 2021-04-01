@@ -5,6 +5,7 @@ library(leaflet)
 library(dplyr)
 library(DT)
 library(echarts4r)
+library(lubridate)
 
 # ---- Load data sets ----
 # Map points
@@ -530,10 +531,6 @@ server <- function(input, output, session) {
         select(
           -`Trust Name`,
           -`Trust Code`
-        ) %>%
-        mutate(
-          value = round(value, digits = 3),
-          value = if_else(grepl("^%", Metric), value * 100, value)
         ) %>%
         na.omit(),
       options = list(dom = "t"),

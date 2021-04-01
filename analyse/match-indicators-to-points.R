@@ -77,7 +77,7 @@ open_trusts %>%
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
   ) %>% 
-  rename(
+  select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
     Category = category,
