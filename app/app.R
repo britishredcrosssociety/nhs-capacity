@@ -64,13 +64,13 @@ ui <- fluidPage(
     tags$style(
       HTML("
       #card {
-          box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 3px grey;
           border-radius: 5px;
           padding: 10px 20px 10px 20px;
           margin: 0px 0px 20px 0px;
       }
       #map {
-          box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 3px grey;
           border-radius: 5px;
           margin: 0px 0px 20px 0px;
       }
