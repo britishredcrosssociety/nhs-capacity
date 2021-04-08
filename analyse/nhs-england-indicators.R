@@ -202,11 +202,16 @@ beds_nights <-
   select(
     org_code = `Org Code`,
     name = `Org Name`,
+    num_bed_occupied_total = Total...12,
+    num_bed_occupied_general_acute = `General & Acute...13`,
+    num_bed_occupied_learning_disabilities = `Learning Disabilities...14`,
+    num_bed_occupied_maternity = Maternity...15,
+    num_bed_occupied_mental_illness = `Mental Illness...16`,
     perc_bed_occupied_total = Total...18,
     perc_bed_occupied_general_acute = `General & Acute...19`,
     perc_bed_occupied_learning_disabilities = `Learning Disabilities...20`,
     perc_bed_occupied_maternity = Maternity...21,
-    perc_bed_occupied_mental_illness = `Mental Illness...22`,
+    perc_bed_occupied_mental_illness = `Mental Illness...22`
   )
 
 # Replace '-' character with NA
@@ -255,6 +260,11 @@ beds_days <-
   select(
     org_code = `Org Code`,
     name = `Org Name`,
+    num_bed_occupied_total = Total...12,
+    num_bed_occupied_general_acute = `General & Acute...13`,
+    num_bed_occupied_learning_disabilities = `Learning Disabilities...14`,
+    num_bed_occupied_maternity = Maternity...15,
+    num_bed_occupied_mental_illness = `Mental Illness...16`,
     perc_bed_occupied_total = Total...18,
     perc_bed_occupied_general_acute = `General & Acute...19`,
     perc_bed_occupied_learning_disabilities = `Learning Disabilities...20`,
