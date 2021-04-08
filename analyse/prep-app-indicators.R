@@ -118,6 +118,11 @@ beds_days <-
   rename(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
+    `Total Day Beds Occupied` = num_bed_occupied_total,
+    `General Acute Day Beds Occupied` = num_bed_occupied_general_acute,
+    `Learning Disabilities Day Beds Occupied` = num_bed_occupied_learning_disabilities,
+    `Maternity Day Beds Occupied` = num_bed_occupied_maternity,
+    `Mental Illness Day Beds Occupied` = num_bed_occupied_mental_illness,
     `% Total Day Beds Occupied` = perc_bed_occupied_total,
     `% General Acute Day Beds Occupied` = perc_bed_occupied_general_acute,
     `% Learning Disabilities Day Beds Occupied` = perc_bed_occupied_learning_disabilities,
@@ -141,6 +146,11 @@ open_trusts %>%
   rename(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
+    `Total Day Beds Occupied` = num_bed_occupied_total,
+    `General Acute Day Beds Occupied` = num_bed_occupied_general_acute,
+    `Learning Disabilities Day Beds Occupied` = num_bed_occupied_learning_disabilities,
+    `Maternity Day Beds Occupied` = num_bed_occupied_maternity,
+    `Mental Illness Day Beds Occupied` = num_bed_occupied_mental_illness,
     `% Total Night Beds Occupied` = perc_bed_occupied_total,
     `% General Acute Night Beds Occupied` = perc_bed_occupied_general_acute,
     `% Learning Disabilities Night Beds Occupied` = perc_bed_occupied_learning_disabilities,
