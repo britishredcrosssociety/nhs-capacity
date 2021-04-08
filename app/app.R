@@ -642,7 +642,7 @@ server <- function(input, output, session) {
           value = if_else(grepl("%", Metric), value * 100, value)
         ) %>%
         na.omit(),
-      options = list(dom = "tp"),
+      options = list(dom = "tp", order = list(list(0, "desc"))),
       rownames = FALSE
     )
   })
