@@ -638,11 +638,11 @@ server <- function(input, output, session) {
           value
         ) %>%
         mutate(
-          value = round(value, digits = 3),
-          value = value * 100
+          value = if_else(grepl("%", Metric), round(value, digits = 3), round(value, digits = 0)),
+          value = if_else(grepl("%", Metric), value * 100, value)
         ) %>%
         na.omit(),
-      options = list(dom = "t"),
+      options = list(dom = "tp"),
       rownames = FALSE
     )
   })
