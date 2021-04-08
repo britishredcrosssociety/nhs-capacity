@@ -100,7 +100,7 @@ open_trusts %>%
     `Mean Response Time (min:sec)` = mean_min_sec,
     `90th Centile Response Time (min:sec)` = centile_90th_min_sec
   ) %>%
-  mutate(`Total Response Time (h)` = round(`Total Response Time (h)`)) %>% 
+  mutate(`Total Response Time (h)` = round(`Total Response Time (h)`)) %>%
   write_rds("app/data/ambulance.rds")
 
 # Beds
