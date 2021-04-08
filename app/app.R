@@ -533,7 +533,7 @@ server <- function(input, output, session) {
       mutate(Category = factor(Category, levels = Category)) %>%
       na.omit()
 
-      if (nrow(ambulance_temp) != 0) {
+    if (nrow(ambulance_temp) != 0) {
       ambulance_temp %>%
         e_charts(Category) %>%
         e_bar(`Total Response Time (h)`, itemStyle = list(opacity = .6)) %>%
@@ -568,7 +568,7 @@ server <- function(input, output, session) {
         select(
           -`Trust Name`,
           -`Trust Code`
-        ) %>% 
+        ) %>%
         na.omit(),
       options = list(dom = "t"),
       rownames = FALSE
