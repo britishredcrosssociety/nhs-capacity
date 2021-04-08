@@ -314,12 +314,13 @@ ui <- fluidPage(
       align = "center",
       br(),
       tags$p(
-        style = "font-size: 12px; ",
+        style = "font-size: 12px; color: #FFFFFF",
+        "Content is distributed under ",
         a(
           style = "color: #FFFFFF",
           href = "https://github.com/britishredcrosssociety/nhs-capacity/blob/main/LICENSE",
           target = "_blank",
-          "This work is licensed under GPL-3.0."
+          "these licenses."
         )
       ),
       tags$div(
