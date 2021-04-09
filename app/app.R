@@ -333,34 +333,6 @@ ui <- fluidPage(
 # ---- Server ----
 server <- function(input, output, session) {
 
-  # Debug
-  # s_trust <- reactiveVal()
-  #
-  # observeEvent(input$selectbox, {
-  #   if(input$selectbox == ""){
-  #     s_trust("RJZ")
-  #   } else {
-  #     points_trusts %>%
-  #       filter(org_name == input$selectbox) %>%
-  #       pull(org_code) %>%
-  #       s_trust()
-  #   }
-  # })
-  #
-  # observeEvent(input$map_marker_click$id, {
-  #   if(is.null(input$map_marker_click$id)){
-  #     s_trust("RJZ")
-  #   } else {
-  #     input$map_marker_click$id %>%
-  #       s_trust()
-  #   }
-  # })
-  #
-  # observe({
-  #   print(s_trust())
-  # })
-
-
   # Track which Trust has been selected
   selected_trust <- reactiveVal()
 
@@ -388,6 +360,11 @@ server <- function(input, output, session) {
 
       updateSelectizeInput(session, "selectbox", selected = clicked_trust)
     }
+  })
+
+  # Debug
+  observe({
+    print(selected_trust())
   })
 
   # Map
@@ -457,446 +434,446 @@ server <- function(input, output, session) {
       )
   })
 
-  # A&E
-  output$ae_plot <- renderEcharts4r({
-    ae_temp <-
-      ae %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
-      na.omit() %>%
-      filter(grepl("%", name)) %>%
-      mutate(
-        name = case_when(
-          name == "% Type 1 <= 4 hours" ~ "Type 1",
-          name == "% Type 2 <= 4 hours" ~ "Type 2",
-          name == "% Type 3 <= 4 hours" ~ "Type 3",
-          name == "% Total <= 4 hours" ~ "Total"
-        )
-      )
+#   # A&E
+#   output$ae_plot <- renderEcharts4r({
+#     ae_temp <-
+#       ae %>%
+#       filter(`Trust Code` == selected_trust()) %>%
+#       arrange(value) %>%
+#       mutate(name = factor(name, levels = name)) %>%
+#       na.omit() %>%
+#       filter(grepl("%", name)) %>%
+#       mutate(
+#         name = case_when(
+#           name == "% Type 1 <= 4 hours" ~ "Type 1",
+#           name == "% Type 2 <= 4 hours" ~ "Type 2",
+#           name == "% Type 3 <= 4 hours" ~ "Type 3",
+#           name == "% Total <= 4 hours" ~ "Total"
+#         )
+#       )
 
-    if (nrow(ae_temp) != 0) {
-      ae_temp %>%
-        e_charts(name) %>%
-        e_bar(value, itemStyle = list(opacity = .6)) %>%
-        e_flip_coords() %>%
-        e_legend(FALSE) %>%
-        e_tooltip(trigger = "item") %>%
-        e_x_axis(
-          formatter = e_axis_formatter("percent"),
-          nameLocation = "middle",
-          nameTextStyle = list(padding = 20)
-        ) %>%
-        e_axis_labels(x = "Percentage less than or equal to 4 hours") %>%
-        e_theme("brc_theme") %>%
-        e_grid(
-          left = 145,
-          top = 20,
-          bottom = 60
-        )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
-  })
+#     if (nrow(ae_temp) != 0) {
+#       ae_temp %>%
+#         e_charts(name) %>%
+#         e_bar(value, itemStyle = list(opacity = .6)) %>%
+#         e_flip_coords() %>%
+#         e_legend(FALSE) %>%
+#         e_tooltip(trigger = "item") %>%
+#         e_x_axis(
+#           formatter = e_axis_formatter("percent"),
+#           nameLocation = "middle",
+#           nameTextStyle = list(padding = 20)
+#         ) %>%
+#         e_axis_labels(x = "Percentage less than or equal to 4 hours") %>%
+#         e_theme("brc_theme") %>%
+#         e_grid(
+#           left = 145,
+#           top = 20,
+#           bottom = 60
+#         )
+#     } else {
+#       e_charts(data = NULL) %>%
+#         e_draft(
+#           text = "This data doesn't exist for this trust.",
+#           size = "30px",
+#           color = "#5C747A"
+#         )
+#     }
+#   })
 
-  output$ae_table <- renderDT({
-    datatable(
-      ae %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`,
-          Metric = name,
-          value
-        ) %>%
-        mutate(
-          value = round(value, digits = 3),
-          value = if_else(grepl("^%", Metric), value * 100, value)
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+#   output$ae_table <- renderDT({
+#     datatable(
+#       ae %>%
+#         filter(`Trust Code` == selected_trust()) %>%
+#         select(
+#           -`Trust Name`,
+#           -`Trust Code`,
+#           Metric = name,
+#           value
+#         ) %>%
+#         mutate(
+#           value = round(value, digits = 3),
+#           value = if_else(grepl("^%", Metric), value * 100, value)
+#         ) %>%
+#         na.omit(),
+#       options = list(dom = "t"),
+#       rownames = FALSE
+#     )
+#   })
 
-  # Ambulance
-  output$ambulance_plot <- renderEcharts4r({
-    ambulance_temp <-
-      ambulance %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      arrange(`Total Response Time (h)`) %>%
-      mutate(Category = factor(Category, levels = Category)) %>%
-      na.omit()
+#   # Ambulance
+#   output$ambulance_plot <- renderEcharts4r({
+#     ambulance_temp <-
+#       ambulance %>%
+#       filter(`Trust Code` == selected_trust()) %>%
+#       arrange(`Total Response Time (h)`) %>%
+#       mutate(Category = factor(Category, levels = Category)) %>%
+#       na.omit()
 
-    if (nrow(ambulance_temp) != 0) {
-      ambulance_temp %>%
-        e_charts(Category) %>%
-        e_bar(`Total Response Time (h)`, itemStyle = list(opacity = .6)) %>%
-        e_flip_coords() %>%
-        e_legend(FALSE) %>%
-        e_tooltip(trigger = "item") %>%
-        e_x_axis(
-          nameLocation = "middle",
-          nameTextStyle = list(padding = 20)
-        ) %>%
-        e_axis_labels(x = "Total Response Time (h)") %>%
-        e_theme("brc_theme") %>%
-        e_grid(
-          left = 145,
-          top = 20,
-          bottom = 60
-        )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
-  })
+#     if (nrow(ambulance_temp) != 0) {
+#       ambulance_temp %>%
+#         e_charts(Category) %>%
+#         e_bar(`Total Response Time (h)`, itemStyle = list(opacity = .6)) %>%
+#         e_flip_coords() %>%
+#         e_legend(FALSE) %>%
+#         e_tooltip(trigger = "item") %>%
+#         e_x_axis(
+#           nameLocation = "middle",
+#           nameTextStyle = list(padding = 20)
+#         ) %>%
+#         e_axis_labels(x = "Total Response Time (h)") %>%
+#         e_theme("brc_theme") %>%
+#         e_grid(
+#           left = 145,
+#           top = 20,
+#           bottom = 60
+#         )
+#     } else {
+#       e_charts(data = NULL) %>%
+#         e_draft(
+#           text = "This data doesn't exist for this trust.",
+#           size = "30px",
+#           color = "#5C747A"
+#         )
+#     }
+#   })
 
-  output$ambulance_table <- renderDT({
-    datatable(
-      ambulance %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+#   output$ambulance_table <- renderDT({
+#     datatable(
+#       ambulance %>%
+#         filter(`Trust Code` == selected_trust()) %>%
+#         select(
+#           -`Trust Name`,
+#           -`Trust Code`
+#         ) %>%
+#         na.omit(),
+#       options = list(dom = "t"),
+#       rownames = FALSE
+#     )
+#   })
 
-  # Beds
-  output$beds_plot <- renderEcharts4r({
-    beds_temp <-
-      beds %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      filter(
-        name == "% Total Day Beds Occupied" |
-          name == "% Total Night Beds Occupied" |
-          name == "% General Acute Night Beds Occupied" |
-          name == "% General Acute Day Beds Occupied"
-      ) %>%
-      arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
-      na.omit() %>%
-      mutate(
-        name = case_when(
-          name == "% Total Day Beds Occupied" ~ "Total Day",
-          name == "% Total Night Beds Occupied" ~ "Total Night",
-          name == "% General Acute Night Beds Occupied" ~ "General Acute Night",
-          name == "% General Acute Day Beds Occupied" ~ "General Acute Day"
-        )
-      )
+#   # Beds
+#   output$beds_plot <- renderEcharts4r({
+#     beds_temp <-
+#       beds %>%
+#       filter(`Trust Code` == selected_trust()) %>%
+#       filter(
+#         name == "% Total Day Beds Occupied" |
+#           name == "% Total Night Beds Occupied" |
+#           name == "% General Acute Night Beds Occupied" |
+#           name == "% General Acute Day Beds Occupied"
+#       ) %>%
+#       arrange(value) %>%
+#       mutate(name = factor(name, levels = name)) %>%
+#       na.omit() %>%
+#       mutate(
+#         name = case_when(
+#           name == "% Total Day Beds Occupied" ~ "Total Day",
+#           name == "% Total Night Beds Occupied" ~ "Total Night",
+#           name == "% General Acute Night Beds Occupied" ~ "General Acute Night",
+#           name == "% General Acute Day Beds Occupied" ~ "General Acute Day"
+#         )
+#       )
 
-    if (nrow(beds_temp) != 0) {
-      beds_temp %>%
-        e_charts(name) %>%
-        e_bar(value, itemStyle = list(opacity = .6)) %>%
-        e_flip_coords() %>%
-        e_legend(FALSE) %>%
-        e_tooltip(trigger = "item") %>%
-        e_x_axis(
-          formatter = e_axis_formatter("percent"),
-          nameLocation = "middle",
-          nameTextStyle = list(padding = 20)
-        ) %>%
-        e_axis_labels(x = "Percentage of Beds Occupied") %>%
-        e_theme("brc_theme") %>%
-        e_grid(
-          left = 145,
-          top = 20,
-          bottom = 60
-        )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
-  })
+#     if (nrow(beds_temp) != 0) {
+#       beds_temp %>%
+#         e_charts(name) %>%
+#         e_bar(value, itemStyle = list(opacity = .6)) %>%
+#         e_flip_coords() %>%
+#         e_legend(FALSE) %>%
+#         e_tooltip(trigger = "item") %>%
+#         e_x_axis(
+#           formatter = e_axis_formatter("percent"),
+#           nameLocation = "middle",
+#           nameTextStyle = list(padding = 20)
+#         ) %>%
+#         e_axis_labels(x = "Percentage of Beds Occupied") %>%
+#         e_theme("brc_theme") %>%
+#         e_grid(
+#           left = 145,
+#           top = 20,
+#           bottom = 60
+#         )
+#     } else {
+#       e_charts(data = NULL) %>%
+#         e_draft(
+#           text = "This data doesn't exist for this trust.",
+#           size = "30px",
+#           color = "#5C747A"
+#         )
+#     }
+#   })
 
-  output$beds_table <- renderDT({
-    datatable(
-      beds %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`,
-          Metric = name,
-          value
-        ) %>%
-        mutate(
-          value = if_else(grepl("%", Metric), round(value, digits = 3), round(value, digits = 0)),
-          value = if_else(grepl("%", Metric), value * 100, value)
-        ) %>%
-        na.omit(),
-      options = list(dom = "tp", order = list(list(0, "desc"))),
-      rownames = FALSE
-    )
-  })
+#   output$beds_table <- renderDT({
+#     datatable(
+#       beds %>%
+#         filter(`Trust Code` == selected_trust()) %>%
+#         select(
+#           -`Trust Name`,
+#           -`Trust Code`,
+#           Metric = name,
+#           value
+#         ) %>%
+#         mutate(
+#           value = if_else(grepl("%", Metric), round(value, digits = 3), round(value, digits = 0)),
+#           value = if_else(grepl("%", Metric), value * 100, value)
+#         ) %>%
+#         na.omit(),
+#       options = list(dom = "tp", order = list(list(0, "desc"))),
+#       rownames = FALSE
+#     )
+#   })
 
-  # Cancer wait times
-  output$cancer_plot <- renderEcharts4r({
-    cancer_temp <-
-      cancer_wait_times %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      mutate(value = `Within Standard` / `Total Treated`) %>%
-      rename(name = Standard) %>%
-      arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
-      filter(
-        name == "62 Days" |
-          name == "31 Days" |
-          name == "2 Week Wait"
-      ) %>%
-      na.omit()
+#   # Cancer wait times
+#   output$cancer_plot <- renderEcharts4r({
+#     cancer_temp <-
+#       cancer_wait_times %>%
+#       filter(`Trust Code` == selected_trust()) %>%
+#       mutate(value = `Within Standard` / `Total Treated`) %>%
+#       rename(name = Standard) %>%
+#       arrange(value) %>%
+#       mutate(name = factor(name, levels = name)) %>%
+#       filter(
+#         name == "62 Days" |
+#           name == "31 Days" |
+#           name == "2 Week Wait"
+#       ) %>%
+#       na.omit()
 
-    if (nrow(cancer_temp) != 0) {
-      cancer_temp %>%
-        e_charts(name) %>%
-        e_bar(value, itemStyle = list(opacity = .6)) %>%
-        e_flip_coords() %>%
-        e_legend(FALSE) %>%
-        e_tooltip(trigger = "item") %>%
-        e_x_axis(
-          formatter = e_axis_formatter("percent"),
-          nameLocation = "middle",
-          nameTextStyle = list(padding = 20)
-        ) %>%
-        e_axis_labels(x = "Percentage Within Standard") %>%
-        e_theme("brc_theme") %>%
-        e_grid(
-          left = 145,
-          top = 20,
-          bottom = 60
-        )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
-  })
+#     if (nrow(cancer_temp) != 0) {
+#       cancer_temp %>%
+#         e_charts(name) %>%
+#         e_bar(value, itemStyle = list(opacity = .6)) %>%
+#         e_flip_coords() %>%
+#         e_legend(FALSE) %>%
+#         e_tooltip(trigger = "item") %>%
+#         e_x_axis(
+#           formatter = e_axis_formatter("percent"),
+#           nameLocation = "middle",
+#           nameTextStyle = list(padding = 20)
+#         ) %>%
+#         e_axis_labels(x = "Percentage Within Standard") %>%
+#         e_theme("brc_theme") %>%
+#         e_grid(
+#           left = 145,
+#           top = 20,
+#           bottom = 60
+#         )
+#     } else {
+#       e_charts(data = NULL) %>%
+#         e_draft(
+#           text = "This data doesn't exist for this trust.",
+#           size = "30px",
+#           color = "#5C747A"
+#         )
+#     }
+#   })
 
-  output$cancer_table <- renderDT({
-    datatable(
-      cancer_wait_times %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+#   output$cancer_table <- renderDT({
+#     datatable(
+#       cancer_wait_times %>%
+#         filter(`Trust Code` == selected_trust()) %>%
+#         select(
+#           -`Trust Name`,
+#           -`Trust Code`
+#         ) %>%
+#         na.omit(),
+#       options = list(dom = "t"),
+#       rownames = FALSE
+#     )
+#   })
 
-  # Diagnostic wait times
-  output$diagnostic_plot <- renderEcharts4r({
-    diagnostic_temp <-
-      diagnostic_wait_times %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
-      na.omit() %>%
-      mutate(
-        name = case_when(
-          name == "Waiting 13+ weeks" ~ "13+ Weeks",
-          name == "Waiting 6+ weeks" ~ "6+ Weeks",
-          name == "Waiting List Total" ~ "Total List"
-        )
-      )
+#   # Diagnostic wait times
+#   output$diagnostic_plot <- renderEcharts4r({
+#     diagnostic_temp <-
+#       diagnostic_wait_times %>%
+#       filter(`Trust Code` == selected_trust()) %>%
+#       arrange(value) %>%
+#       mutate(name = factor(name, levels = name)) %>%
+#       na.omit() %>%
+#       mutate(
+#         name = case_when(
+#           name == "Waiting 13+ weeks" ~ "13+ Weeks",
+#           name == "Waiting 6+ weeks" ~ "6+ Weeks",
+#           name == "Waiting List Total" ~ "Total List"
+#         )
+#       )
 
-    if (nrow(diagnostic_temp) != 0) {
-      diagnostic_temp %>%
-        e_charts(name) %>%
-        e_bar(value, itemStyle = list(opacity = .6)) %>%
-        e_flip_coords() %>%
-        e_legend(FALSE) %>%
-        e_tooltip(trigger = "item") %>%
-        e_x_axis(
-          nameLocation = "middle",
-          nameTextStyle = list(padding = 20)
-        ) %>%
-        e_axis_labels(x = "No. Waiting") %>%
-        e_theme("brc_theme") %>%
-        e_grid(
-          left = 145,
-          top = 20,
-          bottom = 60
-        )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
-  })
+#     if (nrow(diagnostic_temp) != 0) {
+#       diagnostic_temp %>%
+#         e_charts(name) %>%
+#         e_bar(value, itemStyle = list(opacity = .6)) %>%
+#         e_flip_coords() %>%
+#         e_legend(FALSE) %>%
+#         e_tooltip(trigger = "item") %>%
+#         e_x_axis(
+#           nameLocation = "middle",
+#           nameTextStyle = list(padding = 20)
+#         ) %>%
+#         e_axis_labels(x = "No. Waiting") %>%
+#         e_theme("brc_theme") %>%
+#         e_grid(
+#           left = 145,
+#           top = 20,
+#           bottom = 60
+#         )
+#     } else {
+#       e_charts(data = NULL) %>%
+#         e_draft(
+#           text = "This data doesn't exist for this trust.",
+#           size = "30px",
+#           color = "#5C747A"
+#         )
+#     }
+#   })
 
-  output$diagnostic_table <- renderDT({
-    datatable(
-      diagnostic_wait_times %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+#   output$diagnostic_table <- renderDT({
+#     datatable(
+#       diagnostic_wait_times %>%
+#         filter(`Trust Code` == selected_trust()) %>%
+#         select(
+#           -`Trust Name`,
+#           -`Trust Code`
+#         ) %>%
+#         na.omit(),
+#       options = list(dom = "t"),
+#       rownames = FALSE
+#     )
+#   })
 
-  # Consultant-led Outpatient Referrals
-  output$outpatient_plot <- renderEcharts4r({
-    outpatient_temp <-
-      outpatient_referrals %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
-      na.omit() %>%
-      mutate(
-        name = case_when(
-          name == "GP Referrals Made (All)" ~ "GP (All)",
-          name == "Other Referrals Made (All)" ~ "Other (All)",
-          name == "GP Referrals Made (Specific Acute)" ~ "GP (Specific Acute)",
-          name == "Other Referrals Made (Specific Acute)" ~ "Other (Specific Acute)"
-        )
-      )
+#   # Consultant-led Outpatient Referrals
+#   output$outpatient_plot <- renderEcharts4r({
+#     outpatient_temp <-
+#       outpatient_referrals %>%
+#       filter(`Trust Code` == selected_trust()) %>%
+#       arrange(value) %>%
+#       mutate(name = factor(name, levels = name)) %>%
+#       na.omit() %>%
+#       mutate(
+#         name = case_when(
+#           name == "GP Referrals Made (All)" ~ "GP (All)",
+#           name == "Other Referrals Made (All)" ~ "Other (All)",
+#           name == "GP Referrals Made (Specific Acute)" ~ "GP (Specific Acute)",
+#           name == "Other Referrals Made (Specific Acute)" ~ "Other (Specific Acute)"
+#         )
+#       )
 
-    if (nrow(outpatient_temp) != 0) {
-      outpatient_temp %>%
-        e_charts(name) %>%
-        e_bar(value, itemStyle = list(opacity = .6)) %>%
-        e_flip_coords() %>%
-        e_legend(FALSE) %>%
-        e_tooltip(trigger = "item") %>%
-        e_x_axis(
-          nameLocation = "middle",
-          nameTextStyle = list(padding = 20)
-        ) %>%
-        e_axis_labels(x = "No. Referrals Made") %>%
-        e_theme("brc_theme") %>%
-        e_grid(
-          left = 145,
-          top = 20,
-          bottom = 60
-        )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
-  })
+#     if (nrow(outpatient_temp) != 0) {
+#       outpatient_temp %>%
+#         e_charts(name) %>%
+#         e_bar(value, itemStyle = list(opacity = .6)) %>%
+#         e_flip_coords() %>%
+#         e_legend(FALSE) %>%
+#         e_tooltip(trigger = "item") %>%
+#         e_x_axis(
+#           nameLocation = "middle",
+#           nameTextStyle = list(padding = 20)
+#         ) %>%
+#         e_axis_labels(x = "No. Referrals Made") %>%
+#         e_theme("brc_theme") %>%
+#         e_grid(
+#           left = 145,
+#           top = 20,
+#           bottom = 60
+#         )
+#     } else {
+#       e_charts(data = NULL) %>%
+#         e_draft(
+#           text = "This data doesn't exist for this trust.",
+#           size = "30px",
+#           color = "#5C747A"
+#         )
+#     }
+#   })
 
-  output$outpatient_table <- renderDT({
-    datatable(
-      outpatient_referrals %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+#   output$outpatient_table <- renderDT({
+#     datatable(
+#       outpatient_referrals %>%
+#         filter(`Trust Code` == selected_trust()) %>%
+#         select(
+#           -`Trust Name`,
+#           -`Trust Code`
+#         ) %>%
+#         na.omit(),
+#       options = list(dom = "t"),
+#       rownames = FALSE
+#     )
+#   })
 
-  # rtt
-  output$rtt_plot <- renderEcharts4r({
-    rtt_temp <-
-      rtt_long_form %>%
-      filter(`Trust Code` == selected_trust()) %>%
-      filter(`Referral Treatment Type` != "New RTT Periods - All Patients") %>%
-      filter(grepl("%", name)) %>%
-      group_by(`Referral Treatment Type`) %>%
-      arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
-      ungroup() %>%
-      na.omit() %>%
-      mutate(
-        `Referral Treatment Type` = case_when(
-          `Referral Treatment Type` == "Completed Pathways For Admitted Patients" ~ "Admitted Completed",
-          `Referral Treatment Type` == "Completed Pathways For Non-Admitted Patients" ~ "Non-Admitted Completed",
-          `Referral Treatment Type` == "Incomplete Pathways" ~ "Incomplete",
-          `Referral Treatment Type` == "Incomplete Pathways with DTA" ~ "Incomplete with DTA"
-        ),
-        name = case_when(
-          name == "% Waiting 52+ Weeks" ~ "52+ Weeks",
-          name == "% Waiting 18+ Weeks" ~ "18+ Weeks"
-        )
-      )
+#   # rtt
+#   output$rtt_plot <- renderEcharts4r({
+#     rtt_temp <-
+#       rtt_long_form %>%
+#       filter(`Trust Code` == selected_trust()) %>%
+#       filter(`Referral Treatment Type` != "New RTT Periods - All Patients") %>%
+#       filter(grepl("%", name)) %>%
+#       group_by(`Referral Treatment Type`) %>%
+#       arrange(value) %>%
+#       mutate(name = factor(name, levels = name)) %>%
+#       ungroup() %>%
+#       na.omit() %>%
+#       mutate(
+#         `Referral Treatment Type` = case_when(
+#           `Referral Treatment Type` == "Completed Pathways For Admitted Patients" ~ "Admitted Completed",
+#           `Referral Treatment Type` == "Completed Pathways For Non-Admitted Patients" ~ "Non-Admitted Completed",
+#           `Referral Treatment Type` == "Incomplete Pathways" ~ "Incomplete",
+#           `Referral Treatment Type` == "Incomplete Pathways with DTA" ~ "Incomplete with DTA"
+#         ),
+#         name = case_when(
+#           name == "% Waiting 52+ Weeks" ~ "52+ Weeks",
+#           name == "% Waiting 18+ Weeks" ~ "18+ Weeks"
+#         )
+#       )
 
 
-    if (nrow(rtt_temp) != 0) {
-      rtt_temp %>%
-        group_by(name) %>%
-        e_charts(`Referral Treatment Type`) %>%
-        e_bar(value, itemStyle = list(opacity = .6)) %>%
-        e_flip_coords() %>%
-        e_legend(
-          orient = "vertical",
-          left = "right",
-          top = "center"
-        ) %>%
-        e_tooltip(trigger = "item") %>%
-        e_x_axis(
-          formatter = e_axis_formatter("percent"),
-          nameLocation = "middle",
-          nameTextStyle = list(padding = 20)
-        ) %>%
-        e_axis_labels(x = "Percentage Waiting on Pathway") %>%
-        e_theme("brc_theme") %>%
-        e_grid(
-          left = 145,
-          top = 20,
-          bottom = 60,
-          right = 105
-        )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
-  })
+#     if (nrow(rtt_temp) != 0) {
+#       rtt_temp %>%
+#         group_by(name) %>%
+#         e_charts(`Referral Treatment Type`) %>%
+#         e_bar(value, itemStyle = list(opacity = .6)) %>%
+#         e_flip_coords() %>%
+#         e_legend(
+#           orient = "vertical",
+#           left = "right",
+#           top = "center"
+#         ) %>%
+#         e_tooltip(trigger = "item") %>%
+#         e_x_axis(
+#           formatter = e_axis_formatter("percent"),
+#           nameLocation = "middle",
+#           nameTextStyle = list(padding = 20)
+#         ) %>%
+#         e_axis_labels(x = "Percentage Waiting on Pathway") %>%
+#         e_theme("brc_theme") %>%
+#         e_grid(
+#           left = 145,
+#           top = 20,
+#           bottom = 60,
+#           right = 105
+#         )
+#     } else {
+#       e_charts(data = NULL) %>%
+#         e_draft(
+#           text = "This data doesn't exist for this trust.",
+#           size = "30px",
+#           color = "#5C747A"
+#         )
+#     }
+#   })
 
-  output$rtt_table <- renderDT({
-    datatable(
-      rtt %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+#   output$rtt_table <- renderDT({
+#     datatable(
+#       rtt %>%
+#         filter(`Trust Code` == selected_trust()) %>%
+#         select(
+#           -`Trust Name`,
+#           -`Trust Code`
+#         ) %>%
+#         na.omit(),
+#       options = list(dom = "t"),
+#       rownames = FALSE
+#     )
+#   })
 }
 
 # Run the application
