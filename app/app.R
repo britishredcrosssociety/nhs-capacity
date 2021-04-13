@@ -6,7 +6,7 @@ library(dplyr)
 library(DT)
 library(echarts4r)
 library(reactlog)
-reactlog_enable()
+reactlog_enable() # Hit Ctrl + f3
 # ---- Load data sets ----
 # Map points
 points_trusts <-
@@ -472,14 +472,16 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
+    } 
+    # else 
+    # {
+    #   e_charts(data = NULL) %>%
+    #     e_draft(
+    #       text = "This data doesn't exist for this trust.",
+    #       size = "30px",
+    #       color = "#5C747A"
+    #     )
+    # }
   })
 
   output$ae_table <- renderDT({
@@ -502,56 +504,58 @@ server <- function(input, output, session) {
     )
   })
 
-  # # Ambulance
-  # output$ambulance_plot <- renderEcharts4r({
-  #   ambulance_temp <-
-  #     ambulance %>%
-  #     filter(`Trust Code` == selected_trust()) %>%
-  #     arrange(`Total Response Time (h)`) %>%
-  #     mutate(Category = factor(Category, levels = Category)) %>%
-  #     na.omit()
+  # Ambulance
+  output$ambulance_plot <- renderEcharts4r({
+    ambulance_temp <-
+      ambulance %>%
+      filter(`Trust Code` == selected_trust()) %>%
+      arrange(`Total Response Time (h)`) %>%
+      mutate(Category = factor(Category, levels = Category)) %>%
+      na.omit()
 
-  #   if (nrow(ambulance_temp) != 0) {
-  #     ambulance_temp %>%
-  #       e_charts(Category) %>%
-  #       e_bar(`Total Response Time (h)`, itemStyle = list(opacity = .6)) %>%
-  #       e_flip_coords() %>%
-  #       e_legend(FALSE) %>%
-  #       e_tooltip(trigger = "item") %>%
-  #       e_x_axis(
-  #         nameLocation = "middle",
-  #         nameTextStyle = list(padding = 20)
-  #       ) %>%
-  #       e_axis_labels(x = "Total Response Time (h)") %>%
-  #       e_theme("brc_theme") %>%
-  #       e_grid(
-  #         left = 145,
-  #         top = 20,
-  #         bottom = 60
-  #       )
-  #   } else {
-  #     e_charts(data = NULL) %>%
-  #       e_draft(
-  #         text = "This data doesn't exist for this trust.",
-  #         size = "30px",
-  #         color = "#5C747A"
-  #       )
-  #   }
-  # })
+    if (nrow(ambulance_temp) != 0) {
+      ambulance_temp %>%
+        e_charts(Category) %>%
+        e_bar(`Total Response Time (h)`, itemStyle = list(opacity = .6)) %>%
+        e_flip_coords() %>%
+        e_legend(FALSE) %>%
+        e_tooltip(trigger = "item") %>%
+        e_x_axis(
+          nameLocation = "middle",
+          nameTextStyle = list(padding = 20)
+        ) %>%
+        e_axis_labels(x = "Total Response Time (h)") %>%
+        e_theme("brc_theme") %>%
+        e_grid(
+          left = 145,
+          top = 20,
+          bottom = 60
+        )
+    } 
+    # else 
+    # {
+    #   e_charts(data = NULL) %>%
+    #     e_draft(
+    #       text = "This data doesn't exist for this trust.",
+    #       size = "30px",
+    #       color = "#5C747A"
+    #     )
+    # }
+  })
 
-  # output$ambulance_table <- renderDT({
-  #   datatable(
-  #     ambulance %>%
-  #       filter(`Trust Code` == selected_trust()) %>%
-  #       select(
-  #         -`Trust Name`,
-  #         -`Trust Code`
-  #       ) %>%
-  #       na.omit(),
-  #     options = list(dom = "t"),
-  #     rownames = FALSE
-  #   )
-  # })
+  output$ambulance_table <- renderDT({
+    datatable(
+      ambulance %>%
+        filter(`Trust Code` == selected_trust()) %>%
+        select(
+          -`Trust Name`,
+          -`Trust Code`
+        ) %>%
+        na.omit(),
+      options = list(dom = "t"),
+      rownames = FALSE
+    )
+  })
 
   # Beds
   output$beds_plot <- renderEcharts4r({
@@ -595,14 +599,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
+    } 
+    # else {
+    #   e_charts(data = NULL) %>%
+    #     e_draft(
+    #       text = "This data doesn't exist for this trust.",
+    #       size = "30px",
+    #       color = "#5C747A"
+    #     )
+    # }
   })
 
   output$beds_table <- renderDT({
@@ -660,14 +665,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
+    } 
+    # else {
+    #   e_charts(data = NULL) %>%
+    #     e_draft(
+    #       text = "This data doesn't exist for this trust.",
+    #       size = "30px",
+    #       color = "#5C747A"
+    #     )
+    # }
   })
 
   output$cancer_table <- renderDT({
@@ -718,14 +724,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
+    } 
+    # else {
+    #   e_charts(data = NULL) %>%
+    #     e_draft(
+    #       text = "This data doesn't exist for this trust.",
+    #       size = "30px",
+    #       color = "#5C747A"
+    #     )
+    # }
   })
 
   output$diagnostic_table <- renderDT({
@@ -777,14 +784,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
+    } 
+    # else {
+    #   e_charts(data = NULL) %>%
+    #     e_draft(
+    #       text = "This data doesn't exist for this trust.",
+    #       size = "30px",
+    #       color = "#5C747A"
+    #     )
+    # }
   })
 
   output$outpatient_table <- renderDT({
@@ -852,14 +860,15 @@ server <- function(input, output, session) {
           bottom = 60,
           right = 105
         )
-    } else {
-      e_charts(data = NULL) %>%
-        e_draft(
-          text = "This data doesn't exist for this trust.",
-          size = "30px",
-          color = "#5C747A"
-        )
-    }
+    } 
+    # else {
+    #   e_charts(data = NULL) %>%
+    #     e_draft(
+    #       text = "This data doesn't exist for this trust.",
+    #       size = "30px",
+    #       color = "#5C747A"
+    #     )
+    # }
   })
 
   output$rtt_table <- renderDT({
