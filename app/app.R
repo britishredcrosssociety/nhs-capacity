@@ -5,8 +5,7 @@ library(leaflet)
 library(dplyr)
 library(DT)
 library(echarts4r)
-library(reactlog)
-reactlog_enable() # Hit Ctrl + f3
+
 # ---- Load data sets ----
 # Map points
 points_trusts <-
