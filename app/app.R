@@ -471,16 +471,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } 
-    # else 
-    # {
-    #   e_charts(data = NULL) %>%
-    #     e_draft(
-    #       text = "This data doesn't exist for this trust.",
-    #       size = "30px",
-    #       color = "#5C747A"
-    #     )
-    # }
+    } else {
+      tibble(x = NA) %>%
+        e_charts(x) %>%
+        e_draft(
+          text = "This data doesn't exist for this trust.",
+          size = "25px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$ae_table <- renderDT({
@@ -530,16 +529,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } 
-    # else 
-    # {
-    #   e_charts(data = NULL) %>%
-    #     e_draft(
-    #       text = "This data doesn't exist for this trust.",
-    #       size = "30px",
-    #       color = "#5C747A"
-    #     )
-    # }
+    } else {
+      tibble(x = NA) %>%
+        e_charts(x) %>%
+        e_draft(
+          text = "This data doesn't exist for this trust.",
+          size = "25px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$ambulance_table <- renderDT({
@@ -598,15 +596,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } 
-    # else {
-    #   e_charts(data = NULL) %>%
-    #     e_draft(
-    #       text = "This data doesn't exist for this trust.",
-    #       size = "30px",
-    #       color = "#5C747A"
-    #     )
-    # }
+    } else {
+      tibble(x = NA) %>%
+        e_charts(x) %>%
+        e_draft(
+          text = "This data doesn't exist for this trust.",
+          size = "25px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$beds_table <- renderDT({
@@ -664,15 +662,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } 
-    # else {
-    #   e_charts(data = NULL) %>%
-    #     e_draft(
-    #       text = "This data doesn't exist for this trust.",
-    #       size = "30px",
-    #       color = "#5C747A"
-    #     )
-    # }
+    } else {
+      tibble(x = NA) %>%
+        e_charts(x) %>%
+        e_draft(
+          text = "This data doesn't exist for this trust.",
+          size = "25px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$cancer_table <- renderDT({
@@ -723,15 +721,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } 
-    # else {
-    #   e_charts(data = NULL) %>%
-    #     e_draft(
-    #       text = "This data doesn't exist for this trust.",
-    #       size = "30px",
-    #       color = "#5C747A"
-    #     )
-    # }
+    } else {
+      tibble(x = NA) %>%
+        e_charts(x) %>%
+        e_draft(
+          text = "This data doesn't exist for this trust.",
+          size = "25px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$diagnostic_table <- renderDT({
@@ -783,15 +781,15 @@ server <- function(input, output, session) {
           top = 20,
           bottom = 60
         )
-    } 
-    # else {
-    #   e_charts(data = NULL) %>%
-    #     e_draft(
-    #       text = "This data doesn't exist for this trust.",
-    #       size = "30px",
-    #       color = "#5C747A"
-    #     )
-    # }
+    } else {
+      tibble(x = NA) %>%
+        e_charts(x) %>%
+        e_draft(
+          text = "This data doesn't exist for this trust.",
+          size = "25px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$outpatient_table <- renderDT({
@@ -859,15 +857,15 @@ server <- function(input, output, session) {
           bottom = 60,
           right = 105
         )
-    } 
-    # else {
-    #   e_charts(data = NULL) %>%
-    #     e_draft(
-    #       text = "This data doesn't exist for this trust.",
-    #       size = "30px",
-    #       color = "#5C747A"
-    #     )
-    # }
+    } else {
+      tibble(x = NA) %>%
+        e_charts(x) %>%
+        e_draft(
+          text = "This data doesn't exist for this trust.",
+          size = "25px",
+          color = "#5C747A"
+        )
+    }
   })
 
   output$rtt_table <- renderDT({
@@ -887,12 +885,3 @@ server <- function(input, output, session) {
 
 # Run the application
 shinyApp(ui = ui, server = server)
-
-# BUGS:
-# - Bug with Beds plot.
-#   Test on 'University Hopsitals Dorset NHS Foundation Trust', code 'R0D'. Run
-#   the debug observer and notice how the plot doesn't update to blank, even
-#   though the table does.
-# - Bug with Cancer plot. Test on 'Solent NHS Trust', code '1RC'
-# - Bug with Diagnostic plot, code '1RA'
-# - Bug with Consultant-led Outpatient Referrals
