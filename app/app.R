@@ -363,9 +363,9 @@ server <- function(input, output, session) {
   })
 
   # Debug
-  observe({
-    print(selected_trust())
-  })
+  # observe({
+  #   print(selected_trust())
+  # })
 
   # Map
   output$map <- renderLeaflet({
