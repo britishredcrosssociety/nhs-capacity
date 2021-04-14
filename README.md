@@ -3,7 +3,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
 ## Overview
-An NHS Trust level view of the current health system capacity in England. To view the dashboard, click [here](https://britishredcross.shinyapps.io/nhs-capacity/)
+An NHS Trust level view of the current health system capacity in England. To view the dashboard, click [here](https://britishredcross.shinyapps.io/nhs-capacity/).
 
 <br>
 
