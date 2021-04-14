@@ -3,10 +3,9 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
 ## Overview
-An NHS Trust level view of current health system capacity. This differs from the upcoming Health Index that focuses on community needs and capacity.
+An NHS Trust level view of the current health system capacity in England.
 
-## Coverage
-The first version will only cover England.
+<img src='figures/app-demo.png' align="centre"/>
 
 ## Navigation
 
