@@ -5,6 +5,8 @@
 ## Overview
 An NHS Trust level view of the current health system capacity in England.
 
+<br>
+
 <img src='figures/app-demo.png' align="centre"/>
 
 ## Navigation
