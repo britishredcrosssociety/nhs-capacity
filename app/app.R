@@ -476,7 +476,7 @@ server <- function(input, output, session) {
         e_charts(x) %>%
         e_draft(
           text = "This data doesn't exist for this trust.",
-          size = "25px",
+          size = "15px",
           color = "#5C747A"
         )
     }
@@ -534,7 +534,7 @@ server <- function(input, output, session) {
         e_charts(x) %>%
         e_draft(
           text = "This data doesn't exist for this trust.",
-          size = "25px",
+          size = "15px",
           color = "#5C747A"
         )
     }
@@ -601,7 +601,7 @@ server <- function(input, output, session) {
         e_charts(x) %>%
         e_draft(
           text = "This data doesn't exist for this trust.",
-          size = "25px",
+          size = "15px",
           color = "#5C747A"
         )
     }
@@ -667,7 +667,7 @@ server <- function(input, output, session) {
         e_charts(x) %>%
         e_draft(
           text = "This data doesn't exist for this trust.",
-          size = "25px",
+          size = "15px",
           color = "#5C747A"
         )
     }
@@ -726,7 +726,7 @@ server <- function(input, output, session) {
         e_charts(x) %>%
         e_draft(
           text = "This data doesn't exist for this trust.",
-          size = "25px",
+          size = "15px",
           color = "#5C747A"
         )
     }
@@ -786,7 +786,7 @@ server <- function(input, output, session) {
         e_charts(x) %>%
         e_draft(
           text = "This data doesn't exist for this trust.",
-          size = "25px",
+          size = "15px",
           color = "#5C747A"
         )
     }
@@ -862,7 +862,7 @@ server <- function(input, output, session) {
         e_charts(x) %>%
         e_draft(
           text = "This data doesn't exist for this trust.",
-          size = "25px",
+          size = "15px",
           color = "#5C747A"
         )
     }
