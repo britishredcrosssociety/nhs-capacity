@@ -1,400 +1,400 @@
-org_code,name,count_total_waiting_list,count_waiting_6_plus_weeks,count_waiting_13_plus_weeks
-RF4,"Barking, Havering and Redbridge University Hospitals NHS Trust",9311,987,431
-R1H,Barts Health NHS Trust,26954,6316,2420
-NT405,BMI - Bishops Wood,23,0,0
-NT409,BMI - Chelsfield Park Hospital,26,0,0
-NT416,BMI - Hendon Hospital,11,0,0
-NT436,BMI - Shirley Oaks Hospital,10,0,0
-NT406,BMI - The Blackheath Hospital,45,0,0
-NT411,BMI - The Clementine Churchill Hospital,29,0,0
-NT421,BMI - The Kings Oak Hospital,14,0,0
-NT422,BMI - The London Independent Hospital,260,15,0
-NT437,BMI - The Sloane Hospital,0,0,0
-NT451,BMI The Cavell Hospital,31,0,0
-NQV,Bromley Healthcare,299,182,53
-RV3,Central and North West London NHS Foundation Trust,47,0,0
-RQM,Chelsea and Westminster Hospital NHS Foundation Trust,6190,433,147
-RJ6,Croydon Health Services NHS Trust,7228,1462,1219
-RVR,Epsom and St Helier University Hospitals NHS Trust,6568,1344,438
-RP4,Great Ormond Street Hospital For Children NHS Foundation Trust,1860,712,289
-RJ1,Guy's and St Thomas' NHS Foundation Trust,8952,2000,785
-RQX,Homerton University Hospital NHS Foundation Trust,4447,220,21
-RY9,Hounslow and Richmond Community Healthcare NHS Trust,154,2,0
-RYJ,Imperial College Healthcare NHS Trust,10845,2908,1512
-RJZ,King's College Hospital NHS Foundation Trust,13048,2792,798
-RAX,Kingston Hospital NHS Foundation Trust,7227,3670,1653
-RJ2,Lewisham and Greenwich NHS Trust,11929,4606,1927
-R1K,London North West University Healthcare NHS Trust,6844,247,70
-RP6,Moorfields Eye Hospital NHS Foundation Trust,124,6,0
-RAP,North Middlesex University Hospital NHS Trust,3963,410,159
-NTP15,Practice Plus Group Hospital - Ilford,332,93,39
-RT3,Royal Brompton & Harefield NHS Foundation Trust,370,34,20
-RAL,Royal Free London NHS Foundation Trust,8110,1172,700
-RAN,Royal National Orthopaedic Hospital NHS Trust,1850,378,197
-RV5,South London and Maudsley NHS Foundation Trust,0,0,0
-T8R5I,Spamedica Wokingham,0,0,0
-NT314,Spire London East,303,24,6
-NT3X3,Spire St Anthony's Hospital,43,20,13
-RJ7,St George's University Hospitals NHS Foundation Trust,9157,2033,845
-DK6,Surgimed Healthcare Ltd,43,0,0
-RAS,The Hillingdon Hospitals NHS Foundation Trust,3644,903,384
-RPY,The Royal Marsden NHS Foundation Trust,0,0,0
-RRV,University College London Hospitals NHS Foundation Trust,4074,2864,1077
-RKL,West London NHS Trust,424,277,194
-NVC0M,West Valley Hospital,35,8,2
-RKE,Whittington Health NHS Trust,3741,279,21
-NNV,Your Healthcare,0,0,0
-NT402,BMI - Bath Clinic,19,0,0
-NT419,BMI - The Harbour Hospital,1,0,0
-NT430,BMI - The Ridgeway Hospital,15,0,0
-NT443,BMI - The Winterbourne Hospital,1,0,0
-NX0,Chime Social Enterprise,1195,639,113
-NV302,Circle Bath Hospital,72,0,0
-RJ8,Cornwall Partnership NHS Foundation Trust,94,46,33
-RBD,Dorset County Hospital NHS Foundation Trust,4270,1129,135
-RDY,Dorset Healthcare University NHS Foundation Trust,455,28,9
-NVC04,Duchy Hospital,33,3,1
-NGL,Echogenicity Limited,557,426,151
-NCL01,Express Diagnostics (Derriford),80,0,0
-RTQ,Gloucestershire Health and Care NHS Foundation Trust,62,0,0
-RTE,Gloucestershire Hospitals NHS Foundation Trust,9050,1264,639
-NWV,GP Care UK Limited,692,0,0
-RN3,Great Western Hospitals NHS Foundation Trust,6769,2605,971
-NXP,Independent Health Group,0,0,0
-NV11D,Inhealth - Prime Endoscopy Bristol,1411,988,526
-NVC08,Mount Stuart Hospital,29,0,0
-NVC09,New Hall Hospital,40,0,0
-RVJ,North Bristol NHS Trust,12417,4019,1487
-RBZ,Northern Devon Healthcare NHS Trust,4058,1942,1224
-NT202,"Nuffield Health, Bournemouth Hospital",0,0,0
-NT206,"Nuffield Health, Bristol Hospital (Chesterfield)",22,1,0
-NT211,"Nuffield Health, Cheltenham Hospital",1,0,0
-NT215,"Nuffield Health, Exeter Hospital",0,0,0
-NT238,"Nuffield Health, Taunton Hospital",0,0,0
-NEF,Peninsula Ultrasound Limited,2059,150,0
-NTPH2,Practice Plus Group Hospital - Emersons Green,278,172,157
-NTPH5,Practice Plus Group Hospital - Plymouth,88,74,69
-NTPH1,Practice Plus Group Hospital - Shepton Mallet,240,81,11
-NTPH3,Practice Plus Group Surgical Centre - Devizes,144,91,76
-REF,Royal Cornwall Hospitals NHS Trust,6909,753,183
-RH8,Royal Devon and Exeter NHS Foundation Trust,6706,2709,1232
-RD1,Royal United Hospitals Bath NHS Foundation Trust,10903,4070,1466
-RNZ,Salisbury NHS Foundation Trust,3422,331,26
-RH5,Somerset NHS Foundation Trust,6288,2142,998
-P1B7M,Spamedica Bristol,0,0,0
-A0C5S,Spamedica Gloucester,0,0,0
-NT302,Spire Bristol Hospital,11,0,0
-NQT5K,St Martins Hospital,182,31,13
-AAH,Tetbury Hospital Trust Ltd,1,1,0
-NFC01,The Outside Clinic HQ,527,56,1
-RA9,Torbay and South Devon NHS Foundation Trust,5086,2401,1383
-DTM,Ultracardiac Ltd,244,2,0
-RA7,University Hospitals Bristol and Weston NHS Foundation Trust,15215,6652,3772
-R0D,University Hospitals Dorset NHS Foundation Trust,6216,168,41
-RK9,University Hospitals Plymouth NHS Trust,8140,1610,209
-NVC22,Winfield Hospital,25,0,0
-RA4,Yeovil District Hospital NHS Foundation Trust,1861,180,33
-NWT,Action For Deafness,538,83,0
-RTK,Ashford and St Peter's Hospitals NHS Foundation Trust,7150,1914,1252
-NVC01,Ashtead Hospital,5,0,0
-NWF01,Benenden Hospital,0,0,0
-RWX,Berkshire Healthcare NHS Foundation Trust,232,1,0
-DN4,Berkshire West Community Endoscopy Service,13,0,0
-NT417,BMI - Goring Hall Hospital,4,0,0
-NT433,BMI - Sarum Road Hospital,0,0,0
-NT408,BMI - The Chaucer Hospital,7,0,0
-NT410,BMI - The Chiltern Hospital,3,0,0
-NT418,BMI - The Hampshire Clinic,0,0,0
-NT428,BMI - The Princess Margaret Hospital,3,0,0
-NT431,BMI - The Runnymede Hospital,0,0,0
-NT435,BMI - The Shelburne Hospital,0,0,0
-NT455,BMI Mount Alvernia Hospital,2,0,0
-RXH,Brighton and Sussex University Hospitals NHS Trust,7802,2798,1195
-RXQ,Buckinghamshire Healthcare NHS Trust,5093,1310,0
-NV323,Circle Reading Hospital,135,0,0
-RN7,Dartford and Gravesham NHS Trust,4960,942,423
-NGD01,Diagnostic Ultrasound Services,0,0,0
-NNE,Dorking Healthcare Limited (DHC),243,0,0
-RVV,East Kent Hospitals University NHS Foundation Trust,16712,3737,1314
-RXC,East Sussex Healthcare NHS Trust,7761,1998,734
-NVM,Epsomedical Group,102,3,0
-NDJ,First Community Health and Care CIC,272,140,57
-RDU,Frimley Health NHS Foundation Trust,10967,922,267
-ATK,GP Health Partners Ltd,73,13,4
-RN5,Hampshire Hospitals NHS Foundation Trust,6617,1365,717
-NWX,Here,561,13,3
-NVC25,Horton NHS Treatment Centre,5,4,0
-NV1,Inhealth Limited,21768,2912,1987
-NHA,Insidevue Limited,79,0,0
-R1F,Isle of Wight NHS Trust,2129,353,108
-G82114,Ivy Court Surgery,0,0,0
-RYY,Kent Community Health NHS Foundation Trust,113,0,0
-ADP02,Kims Hospital (Newnham Court),37,14,5
-RWF,Maidstone and Tunbridge Wells NHS Trust,7355,1062,78
-DC8,Medical Imaging Partnership Ltd,562,28,7
-RPA,Medway NHS Foundation Trust,5338,971,128
-NTPAA,Mid & South Buckinghamshire Diagnostic NHS Centre,1319,0,0
-NVC11,North Downs Hospital,17,9,0
-NT205,"Nuffield Health, Brighton Hospital",3,2,0
-NT212,"Nuffield Health, Chichester Hospital",0,0,0
-NT218,"Nuffield Health, Haywards Heath Hospital",0,0,0
-NT241,"Nuffield Health, Woking Hospital",0,0,0
-NT244,Nuffield Hospital Oxford (The Manor),0,0,0
-RTH,Oxford University Hospitals NHS Foundation Trust,11864,1570,344
-RPG,Oxleas NHS Foundation Trust,107,2,1
-H82017,Park Surgery,181,0,0
-RHU,Portsmouth Hospitals University National Health Service Trust,6319,839,191
-NTP11,Practice Plus Group Hospital - Southampton,416,123,47
-NTP16,Practice Plus Group Surgical Centre - Gillingham,175,1,0
-NTPAD,Practice Plus Group Surgical Centre - St Marys Portsmouth,1132,147,0
-RPC,Queen Victoria Hospital NHS Foundation Trust,737,27,9
-RHW,Royal Berkshire NHS Foundation Trust,4417,483,360
-RA2,Royal Surrey County Hospital NHS Foundation Trust,4106,75,6
-R1C,Solent NHS Trust,646,237,45
-RW1,Southern Health NHS Foundation Trust,972,1,1
-Y8L9S,Spamedica Bromley,0,0,0
-NT312,Spire Alexandra Hospital,220,90,38
-NT345,Spire Clare Park Hospital,11,0,0
-NT344,Spire Dunedin Hospital,27,0,0
-NT308,Spire Gatwick Park Hospital,14,1,0
-NT364,Spire Montefiore Hospital,9,0,0
-NT305,Spire Portsmouth Hospital,15,5,2
-NT304,Spire Southampton Hospital,53,3,1
-NT309,Spire Sussex Hospital,10,2,0
-NT343,Spire Thames Valley Hospital,0,0,0
-NT310,Spire Tunbridge Wells Hospital,5,1,1
-RTP,Surrey and Sussex Healthcare NHS Trust,6881,1669,481
-RDR,Sussex Community NHS Foundation Trust,1929,607,168
-NL2,Sussex Health Care Audiology Ltd,123,93,67
-NMC01,Sussex Medical Centre Ltd (Clive Avenue),2554,1569,570
-AJX,Sussex MSK Partnership 2,30,2,1
-G82050,Sydenham House Medical Centre,0,0,0
-NVC02,The Berkshire Independent Hospital,2,0,0
-NXM01,The Horder Centre - St Johns Road,4,1,0
-RHM,University Hospital Southampton NHS Foundation Trust,9600,3098,1343
-RYR,Western Sussex Hospitals NHS Foundation Trust,8760,3412,1972
-G82729,White Cliffs Medical Centre,192,0,0
-G82071,Whitstable Medical Practice,160,0,0
-RQ3,Birmingham Women's and Children's NHS Foundation Trust,2036,678,319
-NT412,BMI - The Droitwich Spa Hospital,25,0,0
-NT424,BMI - The Meriden Hospital,44,0,0
-NT427,BMI - The Park Hospital,16,0,0
-NT429,BMI - The Priory Hospital,3,0,0
-NT441,BMI - Three Shires Hospital,16,0,0
-NT445,BMI The Edgbaston Hospital,0,0,0
-NT450,BMI The Lincoln Hospital,51,10,0
-NVC27,Boston West Hospital,1,0,0
-RFS,Chesterfield Royal Hospital NHS Foundation Trust,5780,1540,825
-RYG,Coventry and Warwickshire Partnership NHS Trust,95,4,0
-NEP,Diagnostic World Ltd,1722,389,200
-RLT,George Eliot Hospital NHS Trust,2428,73,3
-NO001,Healthharmonie Limited HQ,137,35,10
-RNQ,Kettering General Hospital NHS Foundation Trust,4498,567,1
-RT5,Leicestershire Partnership NHS Trust,1215,870,472
-DAY01,LLR Provider Company,1988,32,3
-RRE,Midlands Partnership NHS Foundation Trust,97,49,44
-RNS,Northampton General Hospital NHS Trust,6805,1752,620
-RX1,Nottingham University Hospitals NHS Trust,19313,9272,5548
-NT213,"Nuffield Health, Derby Hospital",4,0,0
-NT226,"Nuffield Health, Leicester Hospital",0,0,0
-NT230,"Nuffield Health, North Staffordshire Hospital",0,0,0
-NT235,"Nuffield Health, Shrewsbury Hospital",0,0,0
-NT224,"Nuffield Health, Warwickshire Hospital",5,2,0
-NT242,"Nuffield Health, Wolverhampton Hospital",0,0,0
-NXV,Physiological Measurements Ltd,6976,105,35
-NTP13,Practice Plus Group Hospital - Barlborough,64,14,11
-NVC17,Rowley Hall Hospital,37,6,0
-RXK,Sandwell and West Birmingham Hospitals NHS Trust,9754,1514,683
-NXX,Scrivens Ltd,1316,0,0
-RK5,Sherwood Forest Hospitals NHS Foundation Trust,7939,2480,1340
-R1D,Shropshire Community Health NHS Trust,543,321,75
-RJC,South Warwickshire NHS Foundation Trust,5011,140,30
-NPG11,Spamedica (Birmingham),0,0,0
-NPG21,Spamedica Coventry,0,0,0
-NPG23,Spamedica Derby,0,0,0
-NPG15,Spamedica Newcastle-Under-Lyme,0,0,0
-NPG20,Spamedica Wolverhampton,0,0,0
-NYN,Specsavers Hearcare Group Ltd,1341,0,0
-NT322,Spire Leicester Hospital,50,8,7
-NT321,Spire Little Aston Hospital,54,8,1
-NT30A,Spire Nottingham Hospital,56,3,1
-NT320,Spire Parkway Hospital,92,0,0
-NT301,Spire South Bank Hospital,45,16,14
-RNA,The Dudley Group NHS Foundation Trust,7799,1757,333
-RL1,The Robert Jones and Agnes Hunt Orthopaedic Hospital NHS Foundation Trust,842,140,47
-RRJ,The Royal Orthopaedic Hospital NHS Foundation Trust,1264,24,1
-RL4,The Royal Wolverhampton NHS Trust,13677,5860,2781
-RXW,The Shrewsbury and Telford Hospital NHS Trust,9080,4247,2078
-RWD,United Lincolnshire Hospitals NHS Trust,12325,4920,3015
-RRK,University Hospitals Birmingham NHS Foundation Trust,20026,7116,3765
-RKB,University Hospitals Coventry and Warwickshire NHS Trust,9118,874,169
-RTG,University Hospitals of Derby and Burton NHS Foundation Trust,17150,6782,1844
-RWE,University Hospitals of Leicester NHS Trust,22986,8111,4101
-RJE,University Hospitals of North Midlands NHS Trust,11341,991,277
-RBK,Walsall Healthcare NHS Trust,4618,717,208
-NVC21,West Midlands Hospital,191,0,0
-NVC23,Woodland Hospital,227,104,0
-NVC40,Woodthorpe Hospital,370,0,0
-RWP,Worcestershire Acute Hospitals NHS Trust,8751,3162,1438
-RLQ,Wye Valley NHS Trust,5179,2248,1116
-NT933,Alliance Medical MRI Service - Essex,0,0,0
-RC9,Bedfordshire Hospitals NHS Foundation Trust,9149,1840,532
-NVC31,Blakelands Hospital,223,88,10
-NT423,BMI - The Manor Hospital,3,0,0
-NT432,BMI - The Sandringham Hospital,0,0,0
-NT434,BMI - The Saxon Clinic,3,0,0
-NT446,BMI St Edmunds Hospital,0,0,0
-RGT,Cambridge University Hospitals NHS Foundation Trust,14162,7766,3762
-RYV,Cambridgeshire Community Services NHS Trust,639,396,237
-RWH,East and North Hertfordshire NHS Trust,10993,2310,125
-RDE,East Suffolk and North Essex NHS Foundation Trust,9529,932,348
-NVC06,Fitzwilliam Hospital,146,69,0
-NYR,Healthshare Diagnostics,9519,3905,307
-RGP,James Paget University Hospitals NHS Foundation Trust,5972,1595,506
-RAJ,Mid and South Essex NHS Foundation Trust,21605,9162,4531
-RD8,Milton Keynes University Hospital NHS Foundation Trust,6591,1220,326
-RM1,Norfolk and Norwich University Hospitals NHS Foundation Trust,15625,6750,2912
-RGN,North West Anglia NHS Foundation Trust,11860,5351,3021
-NT204,"Nuffield Health, Brentwood Hospital",0,0,0
-NT209,"Nuffield Health, Cambridge Hospital",0,0,0
-NVC13,Oaks Hospital,8,5,1
-NVC15,Pinehill Hospital,29,0,0
-NQA,Provide,190,177,175
-NVC19,Rivers Hospital,5,0,0
-RGM,Royal Papworth Hospital NHS Foundation Trust,993,13,5
-NPG19,Spamedica Bedford,0,0,0
-NPG16,Spamedica Chelmsford,0,0,0
-NT315,Spire Bushey Hospital,47,5,1
-NT317,Spire Cambridge Lea Hospital,7,0,0
-NT316,Spire Harpenden Hospital,80,2,0
-NT319,Spire Hartswood Hospital,45,23,1
-NT313,Spire Wellesley Hospital,128,18,0
-NVC18,Springfield Hospital,54,28,2
-NDL01,Suffolk GP Federation - Woodbridge,1189,79,8
-RQW,The Princess Alexandra Hospital NHS Trust,7424,2808,1455
-RCX,"The Queen Elizabeth Hospital, King's Lynn, NHS Foundation Trust",6483,3432,1665
-RWG,West Hertfordshire Hospitals NHS Trust,6518,1793,382
-RGR,West Suffolk NHS Foundation Trust,6011,2342,714
-RBS,Alder Hey Children's NHS Foundation Trust,258,19,0
-NRP,Beacon Medical Services Group Limited,96,0,0
-RXL,Blackpool Teaching Hospitals NHS Foundation Trust,5418,1362,808
-NT401,BMI - The Alexandra Hospital,86,1,0
-NT403,BMI - The Beardwood Hospital,68,0,0
-NT404,BMI - The Beaumont Hospital,62,0,0
-NT420,BMI - The Highfield Hospital,94,0,0
-NT497,BMI Gisburne Park Hospital,0,0,0
-NT449,BMI The Lancaster Hospital,0,0,0
-RMC,Bolton NHS Foundation Trust,4476,2039,1412
-RY2,Bridgewater Community Healthcare NHS Foundation Trust,406,112,7
-RJR,Countess of Chester Hospital NHS Foundation Trust,4510,949,631
-DKE,Curx Health Limited,365,0,0
-NEM,Diagnostic Healthcare Ltd,2813,0,0
-RJN,East Cheshire NHS Trust,5060,2828,1945
-RXR,East Lancashire Hospitals NHS Trust,12744,2642,1272
-NVC05,Euxton Hall Hospital,247,157,34
-NVG01,Fairfield Hospital,89,13,0
-NVC07,Fulwood Hall Hospital,275,144,30
-NLE06,Glodwick Primary Care Centre,293,65,0
-NFO,Kleyn Healthcare,0,0,0
-RW5,Lancashire & South Cumbria NHS Foundation Trust,207,14,0
-RXN,Lancashire Teaching Hospitals NHS Foundation Trust,11441,4865,2583
-RBQ,Liverpool Heart and Chest Hospital NHS Foundation Trust,952,235,24
-REM,Liverpool University Hospitals NHS Foundation Trust,11204,2567,1058
-REP,Liverpool Women's NHS Foundation Trust,326,47,17
-NN5,Manchester Surgical Services Ltd,28,9,2
-R0A,Manchester University NHS Foundation Trust,20501,5376,2876
-C81081,Manor House Surgery,39,0,0
-NBG,Mediscan Diagnostics Services Limited,2483,0,0
-RBT,Mid Cheshire Hospitals NHS Foundation Trust,8067,3173,720
-NV10Y,North West Cats - Inhealth Pathway Management Centre,2101,875,503
-NT210,"Nuffield Health, The Grosvenor Hospital, Chester",5,5,5
-NVC12,Oaklands Hospital,107,3,0
-NV6,PDS Medical Ltd,63,0,0
-RW6,Pennine Acute Hospitals NHS Trust,23094,13524,7826
-NVC16,Renacres Hospital,229,117,22
-RM3,Salford Royal NHS Foundation Trust,12388,5895,2035
-NFB,Scan Assure Medical Ultrasound Limited,410,0,0
-RVY,Southport and Ormskirk Hospital NHS Trust,3016,405,112
-NPG13,Spamedica - Skelmersdale,0,0,0
-NPG08,Spamedica (Bolton),0,0,0
-NPG01,Spamedica (Manchester),0,0,0
-NPG02,Spamedica (Wirral),0,0,0
-NPG06,Spamedica Liverpool,0,0,0
-NPG17,Spamedica Preston,0,0,0
-NPG14,Spamedica Widnes,0,0,0
-NT324,Spire Cheshire Hospital,157,9,7
-NT347,Spire Fylde Coast Hospital,130,14,7
-NT337,Spire Liverpool Hospital,452,216,114
-NT327,Spire Manchester Hospital,47,2,0
-NT325,Spire Murrayfield Hospital,40,11,1
-NT339,Spire Regency Hospital,221,25,1
-RBN,St Helens and Knowsley Teaching Hospitals NHS Trust,9512,3011,432
-RWJ,Stockport NHS Foundation Trust,11204,5746,3413
-RMP,Tameside and Glossop Integrated Care NHS Foundation Trust,3877,1094,432
-RBV,The Christie NHS Foundation Trust,298,43,23
-REN,The Clatterbridge Cancer Centre NHS Foundation Trust,16,0,0
-NPF01,The Industrial Diagnostics Company,16,8,5
-RET,The Walton Centre NHS Foundation Trust,986,6,1
-RTX,University Hospitals of Morecambe Bay NHS Foundation Trust,6021,617,225
-RWW,Warrington and Halton Teaching Hospitals NHS Foundation Trust,9744,3918,1468
-RY7,Wirral Community Health and Care NHS Foundation Trust,136,0,0
-RBL,Wirral University Teaching Hospital NHS Foundation Trust,5799,299,101
-RRF,"Wrightington, Wigan and Leigh NHS Foundation Trust",5698,914,442
-AAF,360 Care Ltd,564,31,0
-RCF,Airedale NHS Foundation Trust,3039,676,294
-RFF,Barnsley Hospital NHS Foundation Trust,4170,2383,957
-NT440,BMI - Thornbury Hospital,44,5,0
-NT447,BMI The Duchy Hospital,5,0,0
-NT448,BMI The Huddersfield Hospital,11,0,0
-NT457,BMI Woodlands Hospital,72,0,0
-RAE,Bradford Teaching Hospitals NHS Foundation Trust,7576,2551,1614
-RWY,Calderdale and Huddersfield NHS Foundation Trust,9526,3710,1785
-NVC28,Clifton Park Hospital,0,0,0
-NVC29,Cobalt Hospital,58,0,0
-RXP,County Durham and Darlington NHS Foundation Trust,7659,470,259
-RP5,Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust,12768,5058,1824
-RR7,Gateshead Health NHS Foundation Trust,4296,1550,961
-A84031,Greystoke Surgery,0,0,0
-RCD,Harrogate and District NHS Foundation Trust,3712,976,133
-RWA,Hull University Teaching Hospitals NHS Trust,10422,4248,2276
-RY6,Leeds Community Healthcare NHS Trust,859,572,327
-RR8,Leeds Teaching Hospitals NHS Trust,15027,4586,1013
-RXF,Mid Yorkshire Hospitals NHS Trust,5811,377,152
-NX2,Minor Ops Ltd,24,22,0
-RNN,North Cumbria Integrated Care NHS Foundation Trust,12804,6839,3210
-RVW,North Tees and Hartlepool NHS Foundation Trust,4330,251,62
-RJL,Northern Lincolnshire and Goole NHS Foundation Trust,18823,8235,3158
-RTF,Northumbria Healthcare NHS Foundation Trust,8583,461,103
-NQH,Novus Health Ltd,0,0,0
-NT225,"Nuffield Health, Leeds Hospital",14,4,2
-NT229,"Nuffield Health, Newcastle Upon Tyne Hospital",0,0,0
-NT237,"Nuffield Health, Tees Hospital",15,0,0
-NT245,"Nuffield Health, York Hospital",6,4,4
-NVC14,Park Hill Hospital,0,0,0
-NEQ,Phoenix Health Solutions Limited HQ,131,17,6
-NEY,Pioneer Healthcare Limited,37,1,0
-RCU,Sheffield Children's NHS Foundation Trust,1232,344,145
-RHQ,Sheffield Teaching Hospitals NHS Foundation Trust,11559,2706,1406
-RTR,South Tees Hospitals NHS Foundation Trust,7494,1483,696
-R0B,South Tyneside and Sunderland NHS Foundation Trust,7470,2407,1043
-RXG,South West Yorkshire Partnership NHS Foundation Trust,192,83,4
-NPG10,Spamedica (Sheffiled),0,0,0
-NPG12,Spamedica Eccleshill Treatment Centre,0,0,0
-NPG07,Spamedica Eye Hospital (Wakefield),0,0,0
-NPG18,Spamedica Hull,0,0,0
-NPG22,Spamedica Stockton-On-Tees,0,0,0
-NT348,Spire Elland Hospital,100,3,0
-NT351,Spire Hull and East Riding Hospital,240,88,15
-NT332,Spire Leeds Hospital,24,6,1
-NT350,Spire Methley Park Hospital,65,2,1
-NT333,Spire Washington Hospital,217,7,6
-NVC0R,Tees Valley Hospital,31,0,0
-AJ8,The Grange Medical Centre HQ,176,43,0
-NID,The Living Care Group,0,0,0
-RTD,The Newcastle Upon Tyne Hospitals NHS Foundation Trust,10925,2464,880
-RFR,The Rotherham NHS Foundation Trust,5258,2065,812
-NVC20,The Yorkshire Clinic,191,97,9
-NN4,Tyneside Surgical Services Ltd,86,12,4
-AGA,Westcliffe Health Innovations Ltd,98,50,20
-RCB,York Teaching Hospital NHS Foundation Trust,6965,2540,1272
-NKO,Yorkshire Health Solutions Ltd,214,0,0
+org_code,name,count_total_waiting_list,count_waiting_6_plus_weeks,count_waiting_13_plus_weeks,perc_waiting_6_plus_weeks,per_waiting_13_plus_weeks
+RF4,"Barking, Havering and Redbridge University Hospitals NHS Trust",8693,1553,384,0.17864948809386863,0.044173472909237316
+R1H,Barts Health NHS Trust,26632,10633,2952,0.3992565334935416,0.11084409732652448
+NT405,BMI - Bishops Wood,34,1,0,0.029411764705882353,0
+NT409,BMI - Chelsfield Park Hospital,39,0,0,0,0
+NT416,BMI - Hendon Hospital,19,0,0,0,0
+NT436,BMI - Shirley Oaks Hospital,14,0,0,0,0
+NT406,BMI - The Blackheath Hospital,81,0,0,0,0
+NT411,BMI - The Clementine Churchill Hospital,44,0,0,0,0
+NT421,BMI - The Kings Oak Hospital,14,0,0,0,0
+NT422,BMI - The London Independent Hospital,224,67,0,0.29910714285714285,0
+NT437,BMI - The Sloane Hospital,0,0,0,NA,NA
+NT451,BMI The Cavell Hospital,24,0,0,0,0
+NQV,Bromley Healthcare,286,216,75,0.7552447552447552,0.26223776223776224
+RV3,Central and North West London NHS Foundation Trust,25,0,0,0,0
+RQM,Chelsea and Westminster Hospital NHS Foundation Trust,5415,628,201,0.11597414589104339,0.0371191135734072
+RJ6,Croydon Health Services NHS Trust,6460,1003,725,0.15526315789473685,0.11222910216718267
+RVR,Epsom and St Helier University Hospitals NHS Trust,4841,1092,311,0.22557322867176202,0.06424292501549267
+RP4,Great Ormond Street Hospital For Children NHS Foundation Trust,1863,868,364,0.4659151905528717,0.19538378958668814
+RJ1,Guy's and St Thomas' NHS Foundation Trust,9870,2842,854,0.28794326241134754,0.08652482269503546
+RQX,Homerton University Hospital NHS Foundation Trust,4346,411,27,0.09456971928209848,0.006212609295904279
+RY9,Hounslow and Richmond Community Healthcare NHS Trust,92,0,0,0,0
+RYJ,Imperial College Healthcare NHS Trust,10894,5498,3120,0.5046814760418579,0.2863961813842482
+RJZ,King's College Hospital NHS Foundation Trust,12870,5169,1258,0.40163170163170164,0.09774669774669775
+RAX,Kingston Hospital NHS Foundation Trust,4268,2175,1290,0.5096063730084348,0.3022492970946579
+RJ2,Lewisham and Greenwich NHS Trust,11612,4172,1754,0.35928349982776436,0.1510506372717878
+R1K,London North West University Healthcare NHS Trust,5630,373,43,0.06625222024866785,0.00763765541740675
+RP6,Moorfields Eye Hospital NHS Foundation Trust,81,13,0,0.16049382716049382,0
+RAP,North Middlesex University Hospital NHS Trust,3881,1093,165,0.2816284462767328,0.042514815769131666
+RPG,Oxleas NHS Foundation Trust,78,2,0,0.02564102564102564,0
+NTP15,Practice Plus Group Hospital - Ilford,328,118,44,0.3597560975609756,0.13414634146341464
+RT3,Royal Brompton & Harefield NHS Foundation Trust,271,33,4,0.12177121771217712,0.014760147601476014
+RAL,Royal Free London NHS Foundation Trust,6059,1213,582,0.20019805248390823,0.0960554546954943
+RAN,Royal National Orthopaedic Hospital NHS Trust,1986,575,162,0.2895266868076536,0.08157099697885196
+RV5,South London and Maudsley NHS Foundation Trust,0,0,0,NA,NA
+T8R5I,Spamedica Wokingham,0,0,0,NA,NA
+NT314,Spire London East,14,3,1,0.21428571428571427,0.07142857142857142
+NT3X3,Spire St Anthony's Hospital,123,14,12,0.11382113821138211,0.0975609756097561
+RJ7,St George's University Hospitals NHS Foundation Trust,7161,1254,563,0.17511520737327188,0.07862030442675604
+DK6,Surgimed Healthcare Ltd,39,0,0,0,0
+RAS,The Hillingdon Hospitals NHS Foundation Trust,3283,945,414,0.2878464818763326,0.12610417301248858
+RPY,The Royal Marsden NHS Foundation Trust,0,0,0,NA,NA
+RRV,University College London Hospitals NHS Foundation Trust,9895,4208,1346,0.42526528549772613,0.13602829711975745
+RKL,West London NHS Trust,335,204,128,0.608955223880597,0.382089552238806
+NVC0M,West Valley Hospital,23,9,0,0.391304347826087,0
+RKE,Whittington Health NHS Trust,3757,1176,26,0.31301570401916423,0.006920415224913495
+NNV,Your Healthcare,0,0,0,NA,NA
+NT402,BMI - Bath Clinic,8,0,0,0,0
+NT419,BMI - The Harbour Hospital,0,0,0,NA,NA
+NT430,BMI - The Ridgeway Hospital,31,0,0,0,0
+NT443,BMI - The Winterbourne Hospital,7,0,0,0,0
+NX0,Chime Social Enterprise,962,303,69,0.31496881496881496,0.07172557172557173
+NV302,Circle Bath Hospital,53,0,0,0,0
+RJ8,Cornwall Partnership NHS Foundation Trust,72,46,28,0.6388888888888888,0.3888888888888889
+RBD,Dorset County Hospital NHS Foundation Trust,3797,915,66,0.24097972083223598,0.017382143797735054
+RDY,Dorset Healthcare University NHS Foundation Trust,393,22,5,0.05597964376590331,0.01272264631043257
+NVC04,Duchy Hospital,21,0,0,0,0
+NGL,Echogenicity Limited,505,332,163,0.6574257425742575,0.3227722772277228
+NCL01,Express Diagnostics (Derriford),150,0,0,0,0
+RTQ,Gloucestershire Health and Care NHS Foundation Trust,50,0,0,0,0
+RTE,Gloucestershire Hospitals NHS Foundation Trust,8878,2180,730,0.24555079972966884,0.08222572651498085
+NWV,GP Care UK Limited,556,2,0,0.0035971223021582736,0
+RN3,Great Western Hospitals NHS Foundation Trust,5819,2287,763,0.39302285616085236,0.13112218594260183
+NXP,Independent Health Group,0,0,0,NA,NA
+NV11D,Inhealth - Prime Endoscopy Bristol,1485,1091,713,0.7346801346801347,0.48013468013468014
+NVC08,Mount Stuart Hospital,9,0,0,0,0
+NVC09,New Hall Hospital,5,0,0,0,0
+RVJ,North Bristol NHS Trust,11902,3932,1420,0.3303646445975466,0.11930767938161653
+RBZ,Northern Devon Healthcare NHS Trust,4536,2544,1423,0.5608465608465608,0.31371252204585537
+NT202,"Nuffield Health, Bournemouth Hospital",0,0,0,NA,NA
+NT206,"Nuffield Health, Bristol Hospital (Chesterfield)",14,3,0,0.21428571428571427,0
+NT211,"Nuffield Health, Cheltenham Hospital",0,0,0,NA,NA
+NT215,"Nuffield Health, Exeter Hospital",0,0,0,NA,NA
+NT238,"Nuffield Health, Taunton Hospital",0,0,0,NA,NA
+NEF,Peninsula Ultrasound Limited,2063,90,0,0.043625787687833255,0
+NTPH2,Practice Plus Group Hospital - Emersons Green,227,77,44,0.3392070484581498,0.19383259911894274
+NTPH5,Practice Plus Group Hospital - Plymouth,114,76,74,0.6666666666666666,0.6491228070175439
+NTPH1,Practice Plus Group Hospital - Shepton Mallet,280,95,19,0.3392857142857143,0.06785714285714285
+NTPH3,Practice Plus Group Surgical Centre - Devizes,177,83,60,0.4689265536723164,0.3389830508474576
+REF,Royal Cornwall Hospitals NHS Trust,6841,1113,151,0.16269551235199534,0.022072796374799006
+RH8,Royal Devon and Exeter NHS Foundation Trust,6141,2843,1291,0.4629539163002768,0.2102263475004071
+RD1,Royal United Hospitals Bath NHS Foundation Trust,11186,4466,1428,0.39924906132665833,0.1276595744680851
+RNZ,Salisbury NHS Foundation Trust,3115,432,28,0.13868378812199036,0.008988764044943821
+RH5,Somerset NHS Foundation Trust,6319,2463,1135,0.3897768634277576,0.1796170280107612
+P1B7M,Spamedica Bristol,0,0,0,NA,NA
+A0C5S,Spamedica Gloucester,0,0,0,NA,NA
+NT302,Spire Bristol Hospital,11,0,0,0,0
+NQT5K,St Martins Hospital,172,58,12,0.3372093023255814,0.06976744186046512
+AAH,Tetbury Hospital Trust Ltd,1,0,0,0,0
+NFC01,The Outside Clinic HQ,394,10,1,0.025380710659898477,0.0025380710659898475
+RA9,Torbay and South Devon NHS Foundation Trust,5013,2462,1227,0.49112307999202076,0.24476361460203472
+DTM,Ultracardiac Ltd,207,10,0,0.04830917874396135,0
+RA7,University Hospitals Bristol and Weston NHS Foundation Trust,14062,6518,3428,0.46351870288721375,0.24377755653534347
+R0D,University Hospitals Dorset NHS Foundation Trust,5875,377,48,0.06417021276595744,0.008170212765957446
+RK9,University Hospitals Plymouth NHS Trust,8076,1678,142,0.2077761267954433,0.017582961862308073
+NVC22,Winfield Hospital,14,0,0,0,0
+RA4,Yeovil District Hospital NHS Foundation Trust,1644,144,42,0.08759124087591241,0.025547445255474453
+NWT,Action For Deafness,498,202,0,0.40562248995983935,0
+RTK,Ashford and St Peter's Hospitals NHS Foundation Trust,6026,1406,897,0.2333222701626286,0.14885496183206107
+NVC01,Ashtead Hospital,22,0,0,0,0
+NWF01,Benenden Hospital,0,0,0,NA,NA
+RWX,Berkshire Healthcare NHS Foundation Trust,257,1,0,0.0038910505836575876,0
+DN4,Berkshire West Community Endoscopy Service,75,0,0,0,0
+NT417,BMI - Goring Hall Hospital,6,0,0,0,0
+NT433,BMI - Sarum Road Hospital,0,0,0,NA,NA
+NT408,BMI - The Chaucer Hospital,6,0,0,0,0
+NT410,BMI - The Chiltern Hospital,8,0,0,0,0
+NT418,BMI - The Hampshire Clinic,3,0,0,0,0
+NT428,BMI - The Princess Margaret Hospital,0,0,0,NA,NA
+NT431,BMI - The Runnymede Hospital,1,0,0,0,0
+NT435,BMI - The Shelburne Hospital,0,0,0,NA,NA
+NT455,BMI Mount Alvernia Hospital,1,0,0,0,0
+RXH,Brighton and Sussex University Hospitals NHS Trust,7495,2817,1348,0.37585056704469644,0.1798532354903269
+RXQ,Buckinghamshire Healthcare NHS Trust,5444,2336,579,0.429096252755327,0.10635562086700955
+NV323,Circle Reading Hospital,81,0,0,0,0
+RN7,Dartford and Gravesham NHS Trust,4391,932,390,0.2122523343202004,0.08881803689364609
+NGD01,Diagnostic Ultrasound Services,0,0,0,NA,NA
+NNE,Dorking Healthcare Limited (DHC),254,3,0,0.011811023622047244,0
+RVV,East Kent Hospitals University NHS Foundation Trust,15829,5586,1887,0.352896582222503,0.11921157369385306
+RXC,East Sussex Healthcare NHS Trust,6843,1969,786,0.2877392956305714,0.11486190267426567
+NVM,Epsomedical Group,97,4,0,0.041237113402061855,0
+NDJ,First Community Health and Care CIC,162,64,19,0.3950617283950617,0.11728395061728394
+RDU,Frimley Health NHS Foundation Trust,10104,2375,294,0.23505542359461598,0.029097387173396674
+ATK,GP Health Partners Ltd,61,8,1,0.13114754098360656,0.01639344262295082
+RN5,Hampshire Hospitals NHS Foundation Trust,6176,1428,637,0.23121761658031087,0.10314119170984457
+NWX,Here,458,12,3,0.026200873362445413,0.006550218340611353
+NVC25,Horton NHS Treatment Centre,38,7,0,0.18421052631578946,0
+NV1,Inhealth Limited,17835,2389,1426,0.13395009812167089,0.07995514437903
+NHA,Insidevue Limited,59,0,0,0,0
+R1F,Isle of Wight NHS Trust,1843,391,118,0.21215409658166035,0.06402604449267499
+G82114,Ivy Court Surgery,0,0,0,NA,NA
+RYY,Kent Community Health NHS Foundation Trust,132,0,0,0,0
+ADP02,Kims Hospital (Newnham Court),37,13,2,0.35135135135135137,0.05405405405405406
+RWF,Maidstone and Tunbridge Wells NHS Trust,6827,1706,240,0.2498901420829061,0.03515453347004541
+DC8,Medical Imaging Partnership Ltd,405,76,9,0.18765432098765433,0.022222222222222223
+RPA,Medway NHS Foundation Trust,5306,1285,354,0.24217866566151527,0.06671692423671316
+NTPAA,Mid & South Buckinghamshire Diagnostic NHS Centre,1249,0,0,0,0
+NVC11,North Downs Hospital,23,5,1,0.21739130434782608,0.043478260869565216
+NT205,"Nuffield Health, Brighton Hospital",1,0,0,0,0
+NT212,"Nuffield Health, Chichester Hospital",0,0,0,NA,NA
+NT218,"Nuffield Health, Haywards Heath Hospital",0,0,0,NA,NA
+NT241,"Nuffield Health, Woking Hospital",0,0,0,NA,NA
+NT244,Nuffield Hospital Oxford (The Manor),0,0,0,NA,NA
+RTH,Oxford University Hospitals NHS Foundation Trust,10678,1466,326,0.13729162764562652,0.03053006180932759
+H82017,Park Surgery,181,0,0,0,0
+RHU,Portsmouth Hospitals University National Health Service Trust,5496,1010,150,0.18377001455604075,0.027292576419213975
+NTP11,Practice Plus Group Hospital - Southampton,411,179,52,0.43552311435523117,0.12652068126520682
+NTP16,Practice Plus Group Surgical Centre - Gillingham,115,0,0,0,0
+NTPAD,Practice Plus Group Surgical Centre - St Marys Portsmouth,1380,340,35,0.2463768115942029,0.025362318840579712
+RPC,Queen Victoria Hospital NHS Foundation Trust,692,8,3,0.011560693641618497,0.004335260115606936
+RHW,Royal Berkshire NHS Foundation Trust,4226,509,322,0.12044486512068149,0.07619498343587316
+RA2,Royal Surrey County Hospital NHS Foundation Trust,3719,262,23,0.07044904544232321,0.006184458187684862
+R1C,Solent NHS Trust,539,186,45,0.3450834879406308,0.08348794063079777
+RW1,Southern Health NHS Foundation Trust,1024,24,0,0.0234375,0
+Y8L9S,Spamedica Bromley,0,0,0,NA,NA
+NT312,Spire Alexandra Hospital,223,54,24,0.242152466367713,0.10762331838565023
+NT345,Spire Clare Park Hospital,2,1,0,0.5,0
+NT344,Spire Dunedin Hospital,46,4,0,0.08695652173913043,0
+NT308,Spire Gatwick Park Hospital,162,0,0,0,0
+NT364,Spire Montefiore Hospital,7,0,0,0,0
+NT305,Spire Portsmouth Hospital,67,0,0,0,0
+NT304,Spire Southampton Hospital,6,0,0,0,0
+NT309,Spire Sussex Hospital,55,3,0,0.05454545454545454,0
+NT343,Spire Thames Valley Hospital,0,0,0,NA,NA
+NT310,Spire Tunbridge Wells Hospital,6,3,0,0.5,0
+RTP,Surrey and Sussex Healthcare NHS Trust,6932,1869,352,0.2696191575302943,0.050778995960761686
+RDR,Sussex Community NHS Foundation Trust,1661,434,121,0.26128838049367853,0.0728476821192053
+NL2,Sussex Health Care Audiology Ltd,98,82,73,0.8367346938775511,0.7448979591836735
+NMC01,Sussex Medical Centre Ltd (Clive Avenue),2444,1687,591,0.6902618657937807,0.2418166939443535
+AJX,Sussex MSK Partnership 2,69,1,0,0.014492753623188406,0
+NVC02,The Berkshire Independent Hospital,18,0,0,0,0
+NXM01,The Horder Centre - St Johns Road,2,1,0,0.5,0
+RHM,University Hospital Southampton NHS Foundation Trust,9051,3315,1317,0.3662578720583361,0.14550878355982763
+RYR,Western Sussex Hospitals NHS Foundation Trust,9531,3903,2214,0.4095058231035568,0.23229461756373937
+G82729,White Cliffs Medical Centre,156,0,0,0,0
+G82071,Whitstable Medical Practice,155,0,0,0,0
+RQ3,Birmingham Women's and Children's NHS Foundation Trust,2101,658,297,0.31318419800095193,0.14136125654450263
+NT412,BMI - The Droitwich Spa Hospital,22,1,0,0.045454545454545456,0
+NT424,BMI - The Meriden Hospital,36,2,0,0.05555555555555555,0
+NT427,BMI - The Park Hospital,11,0,0,0,0
+NT429,BMI - The Priory Hospital,24,0,0,0,0
+NT441,BMI - Three Shires Hospital,20,1,0,0.05,0
+NT445,BMI The Edgbaston Hospital,0,0,0,NA,NA
+NT450,BMI The Lincoln Hospital,23,1,1,0.043478260869565216,0.043478260869565216
+NVC27,Boston West Hospital,0,0,0,NA,NA
+RFS,Chesterfield Royal Hospital NHS Foundation Trust,5269,1405,770,0.2666540140444107,0.14613778705636743
+RYG,Coventry and Warwickshire Partnership NHS Trust,77,18,0,0.23376623376623376,0
+NEP,Diagnostic World Ltd,1780,524,284,0.2943820224719101,0.15955056179775282
+RLT,George Eliot Hospital NHS Trust,2587,63,0,0.02435253189022033,0
+NO001,Healthharmonie Limited HQ,174,78,24,0.4482758620689655,0.13793103448275862
+RNQ,Kettering General Hospital NHS Foundation Trust,4082,194,7,0.04752572268495835,0.0017148456638902498
+RT5,Leicestershire Partnership NHS Trust,955,658,330,0.6890052356020943,0.34554973821989526
+DAY01,LLR Provider Company,1782,85,0,0.04769921436588103,0
+RRE,Midlands Partnership NHS Foundation Trust,92,58,27,0.6304347826086957,0.29347826086956524
+RNS,Northampton General Hospital NHS Trust,6214,1680,587,0.27035725780495656,0.09446411329256517
+RX1,Nottingham University Hospitals NHS Trust,17792,8998,5281,0.5057329136690647,0.2968187949640288
+NT213,"Nuffield Health, Derby Hospital",7,0,0,0,0
+NT219,"Nuffield Health, Hereford Hospital",0,0,0,NA,NA
+NT226,"Nuffield Health, Leicester Hospital",5,5,5,1,1
+NT230,"Nuffield Health, North Staffordshire Hospital",1,0,0,0,0
+NT235,"Nuffield Health, Shrewsbury Hospital",0,0,0,NA,NA
+NT224,"Nuffield Health, Warwickshire Hospital",1,0,0,0,0
+NT242,"Nuffield Health, Wolverhampton Hospital",2,0,0,0,0
+NXV,Physiological Measurements Ltd,6967,70,1,0.01004736615472944,1.4353380221042057e-4
+NTP13,Practice Plus Group Hospital - Barlborough,106,16,9,0.1509433962264151,0.08490566037735849
+NVC17,Rowley Hall Hospital,46,18,1,0.391304347826087,0.021739130434782608
+RXK,Sandwell and West Birmingham Hospitals NHS Trust,9504,1844,553,0.19402356902356901,0.05818602693602694
+NXX,Scrivens Ltd,733,0,0,0,0
+RK5,Sherwood Forest Hospitals NHS Foundation Trust,7911,2690,1318,0.34003286563013524,0.16660346353179117
+R1D,Shropshire Community Health NHS Trust,452,296,98,0.6548672566371682,0.2168141592920354
+RJC,South Warwickshire NHS Foundation Trust,4525,133,38,0.029392265193370164,0.008397790055248619
+NPG11,Spamedica (Birmingham),0,0,0,NA,NA
+NPG21,Spamedica Coventry,0,0,0,NA,NA
+NPG23,Spamedica Derby,0,0,0,NA,NA
+NPG15,Spamedica Newcastle-Under-Lyme,0,0,0,NA,NA
+NPG20,Spamedica Wolverhampton,0,0,0,NA,NA
+NYN,Specsavers Hearcare Group Ltd,1091,0,0,0,0
+NT322,Spire Leicester Hospital,46,3,2,0.06521739130434782,0.043478260869565216
+NT321,Spire Little Aston Hospital,43,13,2,0.3023255813953488,0.046511627906976744
+NT30A,Spire Nottingham Hospital,13,2,1,0.15384615384615385,0.07692307692307693
+NT320,Spire Parkway Hospital,121,0,0,0,0
+NT301,Spire South Bank Hospital,35,22,14,0.6285714285714286,0.4
+RNA,The Dudley Group NHS Foundation Trust,7736,2050,296,0.26499482936918306,0.038262668045501554
+RL1,The Robert Jones and Agnes Hunt Orthopaedic Hospital NHS Foundation Trust,786,171,54,0.21755725190839695,0.06870229007633588
+RRJ,The Royal Orthopaedic Hospital NHS Foundation Trust,1101,231,3,0.2098092643051771,0.0027247956403269754
+RL4,The Royal Wolverhampton NHS Trust,12192,5894,2879,0.4834317585301837,0.23613845144356954
+RXW,The Shrewsbury and Telford Hospital NHS Trust,7873,3661,1711,0.4650069859011813,0.21732503492950592
+RWD,United Lincolnshire Hospitals NHS Trust,11276,4209,2616,0.37327066335579995,0.23199716211422491
+RRK,University Hospitals Birmingham NHS Foundation Trust,18613,7427,4064,0.39902218879277923,0.21834201901896524
+RKB,University Hospitals Coventry and Warwickshire NHS Trust,9382,980,201,0.10445534001279044,0.021424003410786614
+RTG,University Hospitals of Derby and Burton NHS Foundation Trust,15580,6835,1777,0.43870346598202825,0.11405648267008986
+RWE,University Hospitals of Leicester NHS Trust,22696,10051,4367,0.44285336623193516,0.1924127599577018
+RJE,University Hospitals of North Midlands NHS Trust,11568,1433,332,0.1238762102351314,0.028699861687413553
+RBK,Walsall Healthcare NHS Trust,4088,199,85,0.04867906066536203,0.020792563600782778
+NVC21,West Midlands Hospital,59,0,0,0,0
+NVC23,Woodland Hospital,233,65,4,0.27896995708154504,0.017167381974248927
+NVC40,Woodthorpe Hospital,389,0,0,0,0
+RWP,Worcestershire Acute Hospitals NHS Trust,8453,4428,1532,0.5238376907606767,0.18123743049804802
+RLQ,Wye Valley NHS Trust,6009,3246,1208,0.5401897154268597,0.20103178565485105
+NT933,Alliance Medical MRI Service - Essex,0,0,0,NA,NA
+RC9,Bedfordshire Hospitals NHS Foundation Trust,10335,2513,805,0.24315432994678277,0.07789066279632317
+NVC31,Blakelands Hospital,173,113,7,0.653179190751445,0.04046242774566474
+NT423,BMI - The Manor Hospital,8,0,0,0,0
+NT432,BMI - The Sandringham Hospital,0,0,0,NA,NA
+NT434,BMI - The Saxon Clinic,2,0,0,0,0
+NT446,BMI St Edmunds Hospital,3,0,0,0,0
+RGT,Cambridge University Hospitals NHS Foundation Trust,14438,9189,4565,0.6364454910652445,0.31617952625017315
+RYV,Cambridgeshire Community Services NHS Trust,604,427,257,0.706953642384106,0.42549668874172186
+RWH,East and North Hertfordshire NHS Trust,11022,3263,180,0.29604427508619124,0.01633097441480675
+RDE,East Suffolk and North Essex NHS Foundation Trust,8093,1433,455,0.17706660076609415,0.05622142592363771
+NVC06,Fitzwilliam Hospital,131,61,0,0.46564885496183206,0
+NYR,Healthshare Diagnostics,8695,3142,561,0.3613571017826337,0.0645198389879241
+RGP,James Paget University Hospitals NHS Foundation Trust,5556,1710,466,0.3077753779697624,0.08387329013678906
+RAJ,Mid and South Essex NHS Foundation Trust,21188,10706,5282,0.5052860109495941,0.24929205210496508
+RD8,Milton Keynes University Hospital NHS Foundation Trust,6325,1586,347,0.25075098814229246,0.05486166007905138
+RM1,Norfolk and Norwich University Hospitals NHS Foundation Trust,14151,7206,2909,0.5092219631121475,0.20556851105928908
+RGN,North West Anglia NHS Foundation Trust,10403,5167,2758,0.496683648947419,0.26511583197154664
+NT204,"Nuffield Health, Brentwood Hospital",0,0,0,NA,NA
+NT209,"Nuffield Health, Cambridge Hospital",0,0,0,NA,NA
+NVC13,Oaks Hospital,5,2,1,0.4,0.2
+NVC15,Pinehill Hospital,18,1,0,0.05555555555555555,0
+NQA,Provide,190,179,174,0.9421052631578948,0.9157894736842105
+NVC19,Rivers Hospital,3,0,0,0,0
+RGM,Royal Papworth Hospital NHS Foundation Trust,737,72,6,0.09769335142469471,0.008141112618724558
+NPG19,Spamedica Bedford,0,0,0,NA,NA
+NPG16,Spamedica Chelmsford,0,0,0,NA,NA
+NT315,Spire Bushey Hospital,109,2,1,0.01834862385321101,0.009174311926605505
+NT317,Spire Cambridge Lea Hospital,79,0,0,0,0
+NT316,Spire Harpenden Hospital,92,9,4,0.09782608695652174,0.043478260869565216
+NT319,Spire Hartswood Hospital,28,16,0,0.5714285714285714,0
+NT313,Spire Wellesley Hospital,150,24,1,0.16,0.006666666666666667
+NVC18,Springfield Hospital,101,22,8,0.21782178217821782,0.07920792079207921
+NDL01,Suffolk GP Federation - Woodbridge,1078,149,7,0.13821892393320964,0.006493506493506494
+RQW,The Princess Alexandra Hospital NHS Trust,6849,3348,1665,0.4888304862023653,0.24310118265440211
+RCX,"The Queen Elizabeth Hospital, King's Lynn, NHS Foundation Trust",6215,3647,1896,0.5868061142397426,0.3050683829444891
+RWG,West Hertfordshire Hospitals NHS Trust,5932,1835,270,0.3093391773432232,0.04551584625758597
+RGR,West Suffolk NHS Foundation Trust,5628,2750,878,0.4886282871357498,0.15600568585643212
+RBS,Alder Hey Children's NHS Foundation Trust,191,11,0,0.05759162303664921,0
+NRP,Beacon Medical Services Group Limited,25,0,0,0,0
+RXL,Blackpool Teaching Hospitals NHS Foundation Trust,4399,1179,733,0.2680154580586497,0.16662877926801545
+NT401,BMI - The Alexandra Hospital,79,0,0,0,0
+NT403,BMI - The Beardwood Hospital,83,0,0,0,0
+NT404,BMI - The Beaumont Hospital,80,0,0,0,0
+NT420,BMI - The Highfield Hospital,77,6,0,0.07792207792207792,0
+NT497,BMI Gisburne Park Hospital,0,0,0,NA,NA
+NT449,BMI The Lancaster Hospital,0,0,0,NA,NA
+RMC,Bolton NHS Foundation Trust,4353,1983,1361,0.45554789800137835,0.3126579370549047
+RY2,Bridgewater Community Healthcare NHS Foundation Trust,322,141,18,0.43788819875776397,0.055900621118012424
+RJR,Countess of Chester Hospital NHS Foundation Trust,4704,1252,708,0.266156462585034,0.15051020408163265
+DKE,Curx Health Limited,67,0,0,0,0
+NEM,Diagnostic Healthcare Ltd,2648,0,0,0,0
+RJN,East Cheshire NHS Trust,4636,2614,1709,0.5638481449525453,0.3686367558239862
+RXR,East Lancashire Hospitals NHS Trust,12958,2781,1286,0.21461645315635128,0.09924371044914339
+NVC05,Euxton Hall Hospital,311,147,33,0.47266881028938906,0.10610932475884244
+NVG01,Fairfield Hospital,83,12,0,0.14457831325301204,0
+NVC07,Fulwood Hall Hospital,267,129,18,0.48314606741573035,0.06741573033707865
+NLE06,Glodwick Primary Care Centre,338,92,3,0.27218934911242604,0.008875739644970414
+NFO,Kleyn Healthcare,0,0,0,NA,NA
+RW5,Lancashire & South Cumbria NHS Foundation Trust,197,7,1,0.03553299492385787,0.005076142131979695
+RXN,Lancashire Teaching Hospitals NHS Foundation Trust,11236,5207,2682,0.46342114631541476,0.23869704521181914
+RBQ,Liverpool Heart and Chest Hospital NHS Foundation Trust,857,156,16,0.18203033838973162,0.01866977829638273
+REM,Liverpool University Hospitals NHS Foundation Trust,10653,2664,960,0.2500704027034638,0.09011546043368066
+REP,Liverpool Women's NHS Foundation Trust,359,58,14,0.1615598885793872,0.03899721448467967
+NN5,Manchester Surgical Services Ltd,20,2,0,0.1,0
+R0A,Manchester University NHS Foundation Trust,19637,5320,2511,0.27091714620359525,0.12787085603707288
+C81081,Manor House Surgery,43,2,0,0.046511627906976744,0
+NBG,Mediscan Diagnostics Services Limited,3014,0,0,0,0
+RBT,Mid Cheshire Hospitals NHS Foundation Trust,8154,3987,804,0.488962472406181,0.09860191317144959
+NV10Y,North West Cats - Inhealth Pathway Management Centre,2067,901,424,0.4358974358974359,0.20512820512820512
+NT210,"Nuffield Health, The Grosvenor Hospital, Chester",1,0,0,0,0
+NVC12,Oaklands Hospital,90,20,3,0.2222222222222222,0.03333333333333333
+NV6,PDS Medical Ltd,54,0,0,0,0
+RW6,Pennine Acute Hospitals NHS Trust,20891,12465,7141,0.5966684218084343,0.3418218371547556
+NVC16,Renacres Hospital,394,200,20,0.5076142131979695,0.050761421319796954
+RM3,Salford Royal NHS Foundation Trust,11936,5949,1848,0.4984081769436997,0.15482573726541554
+NFB,Scan Assure Medical Ultrasound Limited,515,12,0,0.02330097087378641,0
+RVY,Southport and Ormskirk Hospital NHS Trust,3010,513,134,0.17043189368770764,0.04451827242524917
+NPG13,Spamedica - Skelmersdale,0,0,0,NA,NA
+NPG08,Spamedica (Bolton),0,0,0,NA,NA
+NPG01,Spamedica (Manchester),0,0,0,NA,NA
+NPG02,Spamedica (Wirral),0,0,0,NA,NA
+NPG06,Spamedica Liverpool,0,0,0,NA,NA
+NPG17,Spamedica Preston,0,0,0,NA,NA
+NPG14,Spamedica Widnes,0,0,0,NA,NA
+NT324,Spire Cheshire Hospital,131,21,11,0.16030534351145037,0.08396946564885496
+NT347,Spire Fylde Coast Hospital,122,51,9,0.4180327868852459,0.07377049180327869
+NT337,Spire Liverpool Hospital,406,207,56,0.5098522167487685,0.13793103448275862
+NT327,Spire Manchester Hospital,39,0,0,0,0
+NT325,Spire Murrayfield Hospital,41,22,4,0.5365853658536586,0.0975609756097561
+NT339,Spire Regency Hospital,194,17,5,0.08762886597938144,0.02577319587628866
+RBN,St Helens and Knowsley Teaching Hospitals NHS Trust,9858,3419,520,0.3468249137756137,0.052749036315682694
+RWJ,Stockport NHS Foundation Trust,11009,5853,3635,0.5316559178853665,0.3301843945862476
+RMP,Tameside and Glossop Integrated Care NHS Foundation Trust,3642,956,282,0.2624931356397584,0.07742998352553541
+RBV,The Christie NHS Foundation Trust,390,55,25,0.14102564102564102,0.0641025641025641
+REN,The Clatterbridge Cancer Centre NHS Foundation Trust,7,0,0,0,0
+NPF01,The Industrial Diagnostics Company,22,10,8,0.45454545454545453,0.36363636363636365
+RET,The Walton Centre NHS Foundation Trust,1046,2,1,0.0019120458891013384,9.560229445506692e-4
+RTX,University Hospitals of Morecambe Bay NHS Foundation Trust,5625,464,89,0.08248888888888889,0.015822222222222224
+RWW,Warrington and Halton Teaching Hospitals NHS Foundation Trust,9475,4240,1255,0.4474934036939314,0.1324538258575198
+RY7,Wirral Community Health and Care NHS Foundation Trust,138,0,0,0,0
+RBL,Wirral University Teaching Hospital NHS Foundation Trust,5181,308,32,0.059447983014861996,0.006176413819725921
+RRF,"Wrightington, Wigan and Leigh NHS Foundation Trust",5416,1035,402,0.19110044313146232,0.0742245199409158
+AAF,360 Care Ltd,580,63,0,0.10862068965517241,0
+RCF,Airedale NHS Foundation Trust,2742,486,197,0.1772428884026258,0.07184536834427425
+RFF,Barnsley Hospital NHS Foundation Trust,3831,2146,879,0.5601670582093449,0.22944400939702428
+NT440,BMI - Thornbury Hospital,42,0,0,0,0
+NT447,BMI The Duchy Hospital,4,0,0,0,0
+NT448,BMI The Huddersfield Hospital,9,0,0,0,0
+NT457,BMI Woodlands Hospital,58,0,0,0,0
+RAE,Bradford Teaching Hospitals NHS Foundation Trust,7423,2699,1684,0.3635996227940186,0.2268624545332076
+RWY,Calderdale and Huddersfield NHS Foundation Trust,8476,3607,1971,0.4255545068428504,0.23253893345917886
+NVC28,Clifton Park Hospital,0,0,0,NA,NA
+NVC29,Cobalt Hospital,89,0,0,0,0
+RXP,County Durham and Darlington NHS Foundation Trust,7177,376,157,0.05238957781802982,0.02187543541869862
+RP5,Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust,12781,5599,2049,0.4380721383303341,0.1603160942023316
+RR7,Gateshead Health NHS Foundation Trust,4432,1568,973,0.35379061371841153,0.21953971119133575
+A84031,Greystoke Surgery,0,0,0,NA,NA
+RCD,Harrogate and District NHS Foundation Trust,3377,891,205,0.26384364820846906,0.060704767545158425
+RWA,Hull University Teaching Hospitals NHS Trust,10449,4577,2411,0.4380323475930711,0.23073978371135995
+RY6,Leeds Community Healthcare NHS Trust,879,623,300,0.7087599544937428,0.3412969283276451
+RR8,Leeds Teaching Hospitals NHS Trust,14461,4547,1221,0.31443192033745937,0.08443399488278819
+RXF,Mid Yorkshire Hospitals NHS Trust,5622,313,114,0.05567413731768054,0.020277481323372464
+NX2,Minor Ops Ltd,21,20,1,0.9523809523809523,0.047619047619047616
+RNN,North Cumbria Integrated Care NHS Foundation Trust,11894,7243,3552,0.6089625021019002,0.2986379687237262
+RVW,North Tees and Hartlepool NHS Foundation Trust,4386,414,71,0.09439124487004104,0.016187870497036023
+RJL,Northern Lincolnshire and Goole NHS Foundation Trust,18685,8460,3434,0.45276960128445276,0.1837837837837838
+RTF,Northumbria Healthcare NHS Foundation Trust,8783,567,118,0.06455652965956962,0.013435044973243767
+NQH,Novus Health Ltd,0,0,0,NA,NA
+NT225,"Nuffield Health, Leeds Hospital",10,2,0,0.2,0
+NT229,"Nuffield Health, Newcastle Upon Tyne Hospital",1,0,0,0,0
+NT237,"Nuffield Health, Tees Hospital",22,3,0,0.13636363636363635,0
+NT245,"Nuffield Health, York Hospital",8,4,4,0.5,0.5
+NVC14,Park Hill Hospital,0,0,0,NA,NA
+NEQ,Phoenix Health Solutions Limited HQ,239,20,0,0.08368200836820083,0
+NEY,Pioneer Healthcare Limited,65,9,0,0.13846153846153847,0
+RCU,Sheffield Children's NHS Foundation Trust,1220,417,143,0.3418032786885246,0.11721311475409836
+RHQ,Sheffield Teaching Hospitals NHS Foundation Trust,12008,2466,1348,0.205363091272485,0.11225849433710859
+RTR,South Tees Hospitals NHS Foundation Trust,7749,1748,810,0.2255774938701768,0.10452961672473868
+R0B,South Tyneside and Sunderland NHS Foundation Trust,8299,3187,1238,0.3840221713459453,0.1491745993493192
+RXG,South West Yorkshire Partnership NHS Foundation Trust,151,85,0,0.5629139072847682,0
+NPG10,Spamedica (Sheffiled),0,0,0,NA,NA
+NPG12,Spamedica Eccleshill Treatment Centre,0,0,0,NA,NA
+NPG07,Spamedica Eye Hospital (Wakefield),0,0,0,NA,NA
+NPG18,Spamedica Hull,0,0,0,NA,NA
+NPG22,Spamedica Stockton-On-Tees,0,0,0,NA,NA
+NT348,Spire Elland Hospital,40,20,0,0.5,0
+NT351,Spire Hull and East Riding Hospital,179,42,17,0.2346368715083799,0.09497206703910614
+NT332,Spire Leeds Hospital,167,5,2,0.029940119760479042,0.011976047904191617
+NT350,Spire Methley Park Hospital,70,17,2,0.24285714285714285,0.02857142857142857
+NT333,Spire Washington Hospital,253,14,2,0.05533596837944664,0.007905138339920948
+NVC0R,Tees Valley Hospital,162,0,0,0,0
+AJ8,The Grange Medical Centre HQ,124,13,0,0.10483870967741936,0
+NID,The Living Care Group,0,0,0,NA,NA
+RTD,The Newcastle Upon Tyne Hospitals NHS Foundation Trust,10681,2523,727,0.2362138376556502,0.068064787941204
+RFR,The Rotherham NHS Foundation Trust,5075,1990,678,0.3921182266009852,0.1335960591133005
+NVC20,The Yorkshire Clinic,229,68,9,0.29694323144104806,0.039301310043668124
+NN4,Tyneside Surgical Services Ltd,53,18,4,0.33962264150943394,0.07547169811320754
+AGA,Westcliffe Health Innovations Ltd,81,38,19,0.4691358024691358,0.2345679012345679
+RCB,York Teaching Hospital NHS Foundation Trust,7007,2736,1162,0.39046667618096187,0.16583416583416583
+NKO,Yorkshire Health Solutions Ltd,194,0,0,0,0

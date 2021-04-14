@@ -8,10 +8,10 @@ library(janitor)
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
 
-# Date: January 2021
+# Date: February 2021
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/January-2021-AE-by-provider-O64J2.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/February-2021-AE-by-provider-kzsBY.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -300,10 +300,10 @@ beds_days %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/cancer-waiting-times/
 
-# Date: December 2020
+# Date: April 2021
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Cancer-Waiting-Times-Apr-Dec-2020-Data-Extract-Provider.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/Cancer-Waiting-Times-Apr-Jan-2021-Data-Extract-Provider.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -320,7 +320,7 @@ cancer_wait_times <-
 # Filter latest month
 cancer_wait_times <-
   cancer_wait_times %>%
-  filter(month == "DEC")
+  filter(month == "APR")
 
 # Drop cols
 cancer_wait_times <-
@@ -362,10 +362,10 @@ cancer_wait_times %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/
 
-# Date: December 2020
+# Date: January 2021
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Monthly-Diagnostics-Web-File-Provider-December-2020_C9B31.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/Monthly-Diagnostics-Web-File-Provider-January-2021-8DKMV.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -406,13 +406,13 @@ diagnostics %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/outpatient-referrals/
 
-# Date: Decemeber 2020
+# Date: January 2021
 
 # Description:
 # - Count of referrals for first consultant-led outpatient appointments
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/MRR_Prov-Web-file-December-20-EZJ4P.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/MRR_Prov-Web-file-January-21-PCOTL.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -445,14 +445,14 @@ outpatient_referrals %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/
 
-# Date: December 2020
+# Date: January 2021
 
 # Description:
 # - Monitors the length of time from consultant-led referral through to elective
 #   treatment.
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/02/Full-CSV-data-file-Dec20-ZIP-2705K-98040.zip",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/Full-CSV-data-file-Jan21-ZIP-2714K-24158.zip",
   write_disk(tf <- tempfile(fileext = ".zip"))
 )
 unzip(tf, exdir = tempdir())
