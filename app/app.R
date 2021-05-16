@@ -1,5 +1,6 @@
 # ---- Load libraries ----
 library(shiny)
+library(shinyjs)
 library(sf)
 library(leaflet)
 library(dplyr)
@@ -51,6 +52,7 @@ icons <-
   )
 # ---- UI ----
 ui <- fluidPage(
+  useShinyjs(),
 
   # Use colours from BRC style guide:
   # - https://design-system.redcross.org.uk/styles/colours/
@@ -179,23 +181,6 @@ ui <- fluidPage(
           width = 12,
           leafletOutput("map", height = 670)
         )
-      ),
-
-      # - Single plot under map -
-      fluidRow(
-        column(
-          width = 12,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Ambulance Response Times"),
-            h6("Latest data: Feb 2021"),
-            tabsetPanel(
-              tabPanel("Plot", echarts4rOutput("ambulance_plot", height = "200px")),
-              tabPanel("Data", DTOutput("ambulance_table"))
-            )
-          )
-        )
       )
     ),
 
@@ -208,6 +193,7 @@ ui <- fluidPage(
 
         # - Col 1 -
         column(
+          id = "ae_box",
           width = 6,
           align = "center",
           tags$div(
@@ -223,6 +209,7 @@ ui <- fluidPage(
 
         # - Col 2 -
         column(
+          id = "beds_box",
           width = 6,
           align = "center",
           tags$div(
@@ -238,6 +225,7 @@ ui <- fluidPage(
 
         # - Col 1 -
         column(
+          id = "cancer_box",
           width = 6,
           align = "center",
           tags$div(
@@ -253,6 +241,7 @@ ui <- fluidPage(
 
         # - Col 2 -
         column(
+          id = "diagnostic_box",
           width = 6,
           align = "center",
           tags$div(
@@ -268,6 +257,7 @@ ui <- fluidPage(
         
         # - Col 1 -
         column(
+          id = "outpatient_box",
           width = 6,
           align = "center",
           tags$div(
@@ -283,6 +273,7 @@ ui <- fluidPage(
 
         # - Col 2 -
         column(
+          id = "rtt_box",
           width = 6,
           align = "center",
           tags$div(
@@ -292,6 +283,21 @@ ui <- fluidPage(
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("rtt_plot", height = "200px")),
               tabPanel("Data", DTOutput("rtt_table"))
+            )
+          )
+        ),
+        
+        column(
+          id = "ambulance_box",
+          width = 12,
+          align = "center",
+          tags$div(
+            id = "card",
+            h4("Ambulance Response Times"),
+            h6("Latest data: Feb 2021"),
+            tabsetPanel(
+              tabPanel("Plot", echarts4rOutput("ambulance_plot", height = "200px")),
+              tabPanel("Data", DTOutput("ambulance_table"))
             )
           )
         )
@@ -337,6 +343,18 @@ server <- function(input, output, session) {
         pull(org_code) %>%
         selected_trust()
     }
+    
+    # Debug
+    # print(selected_trust())
+
+    # Show/hide indicators based on whether there's any data for the currently selected Trust
+    toggle(id = "ae_box",         condition = !ae %>% filter(`Trust Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "beds_box",       condition = !beds %>% filter(`Trust Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "cancer_box",     condition = !cancer_wait_times %>% filter(`Trust Code` == selected_trust()) %>% pull(Standard) %>% is.na())
+    toggle(id = "diagnostic_box", condition = !diagnostic_wait_times %>% filter(`Trust Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "outpatient_box", condition = !outpatient_referrals %>% filter(`Trust Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "rtt_box",        condition = !rtt_long_form %>% filter(`Trust Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "ambulance_box",  condition = !ambulance %>% filter(`Trust Code` == selected_trust()) %>% pull(Category) %>% is.na())
   })
 
   observeEvent(input$map_marker_click$id, {
