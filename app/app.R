@@ -234,11 +234,7 @@ ui <- fluidPage(
               tabPanel("Data", DTOutput("beds_table"))
             )
           )
-        )
-      ),
-
-      # - Row 2 -
-      fluidRow(
+        ),
 
         # - Col 1 -
         column(
@@ -268,12 +264,8 @@ ui <- fluidPage(
               tabPanel("Data", DTOutput("diagnostic_table"))
             )
           )
-        )
-      ),
-
-      # - Row 3 -
-      fluidRow(
-
+        ),
+        
         # - Col 1 -
         column(
           width = 6,
