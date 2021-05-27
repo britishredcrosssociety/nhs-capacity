@@ -8,10 +8,10 @@ library(janitor)
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
 
-# Date: February 2021
+# Date: April 2021
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/February-2021-AE-by-provider-kzsBY.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/April-2021-AE-by-provider-PP2Gw.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -76,10 +76,10 @@ ae %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/ambulance-quality-indicators/
 
-# Date: February 2021
+# Date: April 2021
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/AmbSYS-Feb21.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/AmbSYS-Apr21.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -175,14 +175,14 @@ eng_ambo %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/
 
-# Date: December 2020
+# Date: Jan-March 2021
 
 # Note: In general hospitals will experience capacity pressures at lower overall
 # occupancy rates than would previously have been the case.
 
 # - Night -
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Overnight-Web_File-Final-DE5WC.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/Beds-Open-Overnight-Web_File-Final-Q4-2020-21-Final-THSDF.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -240,7 +240,7 @@ beds_nights %>%
 
 # - Day -
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2020/11/Beds-Open-Day-Only-Web_File-Final-DE5WC.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/Beds-Open-Day-Only-Web_File-Final-Q4-2020-21-Final-THSDF.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -300,10 +300,10 @@ beds_days %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/cancer-waiting-times/
 
-# Date: April 2021
+# Date: March 2021
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/Cancer-Waiting-Times-Apr-Jan-2021-Data-Extract-Provider.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/Cancer-Waiting-Times-Apr-Mar-2021-Data-Extract-Provider.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -318,9 +318,16 @@ cancer_wait_times <-
   clean_names()
 
 # Filter latest month
+latest_period <-
+  cancer_wait_times %>%
+  count(period) %>%
+  slice_tail(n = 1) %>%
+  pull(period)
+
 cancer_wait_times <-
   cancer_wait_times %>%
-  filter(month == "APR")
+  filter(period == latest_period) %>%
+  filter(month == "MAR")
 
 # Drop cols
 cancer_wait_times <-
@@ -362,10 +369,10 @@ cancer_wait_times %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/diagnostics-waiting-times-and-activity/
 
-# Date: January 2021
+# Date: March 2021
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/Monthly-Diagnostics-Web-File-Provider-January-2021-8DKMV.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/Monthly-Diagnostics-Web-File-Provider-March-2021-WT36C.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -406,13 +413,13 @@ diagnostics %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/outpatient-referrals/
 
-# Date: January 2021
+# Date: March 2021
 
 # Description:
 # - Count of referrals for first consultant-led outpatient appointments
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/MRR_Prov-Web-file-January-21-PCOTL.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/MRR_Prov-Web-file-March-21-ZZOI6.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -445,14 +452,14 @@ outpatient_referrals %>%
 # Source:
 # - https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/
 
-# Date: January 2021
+# Date: March 2021
 
 # Description:
 # - Monitors the length of time from consultant-led referral through to elective
 #   treatment.
 
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/03/Full-CSV-data-file-Jan21-ZIP-2714K-24158.zip",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/Full-CSV-data-file-Mar21-ZIP-2888K-76325.zip",
   write_disk(tf <- tempfile(fileext = ".zip"))
 )
 unzip(tf, exdir = tempdir())
@@ -476,7 +483,10 @@ rtt <-
   rtt %>%
   rowwise() %>%
   mutate(
-    gt_18_weeks_sum_1 = sum(c_across(gt_18_to_19_weeks_sum_1:gt_52_weeks_sum_1), na.rm = TRUE)
+    gt_18_weeks_sum_1 = sum(
+      c_across(gt_18_to_19_weeks_sum_1:gt_52_weeks_sum_1),
+      na.rm = TRUE
+    )
   ) %>%
   ungroup()
 
