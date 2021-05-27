@@ -228,7 +228,7 @@ ui <- fluidPage(
           tags$div(
             id = "card",
             h4("Bed Occupancies (Day & Night)"),
-            h6("Latest data: Jan-Mar 2020"),
+            h6("Latest data: Jan-Mar 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("beds_plot", height = "200px")),
               tabPanel("Data", DTOutput("beds_table"))
