@@ -208,17 +208,24 @@ trust_performance <-
 stp_names <- read_sf("https://opendata.arcgis.com/datasets/08d5070b4f324560aeef857e26701f77_0.geojson") %>% 
   st_drop_geometry()
 
-# List STPs/ICSs containing the worst-performing Trusts (with quintiles of 5 on three or more performance indicators)
-trust_performance %>% 
+ics_performance <- 
+  trust_performance %>% 
   left_join(geographr::lookup_trust_stp, by = c("trust_code" = "nhs_trust_code")) %>% 
-  left_join(stp_names, by = c("stp_code" = "STP20CDH")) %>% 
-  
+  left_join(stp_names, by = c("stp_code" = "STP20CDH"))
+
+# List STPs/ICSs containing the worst-performing Trusts nationwide (with quintiles of 5 on three or more performance indicators)
+ics_performance %>% 
   filter(sum_of_5s >= 3) %>% 
   
   select(STP20NM) %>% 
   distinct() %>% 
   arrange(STP20NM)
 
+# List worst-performing Trusts in each STP/ICS
+# ics_performance %>% 
+#   group_by(STP20CD, STP20NM) %>% 
+#   arrange(desc(sum_of_5s), desc(bin_sum)) %>% 
+#   slice(3)
 
 
 # TODO:
