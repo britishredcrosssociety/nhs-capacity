@@ -1,5 +1,8 @@
 ##
-## Wales hospital data
+## Wales hospital / Health Board data
+##
+## Missing indicators:
+## - DToC - no longer captured/updated
 ##
 library(jsonlite)
 library(httr)
@@ -7,6 +10,7 @@ library(RCurl)
 library(dplyr)
 library(readr)
 library(tidyr)
+library(lubridate)
 
 ##
 ## Helper function to download from Stats Wales
@@ -79,7 +83,7 @@ dtoc_wide <-
 dtoc_wide %>% 
   write_csv("data/wales-dtoc.csv")
 
-# ---- NHS beds by organisation and site ----
+# ---- NHS beds by organisation and site (yearly) ----
 # Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Activity/NHS-Beds
 beds_all <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0309")
 
@@ -98,7 +102,49 @@ beds_wide <-
   pivot_wider(names_from = Year, values_from = Data)
 
 beds_wide %>% 
-  write_csv("data/wales-beds.csv")
+  write_csv("data/wales-beds-yearly.csv")
+
+# ---- Daily bed occupancy data ----
+# Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Activity/nhs-activity-and-capacity-during-the-coronavirus-pandemic/nhsbeds-by-date-localhealthboard
+beds_daily_all <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0092")
+
+beds_daily <- 
+  beds_daily_all %>% 
+  filter(
+    str_detect(Date_Code, "^202106") & 
+      LocalHealthBoard_ItemName_ENG != "Wales" & 
+      HospitalType_Code == "NHS" &
+      Indicator_ItemName_ENG %in% c("General and acute beds available&#10;", "General and acute beds occupied&#10;") 
+  )
+
+beds_daily_wide <- 
+  beds_daily %>% 
+  as_tibble() %>% 
+  select(Day = Date_Code, HB = LocalHealthBoard_ItemName_ENG, Indicator_ItemName_ENG, Data) %>% 
+
+  mutate(
+    Data = as.numeric(Data),
+    Day = ymd(Day)
+  ) %>% 
+    
+  pivot_wider(names_from = Indicator_ItemName_ENG, values_from = Data) %>% 
+  
+  # Calculate daily % occupancy
+  group_by(Day, HB) %>% 
+  mutate(`% general and acute beds occupied` = `General and acute beds occupied&#10;` / `General and acute beds available&#10;`) %>% 
+  ungroup() %>% 
+  
+  # Just keep month and year for the date column now
+  mutate(Date = paste0(month.name[month(Day)], " ", year(Day))) %>% 
+  
+  # Calculate average % occupancy over the month
+  group_by(Date, HB) %>% 
+  summarise(`% general and acute beds occupied` = mean(`% general and acute beds occupied`, na.rm = TRUE)) %>% 
+  ungroup() 
+
+beds_daily_wide %>% 
+  write_csv("data/wales-beds-monthly.csv")
+
 
 # ---- Emergency ambulance calls and responses to red calls, by LHB and month ----
 # Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Performance/Ambulance-Services
