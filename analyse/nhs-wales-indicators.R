@@ -163,3 +163,25 @@ ambo_wide <-
 
 ambo_wide %>% 
   write_csv("data/wales-ambo.csv")
+
+# ---- Cancer ----
+# Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Waiting-Times/Cancer-Waiting-Times/Monthly/suspectedcancerpathwayclosedpathways-by-localhealthboard-tumoursite-agegroup-gender-measure-month
+cancer_all <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0055")
+
+cancer <- 
+  cancer_all %>% 
+  mutate(Month_SortOrder = as.integer(Month_SortOrder)) %>% 
+  filter(
+    Month_SortOrder == max(Month_SortOrder) &
+      Localhealthboard_ItemName_ENG != "Wales" &
+      Agegroup_ItemName_ENG == "Total" &
+      Sex_ItemName_ENG == "Total" &
+      Tumoursite_ItemName_ENG == "All sites" &
+      str_detect(Measure_ItemName_ENG, "percentage")
+  )
+
+cancer %>% 
+  as_tibble() %>% 
+  select(Date = Month_ItemName_ENG, HB_code = Localhealthboard_Code, HB = Localhealthboard_ItemName_ENG, `% starting treatment within 62 days` = Data) %>% 
+  
+  write_csv("data/wales-cancer.csv")
