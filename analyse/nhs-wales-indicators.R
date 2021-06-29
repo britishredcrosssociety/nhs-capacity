@@ -183,3 +183,14 @@ cancer %>%
   select(Date = Month_ItemName_ENG, HB_code = Localhealthboard_Code, HB = Localhealthboard_ItemName_ENG, `% starting treatment within 62 days` = Data) %>% 
   
   write_csv("data/wales-cancer.csv")
+
+# ---- Referrals to treatment ----
+# Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Waiting-Times/Referral-to-Treatment/patientpathwayswaitingtostarttreatment-by-month-groupedweeks-treatmentfunction
+rtt_all <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0083")
+
+rtt_all %>% 
+  filter(
+    
+  )
+
+
