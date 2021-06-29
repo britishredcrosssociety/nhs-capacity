@@ -1,8 +1,8 @@
-Date,HB,Community care arrangements,Community care assessment,Disagreements,Healthcare arrangements,Healthcare assessment,Legal / Financial,Other,"Protection issues, unable to discharge to safe environment",Selection of care home,Waiting for availability of care home,Principal reason not agreed
-February 2020,Aneurin Bevan HB,31,4,5,7,2,2,6,5,8,2,NA
-February 2020,Betsi Cadwaladr University HB,20,NA,4,11,8,3,2,5,11,17,NA
-February 2020,Cardiff and Vale University HB,10,2,1,3,1,NA,6,1,3,3,NA
-February 2020,Cwm Taf Morgannwg University Health Board,25,23,3,4,5,NA,5,10,9,9,1
-February 2020,Hywel Dda HB,39,NA,2,6,7,NA,2,NA,1,8,NA
-February 2020,Powys Teaching HB,11,1,NA,NA,NA,NA,NA,NA,1,8,NA
-February 2020,Swansea Bay University Health Board,31,5,1,13,9,NA,2,7,8,9,NA
+Date,HB_code,HB,Community care arrangements,Disagreements,Healthcare arrangements,Healthcare assessment,Legal / Financial,Other,"Protection issues, unable to discharge to safe environment",Selection of care home,Waiting for availability of care home,Community care assessment,Principal reason not agreed
+February 2020,7A1,Betsi Cadwaladr University HB,20,4,11,8,3,2,5,11,17,NA,NA
+February 2020,7A2,Hywel Dda HB,39,2,6,7,NA,2,NA,1,8,NA,NA
+February 2020,7A3,Swansea Bay University Health Board,31,1,13,9,NA,2,7,8,9,5,NA
+February 2020,7A4,Cardiff and Vale University HB,10,1,3,1,NA,6,1,3,3,2,NA
+February 2020,7A5,Cwm Taf Morgannwg University Health Board,25,3,4,5,NA,5,10,9,9,23,1
+February 2020,7A6,Aneurin Bevan HB,31,5,7,2,2,6,5,8,2,4,NA
+February 2020,7A7,Powys Teaching HB,11,NA,NA,NA,NA,NA,NA,1,8,1,NA

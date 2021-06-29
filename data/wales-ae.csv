@@ -1,33 +1,33 @@
-Date,Hospital,Non-breaches,Attendances,Percentages
-May 2021,Aneurin Bevan University Health Board,10368,14788,70.1109
-May 2021,Cardiff and Vale University Health Board,8897,11595,76.7313
-May 2021,Ysbyty Ystrad Fawr,1972,2025,97.3827
-May 2021,Hywel Dda University Health Board,9816,13281,73.91
-May 2021,Ysbyty Gwynedd,3178,4641,68.4766
-May 2021,University Hospital of Wales,8494,11192,75.8934
-May 2021,Swansea Bay University LHB&#10;,7906,10773,73.3871
-May 2021,Betsi Cadwaladr University Health Board,12746,19669,64.8024
-May 2021,Powys Teaching Health Board,942,942,100
-May 2021,Withybush General Hospital,2316,3612,64.1196
-May 2021,Wrexham Maelor Hospital,3100,5590,55.4561
-May 2021,Cwm Taf Morgannwg LHB,11250,16141,69.6982
-May 2021,Wales,61925,87189,71.0238
-May 2021,Bronglais General Hospital,1974,2515,78.489
-May 2021,Aneurin Bevan LHB MIUs,641,660,97.1212
-May 2021,Cardiff and Vale University LHB MIUs,403,403,100
-May 2021,Cwm Taf LHB MIUs,764,769,99.3498
-May 2021,Betsi Cadwaladr University LHB MIUs,3244,3312,97.9468
-May 2021,Powys Teaching LHB MIUs,942,942,100
-May 2021,Llandudno General Hospital,753,771,97.6653
-May 2021,Morriston Hospital,4563,7396,61.6955
-May 2021,Prince Charles Hospital,3040,5204,58.4166
-May 2021,Prince Philip Hospital,2294,2468,92.949700000000007
-May 2021,Nevill Hall Hospital,1450,1507,96.2176
-May 2021,Glangwili General Hospital,2670,4123,64.7586
-May 2021,Neath Port Talbot Hospital,3343,3377,98.9931
-May 2021,Hywel Dda LHB MIUs,562,563,99.8223
-May 2021,The Royal Glamorgan Hospital,4115,5271,78.0686
-May 2021,The Grange University Hospital,3673,7835,46.8793
-May 2021,Ysbyty Glan Clwyd,2471,5355,46.1437
-May 2021,Princess of Wales Hospital,3331,4897,68.0212
-May 2021,Royal Gwent Hospital,2632,2761,95.3277
+Date,Hospital_code,Hospital,Non-breaches,Attendances,Percentages
+May 2021,7A6W11000028,Aneurin Bevan University Health Board,10368,14788,70.1109
+May 2021,7A4W11000029,Cardiff and Vale University Health Board,8897,11595,76.7313
+May 2021,7A67A6AV,Ysbyty Ystrad Fawr,1972,2025,97.3827
+May 2021,7A2W11000025,Hywel Dda University Health Board,9816,13281,73.91
+May 2021,7A17A1AU,Ysbyty Gwynedd,3178,4641,68.4766
+May 2021,7A47A4BV,University Hospital of Wales,8494,11192,75.8934
+May 2021,7A3W11000031,Swansea Bay University LHB&#10;,7906,10773,73.3871
+May 2021,7A1W11000023,Betsi Cadwaladr University Health Board,12746,19669,64.8024
+May 2021,7A7W11000024,Powys Teaching Health Board,942,942,100
+May 2021,7A27A2BL,Withybush General Hospital,2316,3612,64.1196
+May 2021,7A17A1A4,Wrexham Maelor Hospital,3100,5590,55.4561
+May 2021,7A5W11000030,Cwm Taf Morgannwg LHB,11250,16141,69.6982
+May 2021,XXXW92000004,Wales,61925,87189,71.0238
+May 2021,7A27A2AJ,Bronglais General Hospital,1974,2515,78.489
+May 2021,7A67A600,Aneurin Bevan LHB MIUs,641,660,97.1212
+May 2021,7A47A400,Cardiff and Vale University LHB MIUs,403,403,100
+May 2021,7A57A500,Cwm Taf LHB MIUs,764,769,99.3498
+May 2021,7A17A100,Betsi Cadwaladr University LHB MIUs,3244,3312,97.9468
+May 2021,7A77A700,Powys Teaching LHB MIUs,942,942,100
+May 2021,7A17A1AV,Llandudno General Hospital,753,771,97.6653
+May 2021,7A37A3C7,Morriston Hospital,4563,7396,61.6955
+May 2021,7A57A5B3,Prince Charles Hospital,3040,5204,58.4166
+May 2021,7A27A2AL,Prince Philip Hospital,2294,2468,92.949700000000007
+May 2021,7A67A6AM,Nevill Hall Hospital,1450,1507,96.2176
+May 2021,7A27A2AG,Glangwili General Hospital,2670,4123,64.7586
+May 2021,7A37A3CJ,Neath Port Talbot Hospital,3343,3377,98.9931
+May 2021,7A27A200,Hywel Dda LHB MIUs,562,563,99.8223
+May 2021,7A57A5B1,The Royal Glamorgan Hospital,4115,5271,78.0686
+May 2021,7A67A6G9,The Grange University Hospital,3673,7835,46.8793
+May 2021,7A17A1A1,Ysbyty Glan Clwyd,2471,5355,46.1437
+May 2021,7A57A3B7,Princess of Wales Hospital,3331,4897,68.0212
+May 2021,7A67A6AR,Royal Gwent Hospital,2632,2761,95.3277

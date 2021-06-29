@@ -53,14 +53,13 @@ wait4_wide <-
   wait4 %>% 
   filter(Target_Code == "4hr") %>% 
   filter(!Hospital_ItemName_ENG %in% c("Major emergency departments", "Other emergency departments/minor injury units")) %>% 
-  select(Date = Date_ItemName_ENG, Hospital = Hospital_ItemName_ENG, Measure_Code, Data) %>% 
+  select(Date = Date_ItemName_ENG, Hospital_code = Hospital_Code, Hospital = Hospital_ItemName_ENG, Measure_Code, Data) %>% 
   distinct() %>% 
   pivot_wider(names_from = Measure_Code, values_from = Data)
   
 # save
 wait4_wide %>% 
   write_csv("data/wales-ae.csv")
-
 
 # ---- Delay reason by LHB Provider ----
 # Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Performance/Delayed-Transfers-of-Care
@@ -73,9 +72,9 @@ dtoc <-
 
 dtoc_wide <- 
   dtoc %>% 
-  select(Date = Date_ItemName_ENG, HB = Area_ItemName_ENG, Reason = Delayreason_ItemName_ENG, Data) %>% 
+  select(Date = Date_ItemName_ENG, HB_code = Area_Code, HB = Area_ItemName_ENG, Reason = Delayreason_ItemName_ENG, Data) %>% 
   mutate(Data = as.integer(Data)) %>% 
-  group_by(Date, HB, Reason) %>% 
+  group_by(Date, HB_code, HB, Reason) %>% 
   summarise(Data = sum(Data)) %>% 
   ungroup() %>% 
   pivot_wider(names_from = Reason, values_from = Data)
@@ -95,7 +94,7 @@ beds <-
 beds_wide <- 
   beds %>% 
   filter(Measure_ItemName_ENG == "Percentage occupancy" & Specialty_ItemName_ENG == "All Specialties") %>% 
-  select(Date = Year_ItemName_ENG, HB = Organisation_ItemName_ENG, Year = Year_ItemName_ENG, Data) %>% 
+  select(Date = Year_ItemName_ENG, HB_code = Organisation_Code, HB = Organisation_ItemName_ENG, Year = Year_ItemName_ENG, Data) %>% 
   mutate(Data = as.numeric(Data)) %>% 
   # group_by(HB, Year) %>% 
   # summarise(Data = sum(Data)) %>% 
@@ -120,7 +119,7 @@ beds_daily <-
 beds_daily_wide <- 
   beds_daily %>% 
   as_tibble() %>% 
-  select(Day = Date_Code, HB = LocalHealthBoard_ItemName_ENG, Indicator_ItemName_ENG, Data) %>% 
+  select(Day = Date_Code, HB_code = LocalHealthBoard_Code, HB = LocalHealthBoard_ItemName_ENG, Indicator_ItemName_ENG, Data) %>% 
 
   mutate(
     Data = as.numeric(Data),
@@ -130,7 +129,7 @@ beds_daily_wide <-
   pivot_wider(names_from = Indicator_ItemName_ENG, values_from = Data) %>% 
   
   # Calculate daily % occupancy
-  group_by(Day, HB) %>% 
+  group_by(Day, HB_code, HB) %>% 
   mutate(`% general and acute beds occupied` = `General and acute beds occupied&#10;` / `General and acute beds available&#10;`) %>% 
   ungroup() %>% 
   
@@ -138,13 +137,12 @@ beds_daily_wide <-
   mutate(Date = paste0(month.name[month(Day)], " ", year(Day))) %>% 
   
   # Calculate average % occupancy over the month
-  group_by(Date, HB) %>% 
+  group_by(Date, HB_code, HB) %>% 
   summarise(`% general and acute beds occupied` = mean(`% general and acute beds occupied`, na.rm = TRUE)) %>% 
   ungroup() 
 
 beds_daily_wide %>% 
   write_csv("data/wales-beds-monthly.csv")
-
 
 # ---- Emergency ambulance calls and responses to red calls, by LHB and month ----
 # Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Performance/Ambulance-Services
@@ -157,7 +155,7 @@ ambo <-
 
 ambo_wide <- 
   ambo %>% 
-  select(Date = Date_ItemName_ENG, HB = Area_ItemName_ENG, Measure_ItemName_ENG, Data) %>% 
+  select(Date = Date_ItemName_ENG, HB_code = Area_Code, HB = Area_ItemName_ENG, Measure_ItemName_ENG, Data) %>% 
   spread(Measure_ItemName_ENG, Data) %>% 
   filter(toupper(HB) != "WALES")  # get rid of 'total' row
 
