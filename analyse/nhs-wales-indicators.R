@@ -186,11 +186,50 @@ cancer %>%
 
 # ---- Referrals to treatment ----
 # Source: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Waiting-Times/Referral-to-Treatment/patientpathwayswaitingtostarttreatment-by-month-groupedweeks-treatmentfunction
-rtt_all <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0083")
+job::job({
+  rtt_all <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0083")
+})
 
+# Save copy of raw RTT data because it takes ages to download
+# (But is too big to upload to GitHub)
 rtt_all %>% 
+  write_csv("data/wales-rtt-raw.csv")
+
+rtt <- 
+  rtt_all %>% 
+    as_tibble() %>% 
+  mutate(Date_SortOrder = as.integer(Date_SortOrder)) %>% 
   filter(
+    Date_SortOrder == max(Date_SortOrder)
+  ) %>% 
+  
+  select(HB_code = LHBProvider_Code, HB = LHBProvider_ItemName_ENG, WeeksWaiting_SortOrder, Data) %>% 
+  mutate(WeeksWaiting_SortOrder = as.integer(WeeksWaiting_SortOrder)) %>% 
+
+  # Calculate total across all TreatmentFunction_ItemName_ENG items
+  group_by(HB_code, HB, WeeksWaiting_SortOrder) %>% 
+  summarise(Data = sum(Data)) %>% 
+  ungroup() %>% 
+  
+  arrange(HB, WeeksWaiting_SortOrder) %>% 
     
-  )
+  # Calculate 18+ weeks (WeeksWaiting_SortOrder >= 20) and 52+ weeks (WeeksWaiting_SortOrder >= 48), as well as total waiting list sizes
+  pivot_wider(names_from = WeeksWaiting_SortOrder, values_from = Data) %>% 
 
+  rowwise() %>% 
+  mutate(
+    `Total on waiting list` = sum(c_across(`2`:`61`), na.rm = TRUE),
+    `Waiting 18+ weeks` = sum(c_across(`20`:`61`), na.rm = TRUE),
+    `Waiting 53+ weeks` = sum(c_across(`48`:`61`), na.rm = TRUE)
+  ) %>% 
+  ungroup() %>% 
+    
+  mutate(
+    `% waiting 18+ weeks` = `Waiting 18+ weeks` / `Total on waiting list`,
+    `% waiting 53+ weeks` = `Waiting 53+ weeks` / `Total on waiting list`
+  ) %>% 
+    
+  select(HB_code, HB, `Total on waiting list`, `Waiting 18+ weeks`, `Waiting 53+ weeks`, `% waiting 18+ weeks`, `% waiting 53+ weeks`)
 
+rtt %>% 
+  write_csv("data/wales-rtt.csv")
