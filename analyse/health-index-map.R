@@ -135,6 +135,63 @@ eng_hi_shp <-
     ends_with("quantiles")
   )
 
+# ---- Worst scoring places ----
+sco_worst_hli <-
+  sco_hi_shp %>% 
+  as_tibble() %>% 
+  select(lad_name, healthy_lives_domain_quantiles) %>% 
+  filter(healthy_lives_domain_quantiles == 10) %>% 
+  pull(lad_name)
+
+sco_worst_hpl <-
+  sco_hi_shp %>% 
+  as_tibble() %>% 
+  select(lad_name, healthy_places_domain_quantiles) %>% 
+  filter(healthy_places_domain_quantiles == 10) %>% 
+  pull(lad_name)
+
+sco_worst_hpe <-
+  sco_hi_shp %>% 
+  as_tibble() %>% 
+  select(lad_name, healthy_people_domain_quantiles) %>% 
+  filter(healthy_people_domain_quantiles == 10) %>% 
+  pull(lad_name)
+
+sco_worst_overall <-
+  sco_hi_shp %>% 
+  as_tibble() %>% 
+  select(lad_name, health_inequalities_composite_quantiles) %>% 
+  filter(health_inequalities_composite_quantiles == 10) %>% 
+  pull(lad_name)
+
+eng_worst_hli <-
+  eng_hi_shp %>% 
+  as_tibble() %>% 
+  select(county_ua_name, healthy_lives_domain_quantiles) %>% 
+  filter(healthy_lives_domain_quantiles == 10) %>% 
+  pull(county_ua_name)
+
+eng_worst_hpl <-
+  eng_hi_shp %>% 
+  as_tibble() %>% 
+  select(county_ua_name, healthy_places_domain_quantiles) %>% 
+  filter(healthy_places_domain_quantiles == 10) %>% 
+  pull(county_ua_name)
+
+eng_worst_hpe <-
+  eng_hi_shp %>% 
+  as_tibble() %>% 
+  select(county_ua_name, healthy_people_domain_quantiles) %>% 
+  filter(healthy_people_domain_quantiles == 10) %>% 
+  pull(county_ua_name)
+
+eng_worst_overall <-
+  eng_hi_shp %>% 
+  as_tibble() %>% 
+  select(county_ua_name, health_inequalities_composite_quantiles) %>% 
+  filter(health_inequalities_composite_quantiles == 10) %>% 
+  pull(county_ua_name)
+
 # ---- Plot ----
 p1 <-
   ggplot() +
