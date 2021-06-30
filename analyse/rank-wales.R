@@ -73,6 +73,7 @@ wales_performance <-
   
   mutate(
     sum_of_5s = count_if_worst(ae_bin) +
+      count_if_worst(ambo_bin) +
       count_if_worst(beds_bin) +
       count_if_worst(cancer_bin) +
       count_if_worst(rtt_bin)
