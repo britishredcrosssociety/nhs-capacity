@@ -190,6 +190,11 @@ job::job({
   rtt_all <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0083")
 })
 
+# Save copy of raw RTT data because it takes ages to download
+# (But is too big to upload to GitHub)
+rtt_all %>% 
+  write_csv("data/wales-rtt-raw.csv")
+
 rtt <- 
   rtt_all %>% 
     as_tibble() %>% 
