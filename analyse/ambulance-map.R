@@ -55,6 +55,7 @@ theme_map <- function(...) {
       ...
     )
 }
+
  # ---- Prep data ----
  ambulance_cleaned <-
   ambulance %>% 
