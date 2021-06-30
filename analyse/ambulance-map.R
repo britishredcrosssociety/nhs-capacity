@@ -3,13 +3,14 @@ library(tidyverse)
 library(geographr)
 library(sf)
 library(lubridate)
+library(viridis)
 
 # ---- load data ----
 ambulance <-
   readRDS("app/data/ambulance.rds")
 
 # ---- plotting fun ----
-map_theme <- function(...) {
+theme_map <- function(...) {
   theme_minimal() +
     theme(
       text = element_text(family = "FiraCode-Retina", color = "#22211d"),
@@ -62,7 +63,11 @@ map_theme <- function(...) {
     trust_code = `Trust Code`,
     mean_response_time = `Mean Response Time (min:sec)`
   ) %>% 
-  mutate(mean_response_seconds = period_to_seconds(ms(mean_response_time)))
+  mutate(mean_response_seconds = period_to_seconds(ms(mean_response_time))) %>% 
+  mutate(
+    response_mins = str_extract(mean_response_time, "^.{2}"),
+    response_mins = as.double(response_mins)
+  )
 
 ambulance_points <-
   points_nhs_trusts %>% 
@@ -70,8 +75,41 @@ ambulance_points <-
   mutate(
     nhs_trust_name = str_to_title(nhs_trust_name),
     nhs_trust_name = str_replace(nhs_trust_name, "Nhs", "NHS")
+  ) %>% 
+  mutate(
+    nhs_trust_name = str_remove_all(
+      nhs_trust_name, "Service|Ambulance|NHS|Trust|Foundation|University"
+      ),
+    nhs_trust_name = str_squish(nhs_trust_name)
+    ) %>% 
+  mutate(
+    label = str_c(nhs_trust_name, " \n", "Mean time: ", mean_response_time)
   )
 
 # ---- Plot ----
-ggplot(ambulance_points) +
-  geom_sf(mapping = aes(fill = mean_response_seconds))
+boundaries_counties_ua %>% 
+  filter(str_detect(county_ua_code, "^E")) %>% 
+  ggplot() +
+  geom_sf(fill = NA, size = .2) +
+  geom_sf(
+    data = ambulance_points,
+    mapping = aes(colour = response_mins),
+    size = 12
+  ) +
+  geom_sf_label(
+    data = ambulance_points,
+    mapping = aes(label = label),
+    nudge_y = .25,
+    label.size = .4
+    ) +
+  scale_colour_viridis(
+    direction = -1,
+    begin = 0,
+    end = .95,
+    name = expression(paste("Mean Cat4 \nResponse Time \n(mins)")),
+    guide = guide_legend(
+      keyheight = unit(5, units = "mm"),
+      title.position = "top",
+      reverse = T)
+  ) +
+  theme_map()
