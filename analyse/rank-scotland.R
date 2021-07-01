@@ -53,4 +53,14 @@ scotland_performance <-
   
   arrange(desc(sum_of_5s))
 
-scotland_performance
+scotland_performance %>% 
+  rename(
+    `A&E performance (5 = worst performing 20%)` = ae_bin,
+    `Bed occupancy performance (5 = worst performing 20%)` = beds_bin,
+    `Cancer waiting list performance (5 = worst performing 20%)` = cancer_bin,
+    `DToC performance (5 = worst performing 20%)` = dtoc_bin,
+    `RTT performance (5 = worst performing 20%)` = rtt_bin
+  ) %>% 
+  select(-bin_sum, -sum_of_5s) %>% 
+  
+  write_csv(file = "data/nhs-performance-scotland.csv")

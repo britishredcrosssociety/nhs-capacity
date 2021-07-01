@@ -56,3 +56,15 @@ ni_performance <-
   ) %>% 
   
   arrange(desc(sum_of_5s))
+
+ni_performance %>% 
+  rename(
+    `% reattendances within 7 days` = Reattend,
+    `A&E performance (5 = worst performing)` = ae_bin,
+    `Cancer waiting list performance (5 = worst performing)` = cancer_bin,
+    `Inpatient and day case waiting list performance (5 = worst performing)` = rtt_in_bin,
+    `Outpatient waiting list performance (5 = worst performing)` = rtt_out_bin
+  ) %>% 
+  select(-bin_sum, -sum_of_5s) %>% 
+  
+  write_csv(file = "data/nhs-performance-ni.csv")

@@ -137,7 +137,8 @@ ae_binned <-
   mutate(bin = quantise(value, num_quantiles = 5, highest_quantile_worst = FALSE)) %>% 
   ungroup() %>% 
   
-  select(trust_code = `Trust Code`, ae_bin = bin)
+  select(trust_code = `Trust Code`, ae_bin = bin, name, value) %>% 
+  pivot_wider(names_from = name, values_from = value)
   
 beds_binned <- 
   beds %>% 
@@ -148,7 +149,8 @@ beds_binned <-
   mutate(bin = quantise(value, num_quantiles = 5)) %>% 
   ungroup() %>% 
   
-  select(trust_code = `Trust Code`, beds_bin = bin)
+  select(trust_code = `Trust Code`, beds_bin = bin, name, value) %>% 
+  pivot_wider(names_from = name, values_from = value)
 
 cancer_binned <- 
   cancer_wait_times %>% 
@@ -162,9 +164,7 @@ cancer_binned <-
   mutate(bin = quantise(value, num_quantiles = 5)) %>% 
   ungroup() %>% 
   
-  select(trust_code = `Trust Code`, cancer_bin = bin)
-
-diagnostic_wait_times
+  select(trust_code = `Trust Code`, cancer_bin = bin, `% breaches of 62 day standard` = value)
 
 rtt_binned <- 
   rtt %>% 
@@ -179,7 +179,8 @@ rtt_binned <-
   mutate(bin = quantise(value, num_quantiles = 5)) %>% 
   ungroup() %>% 
   
-  select(trust_code = `Trust Code`, rtt_bin = bin)
+  select(trust_code = `Trust Code`, rtt_bin = bin, name, value) %>% 
+  pivot_wider(names_from = name, values_from = value)
 
 # Calculate overall Trust performance, based on the quintiles
 trust_performance <- 
@@ -192,7 +193,7 @@ trust_performance <-
   left_join(rtt_binned, by = "trust_code") %>% 
   
   rowwise() %>%
-  mutate(bin_sum = sum(c_across(ae_bin:rtt_bin), na.rm = TRUE)) %>% 
+  mutate(bin_sum = sum(c_across(ends_with("_bin")), na.rm = TRUE)) %>% 
   ungroup() %>% 
   
   mutate(
@@ -221,12 +222,33 @@ ics_performance %>%
   distinct() %>% 
   arrange(STP20NM)
 
-# List worst-performing Trusts in each STP/ICS
-# ics_performance %>% 
-#   group_by(STP20CD, STP20NM) %>% 
-#   arrange(desc(sum_of_5s), desc(bin_sum)) %>% 
-#   slice(3)
+# ---- List worst-performing Trusts in each NHS Region and STP/ICS ----
+stp_region <- read_sf("https://opendata.arcgis.com/datasets/00613813dd4b4f2dba16268720b50bd4_0.geojson") %>% 
+  st_drop_geometry() %>% 
+  select(STP20CD, NHSER20NM)
 
+ics_performance_output <- 
+  ics_performance %>%
+  left_join(
+    stp_region, 
+    by = "STP20CD"
+  ) %>% 
+  
+  group_by(NHSER20NM, STP20CD, STP20NM) %>%
+  arrange(desc(sum_of_5s), desc(bin_sum)) %>% 
+  ungroup() %>% 
+  
+  select(
+    `NHS region` = NHSER20NM, `STP/ICS` = STP20NM, Trust = trust_name, `Trust code` = trust_code, 
+    `% Total <= 4 hours`, `% Total Day Beds Occupied`, `% breaches of 62 day standard`, `Waiting 52+ weeks`,
+    `A&E performance (5 = worst performing 20%)` = ae_bin,
+    `Bed occupancy performance (5 = worst performing 20%)` = beds_bin,
+    `Cancer waiting list performance (5 = worst performing 20%)` = cancer_bin,
+    `RTT performance (5 = worst performing 20%)` = rtt_bin
+  )
+
+ics_performance_output %>% 
+  write_csv(file = "data/nhs-performance-england.csv")
 
 # TODO:
 # 1. Can Trust population sizes be added to normalise missing indicators?
@@ -236,5 +258,3 @@ ics_performance %>%
 #    data set.
 # 5. Review calls to drop_na(), do they make sense given how ranking handles
 #    NA values?
-
-

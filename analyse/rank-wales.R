@@ -80,3 +80,16 @@ wales_performance <-
   ) %>% 
   
   arrange(desc(sum_of_5s))
+
+wales_performance %>% 
+  rename(
+    `Health Board` = HB_name,
+    `A&E performance (5 = worst performing 20%)` = ae_bin,
+    `Ambulance performance (5 = worst performing 20%)` = ambo_bin,
+    `Bed occupancy performance (5 = worst performing 20%)` = beds_bin,
+    `Cancer waiting list performance (5 = worst performing 20%)` = cancer_bin,
+    `RTT performance (5 = worst performing 20%)` = rtt_bin
+  ) %>% 
+  select(-HB_code, -HB_code_long, -Hospital_code, -bin_sum, -sum_of_5s) %>% 
+  
+  write_csv(file = "data/nhs-performance-wales.csv")
