@@ -40,17 +40,19 @@ reattend <- read_excel(tf, sheet = "Table 22", range = "A4:F29")
 # Clean up columns and keep only Trusts
 reattend <- 
   reattend %>% 
-  rename(Hospital = ...1, Reattend = `2019/20`) %>% 
-  select(Hospital, Reattend) %>% 
+  rename(Trust = ...1, Reattend = `2019/20`) %>% 
+  select(Trust, Reattend) %>% 
   
-  filter(Hospital %in% c("Belfast Trust", "Northern", "South Eastern", "Southern Trust", "Western Trust")) %>% 
+  filter(Trust %in% c("Belfast Trust", "Northern", "South Eastern", "Southern Trust", "Western Trust")) %>% 
   
-  mutate(Hospital = gsub(" [0-9]", "", Hospital)) %>%   # get rid of footnotes
+  mutate(Trust = gsub(" [0-9]", "", Trust)) %>%   # get rid of footnotes
   mutate(Reattend = as.numeric(Reattend)) %>% 
   mutate(Reattend = round(Reattend * 100, 1))
 
 reattend %>% 
   write_csv("data/ni-reattendance.csv")
+
+unlink(tf)
 
 # ---- Cancer waiting lists ----
 # Source: https://www.health-ni.gov.uk/publications/northern-ireland-waiting-time-statistics-cancer-waiting-times-january-march-2021
