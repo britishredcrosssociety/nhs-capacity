@@ -47,7 +47,9 @@ reattend <-
   
   mutate(Trust = gsub(" [0-9]", "", Trust)) %>%   # get rid of footnotes
   mutate(Reattend = as.numeric(Reattend)) %>% 
-  mutate(Reattend = round(Reattend * 100, 1))
+  mutate(Reattend = round(Reattend * 100, 1)) %>% 
+  
+  mutate(Trust = str_remove(Trust, " Trust"))
 
 reattend %>% 
   write_csv("data/ni-reattendance.csv")
