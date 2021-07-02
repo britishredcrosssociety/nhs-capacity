@@ -212,6 +212,8 @@ boundaries_lad %>%
     label.size = .4
   ) +
   scale_colour_viridis(
+    breaks = seq(54, 70, by = 2),
+    labels = seq(54, 70, by = 2),
     direction = 1,
     begin = 0,
     end = .95,
@@ -219,7 +221,7 @@ boundaries_lad %>%
     guide = guide_legend(
       keyheight = unit(5, units = "mm"),
       title.position = "top",
-      reverse = T)
+      reverse = F)
   ) +
   theme_map()
 
