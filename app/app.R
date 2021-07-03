@@ -11,6 +11,7 @@ library(echarts4r)
 source("charts.R")
 source("table.R")
 source("england-page.R")
+source("wales-page.R")
 
 # ---- Load data sets ----
 # Map points
@@ -75,14 +76,11 @@ icons <-
     markerColor = "cadetblue"
   )
 
-# ---- Modules for data tables ----
-
-
-# ---- Modules for charts ----
-
 # ---- Router ----
 router <- make_router(
-  route("/", england_page)
+  route("/", england_page),
+  # route("/england", england_page),
+  route("wales", wales_page)
 )
 
 # ---- UI ----
@@ -184,6 +182,7 @@ ui <- fluidPage(
     column(width = 2)
   ),
 
+  # Show map and indicators for selected nation
   router$ui,
 
   fluidRow(
@@ -217,6 +216,8 @@ server <- function(input, output, session) {
   # Track which Trust has been selected
   selected_trust <- reactiveVal()
 
+  # ---- Trust selection boxes for each nation ----
+  # - England - 
   observeEvent(input$selectbox, {
     if (input$selectbox == "") {
       selected_trust("RJZ")
@@ -239,6 +240,28 @@ server <- function(input, output, session) {
     toggle(id = "rtt_box",        condition = !rtt_long_form %>% filter(`Trust Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
     toggle(id = "ambulance_box",  condition = !ambulance %>% filter(`Trust Code` == selected_trust()) %>% pull(Category) %>% is.na())
   })
+  
+  # - Wales - 
+  observeEvent(input$selectbox_wales, {
+    if (input$selectbox_wales == "") {
+      selected_trust("7A1")
+    } else {
+      points_wales %>%
+        filter(hb_name == input$selectbox_wales) %>%
+        pull(hb_code) %>%
+        selected_trust()
+    }
+    
+    # Debug
+    # print(selected_trust())
+    
+    # Show/hide indicators based on whether there's any data for the currently selected Health Board
+    toggle(id = "ae_box",         condition = !wales_ae %>% filter(`Health Board Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "beds_box",       condition = !wales_beds %>% filter(`Health Board Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "cancer_box",     condition = !wales_cancer %>% filter(`Health Board Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "rtt_box",        condition = !wales_rtt %>% filter(`Health Board Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+    toggle(id = "ambulance_box",  condition = !wales_ambulance %>% filter(`Health Board Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
+  })
 
   observeEvent(input$map_marker_click$id, {
     if (is.null(input$map_marker_click$id)) {
@@ -260,7 +283,8 @@ server <- function(input, output, session) {
   #   print(selected_trust())
   # })
 
-  # Map
+  # ---- Maps ----
+  # - England -
   output$map <- renderLeaflet({
     leaflet() %>%
       setView(lat = 52.75, lng = -2.0, zoom = 6) %>%
@@ -327,7 +351,22 @@ server <- function(input, output, session) {
       )
   })
 
-  # A&E
+  # - Wales -
+  output$map_wales <- renderLeaflet({
+    leaflet() %>%
+      # Centre on Wales; coordinates from https://nominatim.openstreetmap.org/ui/details.html?osmtype=R&osmid=58437&class=boundary
+      setView(lat = 52.2928116, lng = -3.73893, zoom = 7) %>% 
+      addProviderTiles(providers$CartoDB.Positron) %>%
+      addAwesomeMarkers(
+        data = points_wales,
+        label = ~hb_name,
+        icon = icons,
+        layerId = ~hb_code
+      )
+  })
+  
+  # ---- A&E ----
+  # - England -
   chart_server(
     id = "ae_plot", 
     df = ae,
@@ -360,7 +399,32 @@ server <- function(input, output, session) {
     trust = selected_trust
   )
 
-  # Ambulance
+  # - Wales -
+  chart_server(
+    id = "wales_ae_plot", 
+    df = wales_ae,
+    trust = selected_trust,
+    wrangling_code = function(df)
+      df %>% 
+      filter(name == "Percentages") %>% 
+      arrange(value), 
+    label = "Percentage less than or equal to 4 hours", 
+    axis_format = "percent"
+  )
+  
+  table_server(
+    "wales_ae_table", 
+    df = wales_ae %>% 
+      mutate(
+        value = round(value, digits = 3),
+        value = if_else(grepl("Percentages", name), value * 100, value)
+      ) %>% 
+      rename(Metric = name, Value = value),
+    trust = selected_trust
+  )
+  
+  # ---- Ambulance ----
+  # - England -
   chart_server(
     id = "ambulance_plot", 
     df = ambulance,
@@ -379,8 +443,35 @@ server <- function(input, output, session) {
     df = ambulance,
     trust = selected_trust
   )
+  
+  # - Wales -
+  chart_server(
+    id = "wales_ambulance_plot", 
+    df = wales_ambulance,
+    wrangling_code = function(df)
+      df %>% 
+      filter(grepl("%", name)) %>% 
+      arrange(value) %>%
+      mutate(name = "") %>% 
+      na.omit(), 
+    trust = selected_trust,
+    label = "% ofresponses arriving within 8 minutes", 
+    axis_format = "percent"
+  )
+  
+  table_server(
+    "wales_ambulance_table", 
+    df = wales_ambulance %>% 
+      mutate(
+        value = round(value, digits = 3),
+        value = if_else(grepl("%", name), value * 100, value)
+      ) %>% 
+      rename(Metric = name, Value = value),
+    trust = selected_trust
+  )
 
-  # Beds
+  # ---- Beds ----
+  # - England -
   chart_server(
     id = "beds_plot", 
     df = beds,
@@ -420,7 +511,34 @@ server <- function(input, output, session) {
     dom_elements = "tp"
   )
 
-  # Cancer wait times
+  # - Wales -
+  chart_server(
+    id = "wales_beds_plot", 
+    df = wales_beds,
+    trust = selected_trust,
+    wrangling_code = function(df)
+      df %>% 
+      arrange(value) %>%
+      mutate(name = factor(name, levels = name)) %>%
+      na.omit(), 
+    label = "Percentage of Beds Occupied", 
+    axis_format = "percent"
+  )
+  
+  table_server(
+    "wales_beds_table", 
+    df = wales_beds %>% 
+      mutate(
+        value = if_else(grepl("%", name), round(value, digits = 3), round(value, digits = 0)),
+        value = if_else(grepl("%", name), value * 100, value)
+      ) %>%
+      rename(Metric = name, Value = value),
+    trust = selected_trust,
+    dom_elements = "tp"
+  )
+  
+  # ---- Cancer wait times ----
+  # - England -
   chart_server(
     id = "cancer_plot", 
     df = cancer_wait_times,
@@ -446,7 +564,28 @@ server <- function(input, output, session) {
     trust = selected_trust
   )
   
-  # Diagnostic wait times
+  # - Wales -
+  chart_server(
+    id = "wales_cancer_plot", 
+    df = wales_cancer,
+    wrangling_code = function(df)
+      df %>% 
+      arrange(value) %>%
+      mutate(name = factor(name, levels = name)) %>%
+      na.omit(), 
+    trust = selected_trust,
+    label = "Percentage Within Standard",
+    axis_format = "percent"
+  )
+  
+  table_server(
+    "wales_cancer_table", 
+    df = wales_cancer,
+    trust = selected_trust
+  )
+  
+  # ---- Diagnostic wait times ----
+  # - England -
   chart_server(
     id = "diagnostic_plot", 
     df = diagnostic_wait_times,
@@ -471,7 +610,8 @@ server <- function(input, output, session) {
     trust = selected_trust
   )
 
-  # Consultant-led Outpatient Referrals
+  # ---- Consultant-led Outpatient Referrals ----
+  # - England -
   chart_server(
     id = "outpatient_plot", 
     df = outpatient_referrals,
@@ -497,7 +637,8 @@ server <- function(input, output, session) {
     trust = selected_trust
   )
 
-  # rtt
+  # ---- RTT ----
+  # - England -
   chart_server(
     id = "rtt_plot", 
     df = rtt_long_form,
@@ -530,6 +671,33 @@ server <- function(input, output, session) {
   table_server(
     "rtt_table", 
     df = rtt,
+    trust = selected_trust
+  )
+  
+  # - Wales -
+  chart_server(
+    id = "wales_rtt_plot", 
+    df = wales_rtt,
+    wrangling_code = function(df)
+      df %>% 
+      filter(grepl("%", name)) %>%
+      arrange(value) %>%
+      mutate(name = factor(name, levels = name)) %>%
+      na.omit() %>%
+      mutate(
+        name = case_when(
+          name == "% waiting 53+ weeks" ~ "53+ Weeks",
+          name == "% waiting 18+ weeks" ~ "18+ Weeks"
+        )
+      ), 
+    trust = selected_trust,
+    label = "Percentage Waiting on Pathway", 
+    axis_format = "percent"
+  )
+  
+  table_server(
+    "rtt_table", 
+    df = wales_rtt,
     trust = selected_trust
   )
 }

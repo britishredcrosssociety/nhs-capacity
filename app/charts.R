@@ -1,13 +1,14 @@
 chart_UI <- function(id) {
-  echarts4rOutput(NS(id, "england_chart"), height = "200px")
+  echarts4rOutput(NS(id, "nhs_chart"), height = "200px")
 }
 
 chart_server <- function(id, df, trust, wrangling_code, label = "", axis_format = "decimal") {
   moduleServer(id, function(input, output, session) {
-    output$england_chart <- renderEcharts4r({
+    output$nhs_chart <- renderEcharts4r({
       df <- 
         df %>% 
-        filter(`Trust Code` == trust()) %>%
+        filter(if_any(contains("Code"), ~ .x == trust())) %>% 
+        # filter(`Trust Code` == trust()) %>%
         wrangling_code() %>% 
         na.omit()
       
