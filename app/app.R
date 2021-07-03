@@ -407,7 +407,11 @@ server <- function(input, output, session) {
     wrangling_code = function(df)
       df %>% 
       filter(name == "Percentages") %>% 
-      arrange(value), 
+      arrange(value) %>% 
+      mutate(
+        name = "Red calls",
+        value = value / 100
+      ), 
     label = "Percentage less than or equal to 4 hours", 
     axis_format = "percent"
   )
@@ -416,9 +420,8 @@ server <- function(input, output, session) {
     "wales_ae_table", 
     df = wales_ae %>% 
       mutate(
-        value = round(value, digits = 3),
-        value = if_else(grepl("Percentages", name), value * 100, value)
-      ) %>% 
+        value = if_else(grepl("Percentages", name), round(value, digits = 1), round(value, digits = 0))
+      ) %>%
       rename(Metric = name, Value = value),
     trust = selected_trust
   )
@@ -452,7 +455,10 @@ server <- function(input, output, session) {
       df %>% 
       filter(grepl("%", name)) %>% 
       arrange(value) %>%
-      mutate(name = "") %>% 
+      mutate(
+        name = "Red calls",
+        value = value / 100
+      ) %>% 
       na.omit(), 
     trust = selected_trust,
     label = "% ofresponses arriving within 8 minutes", 
@@ -463,9 +469,8 @@ server <- function(input, output, session) {
     "wales_ambulance_table", 
     df = wales_ambulance %>% 
       mutate(
-        value = round(value, digits = 3),
-        value = if_else(grepl("%", name), value * 100, value)
-      ) %>% 
+        value = if_else(grepl("%", name), round(value, digits = 1), round(value, digits = 0))
+      ) %>%
       rename(Metric = name, Value = value),
     trust = selected_trust
   )
@@ -519,9 +524,9 @@ server <- function(input, output, session) {
     wrangling_code = function(df)
       df %>% 
       arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
+      mutate(name = "% occupied") %>%
       na.omit(), 
-    label = "Percentage of Beds Occupied", 
+    label = "Percentage of G&A Beds Occupied", 
     axis_format = "percent"
   )
   
@@ -533,8 +538,7 @@ server <- function(input, output, session) {
         value = if_else(grepl("%", name), value * 100, value)
       ) %>%
       rename(Metric = name, Value = value),
-    trust = selected_trust,
-    dom_elements = "tp"
+    trust = selected_trust
   )
   
   # ---- Cancer wait times ----
@@ -571,7 +575,10 @@ server <- function(input, output, session) {
     wrangling_code = function(df)
       df %>% 
       arrange(value) %>%
-      mutate(name = factor(name, levels = name)) %>%
+      mutate(
+        name = "Within 62 days",
+        value = value / 100
+      ) %>%
       na.omit(), 
     trust = selected_trust,
     label = "Percentage Within Standard",
@@ -580,7 +587,9 @@ server <- function(input, output, session) {
   
   table_server(
     "wales_cancer_table", 
-    df = wales_cancer,
+    df = wales_cancer %>% 
+      mutate(value = round(value, 1)) %>% 
+      rename(Metric = name, Value = value),
     trust = selected_trust
   )
   
@@ -691,13 +700,18 @@ server <- function(input, output, session) {
         )
       ), 
     trust = selected_trust,
-    label = "Percentage Waiting on Pathway", 
+    label = "Percentage Waiting", 
     axis_format = "percent"
   )
   
   table_server(
-    "rtt_table", 
-    df = wales_rtt,
+    "wales_rtt_table", 
+    df = wales_rtt %>% 
+      mutate(
+        value = if_else(grepl("%", name), round(value, digits = 3), round(value, digits = 0)),
+        value = if_else(grepl("%", name), value * 100, value)
+      ) %>% 
+      rename(Metric = name, Value = value),
     trust = selected_trust
   )
 }
