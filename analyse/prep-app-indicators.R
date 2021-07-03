@@ -397,3 +397,7 @@ health_boards %>%
     cols = where(is.double)
   ) %>%
   write_rds("app/data/wales-rtt.rds")
+
+# Save Health Boards geoJSON
+geographr::points_wales_health_boards %>% 
+  write_sf("app/data/wales.geojson")
