@@ -37,6 +37,10 @@ rtt <-
 rtt_long_form <-
   readRDS("data/referral_treatment_waiting_times_long_form.rds")
 
+# Wales data
+wales <- 
+  read_csv("data/")
+
 # Health Index
 health_index <-
   readRDS("data/health_index.rds")

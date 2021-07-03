@@ -1,5 +1,6 @@
 # ---- Libraries ----
 library(tidyverse)
+library(geographr)
 library(sf)
 
 # ---- Load data ----
@@ -319,3 +320,80 @@ open_trusts %>%
   ) %>%
   pivot_longer(cols = where(is.double)) %>%
   write_rds("app/data/referral_treatment_waiting_times_long_form.rds")
+
+# ---- Prep indicators for Wales ----
+health_boards <- geographr::points_wales_health_boards %>% 
+  st_drop_geometry()
+
+ae <- read_csv("data/wales-ae.csv")
+ambo <- read_csv("data/wales-ambo.csv")
+beds <- read_csv("data/wales-beds-monthly.csv")
+cancer <- read_csv("data/wales-cancer.csv")
+rtt <- read_csv("data/wales-rtt.csv")
+
+# A&E
+health_boards %>% 
+  mutate(hb_code_long = paste0(hb_code, hb_alt_code)) %>% 
+  
+  left_join(ae, by = c("hb_code_long" = "Hospital_code")) %>% 
+  select(
+    `Health Board Code` = hb_code,
+    `Health Board Name` = hb_name, 
+    `Non-breaches`:Percentages
+  ) %>% 
+  pivot_longer(
+    cols = `Non-breaches`:Percentages
+  ) %>%
+  write_rds("app/data/wales-ae.rds")
+
+# Ambulance
+health_boards %>% 
+  left_join(ambo, by = c("hb_code" = "HB_code")) %>% 
+  select(
+    `Health Board Code` = hb_code,
+    `Health Board Name` = hb_name, 
+    `Amber calls`:`Red calls resulting in an emergency response at the scene within 8 minutes`
+  ) %>% 
+  pivot_longer(
+    cols = where(is.double)
+  ) %>%
+  write_rds("app/data/wales-ambulance.rds")
+
+# Beds
+health_boards %>% 
+  left_join(beds, by = c("hb_code" = "HB_code")) %>% 
+  select(
+    `Health Board Code` = hb_code,
+    `Health Board Name` = hb_name,
+    `% general and acute beds occupied`
+  ) %>% 
+  pivot_longer(
+    cols = where(is.double)
+  ) %>%
+  write_rds("app/data/wales-beds.rds")
+
+# Cancer
+health_boards %>% 
+  left_join(cancer, by = c("hb_code" = "HB_code")) %>% 
+  select(
+    `Health Board Code` = hb_code,
+    `Health Board Name` = hb_name,
+    `% starting treatment within 62 days`
+  ) %>% 
+  pivot_longer(
+    cols = where(is.double)
+  ) %>%
+  write_rds("app/data/wales-cancer.rds")
+
+# RTT
+health_boards %>% 
+  left_join(rtt, by = c("hb_alt_code" = "HB_code")) %>% 
+  select(
+    `Health Board Code` = hb_code,
+    `Health Board Name` = hb_name,
+    where(is.double)
+  ) %>% 
+  pivot_longer(
+    cols = where(is.double)
+  ) %>%
+  write_rds("app/data/wales-rtt.rds")
