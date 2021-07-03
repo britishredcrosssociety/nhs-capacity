@@ -50,6 +50,30 @@ icons <-
     iconColor = "#FFFFFF",
     markerColor = "cadetblue"
   )
+
+# ---- Modules for data tables ----
+table_UI <- function(id) {
+  dataTableOutput(NS(id, "england_table"))
+}
+
+table_server <- function(id, df, trust, dom_elements = "t") {
+  moduleServer(id, function(input, output, session) {
+    output$england_table <- renderDataTable({
+      datatable(
+        df %>%
+          filter(`Trust Code` == trust) %>%
+          select(
+            -`Trust Name`,
+            -`Trust Code`
+          ) %>%
+          na.omit(),
+        options = list(dom = dom_elements),
+        rownames = FALSE
+      )
+    })
+  })
+}
+
 # ---- UI ----
 ui <- fluidPage(
   useShinyjs(),
@@ -202,7 +226,8 @@ ui <- fluidPage(
             h6("Latest data: Apr 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("ae_plot", height = "200px")),
-              tabPanel("Data", DTOutput("ae_table"))
+              tabPanel("Data", table_UI("ae_table"))
+              
             )
           )
         ),
@@ -218,7 +243,7 @@ ui <- fluidPage(
             h6("Latest data: Jan-Mar 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("beds_plot", height = "200px")),
-              tabPanel("Data", DTOutput("beds_table"))
+              tabPanel("Data", table_UI("beds_table"))
             )
           )
         ),
@@ -234,7 +259,7 @@ ui <- fluidPage(
             h6("Latest data: Mar 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("cancer_plot", height = "200px")),
-              tabPanel("Data", DTOutput("cancer_table"))
+              tabPanel("Data", table_UI("cancer_table"))
             )
           )
         ),
@@ -250,7 +275,7 @@ ui <- fluidPage(
             h6("Latest data: Mar 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("diagnostic_plot", height = "200px")),
-              tabPanel("Data", DTOutput("diagnostic_table"))
+              tabPanel("Data", table_UI("diagnostic_table"))
             )
           )
         ),
@@ -266,7 +291,7 @@ ui <- fluidPage(
             h6("Latest data: Mar 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("outpatient_plot", height = "200px")),
-              tabPanel("Data", DTOutput("outpatient_table"))
+              tabPanel("Data", table_UI("outpatient_table"))
             )
           )
         ),
@@ -282,7 +307,7 @@ ui <- fluidPage(
             h6("Latest data: Mar 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("rtt_plot", height = "200px")),
-              tabPanel("Data", DTOutput("rtt_table"))
+              tabPanel("Data", table_UI("rtt_table"))
             )
           )
         ),
@@ -297,7 +322,7 @@ ui <- fluidPage(
             h6("Latest data: Feb 2021"),
             tabsetPanel(
               tabPanel("Plot", echarts4rOutput("ambulance_plot", height = "200px")),
-              tabPanel("Data", DTOutput("ambulance_table"))
+              tabPanel("Data", table_UI("ambulance_table"))
             )
           )
         )
@@ -491,26 +516,37 @@ server <- function(input, output, session) {
         )
     }
   })
+  
+  table_server(
+    "ae_table", 
+    df = ae %>% 
+      mutate(
+        value = round(value, digits = 3),
+        value = if_else(grepl("^%", name), value * 100, value)
+      ) %>% 
+      rename(Metric = name, Value = value),
+    trust = selected_trust()
+  )
 
-  output$ae_table <- renderDT({
-    datatable(
-      ae %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`,
-          Metric = name,
-          value
-        ) %>%
-        mutate(
-          value = round(value, digits = 3),
-          value = if_else(grepl("^%", Metric), value * 100, value)
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+  # output$ae_table <- renderDT({
+  #   datatable(
+  #     ae %>%
+  #       filter(`Trust Code` == selected_trust()) %>%
+  #       select(
+  #         -`Trust Name`,
+  #         -`Trust Code`,
+  #         Metric = name,
+  #         value
+  #       ) %>%
+  #       mutate(
+  #         value = round(value, digits = 3),
+  #         value = if_else(grepl("^%", Metric), value * 100, value)
+  #       ) %>%
+  #       na.omit(),
+  #     options = list(dom = "t"),
+  #     rownames = FALSE
+  #   )
+  # })
 
   # Ambulance
   output$ambulance_plot <- renderEcharts4r({
@@ -549,20 +585,26 @@ server <- function(input, output, session) {
         )
     }
   })
+  
+  table_server(
+    "ambulance_table", 
+    df = ambulance,
+    trust = selected_trust()
+  )
 
-  output$ambulance_table <- renderDT({
-    datatable(
-      ambulance %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+  # output$ambulance_table <- renderDT({
+  #   datatable(
+  #     ambulance %>%
+  #       filter(`Trust Code` == selected_trust()) %>%
+  #       select(
+  #         -`Trust Name`,
+  #         -`Trust Code`
+  #       ) %>%
+  #       na.omit(),
+  #     options = list(dom = "t"),
+  #     rownames = FALSE
+  #   )
+  # })
 
   # Beds
   output$beds_plot <- renderEcharts4r({
@@ -616,26 +658,38 @@ server <- function(input, output, session) {
         )
     }
   })
+  
+  table_server(
+    "beds_table", 
+    df = beds %>% 
+      mutate(
+        value = if_else(grepl("%", name), round(value, digits = 3), round(value, digits = 0)),
+        value = if_else(grepl("%", name), value * 100, value)
+      ) %>%
+      rename(Metric = name, Value = value),
+    trust = selected_trust(),
+    dom_elements = "tp"
+  )
 
-  output$beds_table <- renderDT({
-    datatable(
-      beds %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`,
-          Metric = name,
-          value
-        ) %>%
-        mutate(
-          value = if_else(grepl("%", Metric), round(value, digits = 3), round(value, digits = 0)),
-          value = if_else(grepl("%", Metric), value * 100, value)
-        ) %>%
-        na.omit(),
-      options = list(dom = "tp", order = list(list(0, "desc"))),
-      rownames = FALSE
-    )
-  })
+  # output$beds_table <- renderDT({
+  #   datatable(
+  #     beds %>%
+  #       filter(`Trust Code` == selected_trust()) %>%
+  #       select(
+  #         -`Trust Name`,
+  #         -`Trust Code`,
+  #         Metric = name,
+  #         value
+  #       ) %>%
+  #       mutate(
+  #         value = if_else(grepl("%", Metric), round(value, digits = 3), round(value, digits = 0)),
+  #         value = if_else(grepl("%", Metric), value * 100, value)
+  #       ) %>%
+  #       na.omit(),
+  #     options = list(dom = "tp", order = list(list(0, "desc"))),
+  #     rownames = FALSE
+  #   )
+  # })
 
   # Cancer wait times
   output$cancer_plot <- renderEcharts4r({
@@ -683,19 +737,25 @@ server <- function(input, output, session) {
     }
   })
 
-  output$cancer_table <- renderDT({
-    datatable(
-      cancer_wait_times %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+  table_server(
+    "cancer_table", 
+    df = cancer_wait_times,
+    trust = selected_trust()
+  )
+  
+  # output$cancer_table <- renderDT({
+  #   datatable(
+  #     cancer_wait_times %>%
+  #       filter(`Trust Code` == selected_trust()) %>%
+  #       select(
+  #         -`Trust Name`,
+  #         -`Trust Code`
+  #       ) %>%
+  #       na.omit(),
+  #     options = list(dom = "t"),
+  #     rownames = FALSE
+  #   )
+  # })
 
   # Diagnostic wait times
   output$diagnostic_plot <- renderEcharts4r({
@@ -741,20 +801,26 @@ server <- function(input, output, session) {
         )
     }
   })
+  
+  table_server(
+    "diagnostic_table", 
+    df = diagnostic_wait_times,
+    trust = selected_trust()
+  )
 
-  output$diagnostic_table <- renderDT({
-    datatable(
-      diagnostic_wait_times %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+  # output$diagnostic_table <- renderDT({
+  #   datatable(
+  #     diagnostic_wait_times %>%
+  #       filter(`Trust Code` == selected_trust()) %>%
+  #       select(
+  #         -`Trust Name`,
+  #         -`Trust Code`
+  #       ) %>%
+  #       na.omit(),
+  #     options = list(dom = "t"),
+  #     rownames = FALSE
+  #   )
+  # })
 
   # Consultant-led Outpatient Referrals
   output$outpatient_plot <- renderEcharts4r({
@@ -801,20 +867,26 @@ server <- function(input, output, session) {
         )
     }
   })
+  
+  table_server(
+    "outpatient_table", 
+    df = outpatient_referrals,
+    trust = selected_trust()
+  )
 
-  output$outpatient_table <- renderDT({
-    datatable(
-      outpatient_referrals %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+  # output$outpatient_table <- renderDT({
+  #   datatable(
+  #     outpatient_referrals %>%
+  #       filter(`Trust Code` == selected_trust()) %>%
+  #       select(
+  #         -`Trust Name`,
+  #         -`Trust Code`
+  #       ) %>%
+  #       na.omit(),
+  #     options = list(dom = "t"),
+  #     rownames = FALSE
+  #   )
+  # })
 
   # rtt
   output$rtt_plot <- renderEcharts4r({
@@ -877,20 +949,26 @@ server <- function(input, output, session) {
         )
     }
   })
+  
+  table_server(
+    "rtt_table", 
+    df = rtt,
+    trust = selected_trust()
+  )
 
-  output$rtt_table <- renderDT({
-    datatable(
-      rtt %>%
-        filter(`Trust Code` == selected_trust()) %>%
-        select(
-          -`Trust Name`,
-          -`Trust Code`
-        ) %>%
-        na.omit(),
-      options = list(dom = "t"),
-      rownames = FALSE
-    )
-  })
+  # output$rtt_table <- renderDT({
+  #   datatable(
+  #     rtt %>%
+  #       filter(`Trust Code` == selected_trust()) %>%
+  #       select(
+  #         -`Trust Name`,
+  #         -`Trust Code`
+  #       ) %>%
+  #       na.omit(),
+  #     options = list(dom = "t"),
+  #     rownames = FALSE
+  #   )
+  # })
 }
 
 # Run the application
