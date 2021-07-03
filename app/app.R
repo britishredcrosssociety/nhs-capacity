@@ -1,5 +1,6 @@
 # ---- Load libraries ----
 library(shiny)
+library(shiny.router)
 library(shinyjs)
 library(sf)
 library(leaflet)
@@ -7,10 +8,17 @@ library(dplyr)
 library(DT)
 library(echarts4r)
 
+source("charts.R")
+source("table.R")
+source("england-page.R")
+
 # ---- Load data sets ----
 # Map points
 points_trusts <-
   read_sf("data/open_nhs_trusts_points.geojson")
+
+points_wales <- 
+  read_sf("data/wales.geojson")
 
 # Indicators
 ae <-
@@ -38,8 +46,20 @@ rtt_long_form <-
   readRDS("data/referral_treatment_waiting_times_long_form.rds")
 
 # Wales data
-wales <- 
-  read_csv("data/")
+wales_ae <- 
+  readRDS("data/wales-ae.rds")
+
+wales_ambulance <- 
+  readRDS("data/wales-ambulance.rds")
+
+wales_beds <- 
+  readRDS("data/wales-beds.rds")
+
+wales_cancer <- 
+  readRDS("data/wales-cancer.rds")
+
+wales_rtt <- 
+  readRDS("data/wales-rtt.rds")
 
 # Health Index
 health_index <-
@@ -56,75 +76,14 @@ icons <-
   )
 
 # ---- Modules for data tables ----
-table_UI <- function(id) {
-  dataTableOutput(NS(id, "england_table"))
-}
 
-table_server <- function(id, df, trust, dom_elements = "t") {
-  stopifnot(is.reactive(trust))
-  
-  moduleServer(id, function(input, output, session) {
-    output$england_table <- renderDataTable({
-      datatable(
-        df %>%
-          filter(`Trust Code` == trust()) %>%
-          select(
-            -`Trust Name`,
-            -`Trust Code`
-          ) %>%
-          na.omit(),
-        options = list(dom = dom_elements),
-        rownames = FALSE
-      )
-    })
-  })
-}
 
 # ---- Modules for charts ----
-chart_UI <- function(id) {
-  echarts4rOutput(NS(id, "england_chart"), height = "200px")
-}
 
-chart_server <- function(id, df, trust, wrangling_code, label = "", axis_format = "decimal") {
-  moduleServer(id, function(input, output, session) {
-    output$england_chart <- renderEcharts4r({
-      df <- 
-        df %>% 
-        filter(`Trust Code` == trust()) %>%
-        wrangling_code() %>% 
-        na.omit()
-      
-      if (nrow(df) != 0) {
-        df %>%
-          e_charts(name) %>%
-          e_bar(value, itemStyle = list(opacity = .6)) %>%
-          e_flip_coords() %>%
-          e_legend(FALSE) %>%
-          e_tooltip(trigger = "item") %>%
-          e_x_axis(
-            formatter = e_axis_formatter(axis_format),
-            nameLocation = "middle",
-            nameTextStyle = list(padding = 20)
-          ) %>%
-          e_axis_labels(x = label) %>%
-          e_theme("brc_theme") %>%
-          e_grid(
-            left = 145,
-            top = 20,
-            bottom = 60
-          )
-      } else {
-        tibble(x = NA) %>%
-          e_charts(x) %>%
-          e_draft(
-            text = "This data doesn't exist for this trust.",
-            size = "15px",
-            color = "#5C747A"
-          )
-      }
-    })
-  })
-}
+# ---- Router ----
+router <- make_router(
+  route("/", england_page)
+)
 
 # ---- UI ----
 ui <- fluidPage(
@@ -225,162 +184,7 @@ ui <- fluidPage(
     column(width = 2)
   ),
 
-  # - Trust Search Box -
-  fluidRow(
-    column(
-      width = 12,
-      align = "center",
-      selectizeInput(
-        "selectbox",
-        label = NULL,
-        choices = sort(points_trusts$org_name),
-        options = list(
-          placeholder = "Select an NHS Trust",
-          onInitialize = I('function() { this.setValue(""); }')
-        )
-      )
-    )
-  ),
-
-  # - Map & Plots -
-  fluidRow(
-
-    # - Map and single plot underneath map -
-    column(
-      width = 4,
-
-      # - Map -
-      fluidRow(
-
-        # Wrapping in column(), again, provides padding to the left of the map
-        column(
-          width = 12,
-          leafletOutput("map", height = 670)
-        )
-      )
-    ),
-
-    # - Grid of plots -
-    column(
-      width = 8,
-
-      # - Row 1 -
-      fluidRow(
-
-        # - Col 1 -
-        column(
-          id = "ae_box",
-          width = 6,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Accident and Emergency"),
-            h6("Latest data: Apr 2021"),
-            tabsetPanel(
-              tabPanel("Plot", chart_UI("ae_plot")),
-              tabPanel("Data", table_UI("ae_table"))
-              
-            )
-          )
-        ),
-
-        # - Col 2 -
-        column(
-          id = "beds_box",
-          width = 6,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Bed Occupancies (Day & Night)"),
-            h6("Latest data: Jan-Mar 2021"),
-            tabsetPanel(
-              tabPanel("Plot", chart_UI("beds_plot")),
-              tabPanel("Data", table_UI("beds_table"))
-            )
-          )
-        ),
-
-        # - Col 1 -
-        column(
-          id = "cancer_box",
-          width = 6,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Cancer Wait Times"),
-            h6("Latest data: Mar 2021"),
-            tabsetPanel(
-              tabPanel("Plot", chart_UI("cancer_plot")),
-              tabPanel("Data", table_UI("cancer_table"))
-            )
-          )
-        ),
-
-        # - Col 2 -
-        column(
-          id = "diagnostic_box",
-          width = 6,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Diagnostic Wait Times"),
-            h6("Latest data: Mar 2021"),
-            tabsetPanel(
-              tabPanel("Plot", chart_UI("diagnostic_plot")),
-              tabPanel("Data", table_UI("diagnostic_table"))
-            )
-          )
-        ),
-        
-        # - Col 1 -
-        column(
-          id = "outpatient_box",
-          width = 6,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Consultant-led Outpatient Referrals"),
-            h6("Latest data: Mar 2021"),
-            tabsetPanel(
-              tabPanel("Plot", chart_UI("outpatient_plot")),
-              tabPanel("Data", table_UI("outpatient_table"))
-            )
-          )
-        ),
-
-        # - Col 2 -
-        column(
-          id = "rtt_box",
-          width = 6,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Consultant-led Referral to Treatment Waiting Times"),
-            h6("Latest data: Mar 2021"),
-            tabsetPanel(
-              tabPanel("Plot", chart_UI("rtt_plot")),
-              tabPanel("Data", table_UI("rtt_table"))
-            )
-          )
-        ),
-        
-        column(
-          id = "ambulance_box",
-          width = 12,
-          align = "center",
-          tags$div(
-            id = "card",
-            h4("Ambulance Response Times"),
-            h6("Latest data: Feb 2021"),
-            tabsetPanel(
-              tabPanel("Plot", chart_UI("ambulance_plot")),
-              tabPanel("Data", table_UI("ambulance_table"))
-            )
-          )
-        )
-      )
-    ) # - Plots -
-  ), # - Maps & Plots -
+  router$ui,
 
   fluidRow(
     id = "footer",
@@ -407,6 +211,8 @@ ui <- fluidPage(
 
 # ---- Server ----
 server <- function(input, output, session) {
+  
+  router$server(input, output, session)
 
   # Track which Trust has been selected
   selected_trust <- reactiveVal()
