@@ -4,9 +4,26 @@ source("table.R")
 england_page <- div(
   # - Trust Search Box -
   fluidRow(
+    column(width = 2),
     column(
-      width = 12,
+      width = 4,
       align = "center",
+      
+      selectizeInput(
+        "selectbox_nation_england",
+        label = NULL,
+        choices = c("England", "Wales", "Scotland", "Northern Ireland"),
+        selected = "England",
+        options = list(
+          placeholder = "Select a nation"
+        )
+      )
+    ),
+    
+    column(
+      width = 4,
+      align = "center",
+      
       selectizeInput(
         "selectbox",
         label = NULL,
@@ -16,7 +33,8 @@ england_page <- div(
           onInitialize = I('function() { this.setValue(""); }')
         )
       )
-    )
+    ),
+    column(width = 2),
   ),
   
   # - Map & Plots -

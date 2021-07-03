@@ -215,6 +215,35 @@ server <- function(input, output, session) {
 
   # Track which Trust has been selected
   selected_trust <- reactiveVal()
+  
+  # ---- Nation selection boxes ----
+  observeEvent(input$selectbox_nation_england, {
+    if (input$selectbox_nation_england == "") {
+      change_page("/")
+    } else if (input$selectbox_nation_england == "England") {
+      change_page("/")
+    } else if (input$selectbox_nation_england == "Wales") {
+      change_page("wales")
+    } else if (input$selectbox_nation_england == "Scotland") {
+      # do nothing
+    } else if (input$selectbox_nation_england == "Northern Ireland") {
+      # do nothing
+    }
+  })
+  
+  observeEvent(input$selectbox_nation_wales, {
+    if (input$selectbox_nation_wales == "") {
+      change_page("/")
+    } else if (input$selectbox_nation_wales == "England") {
+      change_page("/")
+    } else if (input$selectbox_nation_wales == "Wales") {
+      change_page("wales")
+    } else if (input$selectbox_nation_wales == "Scotland") {
+      # do nothing
+    } else if (input$selectbox_nation_wales == "Northern Ireland") {
+      # do nothing
+    }
+  })
 
   # ---- Trust selection boxes for each nation ----
   # - England - 
