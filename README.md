@@ -1,6 +1,9 @@
-# NHS Capacity <img src='figures/brc-logo.png' align="right" height ="65"/>
+# NHS Capacity Analysis <img src='figures/logo.png' align="right" height="150" /></a>
 
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+[![Project Status: WIP – Initial development is in progress, but there
+has not yet been a stable, usable release suitable for the
+public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md) 
 
 ## Overview
 An NHS Trust level view of the current health system capacity in England. To view the dashboard, click [here](https://britishredcross.shinyapps.io/nhs-capacity/).
@@ -19,13 +22,13 @@ An NHS Trust level view of the current health system capacity in England. To vie
 
 Data set | Date
 --- | ---
-A&E Attendance | Feb 21
-Ambulance Responce Times | Feb 21
-Bed Occupancy (Day & Night) | Dec 20
-Cancer Waiting Times | Apr 21
-Diagnostic Waiting Times | Jan 21
-Outpatient Referrals | Jan 21
-Referral to Treatment Waiting Times | Jan 21
+A&E Attendance | Apr 21
+Ambulance Responce Times | Apr 21
+Bed Occupancy (Day & Night) | Jan-Mar 21
+Cancer Waiting Times | Mar 21
+Diagnostic Waiting Times | Mar 21
+Outpatient Referrals | Mar 21
+Referral to Treatment Waiting Times | Mar 21
 
 ## Contributing
 To contribute to this project, please follow [GitHub Flow](https://guides.github.com/introduction/flow/) when submitting changes.

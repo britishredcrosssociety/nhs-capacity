@@ -1,0 +1,6 @@
+Trust,Percent Under 4 Hours,Month,% treated within 62 days,% reattendances within 7 days,Inpatient and day case: Total waiting > 52 weeks,Inpatient and day case: Total waiting,Inpatient and day case: % waiting > 52 weeks,Outpatient: Total waiting > 18 weeks,Outpatient: Total waiting > 52 weeks,Outpatient: Total waiting,Outpatient: % waiting > 18 weeks,Outpatient: % waiting > 52 weeks,A&E performance (5 = worst performing),Cancer waiting list performance (5 = worst performing),reattend_bin,Inpatient and day case waiting list performance (5 = worst performing),Outpatient waiting list performance (5 = worst performing)
+Belfast,29.4,2021-03-01,37.6,3.3,30055,43391,0.6926551589039202,79251,57262,105920,0.7482156344410876,0.5406155589123867,5,5,4,1,4
+South Eastern,58.5,2021-03-01,55.7,2.2,4626,11177,0.41388565804777666,58329,47265,72397,0.8056825559070128,0.6528585438623148,2,3,5,5,1
+Northern,62,2021-03-01,43.5,3.5,7552,14013,0.5389281381574252,40570,28919,54415,0.7455664798309289,0.5314527244326013,1,4,3,4,5
+Southern,47.7,2021-03-01,58.9,4.6,12453,19779,0.629607159108145,42273,30999,55583,0.7605382940827231,0.5577064929924618,4,1,2,2,2
+Western,54.1,2021-03-01,56.8,5.5,13623,22849,0.5962186528950939,34832,25308,46727,0.7454362574100627,0.5416140561131679,3,2,1,3,3

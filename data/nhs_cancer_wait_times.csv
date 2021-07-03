@@ -1,1153 +1,1136 @@
 org_code,standard,total_treated,within_standard,breaches
-AQK,2 week wait,42,41,1
-AQK,31 Days,14,14,0
-AQK,62 Days,10,10,0
-AQK,62 Days (Upgrade),1,1,0
-NCN,2 week wait,108,87,21
-NCN,31 Days,56,50,6
-NCN,31 Days Sub (Surgery),15,11,4
-NCN,62 Days,28,22,6
-NDA,62 Days (Screening),9.5,9.5,0
-NQT,2 week wait,38,37,1
-NQT,31 Days,4,4,0
-NQT,62 Days,2,2,0
-NTP,62 Days (Upgrade),0.5,0.5,0
-NV1,2 week wait,67,49,18
-NV1,62 Days,2,1,1
-NV1,62 Days (Screening),11,11,0
-NV1,62 Days (Upgrade),0.5,0.5,0
-NVM,2 week wait,20,20,0
-NVM,31 Days,26,22,4
-NVM,62 Days,12,10,2
-NVM,62 Days (Upgrade),3.5,2.5,1
-NYG,2 week wait,6,6,0
-NYG,31 Days,4,4,0
-NYG,62 Days,10,10,0
-NYG,62 Days (Upgrade),2.5,2.5,0
-NYT,2 week wait,26,26,0
-NYT,31 Days,2,2,0
-NYT,31 Days Sub (Surgery),1,1,0
-NYT,62 Days,2,2,0
-R0A,2 week wait,1100,917,183
-R0A,2WW Breast,70,53,17
-R0A,31 Days,558,518,40
-R0A,31 Days Sub (Drugs),8,8,0
-R0A,31 Days Sub (Surgery),46,42,4
-R0A,62 Days,254,163,91
-R0A,62 Days (Screening),29,25,4
-R0A,62 Days (Upgrade),59.5,42,17.5
-R0B,2 week wait,495,458,37
-R0B,31 Days,344,344,0
-R0B,31 Days Sub (Drugs),69,68,1
-R0B,31 Days Sub (Surgery),12,12,0
-R0B,62 Days,211,174,37
-R0B,62 Days (Screening),2.5,2.5,0
-R0B,62 Days (Upgrade),14,12,2
-R1A,31 Days Sub (Drugs),1,1,0
-R1F,2 week wait,173,151,22
-R1F,2WW Breast,12,11,1
-R1F,31 Days,138,138,0
+AQK,2 week wait,157,155,2
+AQK,31 Days,54,54,0
+AQK,31 Days Sub (Surgery),2,2,0
+AQK,62 Days,30,28,2
+AQK,62 Days (Upgrade),8,8,0
+NDA,62 Days (Screening),11,9,2
+NQT,62 Days,1,1,0
+NT3,31 Days,2,0,2
+NT3,31 Days Sub (Surgery),1,1,0
+NT3,62 Days (Upgrade),0.5,0.5,0
+NV1,2 week wait,202,194,8
+NV1,62 Days,3,3,0
+NV1,62 Days (Screening),10.5,9,1.5
+NVM,2 week wait,128,128,0
+NVM,31 Days,16,16,0
+NVM,62 Days,5,5,0
+NVM,62 Days (Upgrade),3.5,3.5,0
+NYG,2 week wait,925,920,5
+NYG,31 Days,116,116,0
+NYG,62 Days,85,82,3
+NYG,62 Days (Upgrade),28.5,28.5,0
+R0A,2 week wait,3385,3210,175
+R0A,2WW Breast,428,347,81
+R0A,31 Days,718,672,46
+R0A,31 Days Sub (Drugs),15,15,0
+R0A,31 Days Sub (Surgery),102,93,9
+R0A,62 Days,329,229,100
+R0A,62 Days (Screening),30,24,6
+R0A,62 Days (Upgrade),73,58,15
+R0B,2 week wait,1347,1253,94
+R0B,31 Days,376,376,0
+R0B,31 Days Sub (Drugs),138,138,0
+R0B,31 Days Sub (Surgery),20,20,0
+R0B,62 Days,192,171,21
+R0B,62 Days (Screening),1,0.5,0.5
+R0B,62 Days (Upgrade),28.5,22.5,6
+R0D,2 week wait,2695,2511,184
+R0D,2WW Breast,56,54,2
+R0D,31 Days,726,718,8
+R0D,31 Days Sub (Drugs),95,95,0
+R0D,31 Days Sub (Radio),140,139,1
+R0D,31 Days Sub (Surgery),45,42,3
+R0D,62 Days,410,341,69
+R0D,62 Days (Screening),26,24,2
+R0D,62 Days (Upgrade),13,12,1
+R1F,2 week wait,496,485,11
+R1F,2WW Breast,45,44,1
+R1F,31 Days,190,188,2
 R1F,31 Days Sub (Drugs),35,35,0
-R1F,31 Days Sub (Radio),2,2,0
-R1F,31 Days Sub (Surgery),16,14,2
-R1F,62 Days,75,52,23
-R1F,62 Days (Screening),6,6,0
-R1F,62 Days (Upgrade),5,5,0
-R1H,2 week wait,1239,1058,181
-R1H,2WW Breast,58,32,26
-R1H,31 Days,478,474,4
-R1H,31 Days Sub (Drugs),41,41,0
-R1H,31 Days Sub (Radio),120,117,3
-R1H,31 Days Sub (Surgery),38,38,0
-R1H,62 Days,194,167,27
-R1H,62 Days (Screening),17.5,14,3.5
-R1H,62 Days (Upgrade),44.5,38,6.5
-R1K,2 week wait,720,638,82
-R1K,2WW Breast,67,48,19
-R1K,31 Days,178,176,2
-R1K,31 Days Sub (Drugs),7,6,1
-R1K,31 Days Sub (Surgery),8,8,0
-R1K,62 Days,138,82,56
-R1K,62 Days (Screening),8,6,2
-R1K,62 Days (Upgrade),23,21,2
-RA2,2 week wait,292,273,19
-RA2,2WW Breast,43,38,5
-RA2,31 Days,376,360,16
-RA2,31 Days Sub (Drugs),143,142,1
-RA2,31 Days Sub (Radio),172,169,3
-RA2,31 Days Sub (Surgery),22,21,1
-RA2,62 Days,144,121,23
-RA2,62 Days (Screening),4,2.5,1.5
-RA2,62 Days (Upgrade),1,0.5,0.5
-RA4,2 week wait,283,268,15
-RA4,2WW Breast,14,13,1
-RA4,31 Days,102,102,0
-RA4,31 Days Sub (Drugs),14,14,0
-RA4,31 Days Sub (Radio),1,1,0
-RA4,31 Days Sub (Surgery),14,13,1
-RA4,62 Days,77,57,20
-RA4,62 Days (Upgrade),17.5,16,1.5
-RA7,2 week wait,724,654,70
-RA7,31 Days,440,416,24
-RA7,31 Days Sub (Drugs),56,56,0
-RA7,31 Days Sub (Radio),151,148,3
-RA7,31 Days Sub (Surgery),54,45,9
-RA7,62 Days,210,160,50
-RA7,62 Days (Screening),1,1,0
-RA7,62 Days (Upgrade),46.5,37,9.5
-RA9,2 week wait,556,452,104
-RA9,2WW Breast,24,23,1
-RA9,31 Days,344,336,8
-RA9,31 Days Sub (Drugs),53,53,0
-RA9,31 Days Sub (Radio),43,40,3
-RA9,31 Days Sub (Surgery),29,28,1
-RA9,62 Days,199,144,55
-RA9,62 Days (Screening),15,11,4
-RA9,62 Days (Upgrade),2,1,1
-RAE,2 week wait,681,601,80
-RAE,2WW Breast,1,1,0
-RAE,31 Days,204,192,12
-RAE,31 Days Sub (Drugs),32,31,1
-RAE,31 Days Sub (Surgery),38,31,7
-RAE,62 Days,135,109,26
-RAE,62 Days (Screening),20,14.5,5.5
-RAE,62 Days (Upgrade),7.5,5.5,2
-RAJ,2 week wait,1638,1429,209
-RAJ,2WW Breast,23,12,11
-RAJ,31 Days,696,668,28
-RAJ,31 Days Sub (Drugs),146,141,5
-RAJ,31 Days Sub (Radio),111,108,3
-RAJ,31 Days Sub (Surgery),95,83,12
-RAJ,62 Days,409,291,118
-RAJ,62 Days (Screening),11.5,9,2.5
-RAJ,62 Days (Upgrade),20.5,14.5,6
-RAL,2 week wait,1292,1176,116
-RAL,2WW Breast,29,23,6
-RAL,31 Days,282,278,4
-RAL,31 Days Sub (Drugs),25,25,0
-RAL,31 Days Sub (Radio),25,24,1
-RAL,31 Days Sub (Surgery),25,23,2
-RAL,62 Days,178,132,46
-RAL,62 Days (Screening),27,23.5,3.5
-RAL,62 Days (Upgrade),39,34,5
-RAN,2 week wait,118,115,3
-RAN,31 Days,34,34,0
-RAN,31 Days Sub (Surgery),23,21,2
-RAN,62 Days,11,10,1
-RAN,62 Days (Upgrade),6.5,6.5,0
-RAP,2 week wait,340,227,113
-RAP,2WW Breast,5,3,2
-RAP,31 Days,134,128,6
-RAP,31 Days Sub (Radio),17,16,1
-RAP,31 Days Sub (Surgery),1,1,0
-RAP,62 Days,70,38,32
-RAP,62 Days (Upgrade),28.5,23,5.5
-RAS,2 week wait,322,237,85
-RAS,2WW Breast,15,13,2
-RAS,31 Days,88,88,0
+R1F,31 Days Sub (Surgery),10,10,0
+R1F,62 Days,116,88,28
+R1F,62 Days (Screening),8.5,7.5,1
+R1H,2 week wait,3313,3217,96
+R1H,2WW Breast,309,307,2
+R1H,31 Days,582,578,4
+R1H,31 Days Sub (Drugs),54,54,0
+R1H,31 Days Sub (Radio),136,136,0
+R1H,31 Days Sub (Surgery),46,46,0
+R1H,62 Days,239,204,35
+R1H,62 Days (Screening),11,10.5,0.5
+R1H,62 Days (Upgrade),59.5,54.5,5
+R1K,2 week wait,2774,2660,114
+R1K,2WW Breast,20,20,0
+R1K,31 Days,296,294,2
+R1K,31 Days Sub (Drugs),3,3,0
+R1K,31 Days Sub (Radio),1,1,0
+R1K,31 Days Sub (Surgery),9,9,0
+R1K,62 Days,210,179,31
+R1K,62 Days (Screening),7.5,4.5,3
+R1K,62 Days (Upgrade),52.5,47,5.5
+RA2,2 week wait,901,868,33
+RA2,2WW Breast,130,121,9
+RA2,31 Days,518,508,10
+RA2,31 Days Sub (Drugs),240,236,4
+RA2,31 Days Sub (Radio),244,236,8
+RA2,31 Days Sub (Surgery),49,45,4
+RA2,62 Days,191,167,24
+RA2,62 Days (Screening),12,7.5,4.5
+RA2,62 Days (Upgrade),7.5,6,1.5
+RA4,2 week wait,747,717,30
+RA4,2WW Breast,45,44,1
+RA4,31 Days,204,204,0
+RA4,31 Days Sub (Drugs),36,36,0
+RA4,31 Days Sub (Surgery),15,14,1
+RA4,62 Days,146,129,17
+RA4,62 Days (Screening),3,1,2
+RA4,62 Days (Upgrade),21,21,0
+RA7,2 week wait,1913,1820,93
+RA7,31 Days,698,656,42
+RA7,31 Days Sub (Drugs),158,158,0
+RA7,31 Days Sub (Radio),187,185,2
+RA7,31 Days Sub (Surgery),53,43,10
+RA7,62 Days,329,248,81
+RA7,62 Days (Screening),9,7,2
+RA7,62 Days (Upgrade),96.5,74,22.5
+RA9,2 week wait,1319,1123,196
+RA9,2WW Breast,104,99,5
+RA9,31 Days,408,404,4
+RA9,31 Days Sub (Drugs),87,87,0
+RA9,31 Days Sub (Radio),62,62,0
+RA9,31 Days Sub (Surgery),33,28,5
+RA9,62 Days,216,140,76
+RA9,62 Days (Screening),17,17,0
+RA9,62 Days (Upgrade),1,1,0
+RAE,2 week wait,1546,1477,69
+RAE,2WW Breast,183,179,4
+RAE,31 Days,298,282,16
+RAE,31 Days Sub (Drugs),58,58,0
+RAE,31 Days Sub (Surgery),51,42,9
+RAE,62 Days,191,150,41
+RAE,62 Days (Screening),20,16.5,3.5
+RAE,62 Days (Upgrade),4.5,4.5,0
+RAJ,2 week wait,5092,4810,282
+RAJ,2WW Breast,163,152,11
+RAJ,31 Days,1156,1008,148
+RAJ,31 Days Sub (Drugs),201,189,12
+RAJ,31 Days Sub (Radio),136,133,3
+RAJ,31 Days Sub (Surgery),118,86,32
+RAJ,62 Days,601,399,202
+RAJ,62 Days (Screening),33.5,14.5,19
+RAJ,62 Days (Upgrade),39.5,17.5,22
+RAL,2 week wait,4155,3992,163
+RAL,2WW Breast,137,117,20
+RAL,31 Days,586,560,26
+RAL,31 Days Sub (Drugs),4,4,0
+RAL,31 Days Sub (Radio),81,77,4
+RAL,31 Days Sub (Surgery),64,63,1
+RAL,62 Days,308,240,68
+RAL,62 Days (Screening),30,28,2
+RAL,62 Days (Upgrade),98,88.5,9.5
+RAN,2 week wait,150,149,1
+RAN,31 Days,30,28,2
+RAN,31 Days Sub (Surgery),14,14,0
+RAN,62 Days,5,5,0
+RAN,62 Days (Upgrade),7,7,0
+RAP,2 week wait,1049,765,284
+RAP,31 Days,154,152,2
+RAP,31 Days Sub (Drugs),4,3,1
+RAP,31 Days Sub (Radio),67,64,3
+RAP,31 Days Sub (Surgery),2,2,0
+RAP,62 Days,70,29,41
+RAP,62 Days (Screening),1.5,1.5,0
+RAP,62 Days (Upgrade),29,24.5,4.5
+RAS,2 week wait,1141,1066,75
+RAS,2WW Breast,91,60,31
+RAS,31 Days,126,126,0
 RAS,31 Days Sub (Drugs),3,3,0
 RAS,31 Days Sub (Surgery),2,2,0
-RAS,62 Days,59,34,25
-RAS,62 Days (Upgrade),21,20,1
-RAX,2 week wait,502,494,8
-RAX,2WW Breast,19,19,0
-RAX,31 Days,192,190,2
-RAX,31 Days Sub (Drugs),3,3,0
-RAX,31 Days Sub (Surgery),18,18,0
-RAX,62 Days,143,134,9
-RAX,62 Days (Screening),3,3,0
-RAX,62 Days (Upgrade),4,3,1
-RBD,2 week wait,419,344,75
-RBD,2WW Breast,12,12,0
-RBD,31 Days,162,158,4
-RBD,31 Days Sub (Drugs),26,25,1
-RBD,31 Days Sub (Surgery),9,8,1
-RBD,62 Days,85,59,26
-RBD,62 Days (Screening),8,5,3
-RBD,62 Days (Upgrade),6,5.5,0.5
-RBK,2 week wait,344,324,20
-RBK,2WW Breast,15,13,2
-RBK,31 Days,134,134,0
-RBK,31 Days Sub (Drugs),13,13,0
-RBK,31 Days Sub (Surgery),12,11,1
-RBK,62 Days,82,61,21
-RBK,62 Days (Screening),3,3,0
-RBK,62 Days (Upgrade),27,23.5,3.5
-RBL,2 week wait,701,496,205
-RBL,31 Days,256,256,0
-RBL,31 Days Sub (Drugs),20,20,0
-RBL,31 Days Sub (Surgery),10,10,0
-RBL,62 Days,145,127,18
-RBL,62 Days (Screening),8.5,8,0.5
-RBL,62 Days (Upgrade),5,5,0
-RBN,2 week wait,497,439,58
-RBN,2WW Breast,47,38,9
-RBN,31 Days,330,320,10
-RBN,31 Days Sub (Drugs),5,5,0
-RBN,31 Days Sub (Surgery),80,75,5
-RBN,62 Days,161,131,30
-RBN,62 Days (Screening),3,3,0
-RBN,62 Days (Upgrade),17,15,2
-RBQ,2 week wait,7,7,0
-RBQ,31 Days,70,70,0
-RBQ,31 Days Sub (Surgery),2,2,0
-RBQ,62 Days,34,32,2
-RBQ,62 Days (Upgrade),4.5,2.5,2
-RBS,2 week wait,8,8,0
-RBS,31 Days,14,14,0
+RAS,62 Days,84,61,23
+RAS,62 Days (Upgrade),27,25,2
+RAX,2 week wait,1439,1415,24
+RAX,2WW Breast,133,133,0
+RAX,31 Days,168,166,2
+RAX,31 Days Sub (Drugs),13,13,0
+RAX,31 Days Sub (Surgery),10,10,0
+RAX,62 Days,126,117,9
+RAX,62 Days (Screening),5,5,0
+RAX,62 Days (Upgrade),12.5,11.5,1
+RBD,2 week wait,901,713,188
+RBD,2WW Breast,75,22,53
+RBD,31 Days,262,256,6
+RBD,31 Days Sub (Drugs),42,42,0
+RBD,31 Days Sub (Radio),1,1,0
+RBD,31 Days Sub (Surgery),9,7,2
+RBD,62 Days,155,130,25
+RBD,62 Days (Screening),7,5,2
+RBD,62 Days (Upgrade),14.5,11.5,3
+RBK,2 week wait,1051,775,276
+RBK,2WW Breast,55,16,39
+RBK,31 Days,152,152,0
+RBK,31 Days Sub (Drugs),18,18,0
+RBK,31 Days Sub (Surgery),17,17,0
+RBK,62 Days,76,55,21
+RBK,62 Days (Screening),9.5,9,0.5
+RBK,62 Days (Upgrade),28.5,24.5,4
+RBL,2 week wait,1790,1769,21
+RBL,31 Days,398,372,26
+RBL,31 Days Sub (Drugs),13,13,0
+RBL,31 Days Sub (Surgery),30,22,8
+RBL,62 Days,226,190,36
+RBL,62 Days (Screening),18.5,11.5,7
+RBL,62 Days (Upgrade),10.5,8.5,2
+RBN,2 week wait,1843,1785,58
+RBN,2WW Breast,126,124,2
+RBN,31 Days,482,468,14
+RBN,31 Days Sub (Drugs),1,1,0
+RBN,31 Days Sub (Surgery),61,59,2
+RBN,62 Days,220,189,31
+RBN,62 Days (Screening),5.5,5.5,0
+RBN,62 Days (Upgrade),38,35.5,2.5
+RBQ,2 week wait,12,12,0
+RBQ,31 Days,102,102,0
+RBQ,31 Days Sub (Surgery),4,4,0
+RBQ,62 Days,19,17,2
+RBQ,62 Days (Upgrade),2,1.5,0.5
+RBS,2 week wait,23,23,0
+RBS,31 Days,8,8,0
 RBS,31 Days Sub (Drugs),2,2,0
-RBS,31 Days Sub (Surgery),1,1,0
-RBT,2 week wait,478,426,52
-RBT,2WW Breast,16,16,0
-RBT,31 Days,162,158,4
-RBT,31 Days Sub (Surgery),2,2,0
-RBT,62 Days,121,90,31
-RBT,62 Days (Screening),13,13,0
-RBT,62 Days (Upgrade),17.5,11.5,6
-RBV,31 Days,550,522,28
-RBV,31 Days Sub (Drugs),169,169,0
-RBV,31 Days Sub (Radio),402,398,4
-RBV,31 Days Sub (Surgery),77,74,3
-RBV,62 Days,135,100,35
-RBV,62 Days (Screening),1,1,0
-RBV,62 Days (Upgrade),43,31,12
-RBZ,2 week wait,190,182,8
-RBZ,2WW Breast,9,7,2
-RBZ,31 Days,108,106,2
-RBZ,31 Days Sub (Drugs),9,9,0
-RBZ,31 Days Sub (Surgery),13,13,0
-RBZ,62 Days,58,51,7
-RBZ,62 Days (Screening),1,1,0
-RBZ,62 Days (Upgrade),17.5,12.5,5
-RC9,2 week wait,570,504,66
-RC9,2WW Breast,11,7,4
-RC9,31 Days,332,328,4
-RC9,31 Days Sub (Drugs),19,19,0
-RC9,31 Days Sub (Surgery),42,41,1
-RC9,62 Days,202,149,53
-RC9,62 Days (Screening),23,22,1
-RC9,62 Days (Upgrade),3,3,0
-RCB,2 week wait,634,542,92
-RCB,2WW Breast,22,20,2
-RCB,31 Days,432,426,6
-RCB,31 Days Sub (Drugs),55,55,0
-RCB,31 Days Sub (Surgery),45,34,11
-RCB,62 Days,221,166,55
-RCB,62 Days (Screening),21,21,0
-RCB,62 Days (Upgrade),2,2,0
-RCD,2 week wait,369,343,26
-RCD,2WW Breast,22,22,0
-RCD,31 Days,144,144,0
-RCD,31 Days Sub (Drugs),21,21,0
-RCD,31 Days Sub (Surgery),12,10,2
-RCD,62 Days,88,79,9
-RCD,62 Days (Screening),4,2,2
-RCD,62 Days (Upgrade),18.5,16,2.5
-RCF,2 week wait,220,187,33
-RCF,2WW Breast,23,20,3
-RCF,31 Days,136,136,0
-RCF,31 Days Sub (Drugs),21,21,0
-RCF,31 Days Sub (Surgery),5,5,0
-RCF,62 Days,84,84,0
-RCF,62 Days (Screening),1.5,1.5,0
-RCF,62 Days (Upgrade),3,2,1
-RCU,2 week wait,7,7,0
-RCU,31 Days,6,6,0
-RCU,31 Days Sub (Drugs),3,3,0
-RCU,62 Days (Upgrade),0.5,0.5,0
-RCX,2 week wait,252,236,16
-RCX,2WW Breast,9,9,0
-RCX,31 Days,130,126,4
+RBS,62 Days (Upgrade),1,1,0
+RBT,2 week wait,1362,1336,26
+RBT,2WW Breast,81,79,2
+RBT,31 Days,188,184,4
+RBT,31 Days Sub (Drugs),1,1,0
+RBT,31 Days Sub (Surgery),5,4,1
+RBT,62 Days,143,123,20
+RBT,62 Days (Screening),12,10,2
+RBT,62 Days (Upgrade),23,18,5
+RBV,2 week wait,1,1,0
+RBV,31 Days,752,740,12
+RBV,31 Days Sub (Drugs),244,244,0
+RBV,31 Days Sub (Radio),499,499,0
+RBV,31 Days Sub (Surgery),133,133,0
+RBV,62 Days,184,150,34
+RBV,62 Days (Screening),3.5,3.5,0
+RBV,62 Days (Upgrade),44.5,38,6.5
+RBZ,2 week wait,616,524,92
+RBZ,2WW Breast,53,3,50
+RBZ,31 Days,220,216,4
+RBZ,31 Days Sub (Drugs),31,31,0
+RBZ,31 Days Sub (Surgery),7,7,0
+RBZ,62 Days,123,104,19
+RBZ,62 Days (Screening),2,1,1
+RBZ,62 Days (Upgrade),38.5,32.5,6
+RC9,2 week wait,2366,2214,152
+RC9,2WW Breast,134,101,33
+RC9,31 Days,418,414,4
+RC9,31 Days Sub (Drugs),33,33,0
+RC9,31 Days Sub (Surgery),35,35,0
+RC9,62 Days,263,196,67
+RC9,62 Days (Screening),29,23,6
+RC9,62 Days (Upgrade),9.5,8,1.5
+RCB,2 week wait,1837,1673,164
+RCB,2WW Breast,148,137,11
+RCB,31 Days,540,524,16
+RCB,31 Days Sub (Drugs),94,94,0
+RCB,31 Days Sub (Surgery),30,28,2
+RCB,62 Days,288,216,72
+RCB,62 Days (Screening),19.5,17,2.5
+RCB,62 Days (Upgrade),4,3,1
+RCD,2 week wait,956,851,105
+RCD,2WW Breast,71,11,60
+RCD,31 Days,204,198,6
+RCD,31 Days Sub (Drugs),41,41,0
+RCD,31 Days Sub (Surgery),24,22,2
+RCD,62 Days,144,123,21
+RCD,62 Days (Screening),5,3,2
+RCD,62 Days (Upgrade),16,15,1
+RCF,2 week wait,576,558,18
+RCF,2WW Breast,94,90,4
+RCF,31 Days,166,160,6
+RCF,31 Days Sub (Drugs),47,47,0
+RCF,31 Days Sub (Surgery),10,10,0
+RCF,62 Days,102,96,6
+RCF,62 Days (Screening),2,1,1
+RCF,62 Days (Upgrade),3.5,3,0.5
+RCX,2 week wait,948,925,23
+RCX,2WW Breast,64,59,5
+RCX,31 Days,204,198,6
 RCX,31 Days Sub (Drugs),35,35,0
-RCX,31 Days Sub (Surgery),10,10,0
-RCX,62 Days,67,51,16
-RCX,62 Days (Screening),6,6,0
-RCX,62 Days (Upgrade),3,2.5,0.5
-RD1,2 week wait,712,557,155
-RD1,2WW Breast,2,1,1
-RD1,31 Days,268,260,8
-RD1,31 Days Sub (Drugs),10,10,0
-RD1,31 Days Sub (Radio),60,60,0
-RD1,31 Days Sub (Surgery),22,22,0
-RD1,62 Days,193,166,27
-RD1,62 Days (Screening),4,3,1
-RD1,62 Days (Upgrade),2.5,2,0.5
-RD3,2 week wait,409,369,40
-RD3,2WW Breast,1,1,0
-RD3,31 Days,248,240,8
-RD3,31 Days Sub (Drugs),43,43,0
-RD3,31 Days Sub (Radio),132,129,3
-RD3,31 Days Sub (Surgery),28,25,3
-RD3,62 Days,121,93,28
-RD3,62 Days (Screening),16,16,0
-RD3,62 Days (Upgrade),13,12,1
-RD8,2 week wait,422,368,54
-RD8,2WW Breast,6,5,1
-RD8,31 Days,178,172,6
-RD8,31 Days Sub (Drugs),34,33,1
-RD8,31 Days Sub (Radio),1,1,0
-RD8,31 Days Sub (Surgery),15,15,0
-RD8,62 Days,108,80,28
-RD8,62 Days (Screening),13,8,5
-RD8,62 Days (Upgrade),0.5,0.5,0
-RDE,2 week wait,1274,1155,119
-RDE,2WW Breast,41,33,8
-RDE,31 Days,602,530,72
-RDE,31 Days Sub (Drugs),84,80,4
-RDE,31 Days Sub (Radio),105,97,8
-RDE,31 Days Sub (Surgery),39,32,7
-RDE,62 Days,388,303,85
-RDE,62 Days (Screening),23.5,19,4.5
-RDE,62 Days (Upgrade),64,49,15
-RDU,2 week wait,819,784,35
-RDU,2WW Breast,8,7,1
-RDU,31 Days,470,468,2
-RDU,31 Days Sub (Drugs),38,37,1
-RDU,31 Days Sub (Surgery),48,47,1
-RDU,62 Days,244,217,27
-RDU,62 Days (Screening),24,24,0
-RDU,62 Days (Upgrade),5,5,0
-RDZ,2 week wait,487,343,144
-RDZ,2WW Breast,30,23,7
-RDZ,31 Days,332,326,6
-RDZ,31 Days Sub (Drugs),42,42,0
-RDZ,31 Days Sub (Surgery),35,35,0
-RDZ,62 Days,175,147,28
-RDZ,62 Days (Screening),5,3,2
-RDZ,62 Days (Upgrade),4,4,0
-REF,2 week wait,735,710,25
-REF,2WW Breast,53,41,12
-REF,31 Days,438,426,12
-REF,31 Days Sub (Drugs),70,70,0
-REF,31 Days Sub (Radio),76,76,0
-REF,31 Days Sub (Surgery),55,51,4
-REF,62 Days,227,180,47
-REF,62 Days (Screening),23,19,4
-REF,62 Days (Upgrade),1,1,0
-REM,2 week wait,945,882,63
-REM,2WW Breast,96,93,3
-REM,31 Days,312,298,14
-REM,31 Days Sub (Drugs),28,27,1
-REM,31 Days Sub (Surgery),18,16,2
-REM,62 Days,190,125,65
-REM,62 Days (Screening),18.5,15,3.5
-REM,62 Days (Upgrade),38,34.5,3.5
-REN,2 week wait,7,4,3
-REN,31 Days,392,386,6
-REN,31 Days Sub (Drugs),111,110,1
-REN,31 Days Sub (Radio),304,302,2
-REN,62 Days,98,82,16
-REN,62 Days (Screening),2,2,0
-REN,62 Days (Upgrade),22,19,3
-REP,2 week wait,115,111,4
-REP,31 Days,58,52,6
-REP,31 Days Sub (Drugs),1,1,0
-REP,31 Days Sub (Surgery),11,9,2
-REP,62 Days,20,13,7
-REP,62 Days (Screening),1,1,0
-REP,62 Days (Upgrade),9.5,4,5.5
-RET,2 week wait,3,3,0
-RET,31 Days,10,10,0
-RET,31 Days Sub (Surgery),3,3,0
-RF4,2 week wait,687,413,274
-RF4,2WW Breast,5,0,5
-RF4,31 Days,234,210,24
-RF4,31 Days Sub (Drugs),32,32,0
-RF4,31 Days Sub (Radio),62,58,4
-RF4,31 Days Sub (Surgery),18,16,2
-RF4,62 Days,153,89,64
-RF4,62 Days (Screening),5.5,3,2.5
-RF4,62 Days (Upgrade),25.5,19,6.5
-RFF,2 week wait,467,433,34
-RFF,2WW Breast,17,16,1
-RFF,31 Days,136,136,0
-RFF,31 Days Sub (Drugs),3,3,0
-RFF,62 Days,72,61,11
-RFF,62 Days (Screening),2,1,1
-RFF,62 Days (Upgrade),8.5,8,0.5
-RFR,2 week wait,403,275,128
-RFR,2WW Breast,41,33,8
-RFR,31 Days,108,108,0
-RFR,31 Days Sub (Drugs),4,4,0
-RFR,31 Days Sub (Surgery),13,13,0
-RFR,62 Days,69,54,15
-RFR,62 Days (Screening),4,3,1
-RFR,62 Days (Upgrade),31,26.5,4.5
-RFS,2 week wait,484,445,39
-RFS,2WW Breast,11,7,4
-RFS,31 Days,160,160,0
-RFS,31 Days Sub (Drugs),12,12,0
-RFS,31 Days Sub (Surgery),11,10,1
-RFS,62 Days,82,67,15
-RFS,62 Days (Screening),14.5,13,1.5
-RFS,62 Days (Upgrade),2,2,0
+RCX,31 Days Sub (Surgery),9,9,0
+RCX,62 Days,117,77,40
+RCX,62 Days (Screening),7,7,0
+RCX,62 Days (Upgrade),3.5,3.5,0
+RD1,2 week wait,1873,1758,115
+RD1,2WW Breast,116,116,0
+RD1,31 Days,456,442,14
+RD1,31 Days Sub (Drugs),5,5,0
+RD1,31 Days Sub (Radio),40,40,0
+RD1,31 Days Sub (Surgery),30,29,1
+RD1,62 Days,326,230,96
+RD1,62 Days (Screening),6,5.5,0.5
+RD8,2 week wait,1321,1132,189
+RD8,2WW Breast,127,126,1
+RD8,31 Days,238,224,14
+RD8,31 Days Sub (Drugs),40,39,1
+RD8,31 Days Sub (Surgery),8,4,4
+RD8,62 Days,121,91,30
+RD8,62 Days (Screening),18.5,16,2.5
+RD8,62 Days (Upgrade),36,31,5
+RDE,2 week wait,3477,3212,265
+RDE,2WW Breast,82,47,35
+RDE,31 Days,816,732,84
+RDE,31 Days Sub (Drugs),181,175,6
+RDE,31 Days Sub (Radio),166,155,11
+RDE,31 Days Sub (Surgery),46,41,5
+RDE,62 Days,499,387,112
+RDE,62 Days (Screening),38.5,27.5,11
+RDE,62 Days (Upgrade),108,94,14
+RDU,2 week wait,2797,2646,151
+RDU,2WW Breast,14,14,0
+RDU,31 Days,634,600,34
+RDU,31 Days Sub (Drugs),66,66,0
+RDU,31 Days Sub (Surgery),47,40,7
+RDU,62 Days,306,254,52
+RDU,62 Days (Screening),26.5,17.5,9
+RDU,62 Days (Upgrade),84.5,75,9.5
+REF,2 week wait,1809,1752,57
+REF,2WW Breast,215,10,205
+REF,31 Days,518,506,12
+REF,31 Days Sub (Drugs),147,147,0
+REF,31 Days Sub (Radio),95,95,0
+REF,31 Days Sub (Surgery),64,62,2
+REF,62 Days,277,247,30
+REF,62 Days (Screening),13,11,2
+REF,62 Days (Upgrade),2,2,0
+REM,2 week wait,3233,3167,66
+REM,2WW Breast,333,326,7
+REM,31 Days,472,452,20
+REM,31 Days Sub (Drugs),20,20,0
+REM,31 Days Sub (Surgery),45,41,4
+REM,62 Days,245,163,82
+REM,62 Days (Screening),30,24,6
+REM,62 Days (Upgrade),74,53.5,20.5
+REN,2 week wait,11,11,0
+REN,31 Days,574,572,2
+REN,31 Days Sub (Drugs),285,285,0
+REN,31 Days Sub (Radio),356,354,2
+REN,62 Days,105,99,6
+REN,62 Days (Screening),5,4.5,0.5
+REN,62 Days (Upgrade),27.5,26.5,1
+REP,2 week wait,317,309,8
+REP,31 Days,50,44,6
+REP,31 Days Sub (Surgery),4,4,0
+REP,62 Days,35,11,24
+REP,62 Days (Upgrade),2,0.5,1.5
+RET,2 week wait,16,16,0
+RET,31 Days,24,24,0
+RET,31 Days Sub (Surgery),4,4,0
+RF4,2 week wait,2542,2441,101
+RF4,2WW Breast,203,197,6
+RF4,31 Days,464,456,8
+RF4,31 Days Sub (Drugs),93,93,0
+RF4,31 Days Sub (Radio),67,67,0
+RF4,31 Days Sub (Surgery),39,37,2
+RF4,62 Days,295,218,77
+RF4,62 Days (Screening),16.5,7.5,9
+RF4,62 Days (Upgrade),44,35.5,8.5
+RFF,2 week wait,1032,1003,29
+RFF,2WW Breast,146,139,7
+RFF,31 Days,218,206,12
+RFF,31 Days Sub (Drugs),9,9,0
+RFF,31 Days Sub (Surgery),4,4,0
+RFF,62 Days,133,107,26
+RFF,62 Days (Screening),10,7,3
+RFF,62 Days (Upgrade),11,8.5,2.5
+RFR,2 week wait,828,799,29
+RFR,2WW Breast,59,56,3
+RFR,31 Days,214,198,16
+RFR,31 Days Sub (Drugs),2,2,0
+RFR,31 Days Sub (Surgery),11,11,0
+RFR,62 Days,138,98,40
+RFR,62 Days (Screening),6,6,0
+RFR,62 Days (Upgrade),48.5,45,3.5
+RFS,2 week wait,1110,1032,78
+RFS,2WW Breast,43,31,12
+RFS,31 Days,262,254,8
+RFS,31 Days Sub (Drugs),13,13,0
+RFS,31 Days Sub (Surgery),23,20,3
+RFS,62 Days,163,130,33
+RFS,62 Days (Screening),12,8,4
+RFS,62 Days (Upgrade),1,1,0
 RGM,31 Days,50,50,0
-RGM,31 Days Sub (Surgery),9,9,0
-RGM,62 Days,20,9,11
+RGM,31 Days Sub (Surgery),1,1,0
+RGM,62 Days,4,4,0
 RGM,62 Days (Upgrade),2,2,0
-RGN,2 week wait,992,845,147
-RGN,2WW Breast,36,26,10
-RGN,31 Days,426,402,24
-RGN,31 Days Sub (Drugs),20,20,0
-RGN,31 Days Sub (Radio),48,46,2
-RGN,31 Days Sub (Surgery),29,29,0
-RGN,62 Days,325,233,92
-RGN,62 Days (Screening),14.5,11.5,3
-RGN,62 Days (Upgrade),10.5,6.5,4
-RGP,2 week wait,216,201,15
-RGP,2WW Breast,18,17,1
-RGP,31 Days,142,142,0
-RGP,31 Days Sub (Drugs),33,33,0
-RGP,31 Days Sub (Surgery),16,16,0
-RGP,62 Days,79,53,26
-RGP,62 Days (Screening),3.5,3,0.5
-RGP,62 Days (Upgrade),24.5,23.5,1
-RGR,2 week wait,283,254,29
-RGR,2WW Breast,80,77,3
-RGR,31 Days,190,190,0
-RGR,31 Days Sub (Drugs),39,39,0
-RGR,31 Days Sub (Surgery),11,11,0
-RGR,62 Days,112,88,24
-RGR,62 Days (Screening),8,8,0
-RGR,62 Days (Upgrade),1,1,0
-RGT,2 week wait,709,644,65
-RGT,2WW Breast,18,17,1
-RGT,31 Days,458,436,22
-RGT,31 Days Sub (Drugs),76,75,1
-RGT,31 Days Sub (Radio),206,204,2
-RGT,31 Days Sub (Surgery),37,28,9
-RGT,62 Days,220,190,30
-RGT,62 Days (Screening),17,13,4
-RGT,62 Days (Upgrade),2,2,0
-RH5,2 week wait,423,335,88
-RH5,2WW Breast,5,2,3
-RH5,31 Days,256,244,12
-RH5,31 Days Sub (Drugs),81,81,0
-RH5,31 Days Sub (Radio),60,57,3
-RH5,31 Days Sub (Surgery),17,15,2
-RH5,62 Days,118,97,21
-RH5,62 Days (Screening),10,7,3
-RH5,62 Days (Upgrade),38,37.5,0.5
-RH8,2 week wait,859,706,153
-RH8,2WW Breast,6,3,3
-RH8,31 Days,482,474,8
-RH8,31 Days Sub (Drugs),104,104,0
-RH8,31 Days Sub (Radio),114,112,2
-RH8,31 Days Sub (Surgery),70,70,0
-RH8,62 Days,276,176,100
-RH8,62 Days (Screening),16,12,4
-RH8,62 Days (Upgrade),38,35,3
-RHM,2 week wait,665,632,33
-RHM,2WW Breast,13,11,2
-RHM,31 Days,690,674,16
-RHM,31 Days Sub (Drugs),116,115,1
-RHM,31 Days Sub (Radio),201,169,32
-RHM,31 Days Sub (Surgery),113,107,6
-RHM,62 Days,297,218,79
-RHM,62 Days (Screening),20.5,18.5,2
-RHM,62 Days (Upgrade),5.5,5.5,0
-RHQ,2 week wait,787,745,42
-RHQ,2WW Breast,84,80,4
-RHQ,31 Days,706,656,50
-RHQ,31 Days Sub (Drugs),174,174,0
-RHQ,31 Days Sub (Radio),271,256,15
-RHQ,31 Days Sub (Surgery),68,61,7
-RHQ,62 Days,242,162,80
-RHQ,62 Days (Screening),10.5,6,4.5
-RHQ,62 Days (Upgrade),29.5,16.5,13
-RHU,2 week wait,625,583,42
-RHU,2WW Breast,75,71,4
-RHU,31 Days,498,496,2
-RHU,31 Days Sub (Drugs),66,66,0
-RHU,31 Days Sub (Radio),106,103,3
-RHU,31 Days Sub (Surgery),85,80,5
-RHU,62 Days,225,192,33
-RHU,62 Days (Screening),19,18,1
-RHU,62 Days (Upgrade),6.5,4.5,2
-RHW,2 week wait,554,516,38
-RHW,2WW Breast,31,30,1
-RHW,31 Days,316,304,12
-RHW,31 Days Sub (Drugs),56,56,0
-RHW,31 Days Sub (Radio),89,69,20
-RHW,31 Days Sub (Surgery),15,15,0
-RHW,62 Days,148,116,32
-RHW,62 Days (Screening),11,8,3
-RHW,62 Days (Upgrade),3,3,0
-RJ1,2 week wait,485,432,53
-RJ1,2WW Breast,14,14,0
-RJ1,31 Days,504,476,28
-RJ1,31 Days Sub (Drugs),153,153,0
-RJ1,31 Days Sub (Radio),155,149,6
-RJ1,31 Days Sub (Surgery),48,46,2
-RJ1,62 Days,170,102,68
-RJ1,62 Days (Screening),1,1,0
-RJ1,62 Days (Upgrade),45,30,15
-RJ2,2 week wait,974,828,146
-RJ2,2WW Breast,3,2,1
-RJ2,31 Days,148,142,6
-RJ2,31 Days Sub (Drugs),11,11,0
-RJ2,31 Days Sub (Surgery),9,9,0
-RJ2,62 Days,109,86,23
-RJ2,62 Days (Screening),1,1,0
-RJ2,62 Days (Upgrade),38,34.5,3.5
-RJ6,2 week wait,455,447,8
-RJ6,2WW Breast,18,18,0
-RJ6,31 Days,52,50,2
-RJ6,31 Days Sub (Surgery),9,9,0
-RJ6,62 Days,56,45,11
-RJ6,62 Days (Upgrade),5,2.5,2.5
-RJ7,2 week wait,560,522,38
-RJ7,2WW Breast,94,93,1
-RJ7,31 Days,232,212,20
-RJ7,31 Days Sub (Drugs),84,84,0
-RJ7,31 Days Sub (Surgery),33,33,0
-RJ7,62 Days,92,62,30
-RJ7,62 Days (Screening),8.5,6.5,2
-RJ7,62 Days (Upgrade),7,5,2
-RJC,2 week wait,346,272,74
-RJC,2WW Breast,138,63,75
-RJC,31 Days,128,120,8
-RJC,31 Days Sub (Drugs),14,14,0
-RJC,31 Days Sub (Surgery),7,6,1
-RJC,62 Days,87,52,35
-RJC,62 Days (Screening),8.5,3,5.5
-RJC,62 Days (Upgrade),6,3.5,2.5
-RJE,2 week wait,1156,1064,92
-RJE,2WW Breast,36,36,0
-RJE,31 Days,620,602,18
-RJE,31 Days Sub (Drugs),66,66,0
-RJE,31 Days Sub (Radio),114,109,5
-RJE,31 Days Sub (Surgery),50,43,7
-RJE,62 Days,344,242,102
-RJE,62 Days (Screening),32,28,4
-RJE,62 Days (Upgrade),79.5,61,18.5
-RJL,2 week wait,408,386,22
-RJL,2WW Breast,19,19,0
-RJL,31 Days,274,272,2
-RJL,31 Days Sub (Drugs),56,56,0
-RJL,31 Days Sub (Surgery),12,12,0
-RJL,62 Days,149,104,45
-RJL,62 Days (Screening),4,1,3
-RJL,62 Days (Upgrade),1,1,0
-RJN,2 week wait,238,200,38
-RJN,2WW Breast,16,12,4
-RJN,31 Days,108,108,0
-RJN,31 Days Sub (Drugs),4,4,0
-RJN,31 Days Sub (Surgery),11,11,0
-RJN,62 Days,69,49,20
-RJN,62 Days (Screening),18,12,6
-RJN,62 Days (Upgrade),12,12,0
-RJR,2 week wait,307,287,20
-RJR,31 Days,72,72,0
-RJR,31 Days Sub (Drugs),3,3,0
-RJR,31 Days Sub (Surgery),3,3,0
-RJR,62 Days,45,31,14
-RJR,62 Days (Screening),4,4,0
-RJR,62 Days (Upgrade),23,20,3
-RJZ,2 week wait,883,779,104
-RJZ,2WW Breast,20,19,1
-RJZ,31 Days,272,254,18
-RJZ,31 Days Sub (Drugs),12,10,2
-RJZ,31 Days Sub (Surgery),23,20,3
-RJZ,62 Days,140,87,53
-RJZ,62 Days (Screening),20,15,5
-RJZ,62 Days (Upgrade),46.5,39,7.5
-RK5,2 week wait,611,588,23
-RK5,2WW Breast,13,13,0
-RK5,31 Days,158,152,6
-RK5,31 Days Sub (Drugs),6,5,1
-RK5,31 Days Sub (Surgery),4,3,1
-RK5,62 Days,130,94,36
-RK5,62 Days (Screening),1,0,1
-RK5,62 Days (Upgrade),12,10.5,1.5
-RK9,2 week wait,810,767,43
-RK9,2WW Breast,41,37,4
-RK9,31 Days,560,546,14
-RK9,31 Days Sub (Drugs),89,88,1
-RK9,31 Days Sub (Radio),76,76,0
-RK9,31 Days Sub (Surgery),162,132,30
-RK9,62 Days,311,235,76
-RK9,62 Days (Screening),16,15,1
-RK9,62 Days (Upgrade),10,8,2
-RKB,2 week wait,705,670,35
-RKB,2WW Breast,22,22,0
-RKB,31 Days,456,446,10
-RKB,31 Days Sub (Drugs),88,88,0
-RKB,31 Days Sub (Radio),140,109,31
-RKB,31 Days Sub (Surgery),14,14,0
-RKB,62 Days,181,120,61
-RKB,62 Days (Screening),23,17.5,5.5
-RKB,62 Days (Upgrade),22,19.5,2.5
-RKE,2 week wait,317,271,46
-RKE,2WW Breast,7,5,2
-RKE,31 Days,44,42,2
-RKE,31 Days Sub (Drugs),2,2,0
-RKE,31 Days Sub (Surgery),3,3,0
-RKE,62 Days,32,24,8
-RKE,62 Days (Screening),2,2,0
-RKE,62 Days (Upgrade),2.5,1.5,1
-RL1,2 week wait,13,13,0
-RL1,31 Days,6,6,0
-RL1,31 Days Sub (Surgery),2,2,0
-RL1,62 Days,7,6,1
+RGN,2 week wait,1986,1650,336
+RGN,2WW Breast,98,96,2
+RGN,31 Days,426,398,28
+RGN,31 Days Sub (Drugs),18,18,0
+RGN,31 Days Sub (Radio),79,77,2
+RGN,31 Days Sub (Surgery),11,9,2
+RGN,62 Days,300,198,102
+RGN,62 Days (Screening),15,11,4
+RGN,62 Days (Upgrade),26.5,23.5,3
+RGP,2 week wait,703,680,23
+RGP,2WW Breast,106,104,2
+RGP,31 Days,184,180,4
+RGP,31 Days Sub (Drugs),51,51,0
+RGP,31 Days Sub (Surgery),12,12,0
+RGP,62 Days,81,51,30
+RGP,62 Days (Screening),6,6,0
+RGP,62 Days (Upgrade),36.5,32,4.5
+RGR,2 week wait,1148,863,285
+RGR,2WW Breast,242,222,20
+RGR,31 Days,254,252,2
+RGR,31 Days Sub (Drugs),58,58,0
+RGR,31 Days Sub (Surgery),6,6,0
+RGR,62 Days,171,133,38
+RGR,62 Days (Screening),11,9,2
+RGR,62 Days (Upgrade),2,1,1
+RGT,2 week wait,2175,2103,72
+RGT,2WW Breast,79,76,3
+RGT,31 Days,674,576,98
+RGT,31 Days Sub (Drugs),119,119,0
+RGT,31 Days Sub (Radio),262,256,6
+RGT,31 Days Sub (Surgery),114,89,25
+RGT,62 Days,296,221,75
+RGT,62 Days (Screening),20,11,9
+RGT,62 Days (Upgrade),7,4.5,2.5
+RH5,2 week wait,1121,1035,86
+RH5,2WW Breast,17,17,0
+RH5,31 Days,400,370,30
+RH5,31 Days Sub (Drugs),112,112,0
+RH5,31 Days Sub (Radio),86,84,2
+RH5,31 Days Sub (Surgery),34,31,3
+RH5,62 Days,202,169,33
+RH5,62 Days (Screening),23,13,10
+RH5,62 Days (Upgrade),55,52,3
+RH8,2 week wait,2134,1424,710
+RH8,2WW Breast,72,8,64
+RH8,31 Days,506,490,16
+RH8,31 Days Sub (Drugs),47,44,3
+RH8,31 Days Sub (Radio),128,124,4
+RH8,31 Days Sub (Surgery),66,54,12
+RH8,62 Days,309,235,74
+RH8,62 Days (Screening),6,4,2
+RH8,62 Days (Upgrade),35.5,30.5,5
+RHM,2 week wait,1858,1785,73
+RHM,2WW Breast,26,24,2
+RHM,31 Days,862,846,16
+RHM,31 Days Sub (Drugs),170,170,0
+RHM,31 Days Sub (Radio),212,203,9
+RHM,31 Days Sub (Surgery),135,129,6
+RHM,62 Days,319,270,49
+RHM,62 Days (Screening),23,21,2
+RHM,62 Days (Upgrade),14.5,14.5,0
+RHQ,2 week wait,2008,1933,75
+RHQ,2WW Breast,289,276,13
+RHQ,31 Days,1082,1040,42
+RHQ,31 Days Sub (Drugs),290,288,2
+RHQ,31 Days Sub (Radio),297,291,6
+RHQ,31 Days Sub (Surgery),115,104,11
+RHQ,62 Days,391,272,119
+RHQ,62 Days (Screening),18.5,13,5.5
+RHQ,62 Days (Upgrade),42,39.5,2.5
+RHU,2 week wait,2025,1971,54
+RHU,2WW Breast,274,269,5
+RHU,31 Days,672,666,6
+RHU,31 Days Sub (Drugs),87,87,0
+RHU,31 Days Sub (Radio),140,140,0
+RHU,31 Days Sub (Surgery),70,70,0
+RHU,62 Days,318,260,58
+RHU,62 Days (Screening),23.5,22.5,1
+RHU,62 Days (Upgrade),1.5,1,0.5
+RHW,2 week wait,1760,1704,56
+RHW,2WW Breast,180,179,1
+RHW,31 Days,522,494,28
+RHW,31 Days Sub (Drugs),111,110,1
+RHW,31 Days Sub (Radio),84,74,10
+RHW,31 Days Sub (Surgery),42,39,3
+RHW,62 Days,241,196,45
+RHW,62 Days (Screening),23,19,4
+RHW,62 Days (Upgrade),3,1,2
+RJ1,2 week wait,1879,1831,48
+RJ1,2WW Breast,135,134,1
+RJ1,31 Days,796,750,46
+RJ1,31 Days Sub (Drugs),195,190,5
+RJ1,31 Days Sub (Radio),257,246,11
+RJ1,31 Days Sub (Surgery),132,111,21
+RJ1,62 Days,262,162,100
+RJ1,62 Days (Screening),1,0,1
+RJ1,62 Days (Upgrade),56.5,38.5,18
+RJ2,2 week wait,3070,2731,339
+RJ2,2WW Breast,79,76,3
+RJ2,31 Days,244,232,12
+RJ2,31 Days Sub (Drugs),16,15,1
+RJ2,31 Days Sub (Radio),5,5,0
+RJ2,31 Days Sub (Surgery),29,24,5
+RJ2,62 Days,177,139,38
+RJ2,62 Days (Screening),10.5,5.5,5
+RJ2,62 Days (Upgrade),54,48,6
+RJ6,2 week wait,1404,1390,14
+RJ6,2WW Breast,164,163,1
+RJ6,31 Days,126,118,8
+RJ6,31 Days Sub (Drugs),2,2,0
+RJ6,31 Days Sub (Surgery),8,5,3
+RJ6,62 Days,106,79,27
+RJ6,62 Days (Screening),2.5,2.5,0
+RJ6,62 Days (Upgrade),17,17,0
+RJ7,2 week wait,1653,1554,99
+RJ7,2WW Breast,294,227,67
+RJ7,31 Days,514,474,40
+RJ7,31 Days Sub (Drugs),122,122,0
+RJ7,31 Days Sub (Surgery),62,59,3
+RJ7,62 Days,142,110,32
+RJ7,62 Days (Screening),26,21,5
+RJ7,62 Days (Upgrade),24,20.5,3.5
+RJC,2 week wait,1198,1108,90
+RJC,2WW Breast,69,68,1
+RJC,31 Days,210,196,14
+RJC,31 Days Sub (Drugs),20,20,0
+RJC,31 Days Sub (Surgery),14,13,1
+RJC,62 Days,163,118,45
+RJC,62 Days (Screening),2.5,1.5,1
+RJC,62 Days (Upgrade),8.5,7.5,1
+RJE,2 week wait,3215,2955,260
+RJE,2WW Breast,147,134,13
+RJE,31 Days,720,646,74
+RJE,31 Days Sub (Drugs),49,48,1
+RJE,31 Days Sub (Radio),136,133,3
+RJE,31 Days Sub (Surgery),67,64,3
+RJE,62 Days,370,232,138
+RJE,62 Days (Screening),29.5,21.5,8
+RJE,62 Days (Upgrade),118.5,97.5,21
+RJL,2 week wait,1325,1308,17
+RJL,2WW Breast,99,97,2
+RJL,31 Days,272,262,10
+RJL,31 Days Sub (Drugs),67,67,0
+RJL,31 Days Sub (Surgery),16,14,2
+RJL,62 Days,152,99,53
+RJL,62 Days (Screening),6.5,5.5,1
+RJL,62 Days (Upgrade),1,0.5,0.5
+RJN,2 week wait,586,538,48
+RJN,2WW Breast,62,48,14
+RJN,31 Days,104,78,26
+RJN,31 Days Sub (Surgery),8,7,1
+RJN,62 Days,84,48,36
+RJN,62 Days (Screening),14,10,4
+RJN,62 Days (Upgrade),15.5,14,1.5
+RJR,2 week wait,1202,895,307
+RJR,31 Days,222,216,6
+RJR,31 Days Sub (Drugs),11,11,0
+RJR,31 Days Sub (Surgery),10,10,0
+RJR,62 Days,145,108,37
+RJR,62 Days (Screening),5,5,0
+RJR,62 Days (Upgrade),41,36.5,4.5
+RJZ,2 week wait,2936,2843,93
+RJZ,2WW Breast,63,61,2
+RJZ,31 Days,430,398,32
+RJZ,31 Days Sub (Drugs),35,35,0
+RJZ,31 Days Sub (Surgery),65,47,18
+RJZ,62 Days,223,154,69
+RJZ,62 Days (Screening),15,12,3
+RJZ,62 Days (Upgrade),69.5,53.5,16
+RK5,2 week wait,1602,1545,57
+RK5,2WW Breast,42,42,0
+RK5,31 Days,264,256,8
+RK5,31 Days Sub (Drugs),5,5,0
+RK5,31 Days Sub (Surgery),5,4,1
+RK5,62 Days,192,132,60
+RK5,62 Days (Screening),6.5,4,2.5
+RK5,62 Days (Upgrade),33,25,8
+RK9,2 week wait,2422,2158,264
+RK9,2WW Breast,115,46,69
+RK9,31 Days,706,688,18
+RK9,31 Days Sub (Drugs),186,186,0
+RK9,31 Days Sub (Radio),113,113,0
+RK9,31 Days Sub (Surgery),104,93,11
+RK9,62 Days,379,296,83
+RK9,62 Days (Screening),19,16,3
+RK9,62 Days (Upgrade),29.5,18.5,11
+RKB,2 week wait,2215,2083,132
+RKB,2WW Breast,101,100,1
+RKB,31 Days,502,486,16
+RKB,31 Days Sub (Drugs),118,118,0
+RKB,31 Days Sub (Radio),216,214,2
+RKB,31 Days Sub (Surgery),62,54,8
+RKB,62 Days,232,184,48
+RKB,62 Days (Screening),20,17,3
+RKB,62 Days (Upgrade),20,17.5,2.5
+RKE,2 week wait,1099,1011,88
+RKE,2WW Breast,42,40,2
+RKE,31 Days,106,106,0
+RKE,31 Days Sub (Drugs),5,5,0
+RKE,31 Days Sub (Surgery),3,2,1
+RKE,62 Days,92,71,21
+RKE,62 Days (Upgrade),7.5,6.5,1
+RL1,2 week wait,32,32,0
+RL1,31 Days,6,4,2
+RL1,31 Days Sub (Surgery),1,1,0
+RL1,62 Days,2,0,2
 RL1,62 Days (Upgrade),0.5,0.5,0
-RL4,2 week wait,571,537,34
-RL4,2WW Breast,64,51,13
-RL4,31 Days,400,368,32
-RL4,31 Days Sub (Drugs),48,48,0
-RL4,31 Days Sub (Radio),81,77,4
-RL4,31 Days Sub (Surgery),40,38,2
-RL4,62 Days,170,89,81
-RL4,62 Days (Screening),18,12,6
-RL4,62 Days (Upgrade),69.5,52.5,17
-RLQ,2 week wait,272,265,7
-RLQ,2WW Breast,12,12,0
-RLQ,31 Days,158,138,20
-RLQ,31 Days Sub (Drugs),1,1,0
-RLQ,31 Days Sub (Radio),1,1,0
-RLQ,31 Days Sub (Surgery),5,5,0
-RLQ,62 Days,130,106,24
-RLQ,62 Days (Screening),3,2,1
-RLQ,62 Days (Upgrade),8.5,7,1.5
-RLT,2 week wait,201,188,13
-RLT,2WW Breast,27,26,1
-RLT,31 Days,84,82,2
-RLT,31 Days Sub (Drugs),3,3,0
-RLT,31 Days Sub (Surgery),6,6,0
-RLT,62 Days,72,44,28
-RLT,62 Days (Screening),1.5,1.5,0
-RLT,62 Days (Upgrade),2.5,2,0.5
-RM1,2 week wait,964,786,178
-RM1,2WW Breast,48,42,6
-RM1,31 Days,670,640,30
-RM1,31 Days Sub (Drugs),91,90,1
-RM1,31 Days Sub (Radio),106,97,9
-RM1,31 Days Sub (Surgery),84,60,24
-RM1,62 Days,339,206,133
-RM1,62 Days (Screening),14.5,8,6.5
-RM1,62 Days (Upgrade),17.5,12,5.5
-RM3,2 week wait,605,557,48
-RM3,31 Days,250,250,0
-RM3,31 Days Sub (Drugs),7,7,0
-RM3,31 Days Sub (Surgery),20,20,0
-RM3,62 Days,113,101,12
-RM3,62 Days (Upgrade),49,42.5,6.5
-RMC,2 week wait,398,383,15
-RMC,2WW Breast,45,43,2
-RMC,31 Days,146,146,0
-RMC,31 Days Sub (Drugs),1,1,0
-RMC,31 Days Sub (Surgery),11,11,0
-RMC,62 Days,93,80,13
-RMC,62 Days (Screening),9.5,8.5,1
-RMC,62 Days (Upgrade),14.5,9,5.5
-RMP,2 week wait,381,368,13
-RMP,2WW Breast,36,36,0
-RMP,31 Days,74,74,0
-RMP,31 Days Sub (Drugs),6,6,0
+RL4,2 week wait,1598,1241,357
+RL4,2WW Breast,104,9,95
+RL4,31 Days,386,314,72
+RL4,31 Days Sub (Drugs),67,62,5
+RL4,31 Days Sub (Radio),117,101,16
+RL4,31 Days Sub (Surgery),40,29,11
+RL4,62 Days,179,74,105
+RL4,62 Days (Screening),15,9.5,5.5
+RL4,62 Days (Upgrade),71.5,45,26.5
+RLQ,2 week wait,999,986,13
+RLQ,2WW Breast,33,33,0
+RLQ,31 Days,222,194,28
+RLQ,31 Days Sub (Drugs),2,2,0
+RLQ,31 Days Sub (Surgery),13,12,1
+RLQ,62 Days,145,107,38
+RLQ,62 Days (Screening),4,4,0
+RLQ,62 Days (Upgrade),16.5,15,1.5
+RLT,2 week wait,542,399,143
+RLT,2WW Breast,68,15,53
+RLT,31 Days,114,110,4
+RLT,31 Days Sub (Drugs),4,4,0
+RLT,31 Days Sub (Surgery),5,5,0
+RLT,62 Days,68,54,14
+RLT,62 Days (Screening),3.5,0.5,3
+RLT,62 Days (Upgrade),10.5,10,0.5
+RM1,2 week wait,2517,2160,357
+RM1,2WW Breast,291,106,185
+RM1,31 Days,870,758,112
+RM1,31 Days Sub (Drugs),137,126,11
+RM1,31 Days Sub (Radio),180,174,6
+RM1,31 Days Sub (Surgery),111,83,28
+RM1,62 Days,440,264,176
+RM1,62 Days (Screening),43,30,13
+RM1,62 Days (Upgrade),28.5,15,13.5
+RM3,2 week wait,1673,1512,161
+RM3,31 Days,300,298,2
+RM3,31 Days Sub (Drugs),3,3,0
+RM3,31 Days Sub (Surgery),20,19,1
+RM3,62 Days,184,153,31
+RM3,62 Days (Screening),0.5,0,0.5
+RM3,62 Days (Upgrade),41.5,40,1.5
+RMC,2 week wait,1313,1272,41
+RMC,2WW Breast,188,47,141
+RMC,31 Days,214,212,2
+RMC,31 Days Sub (Drugs),14,14,0
+RMC,31 Days Sub (Surgery),13,13,0
+RMC,62 Days,130,107,23
+RMC,62 Days (Screening),20.5,16,4.5
+RMC,62 Days (Upgrade),25.5,22.5,3
+RMP,2 week wait,1282,1242,40
+RMP,2WW Breast,131,126,5
+RMP,31 Days,126,124,2
 RMP,31 Days Sub (Surgery),4,4,0
-RMP,62 Days,66,57,9
-RMP,62 Days (Upgrade),15.5,13,2.5
-RN3,2 week wait,603,533,70
-RN3,2WW Breast,23,21,2
-RN3,31 Days,246,226,20
-RN3,31 Days Sub (Drugs),33,32,1
-RN3,31 Days Sub (Surgery),22,22,0
-RN3,62 Days,155,131,24
-RN3,62 Days (Screening),14,11.5,2.5
-RN3,62 Days (Upgrade),7,4.5,2.5
-RN5,2 week wait,638,611,27
-RN5,2WW Breast,51,51,0
-RN5,31 Days,322,312,10
-RN5,31 Days Sub (Drugs),62,62,0
-RN5,31 Days Sub (Surgery),23,22,1
-RN5,62 Days,182,156,26
-RN5,62 Days (Screening),21,19,2
-RN5,62 Days (Upgrade),8.5,8.5,0
-RN7,2 week wait,337,317,20
-RN7,2WW Breast,24,24,0
-RN7,31 Days,92,92,0
-RN7,31 Days Sub (Drugs),29,27,2
-RN7,31 Days Sub (Surgery),11,11,0
-RN7,62 Days,49,41,8
-RN7,62 Days (Screening),2,1.5,0.5
-RN7,62 Days (Upgrade),1,1,0
-RNA,2 week wait,537,506,31
-RNA,2WW Breast,23,22,1
-RNA,31 Days,210,202,8
-RNA,31 Days Sub (Drugs),10,10,0
-RNA,31 Days Sub (Surgery),42,42,0
-RNA,62 Days,131,91,40
-RNA,62 Days (Screening),3.5,3,0.5
-RNA,62 Days (Upgrade),40,34,6
-RNN,2 week wait,500,473,27
-RNN,2WW Breast,31,25,6
-RNN,31 Days,168,166,2
-RNN,31 Days Sub (Drugs),41,40,1
-RNN,31 Days Sub (Radio),33,33,0
-RNN,31 Days Sub (Surgery),7,7,0
-RNN,62 Days,109,72,37
-RNN,62 Days (Screening),3,1,2
-RNN,62 Days (Upgrade),7,6,1
-RNQ,2 week wait,364,348,16
-RNQ,2WW Breast,22,21,1
-RNQ,31 Days,202,198,4
-RNQ,31 Days Sub (Drugs),6,6,0
-RNQ,31 Days Sub (Surgery),9,9,0
-RNQ,62 Days,134,103,31
-RNQ,62 Days (Screening),9.5,8,1.5
-RNQ,62 Days (Upgrade),12,10,2
-RNS,2 week wait,473,367,106
-RNS,2WW Breast,35,8,27
-RNS,31 Days,234,222,12
-RNS,31 Days Sub (Drugs),50,47,3
-RNS,31 Days Sub (Radio),86,80,6
-RNS,31 Days Sub (Surgery),9,8,1
-RNS,62 Days,128,86,42
-RNS,62 Days (Screening),11.5,10,1.5
-RNS,62 Days (Upgrade),29,21,8
-RNZ,2 week wait,350,321,29
-RNZ,2WW Breast,9,9,0
-RNZ,31 Days,174,158,16
-RNZ,31 Days Sub (Drugs),22,22,0
-RNZ,31 Days Sub (Surgery),39,39,0
-RNZ,62 Days,103,79,24
-RNZ,62 Days (Screening),1,0.5,0.5
-RNZ,62 Days (Upgrade),21,19,2
-RP4,31 Days,34,34,0
-RP4,31 Days Sub (Drugs),15,15,0
-RP4,31 Days Sub (Surgery),6,6,0
-RP4,62 Days (Upgrade),9.5,9.5,0
-RP5,2 week wait,634,588,46
-RP5,2WW Breast,18,17,1
-RP5,31 Days,272,268,4
-RP5,31 Days Sub (Drugs),3,3,0
+RMP,62 Days,103,84,19
+RMP,62 Days (Screening),2,2,0
+RMP,62 Days (Upgrade),31,23,8
+RN3,2 week wait,1529,1184,345
+RN3,2WW Breast,2,0,2
+RN3,31 Days,248,244,4
+RN3,31 Days Sub (Drugs),27,27,0
+RN3,31 Days Sub (Surgery),19,19,0
+RN3,62 Days,159,146,13
+RN3,62 Days (Screening),17.5,16,1.5
+RN3,62 Days (Upgrade),16,14.5,1.5
+RN5,2 week wait,1972,1796,176
+RN5,2WW Breast,143,139,4
+RN5,31 Days,426,424,2
+RN5,31 Days Sub (Drugs),87,86,1
+RN5,31 Days Sub (Surgery),29,28,1
+RN5,62 Days,256,223,33
+RN5,62 Days (Screening),25,23,2
+RN5,62 Days (Upgrade),18,18,0
+RN7,2 week wait,990,928,62
+RN7,2WW Breast,51,49,2
+RN7,31 Days,168,148,20
+RN7,31 Days Sub (Drugs),36,36,0
+RN7,31 Days Sub (Surgery),17,16,1
+RN7,62 Days,101,57,44
+RN7,62 Days (Screening),6.5,2.5,4
+RN7,62 Days (Upgrade),2,2,0
+RNA,2 week wait,1551,1503,48
+RNA,2WW Breast,159,154,5
+RNA,31 Days,316,308,8
+RNA,31 Days Sub (Drugs),55,52,3
+RNA,31 Days Sub (Radio),2,2,0
+RNA,31 Days Sub (Surgery),25,25,0
+RNA,62 Days,184,105,79
+RNA,62 Days (Screening),4.5,2,2.5
+RNA,62 Days (Upgrade),71,62,9
+RNN,2 week wait,1225,1134,91
+RNN,2WW Breast,101,93,8
+RNN,31 Days,312,276,36
+RNN,31 Days Sub (Drugs),50,50,0
+RNN,31 Days Sub (Radio),50,48,2
+RNN,31 Days Sub (Surgery),16,14,2
+RNN,62 Days,186,122,64
+RNN,62 Days (Screening),5,3,2
+RNN,62 Days (Upgrade),6,5,1
+RNQ,2 week wait,1252,1182,70
+RNQ,2WW Breast,78,78,0
+RNQ,31 Days,232,232,0
+RNQ,31 Days Sub (Drugs),18,18,0
+RNQ,31 Days Sub (Surgery),5,5,0
+RNQ,62 Days,159,119,40
+RNQ,62 Days (Screening),12.5,11,1.5
+RNQ,62 Days (Upgrade),8.5,6,2.5
+RNS,2 week wait,1333,1303,30
+RNS,2WW Breast,109,103,6
+RNS,31 Days,386,374,12
+RNS,31 Days Sub (Drugs),63,61,2
+RNS,31 Days Sub (Radio),116,111,5
+RNS,31 Days Sub (Surgery),18,17,1
+RNS,62 Days,238,175,63
+RNS,62 Days (Screening),9.5,9,0.5
+RNS,62 Days (Upgrade),41,37,4
+RNZ,2 week wait,1066,869,197
+RNZ,2WW Breast,51,7,44
+RNZ,31 Days,240,230,10
+RNZ,31 Days Sub (Drugs),11,11,0
+RNZ,31 Days Sub (Surgery),16,16,0
+RNZ,62 Days,144,111,33
+RNZ,62 Days (Screening),1.5,0,1.5
+RNZ,62 Days (Upgrade),20.5,19.5,1
+RP4,31 Days,42,42,0
+RP4,31 Days Sub (Drugs),8,8,0
+RP4,31 Days Sub (Surgery),8,8,0
+RP4,62 Days (Upgrade),13,13,0
+RP5,2 week wait,1897,1427,470
+RP5,2WW Breast,95,10,85
+RP5,31 Days,248,244,4
+RP5,31 Days Sub (Drugs),6,6,0
+RP5,31 Days Sub (Radio),1,1,0
 RP5,31 Days Sub (Surgery),14,14,0
-RP5,62 Days,165,132,33
-RP5,62 Days (Screening),11.5,11,0.5
-RP5,62 Days (Upgrade),16,12,4
-RP6,2 week wait,2,2,0
-RP6,31 Days,34,34,0
-RP6,31 Days Sub (Surgery),3,3,0
-RPA,2 week wait,565,524,41
-RPA,2WW Breast,33,31,2
-RPA,31 Days,220,214,6
-RPA,31 Days Sub (Drugs),24,22,2
-RPA,31 Days Sub (Surgery),23,23,0
-RPA,62 Days,135,103,32
-RPA,62 Days (Screening),18,12.5,5.5
-RPA,62 Days (Upgrade),20,17,3
-RPC,2 week wait,111,93,18
-RPC,31 Days,110,108,2
-RPC,31 Days Sub (Surgery),18,18,0
-RPC,62 Days,43,39,4
-RPC,62 Days (Upgrade),7.5,6.5,1
-RPY,2 week wait,270,255,15
-RPY,2WW Breast,56,53,3
-RPY,31 Days,366,356,10
-RPY,31 Days Sub (Drugs),158,155,3
-RPY,31 Days Sub (Radio),198,189,9
-RPY,31 Days Sub (Surgery),54,45,9
-RPY,62 Days,108,84,24
-RPY,62 Days (Screening),3.5,3.5,0
-RPY,62 Days (Upgrade),10,7.5,2.5
-RQ3,2 week wait,89,80,9
-RQ3,31 Days,42,42,0
-RQ3,31 Days Sub (Drugs),7,7,0
-RQ3,31 Days Sub (Surgery),15,15,0
-RQ3,62 Days,13,10,3
-RQ3,62 Days (Screening),1,1,0
-RQ3,62 Days (Upgrade),2,2,0
-RQM,2 week wait,609,566,43
-RQM,2WW Breast,18,18,0
-RQM,31 Days,164,156,8
+RP5,62 Days,156,108,48
+RP5,62 Days (Screening),12.5,8,4.5
+RP5,62 Days (Upgrade),16,11.5,4.5
+RP6,2 week wait,13,13,0
+RP6,31 Days,44,44,0
+RP6,31 Days Sub (Radio),1,1,0
+RP6,31 Days Sub (Surgery),6,6,0
+RPA,2 week wait,1349,1316,33
+RPA,2WW Breast,116,110,6
+RPA,31 Days,132,130,2
+RPA,31 Days Sub (Drugs),51,51,0
+RPA,31 Days Sub (Surgery),6,6,0
+RPA,62 Days,57,41,16
+RPA,62 Days (Screening),0.5,0,0.5
+RPA,62 Days (Upgrade),12,9.5,2.5
+RPC,2 week wait,333,329,4
+RPC,31 Days,186,176,10
+RPC,31 Days Sub (Surgery),19,19,0
+RPC,62 Days,81,71,10
+RPC,62 Days (Upgrade),3,3,0
+RPY,2 week wait,766,739,27
+RPY,2WW Breast,129,129,0
+RPY,31 Days,458,448,10
+RPY,31 Days Sub (Drugs),179,176,3
+RPY,31 Days Sub (Radio),249,244,5
+RPY,31 Days Sub (Surgery),88,73,15
+RPY,62 Days,173,147,26
+RPY,62 Days (Screening),11,10,1
+RPY,62 Days (Upgrade),15.5,10,5.5
+RQ3,2 week wait,267,255,12
+RQ3,31 Days,28,28,0
+RQ3,31 Days Sub (Drugs),4,4,0
+RQ3,31 Days Sub (Surgery),32,32,0
+RQ3,62 Days,5,4,1
+RQ3,62 Days (Upgrade),2.5,1.5,1
+RQM,2 week wait,2022,1987,35
+RQM,2WW Breast,125,122,3
+RQM,31 Days,282,270,12
 RQM,31 Days Sub (Drugs),2,2,0
-RQM,31 Days Sub (Surgery),1,1,0
-RQM,62 Days,114,77,37
-RQM,62 Days (Screening),2,0,2
-RQM,62 Days (Upgrade),33.5,25.5,8
-RQW,2 week wait,601,526,75
-RQW,2WW Breast,62,57,5
-RQW,31 Days,118,112,6
-RQW,31 Days Sub (Drugs),45,45,0
-RQW,31 Days Sub (Surgery),10,9,1
-RQW,62 Days,62,36,26
-RQW,62 Days (Screening),2,1,1
-RQW,62 Days (Upgrade),29,26,3
-RQX,2 week wait,460,404,56
-RQX,2WW Breast,35,24,11
-RQX,31 Days,84,82,2
+RQM,31 Days Sub (Surgery),3,2,1
+RQM,62 Days,200,139,61
+RQM,62 Days (Screening),7,3.5,3.5
+RQM,62 Days (Upgrade),43,37.5,5.5
+RQW,2 week wait,1397,1293,104
+RQW,2WW Breast,201,196,5
+RQW,31 Days,178,166,12
+RQW,31 Days Sub (Drugs),28,28,0
+RQW,31 Days Sub (Surgery),9,9,0
+RQW,62 Days,104,71,33
+RQW,62 Days (Screening),4,4,0
+RQW,62 Days (Upgrade),41.5,29,12.5
+RQX,2 week wait,1151,1114,37
+RQX,2WW Breast,170,162,8
+RQX,31 Days,76,76,0
+RQX,31 Days Sub (Drugs),1,1,0
+RQX,31 Days Sub (Radio),1,1,0
 RQX,31 Days Sub (Surgery),5,5,0
-RQX,62 Days,54,52,2
-RQX,62 Days (Screening),0.5,0,0.5
-RQX,62 Days (Upgrade),23,20,3
-RR7,2 week wait,336,282,54
-RR7,2WW Breast,4,4,0
-RR7,31 Days,132,130,2
-RR7,31 Days Sub (Drugs),50,50,0
-RR7,31 Days Sub (Surgery),17,17,0
-RR7,62 Days,78,57,21
-RR7,62 Days (Screening),4.5,3.5,1
-RR7,62 Days (Upgrade),0.5,0.5,0
-RR8,2 week wait,1169,983,186
-RR8,2WW Breast,78,71,7
-RR8,31 Days,848,808,40
-RR8,31 Days Sub (Drugs),239,238,1
-RR8,31 Days Sub (Radio),322,321,1
-RR8,31 Days Sub (Surgery),113,101,12
-RR8,62 Days,306,230,76
-RR8,62 Days (Screening),33,27.5,5.5
-RR8,62 Days (Upgrade),104.5,82.5,22
-RRF,2 week wait,482,426,56
-RRF,2WW Breast,29,24,5
-RRF,31 Days,128,128,0
-RRF,31 Days Sub (Drugs),20,20,0
-RRF,31 Days Sub (Surgery),9,9,0
-RRF,62 Days,83,64,19
-RRF,62 Days (Screening),17,16,1
-RRF,62 Days (Upgrade),19.5,18,1.5
-RRJ,2 week wait,47,47,0
-RRJ,31 Days,42,40,2
-RRJ,31 Days Sub (Surgery),15,15,0
-RRJ,62 Days,18,18,0
+RQX,62 Days,66,60,6
+RQX,62 Days (Screening),2.5,2,0.5
+RQX,62 Days (Upgrade),17.5,17.5,0
+RR7,2 week wait,1230,1193,37
+RR7,2WW Breast,33,33,0
+RR7,31 Days,292,292,0
+RR7,31 Days Sub (Drugs),65,65,0
+RR7,31 Days Sub (Radio),1,1,0
+RR7,31 Days Sub (Surgery),12,12,0
+RR7,62 Days,163,122,41
+RR7,62 Days (Screening),26.5,22.5,4
+RR7,62 Days (Upgrade),7,3,4
+RR8,2 week wait,3336,2533,803
+RR8,2WW Breast,254,91,163
+RR8,31 Days,1096,1016,80
+RR8,31 Days Sub (Drugs),340,340,0
+RR8,31 Days Sub (Radio),407,402,5
+RR8,31 Days Sub (Surgery),174,146,28
+RR8,62 Days,438,278,160
+RR8,62 Days (Screening),27.5,21.5,6
+RR8,62 Days (Upgrade),139.5,103,36.5
+RRF,2 week wait,1330,1307,23
+RRF,2WW Breast,144,137,7
+RRF,31 Days,232,224,8
+RRF,31 Days Sub (Drugs),14,14,0
+RRF,31 Days Sub (Surgery),12,11,1
+RRF,62 Days,156,113,43
+RRF,62 Days (Screening),15,14.5,0.5
+RRF,62 Days (Upgrade),38,34.5,3.5
+RRJ,2 week wait,53,53,0
+RRJ,31 Days,26,26,0
+RRJ,31 Days Sub (Surgery),9,9,0
+RRJ,62 Days,9,5,4
 RRJ,62 Days (Upgrade),10.5,9.5,1
-RRK,2 week wait,1083,681,402
-RRK,2WW Breast,117,81,36
-RRK,31 Days,836,736,100
-RRK,31 Days Sub (Drugs),82,82,0
-RRK,31 Days Sub (Radio),260,250,10
-RRK,31 Days Sub (Surgery),78,65,13
-RRK,62 Days,400,204,196
-RRK,62 Days (Screening),29,23,6
-RRK,62 Days (Upgrade),116,82.5,33.5
-RRV,2 week wait,347,286,61
-RRV,2WW Breast,42,7,35
-RRV,31 Days,312,306,6
-RRV,31 Days Sub (Drugs),31,30,1
-RRV,31 Days Sub (Radio),69,68,1
-RRV,31 Days Sub (Surgery),19,16,3
-RRV,62 Days,104,69,35
-RRV,62 Days (Screening),4.5,3.5,1
-RRV,62 Days (Upgrade),7,6,1
-RT3,31 Days,44,44,0
-RT3,31 Days Sub (Surgery),13,13,0
-RT3,62 Days,4,4,0
-RT3,62 Days (Upgrade),3.5,3,0.5
-RTD,2 week wait,790,650,140
-RTD,2WW Breast,53,24,29
-RTD,31 Days,666,604,62
-RTD,31 Days Sub (Drugs),63,61,2
-RTD,31 Days Sub (Radio),252,244,8
-RTD,31 Days Sub (Surgery),102,89,13
-RTD,62 Days,274,197,77
-RTD,62 Days (Screening),13.5,10.5,3
-RTD,62 Days (Upgrade),9.5,3.5,6
-RTE,2 week wait,882,799,83
-RTE,2WW Breast,32,28,4
-RTE,31 Days,580,562,18
-RTE,31 Days Sub (Drugs),78,78,0
-RTE,31 Days Sub (Radio),71,70,1
-RTE,31 Days Sub (Surgery),57,56,1
-RTE,62 Days,352,278,74
-RTE,62 Days (Screening),27.5,25,2.5
-RTE,62 Days (Upgrade),7.5,7.5,0
-RTF,2 week wait,719,634,85
-RTF,2WW Breast,4,4,0
-RTF,31 Days,294,292,2
-RTF,31 Days Sub (Drugs),10,10,0
-RTF,31 Days Sub (Surgery),9,8,1
-RTF,62 Days,181,156,25
-RTF,62 Days (Screening),4.5,0.5,4
-RTF,62 Days (Upgrade),9.5,8.5,1
-RTG,2 week wait,1043,977,66
-RTG,2WW Breast,44,37,7
-RTG,31 Days,430,416,14
-RTG,31 Days Sub (Drugs),93,88,5
-RTG,31 Days Sub (Radio),52,48,4
-RTG,31 Days Sub (Surgery),19,19,0
-RTG,62 Days,227,165,62
-RTG,62 Days (Screening),1,1,0
-RTG,62 Days (Upgrade),25,18,7
-RTH,2 week wait,756,703,53
-RTH,2WW Breast,50,41,9
-RTH,31 Days,642,626,16
-RTH,31 Days Sub (Drugs),153,152,1
-RTH,31 Days Sub (Radio),181,175,6
-RTH,31 Days Sub (Surgery),108,102,6
-RTH,62 Days,285,219,66
-RTH,62 Days (Screening),7.5,5,2.5
-RTH,62 Days (Upgrade),7,4,3
-RTK,2 week wait,513,481,32
-RTK,2WW Breast,39,38,1
-RTK,31 Days,164,158,6
-RTK,31 Days Sub (Drugs),17,17,0
-RTK,31 Days Sub (Surgery),9,9,0
-RTK,62 Days,107,92,15
-RTK,62 Days (Screening),7,7,0
-RTK,62 Days (Upgrade),2.5,0,2.5
-RTP,2 week wait,867,646,221
-RTP,2WW Breast,57,14,43
-RTP,31 Days,180,170,10
-RTP,31 Days Sub (Drugs),10,10,0
-RTP,31 Days Sub (Surgery),12,12,0
-RTP,62 Days,128,94,34
-RTP,62 Days (Screening),2.5,1,1.5
-RTP,62 Days (Upgrade),1,1,0
-RTR,2 week wait,377,345,32
-RTR,31 Days,380,354,26
-RTR,31 Days Sub (Drugs),41,39,2
-RTR,31 Days Sub (Radio),134,125,9
-RTR,31 Days Sub (Surgery),20,17,3
-RTR,62 Days,241,165,76
-RTR,62 Days (Screening),3,1.5,1.5
-RTR,62 Days (Upgrade),10,9,1
-RTX,2 week wait,522,452,70
-RTX,2WW Breast,12,3,9
-RTX,31 Days,252,244,8
-RTX,31 Days Sub (Drugs),39,39,0
-RTX,31 Days Sub (Surgery),13,11,2
-RTX,62 Days,154,124,30
-RTX,62 Days (Screening),7.5,7.5,0
-RTX,62 Days (Upgrade),43,39,4
-RVJ,2 week wait,1063,808,255
-RVJ,2WW Breast,16,13,3
-RVJ,31 Days,426,396,30
-RVJ,31 Days Sub (Drugs),10,10,0
-RVJ,31 Days Sub (Surgery),99,75,24
-RVJ,62 Days,238,175,63
-RVJ,62 Days (Screening),33.5,28.5,5
-RVJ,62 Days (Upgrade),64,51.5,12.5
-RVR,2 week wait,531,510,21
-RVR,31 Days,146,142,4
-RVR,31 Days Sub (Surgery),3,3,0
-RVR,62 Days,116,95,21
-RVR,62 Days (Screening),2,2,0
-RVR,62 Days (Upgrade),17.5,15,2.5
-RVV,2 week wait,1238,1198,40
-RVV,2WW Breast,22,22,0
-RVV,31 Days,626,622,4
-RVV,31 Days Sub (Drugs),83,83,0
-RVV,31 Days Sub (Surgery),72,70,2
-RVV,62 Days,380,297,83
-RVV,62 Days (Screening),27,27,0
-RVV,62 Days (Upgrade),6.5,5.5,1
-RVW,2 week wait,450,410,40
-RVW,2WW Breast,20,16,4
-RVW,31 Days,186,172,14
-RVW,31 Days Sub (Drugs),48,48,0
-RVW,31 Days Sub (Surgery),10,8,2
-RVW,62 Days,99,84,15
-RVW,62 Days (Screening),25,22.5,2.5
-RVW,62 Days (Upgrade),6,6,0
-RVY,2 week wait,317,308,9
-RVY,31 Days,116,108,8
-RVY,62 Days,91,64,27
-RVY,62 Days (Screening),2,2,0
-RVY,62 Days (Upgrade),27,24,3
-RW6,2 week wait,1438,1114,324
-RW6,2WW Breast,47,45,2
-RW6,31 Days,402,398,4
-RW6,31 Days Sub (Drugs),8,8,0
-RW6,31 Days Sub (Surgery),20,20,0
-RW6,62 Days,293,193,100
-RW6,62 Days (Screening),3.5,1.5,2
-RW6,62 Days (Upgrade),79,60,19
-RWA,2 week wait,666,619,47
-RWA,2WW Breast,31,25,6
-RWA,31 Days,618,600,18
-RWA,31 Days Sub (Drugs),43,43,0
-RWA,31 Days Sub (Radio),137,130,7
-RWA,31 Days Sub (Surgery),54,47,7
-RWA,62 Days,281,199,82
-RWA,62 Days (Screening),33,20,13
-RWA,62 Days (Upgrade),3,2,1
-RWD,2 week wait,1078,912,166
-RWD,2WW Breast,84,58,26
-RWD,31 Days,514,496,18
-RWD,31 Days Sub (Drugs),104,104,0
-RWD,31 Days Sub (Radio),108,103,5
-RWD,31 Days Sub (Surgery),49,44,5
-RWD,62 Days,292,193,99
-RWD,62 Days (Screening),16,13,3
-RWD,62 Days (Upgrade),71.5,52.5,19
-RWE,2 week wait,1268,1078,190
-RWE,2WW Breast,86,81,5
-RWE,31 Days,702,660,42
-RWE,31 Days Sub (Drugs),93,93,0
-RWE,31 Days Sub (Radio),106,62,44
-RWE,31 Days Sub (Surgery),59,43,16
-RWE,62 Days,387,249,138
-RWE,62 Days (Screening),14,13,1
-RWE,62 Days (Upgrade),53.5,39.5,14
-RWF,2 week wait,506,474,32
-RWF,2WW Breast,37,34,3
-RWF,31 Days,352,340,12
-RWF,31 Days Sub (Drugs),56,55,1
-RWF,31 Days Sub (Radio),203,194,9
-RWF,31 Days Sub (Surgery),22,22,0
-RWF,62 Days,182,156,26
-RWF,62 Days (Screening),11,10,1
-RWF,62 Days (Upgrade),11.5,7.5,4
-RWG,2 week wait,414,394,20
-RWG,2WW Breast,17,17,0
-RWG,31 Days,254,250,4
-RWG,31 Days Sub (Drugs),38,38,0
-RWG,31 Days Sub (Surgery),15,14,1
-RWG,62 Days,154,106,48
-RWG,62 Days (Screening),11,9,2
-RWG,62 Days (Upgrade),9,6.5,2.5
-RWH,2 week wait,703,687,16
-RWH,2WW Breast,29,23,6
-RWH,31 Days,430,424,6
-RWH,31 Days Sub (Drugs),168,168,0
-RWH,31 Days Sub (Radio),278,274,4
-RWH,31 Days Sub (Surgery),36,34,2
-RWH,62 Days,213,186,27
-RWH,62 Days (Screening),6.5,2.5,4
-RWH,62 Days (Upgrade),13.5,9.5,4
-RWJ,2 week wait,379,331,48
-RWJ,31 Days,110,110,0
-RWJ,31 Days Sub (Drugs),3,3,0
-RWJ,31 Days Sub (Surgery),3,3,0
-RWJ,62 Days,73,50,23
-RWJ,62 Days (Upgrade),25.5,18,7.5
-RWP,2 week wait,642,578,64
-RWP,2WW Breast,13,13,0
-RWP,31 Days,504,492,12
-RWP,31 Days Sub (Drugs),37,37,0
-RWP,31 Days Sub (Radio),60,57,3
-RWP,31 Days Sub (Surgery),39,34,5
-RWP,62 Days,287,175,112
-RWP,62 Days (Screening),18,13,5
-RWP,62 Days (Upgrade),52.5,50.5,2
-RWW,2 week wait,394,369,25
-RWW,2WW Breast,10,8,2
-RWW,31 Days,134,130,4
-RWW,31 Days Sub (Drugs),9,9,0
-RWW,31 Days Sub (Radio),1,1,0
-RWW,31 Days Sub (Surgery),7,7,0
-RWW,62 Days,77,69,8
-RWW,62 Days (Screening),12,12,0
-RWW,62 Days (Upgrade),7,7,0
-RWY,2 week wait,624,613,11
-RWY,2WW Breast,22,22,0
-RWY,31 Days,336,334,2
-RWY,31 Days Sub (Drugs),47,47,0
-RWY,31 Days Sub (Surgery),33,32,1
-RWY,62 Days,212,198,14
-RWY,62 Days (Screening),8.5,6,2.5
-RWY,62 Days (Upgrade),4,4,0
-RX1,2 week wait,1061,885,176
-RX1,2WW Breast,27,20,7
-RX1,31 Days,772,728,44
-RX1,31 Days Sub (Drugs),97,94,3
-RX1,31 Days Sub (Radio),78,77,1
-RX1,31 Days Sub (Surgery),144,128,16
-RX1,62 Days,350,258,92
-RX1,62 Days (Screening),16.5,9,7.5
-RX1,62 Days (Upgrade),67.5,58,9.5
-RXC,2 week wait,621,587,34
-RXC,2WW Breast,42,40,2
-RXC,31 Days,364,356,8
-RXC,31 Days Sub (Drugs),29,29,0
-RXC,31 Days Sub (Surgery),12,12,0
-RXC,62 Days,242,185,57
-RXC,62 Days (Screening),15,11,4
-RXC,62 Days (Upgrade),20.5,13.5,7
-RXF,2 week wait,913,853,60
-RXF,2WW Breast,58,56,2
-RXF,31 Days,570,554,16
-RXF,31 Days Sub (Drugs),68,68,0
-RXF,31 Days Sub (Surgery),39,36,3
-RXF,62 Days,335,266,69
-RXF,62 Days (Screening),11,9.5,1.5
-RXF,62 Days (Upgrade),33.5,27.5,6
-RXH,2 week wait,956,775,181
-RXH,2WW Breast,40,35,5
-RXH,31 Days,368,364,4
-RXH,31 Days Sub (Drugs),78,78,0
-RXH,31 Days Sub (Radio),170,162,8
-RXH,31 Days Sub (Surgery),24,23,1
-RXH,62 Days,206,147,59
-RXH,62 Days (Screening),21,14,7
-RXH,62 Days (Upgrade),7,6,1
-RXK,2 week wait,572,535,37
-RXK,2WW Breast,26,24,2
-RXK,31 Days,176,166,10
-RXK,31 Days Sub (Drugs),5,5,0
-RXK,31 Days Sub (Surgery),14,13,1
-RXK,62 Days,81,58,23
-RXK,62 Days (Screening),15.5,13,2.5
-RXK,62 Days (Upgrade),22,21,1
-RXL,2 week wait,557,496,61
-RXL,2WW Breast,19,14,5
-RXL,31 Days,318,306,12
-RXL,31 Days Sub (Drugs),21,21,0
-RXL,31 Days Sub (Surgery),20,15,5
-RXL,62 Days,176,112,64
-RXL,62 Days (Screening),7.5,4.5,3
-RXL,62 Days (Upgrade),57,47,10
-RXN,2 week wait,703,680,23
-RXN,2WW Breast,24,20,4
-RXN,31 Days,458,422,36
-RXN,31 Days Sub (Drugs),60,58,2
-RXN,31 Days Sub (Radio),142,142,0
-RXN,31 Days Sub (Surgery),64,60,4
-RXN,62 Days,244,168,76
-RXN,62 Days (Screening),1.5,1,0.5
-RXN,62 Days (Upgrade),45.5,37,8.5
-RXP,2 week wait,815,668,147
-RXP,2WW Breast,66,47,19
-RXP,31 Days,280,278,2
-RXP,31 Days Sub (Drugs),4,4,0
-RXP,31 Days Sub (Surgery),18,17,1
-RXP,62 Days,191,161,30
-RXP,62 Days (Screening),4,3,1
-RXP,62 Days (Upgrade),5,5,0
-RXQ,2 week wait,656,543,113
-RXQ,2WW Breast,70,33,37
-RXQ,31 Days,258,244,14
-RXQ,31 Days Sub (Drugs),35,34,1
+RRK,2 week wait,3967,2341,1626
+RRK,2WW Breast,127,28,99
+RRK,31 Days,1142,918,224
+RRK,31 Days Sub (Drugs),235,235,0
+RRK,31 Days Sub (Radio),310,300,10
+RRK,31 Days Sub (Surgery),171,78,93
+RRK,62 Days,568,223,345
+RRK,62 Days (Screening),18,14,4
+RRK,62 Days (Upgrade),136,79.5,56.5
+RRV,2 week wait,1374,1333,41
+RRV,2WW Breast,101,97,4
+RRV,31 Days,496,470,26
+RRV,31 Days Sub (Drugs),151,151,0
+RRV,31 Days Sub (Radio),78,77,1
+RRV,31 Days Sub (Surgery),31,31,0
+RRV,62 Days,143,109,34
+RRV,62 Days (Screening),12,9.5,2.5
+RRV,62 Days (Upgrade),10.5,8.5,2
+RTD,2 week wait,2014,1225,789
+RTD,2WW Breast,152,26,126
+RTD,31 Days,954,908,46
+RTD,31 Days Sub (Drugs),200,192,8
+RTD,31 Days Sub (Radio),326,323,3
+RTD,31 Days Sub (Surgery),140,116,24
+RTD,62 Days,358,272,86
+RTD,62 Days (Screening),28.5,23,5.5
+RTD,62 Days (Upgrade),19,15,4
+RTE,2 week wait,2293,2227,66
+RTE,2WW Breast,98,97,1
+RTE,31 Days,828,820,8
+RTE,31 Days Sub (Drugs),189,189,0
+RTE,31 Days Sub (Radio),137,135,2
+RTE,31 Days Sub (Surgery),84,82,2
+RTE,62 Days,441,368,73
+RTE,62 Days (Screening),39.5,35,4.5
+RTE,62 Days (Upgrade),32,24.5,7.5
+RTF,2 week wait,1604,1551,53
+RTF,2WW Breast,189,180,9
+RTF,31 Days,354,348,6
+RTF,31 Days Sub (Drugs),19,18,1
+RTF,31 Days Sub (Surgery),10,9,1
+RTF,62 Days,229,194,35
+RTF,62 Days (Screening),10,6,4
+RTF,62 Days (Upgrade),14.5,13.5,1
+RTG,2 week wait,3407,2954,453
+RTG,2WW Breast,253,157,96
+RTG,31 Days,790,714,76
+RTG,31 Days Sub (Drugs),143,141,2
+RTG,31 Days Sub (Radio),86,84,2
+RTG,31 Days Sub (Surgery),47,39,8
+RTG,62 Days,412,266,146
+RTG,62 Days (Screening),28,21.5,6.5
+RTG,62 Days (Upgrade),20.5,18,2.5
+RTH,2 week wait,1935,1409,526
+RTH,2WW Breast,202,89,113
+RTH,31 Days,916,866,50
+RTH,31 Days Sub (Drugs),78,77,1
+RTH,31 Days Sub (Radio),241,232,9
+RTH,31 Days Sub (Surgery),84,75,9
+RTH,62 Days,459,342,117
+RTH,62 Days (Screening),18.5,18,0.5
+RTH,62 Days (Upgrade),5,2.5,2.5
+RTK,2 week wait,1745,1675,70
+RTK,2WW Breast,247,242,5
+RTK,31 Days,284,280,4
+RTK,31 Days Sub (Drugs),10,10,0
+RTK,31 Days Sub (Surgery),20,20,0
+RTK,62 Days,180,167,13
+RTK,62 Days (Screening),1,0.5,0.5
+RTK,62 Days (Upgrade),17,16,1
+RTP,2 week wait,1979,1954,25
+RTP,2WW Breast,160,157,3
+RTP,31 Days,352,340,12
+RTP,31 Days Sub (Drugs),12,12,0
+RTP,31 Days Sub (Surgery),17,16,1
+RTP,62 Days,259,200,59
+RTP,62 Days (Screening),5.5,2.5,3
+RTP,62 Days (Upgrade),20.5,15.5,5
+RTR,2 week wait,1660,1588,72
+RTR,2WW Breast,9,8,1
+RTR,31 Days,476,462,14
+RTR,31 Days Sub (Drugs),76,75,1
+RTR,31 Days Sub (Radio),184,181,3
+RTR,31 Days Sub (Surgery),10,10,0
+RTR,62 Days,318,251,67
+RTR,62 Days (Screening),6.5,2.5,4
+RTR,62 Days (Upgrade),26.5,23.5,3
+RTX,2 week wait,1647,1380,267
+RTX,2WW Breast,82,18,64
+RTX,31 Days,340,312,28
+RTX,31 Days Sub (Drugs),93,93,0
+RTX,31 Days Sub (Surgery),7,5,2
+RTX,62 Days,188,110,78
+RTX,62 Days (Screening),16.5,10.5,6
+RTX,62 Days (Upgrade),71.5,64.5,7
+RVJ,2 week wait,2288,1447,841
+RVJ,2WW Breast,296,45,251
+RVJ,31 Days,532,514,18
+RVJ,31 Days Sub (Drugs),9,9,0
+RVJ,31 Days Sub (Surgery),124,106,18
+RVJ,62 Days,343,261,82
+RVJ,62 Days (Screening),33,22.5,10.5
+RVJ,62 Days (Upgrade),73,69.5,3.5
+RVR,2 week wait,1353,1337,16
+RVR,31 Days,210,208,2
+RVR,31 Days Sub (Drugs),3,3,0
+RVR,62 Days,144,128,16
+RVR,62 Days (Screening),1,0,1
+RVR,62 Days (Upgrade),25,20,5
+RVV,2 week wait,3777,3730,47
+RVV,2WW Breast,124,123,1
+RVV,31 Days,740,696,44
+RVV,31 Days Sub (Drugs),147,147,0
+RVV,31 Days Sub (Radio),2,2,0
+RVV,31 Days Sub (Surgery),88,77,11
+RVV,62 Days,450,369,81
+RVV,62 Days (Screening),42,33,9
+RVV,62 Days (Upgrade),12.5,10.5,2
+RVW,2 week wait,1183,1146,37
+RVW,2WW Breast,294,276,18
+RVW,31 Days,256,242,14
+RVW,31 Days Sub (Drugs),56,56,0
+RVW,31 Days Sub (Surgery),16,14,2
+RVW,62 Days,137,107,30
+RVW,62 Days (Screening),34,26,8
+RVW,62 Days (Upgrade),7.5,5.5,2
+RVY,2 week wait,1042,944,98
+RVY,31 Days,160,158,2
+RVY,31 Days Sub (Surgery),3,3,0
+RVY,62 Days,110,78,32
+RVY,62 Days (Upgrade),43,38.5,4.5
+RW6,2 week wait,2580,2411,169
+RW6,2WW Breast,186,109,77
+RW6,31 Days,380,376,4
+RW6,31 Days Sub (Drugs),5,5,0
+RW6,31 Days Sub (Surgery),15,13,2
+RW6,62 Days,282,146,136
+RW6,62 Days (Screening),7,0.5,6.5
+RW6,62 Days (Upgrade),82,64,18
+RWA,2 week wait,2073,1805,268
+RWA,2WW Breast,170,27,143
+RWA,31 Days,698,612,86
+RWA,31 Days Sub (Drugs),56,56,0
+RWA,31 Days Sub (Radio),158,158,0
+RWA,31 Days Sub (Surgery),87,59,28
+RWA,62 Days,303,180,123
+RWA,62 Days (Screening),29.5,19.5,10
+RWA,62 Days (Upgrade),2,1.5,0.5
+RWD,2 week wait,2447,2068,379
+RWD,2WW Breast,123,5,118
+RWD,31 Days,692,634,58
+RWD,31 Days Sub (Drugs),132,131,1
+RWD,31 Days Sub (Radio),100,95,5
+RWD,31 Days Sub (Surgery),45,39,6
+RWD,62 Days,412,277,135
+RWD,62 Days (Screening),23,16,7
+RWD,62 Days (Upgrade),84.5,62.5,22
+RWE,2 week wait,3939,3781,158
+RWE,2WW Breast,197,187,10
+RWE,31 Days,742,632,110
+RWE,31 Days Sub (Drugs),79,79,0
+RWE,31 Days Sub (Radio),154,149,5
+RWE,31 Days Sub (Surgery),102,58,44
+RWE,62 Days,450,264,186
+RWE,62 Days (Screening),29,15,14
+RWE,62 Days (Upgrade),60,42.5,17.5
+RWF,2 week wait,1740,1667,73
+RWF,2WW Breast,181,158,23
+RWF,31 Days,398,378,20
+RWF,31 Days Sub (Drugs),94,92,2
+RWF,31 Days Sub (Radio),261,253,8
+RWF,31 Days Sub (Surgery),18,17,1
+RWF,62 Days,171,146,25
+RWF,62 Days (Screening),24.5,17,7.5
+RWF,62 Days (Upgrade),6,4,2
+RWG,2 week wait,1811,1760,51
+RWG,2WW Breast,156,147,9
+RWG,31 Days,326,320,6
+RWG,31 Days Sub (Drugs),21,21,0
+RWG,31 Days Sub (Surgery),20,18,2
+RWG,62 Days,193,163,30
+RWG,62 Days (Screening),5,4,1
+RWG,62 Days (Upgrade),12,10,2
+RWH,2 week wait,1601,1587,14
+RWH,2WW Breast,121,121,0
+RWH,31 Days,528,512,16
+RWH,31 Days Sub (Drugs),196,196,0
+RWH,31 Days Sub (Radio),307,305,2
+RWH,31 Days Sub (Surgery),49,43,6
+RWH,62 Days,261,228,33
+RWH,62 Days (Screening),14,9,5
+RWH,62 Days (Upgrade),32,28,4
+RWJ,2 week wait,976,953,23
+RWJ,31 Days,186,172,14
+RWJ,31 Days Sub (Drugs),1,1,0
+RWJ,31 Days Sub (Surgery),9,7,2
+RWJ,62 Days,110,74,36
+RWJ,62 Days (Screening),2,0,2
+RWJ,62 Days (Upgrade),37.5,29.5,8
+RWP,2 week wait,2234,1769,465
+RWP,2WW Breast,121,11,110
+RWP,31 Days,596,570,26
+RWP,31 Days Sub (Drugs),51,51,0
+RWP,31 Days Sub (Radio),97,97,0
+RWP,31 Days Sub (Surgery),35,27,8
+RWP,62 Days,395,260,135
+RWP,62 Days (Screening),19.5,14,5.5
+RWP,62 Days (Upgrade),54,53,1
+RWW,2 week wait,1075,1046,29
+RWW,2WW Breast,87,84,3
+RWW,31 Days,100,98,2
+RWW,31 Days Sub (Surgery),14,14,0
+RWW,62 Days,75,50,25
+RWW,62 Days (Screening),5.5,5,0.5
+RWW,62 Days (Upgrade),6,5,1
+RWY,2 week wait,1703,1681,22
+RWY,2WW Breast,190,185,5
+RWY,31 Days,308,306,2
+RWY,31 Days Sub (Drugs),62,61,1
+RWY,31 Days Sub (Surgery),36,36,0
+RWY,62 Days,211,198,13
+RWY,62 Days (Screening),7.5,7.5,0
+RWY,62 Days (Upgrade),1,1,0
+RX1,2 week wait,3312,3201,111
+RX1,2WW Breast,94,91,3
+RX1,31 Days,992,904,88
+RX1,31 Days Sub (Drugs),144,143,1
+RX1,31 Days Sub (Radio),120,116,4
+RX1,31 Days Sub (Surgery),114,86,28
+RX1,62 Days,424,314,110
+RX1,62 Days (Screening),31.5,27,4.5
+RX1,62 Days (Upgrade),108.5,83.5,25
+RXC,2 week wait,2066,2009,57
+RXC,2WW Breast,178,175,3
+RXC,31 Days,406,394,12
+RXC,31 Days Sub (Drugs),22,22,0
+RXC,31 Days Sub (Radio),1,1,0
+RXC,31 Days Sub (Surgery),6,6,0
+RXC,62 Days,315,237,78
+RXC,62 Days (Screening),12.5,4,8.5
+RXC,62 Days (Upgrade),23.5,17,6.5
+RXF,2 week wait,2670,2594,76
+RXF,2WW Breast,191,189,2
+RXF,31 Days,480,470,10
+RXF,31 Days Sub (Drugs),98,98,0
+RXF,31 Days Sub (Surgery),42,41,1
+RXF,62 Days,317,241,76
+RXF,62 Days (Screening),8,6,2
+RXF,62 Days (Upgrade),14.5,14.5,0
+RXH,2 week wait,2162,2113,49
+RXH,2WW Breast,179,177,2
+RXH,31 Days,536,518,18
+RXH,31 Days Sub (Drugs),112,111,1
+RXH,31 Days Sub (Radio),202,202,0
+RXH,31 Days Sub (Surgery),37,33,4
+RXH,62 Days,279,201,78
+RXH,62 Days (Screening),22.5,15,7.5
+RXH,62 Days (Upgrade),19,15,4
+RXK,2 week wait,1852,1329,523
+RXK,2WW Breast,207,57,150
+RXK,31 Days,248,226,22
+RXK,31 Days Sub (Drugs),3,3,0
+RXK,31 Days Sub (Surgery),24,20,4
+RXK,62 Days,129,92,37
+RXK,62 Days (Screening),19,18,1
+RXK,62 Days (Upgrade),28.5,20,8.5
+RXL,2 week wait,1606,1513,93
+RXL,2WW Breast,117,76,41
+RXL,31 Days,378,370,8
+RXL,31 Days Sub (Drugs),35,35,0
+RXL,31 Days Sub (Surgery),8,8,0
+RXL,62 Days,227,166,61
+RXL,62 Days (Screening),3,1,2
+RXL,62 Days (Upgrade),47.5,44.5,3
+RXN,2 week wait,2073,1920,153
+RXN,2WW Breast,188,110,78
+RXN,31 Days,592,546,46
+RXN,31 Days Sub (Drugs),140,140,0
+RXN,31 Days Sub (Radio),201,201,0
+RXN,31 Days Sub (Surgery),97,77,20
+RXN,62 Days,262,169,93
+RXN,62 Days (Screening),3.5,3,0.5
+RXN,62 Days (Upgrade),61,49.5,11.5
+RXP,2 week wait,2042,1746,296
+RXP,2WW Breast,165,121,44
+RXP,31 Days,308,300,8
+RXP,31 Days Sub (Drugs),3,3,0
+RXP,31 Days Sub (Surgery),28,25,3
+RXP,62 Days,229,167,62
+RXP,62 Days (Screening),5,2,3
+RXP,62 Days (Upgrade),8,4,4
+RXQ,2 week wait,1996,1978,18
+RXQ,2WW Breast,34,34,0
+RXQ,31 Days,356,350,6
+RXQ,31 Days Sub (Drugs),36,36,0
 RXQ,31 Days Sub (Radio),1,1,0
-RXQ,31 Days Sub (Surgery),39,33,6
-RXQ,62 Days,156,106,50
-RXQ,62 Days (Screening),8,8,0
-RXQ,62 Days (Upgrade),18.5,12,6.5
-RXR,2 week wait,711,600,111
-RXR,2WW Breast,57,57,0
-RXR,31 Days,306,304,2
-RXR,31 Days Sub (Drugs),57,56,1
-RXR,31 Days Sub (Surgery),34,31,3
-RXR,62 Days,175,136,39
-RXR,62 Days (Screening),7.5,6,1.5
-RXR,62 Days (Upgrade),40.5,36.5,4
-RXW,2 week wait,851,696,155
-RXW,2WW Breast,42,28,14
-RXW,31 Days,406,400,6
-RXW,31 Days Sub (Drugs),48,48,0
-RXW,31 Days Sub (Radio),79,78,1
-RXW,31 Days Sub (Surgery),44,44,0
-RXW,62 Days,226,157,69
-RXW,62 Days (Screening),21,17,4
-RXW,62 Days (Upgrade),54,48.5,5.5
-RY2,2 week wait,51,51,0
-RY2,31 Days,16,16,0
-RY2,62 Days,15,13,2
-RY2,62 Days (Upgrade),2,2,0
-RYJ,2 week wait,767,712,55
-RYJ,2WW Breast,6,5,1
-RYJ,31 Days,338,328,10
-RYJ,31 Days Sub (Drugs),94,93,1
-RYJ,31 Days Sub (Radio),101,99,2
-RYJ,31 Days Sub (Surgery),46,44,2
-RYJ,62 Days,156,130,26
-RYJ,62 Days (Screening),9,7,2
-RYJ,62 Days (Upgrade),10,6,4
-RYR,2 week wait,790,722,68
-RYR,2WW Breast,38,30,8
-RYR,31 Days,404,384,20
-RYR,31 Days Sub (Drugs),14,14,0
-RYR,31 Days Sub (Radio),1,1,0
-RYR,31 Days Sub (Surgery),9,9,0
-RYR,62 Days,268,202,66
-RYR,62 Days (Screening),27,25,2
-RYR,62 Days (Upgrade),12,12,0
+RXQ,31 Days Sub (Surgery),45,45,0
+RXQ,62 Days,217,180,37
+RXQ,62 Days (Screening),9,9,0
+RXQ,62 Days (Upgrade),9,8,1
+RXR,2 week wait,1835,1772,63
+RXR,2WW Breast,215,209,6
+RXR,31 Days,442,430,12
+RXR,31 Days Sub (Drugs),63,60,3
+RXR,31 Days Sub (Surgery),36,30,6
+RXR,62 Days,279,208,71
+RXR,62 Days (Screening),12,9.5,2.5
+RXR,62 Days (Upgrade),54.5,48,6.5
+RXW,2 week wait,2413,1989,424
+RXW,2WW Breast,197,26,171
+RXW,31 Days,550,530,20
+RXW,31 Days Sub (Drugs),104,104,0
+RXW,31 Days Sub (Radio),94,93,1
+RXW,31 Days Sub (Surgery),31,29,2
+RXW,62 Days,304,184,120
+RXW,62 Days (Screening),30.5,17.5,13
+RXW,62 Days (Upgrade),70.5,57.5,13
+RY2,2 week wait,230,230,0
+RY2,31 Days,34,30,4
+RY2,31 Days Sub (Surgery),3,3,0
+RY2,62 Days,29,23,6
+RY2,62 Days (Upgrade),5.5,5,0.5
+RYJ,2 week wait,2197,2085,112
+RYJ,2WW Breast,203,197,6
+RYJ,31 Days,570,562,8
+RYJ,31 Days Sub (Drugs),164,164,0
+RYJ,31 Days Sub (Radio),104,103,1
+RYJ,31 Days Sub (Surgery),87,82,5
+RYJ,62 Days,191,151,40
+RYJ,62 Days (Screening),16,12,4
+RYJ,62 Days (Upgrade),38,33.5,4.5
+RYR,2 week wait,1919,1754,165
+RYR,2WW Breast,182,175,7
+RYR,31 Days,590,512,78
+RYR,31 Days Sub (Drugs),24,24,0
+RYR,31 Days Sub (Surgery),24,17,7
+RYR,62 Days,341,236,105
+RYR,62 Days (Screening),30,16.5,13.5
+RYR,62 Days (Upgrade),20.5,16,4.5
