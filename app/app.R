@@ -8,11 +8,6 @@ library(dplyr)
 library(DT)
 library(echarts4r)
 
-source("charts.R")
-source("table.R")
-source("england-page.R")
-source("wales-page.R")
-
 # ---- Load data sets ----
 # Map points
 points_trusts <-
@@ -65,6 +60,12 @@ wales_rtt <-
 # Health Index
 health_index <-
   readRDS("data/health_index.rds")
+
+# ---- Load modules ----
+source("charts.R")
+source("table.R")
+source("england-page.R")
+source("wales-page.R")
 
 # ---- Create Markers ----
 # Compatible markers: https://fontawesome.com/v4.7.0/icons/
@@ -292,6 +293,8 @@ server <- function(input, output, session) {
     toggle(id = "ambulance_box",  condition = !wales_ambulance %>% filter(`Health Board Code` == selected_trust()) %>% pull(value) %>% is.na() %>% all())
   })
 
+  # ---- Map marker click event handlers ----
+  # - England -
   observeEvent(input$map_marker_click$id, {
     if (is.null(input$map_marker_click$id)) {
       selected_trust("RJZ")
@@ -307,6 +310,22 @@ server <- function(input, output, session) {
     }
   })
 
+  # - Wales -
+  observeEvent(input$map_wales_marker_click$id, {
+    if (is.null(input$map_wales_marker_click$id)) {
+      selected_trust("7A1")
+    } else {
+      input$map_wales_marker_click$id %>%
+        selected_trust()
+      
+      clicked_trust <- points_wales %>%
+        filter(hb_code == input$map_wales_marker_click$id) %>%
+        pull(hb_name)
+      
+      updateSelectizeInput(session, "selectbox_wales", selected = clicked_trust)
+    }
+  })
+  
   # Debug
   # observe({
   #   print(selected_trust())
