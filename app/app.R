@@ -11,35 +11,35 @@ library(echarts4r)
 # ---- Load data sets ----
 # Map points
 points_trusts <-
-  read_sf("data/open_nhs_trusts_points.geojson")
+  read_sf("data/england.geojson")
 
 points_wales <- 
   read_sf("data/wales.geojson")
 
 # Indicators
 ae <-
-  readRDS("data/ae.rds")
+  readRDS("data/england-ae.rds")
 
 ambulance <-
-  readRDS("data/ambulance.rds")
+  readRDS("data/england-ambulance.rds")
 
 beds <-
-  readRDS("data/beds.rds")
+  readRDS("data/england-beds.rds")
 
 cancer_wait_times <-
-  readRDS("data/cancer_wait_times.rds")
+  readRDS("data/england-cancer_wait_times.rds")
 
 diagnostic_wait_times <-
-  readRDS("data/diagnostic_wait_times.rds")
+  readRDS("data/england-diagnostic_wait_times.rds")
 
 outpatient_referrals <-
-  readRDS("data/outpatients_referrals.rds")
+  readRDS("data/england-outpatients_referrals.rds")
 
 rtt <-
-  readRDS("data/referral_treatment_waiting_times.rds")
+  readRDS("data/england-referral_treatment_waiting_times.rds")
 
 rtt_long_form <-
-  readRDS("data/referral_treatment_waiting_times_long_form.rds")
+  readRDS("data/england-referral_treatment_waiting_times_long_form.rds")
 
 # Wales data
 wales_ae <- 
@@ -59,7 +59,7 @@ wales_rtt <-
 
 # Health Index
 health_index <-
-  readRDS("data/health_index.rds")
+  readRDS("data/england-health-index.rds")
 
 # ---- Load modules ----
 source("charts.R")
