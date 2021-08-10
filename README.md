@@ -6,29 +6,11 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md) 
 
 ## Overview
-An NHS Trust level view of the current health system capacity in England. To view the dashboard, click [here](https://britishredcross.shinyapps.io/nhs-capacity/).
+An NHS Trust level view of the current health system capacity. To view the dashboard, click [here](https://britishredcross.shinyapps.io/nhs-capacity/).
 
 <br>
 
 <img src='man/figures/app-demo.png' align="centre"/>
-
-## Navigation
-
-- **`app/`** hosts a self-contained R Shiny app.
-- **`data/`** contains all data.
-- **`analyse/`** contains scripts to generate data and insights.
-
-## Data sets
-
-Data set | Date
---- | ---
-A&E Attendance | Apr 21
-Ambulance Responce Times | Apr 21
-Bed Occupancy (Day & Night) | Jan-Mar 21
-Cancer Waiting Times | Mar 21
-Diagnostic Waiting Times | Mar 21
-Outpatient Referrals | Mar 21
-Referral to Treatment Waiting Times | Mar 21
 
 ## Contributing
 To contribute to this project, please follow [GitHub Flow](https://guides.github.com/introduction/flow/) when submitting changes.
