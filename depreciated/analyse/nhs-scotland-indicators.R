@@ -12,7 +12,7 @@ scot_hosp <- read_excel("data/NHS Scotland indicators.xlsx", sheet = "Hospitals"
 scot_inds <- read_excel("data/NHS Scotland indicators.xlsx", sheet = "Indicators")
 
 scot_hosp <- 
-  scot_hosp %>% 
+  scot_hosp |> 
   filter(!is.na(HospitalID))
 
 # ---- Download indicators ----
@@ -51,11 +51,11 @@ for (hosp_id in scot_hosp$HospitalID) {
     }
     
     tmp_stats <- 
-      tmp_stats %>% 
+      tmp_stats |> 
       mutate(
         HospitalValue = as.double(HospitalValue),
         BoardValue    = as.double(BoardValue)
-      ) %>% 
+      ) |> 
       select(Date, HospitalValue, BoardValue)
     
     if (!exists("scot_stats")) {
@@ -77,7 +77,7 @@ for (hosp_id in scot_hosp$HospitalID) {
   print(paste0("Finished hospital ", hosp_id))
 }
 
-scot_stats %>% 
+scot_stats |> 
   write_csv("data/scotland-raw-data/all-scotland-stats.csv")
 
 # If hospital value is NA, use the board value
@@ -85,30 +85,30 @@ scot_stats$HospitalValue <- ifelse(is.na(scot_stats$HospitalValue), scot_stats$B
 
 # Merge indicator names
 scot_stats <- 
-  scot_stats %>% 
+  scot_stats |> 
   left_join(
-    scot_inds %>% select(IndicatorID, IndicatorName), 
+    scot_inds |> select(IndicatorID, IndicatorName), 
     by="IndicatorID"
   )
 
 # Widen the data so only one row per hospital
 scot_stats_wide <- 
-  scot_stats %>% 
-  select(Date, HospitalID, IndicatorName, HospitalValue) %>% 
+  scot_stats |> 
+  select(Date, HospitalID, IndicatorName, HospitalValue) |> 
   
   # Keep most recent indicator in each hospital
-  mutate(Date = dmy(Date)) %>% 
-  group_by(HospitalID, IndicatorName) %>% 
-  filter(Date == max(Date)) %>% 
-  ungroup() %>% 
+  mutate(Date = dmy(Date)) |> 
+  group_by(HospitalID, IndicatorName) |> 
+  filter(Date == max(Date)) |> 
+  ungroup() |> 
   
   pivot_wider(id_cols = HospitalID, names_from = IndicatorName, values_from = HospitalValue)
   
 # merge indicators into main hospital table
 scot_hosp_stats <- 
-  scot_hosp %>% 
-  select(HospitalID, `NHS Board`, `Location Code`, `Location Name`) %>% 
+  scot_hosp |> 
+  select(HospitalID, `NHS Board`, `Location Code`, `Location Name`) |> 
   left_join(scot_stats_wide, by="HospitalID")
 
-scot_hosp_stats %>% 
+scot_hosp_stats |> 
   write_csv("data/scotland-hospital-indicators.csv")

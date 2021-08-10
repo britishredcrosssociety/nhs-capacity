@@ -22,17 +22,17 @@ rm(tf)
 
 # remove first two entries (one is totals, other is blank)
 ae <-
-  ae %>%
+  ae |>
   slice(-(1:2))
 
 # Remove empty rows at the end of the spreadsheet
 ae <-
-  ae %>%
+  ae |>
   drop_na()
 
 # Keep vars of interest
 ae <-
-  ae %>%
+  ae |>
   select(
     org_code = Code,
     name = Name,
@@ -50,7 +50,7 @@ ae <-
 
 # Replace '-' character with NA
 ae <-
-  ae %>%
+  ae |>
   mutate(
     across(
       .cols = !c(org_code, name),
@@ -60,7 +60,7 @@ ae <-
 
 # Change cols to double
 ae <-
-  ae %>%
+  ae |>
   mutate(
     across(
       .cols = !c(org_code, name),
@@ -69,7 +69,7 @@ ae <-
   )
 
 # Save
-ae %>%
+ae |>
   write_csv("data/nhs_ae.csv")
 
 # ---- Ambulance Quality Indicators
@@ -95,8 +95,8 @@ eng_ambo_cat1 <-
     range = "C8:I18",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat1")
 
 # Category 1T
@@ -107,8 +107,8 @@ eng_ambo_cat1t <-
     range = "C22:I32",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat1t")
 
 # Category 2
@@ -119,8 +119,8 @@ eng_ambo_cat2 <-
     range = "C36:I46",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat2")
 
 # Category 3
@@ -131,8 +131,8 @@ eng_ambo_cat3 <-
     range = "C50:I60",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat3")
 
 # Category 4
@@ -143,8 +143,8 @@ eng_ambo_cat4 <-
     range = "C64:I74",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat4")
 
 unlink(tf)
@@ -161,14 +161,14 @@ eng_ambo <- bind_rows(
 
 # Reformat dates
 eng_ambo <-
-  eng_ambo %>%
+  eng_ambo |>
   mutate(
     mean_min_sec = format(mean_min_sec, format = "%M:%S"),
     centile_90th_min_sec = format(centile_90th_min_sec, format = "%M:%S")
   )
 
 # Save
-eng_ambo %>%
+eng_ambo |>
   write_csv("data/nhs_ambulance.csv")
 
 # ---- Bed Occupancy ----
@@ -193,12 +193,12 @@ rm(tf)
 
 # remove first two entries (one is totals, other is blank)
 beds_nights <-
-  beds_nights %>%
+  beds_nights |>
   slice(-(1:2))
 
 # Select cols
 beds_nights <-
-  beds_nights %>%
+  beds_nights |>
   select(
     org_code = `Org Code`,
     name = `Org Name`,
@@ -216,7 +216,7 @@ beds_nights <-
 
 # Replace '-' character with NA
 beds_nights <-
-  beds_nights %>%
+  beds_nights |>
   mutate(
     across(
       .cols = !c(org_code, name),
@@ -226,7 +226,7 @@ beds_nights <-
 
 # Change cols to double
 beds_nights <-
-  beds_nights %>%
+  beds_nights |>
   mutate(
     across(
       .cols = !c(org_code, name),
@@ -235,7 +235,7 @@ beds_nights <-
   )
 
 # Save
-beds_nights %>%
+beds_nights |>
   write_csv("data/nhs_beds_nights.csv")
 
 # - Day -
@@ -251,12 +251,12 @@ rm(tf)
 
 # remove first two entries (one is totals, other is blank)
 beds_days <-
-  beds_days %>%
+  beds_days |>
   slice(-(1:2))
 
 # Select cols
 beds_days <-
-  beds_days %>%
+  beds_days |>
   select(
     org_code = `Org Code`,
     name = `Org Name`,
@@ -274,7 +274,7 @@ beds_days <-
 
 # Replace '-' character with NA
 beds_days <-
-  beds_days %>%
+  beds_days |>
   mutate(
     across(
       .cols = !c(org_code, name),
@@ -284,7 +284,7 @@ beds_days <-
 
 # Change cols to double
 beds_days <-
-  beds_days %>%
+  beds_days |>
   mutate(
     across(
       .cols = !c(org_code, name),
@@ -293,7 +293,7 @@ beds_days <-
   )
 
 # Save
-beds_days %>%
+beds_days |>
   write_csv("data/nhs_beds_days.csv")
 
 # ---- Cancer Waiting Times ----
@@ -314,24 +314,24 @@ rm(tf)
 
 # Make colnames snake_case and drop cols
 cancer_wait_times <-
-  cancer_wait_times %>%
+  cancer_wait_times |>
   clean_names()
 
 # Filter latest month
 latest_period <-
-  cancer_wait_times %>%
-  count(period) %>%
-  slice_tail(n = 1) %>%
+  cancer_wait_times |>
+  count(period) |>
+  slice_tail(n = 1) |>
   pull(period)
 
 cancer_wait_times <-
-  cancer_wait_times %>%
-  filter(period == latest_period) %>%
+  cancer_wait_times |>
+  filter(period == latest_period) |>
   filter(month == "MAR")
 
 # Drop cols
 cancer_wait_times <-
-  cancer_wait_times %>%
+  cancer_wait_times |>
   select(
     org_code,
     standard,
@@ -342,27 +342,27 @@ cancer_wait_times <-
 
 # Summarise
 cancer_wait_times <-
-  cancer_wait_times %>%
+  cancer_wait_times |>
   group_by(
     org_code,
     standard
-  ) %>%
+  ) |>
   summarise(
     total_treated = sum(total_treated),
     within_standard = sum(within_standard),
     breaches = sum(breaches)
-  ) %>%
+  ) |>
   ungroup()
 
 # Rename 'standard' 2WW name
 cancer_wait_times <-
-  cancer_wait_times %>%
+  cancer_wait_times |>
   mutate(
     standard = if_else(standard == "2WW", "2 week wait", standard)
   )
 
 # Save
-cancer_wait_times %>%
+cancer_wait_times |>
   write_csv("data/nhs_cancer_wait_times.csv")
 
 # ---- Diagnostic Waiting Times ----
@@ -383,12 +383,12 @@ rm(tf)
 
 # Remove first two rows (summary & blank)
 diagnostics <-
-  diagnostics %>%
+  diagnostics |>
   slice(-(1:2))
 
 # Select cols
 diagnostics <-
-  diagnostics %>%
+  diagnostics |>
   select(
     org_code = `Provider Code`,
     name = `Provider Name`,
@@ -399,14 +399,14 @@ diagnostics <-
 
 # Calculate relative scores
 diagnostics <-
-  diagnostics %>%
+  diagnostics |>
   mutate(
     perc_waiting_6_plus_weeks = count_waiting_6_plus_weeks / count_total_waiting_list,
     per_waiting_13_plus_weeks = count_waiting_13_plus_weeks / count_total_waiting_list
   )
 
 # Save
-diagnostics %>%
+diagnostics |>
   write_csv("data/nhs_diagnostic_waiting_times.csv")
 
 # ---- Outpatient Referrals ----
@@ -430,22 +430,22 @@ rm(tf)
 
 # Make colnames snake_case and drop cols
 outpatient_referrals <-
-  outpatient_referrals %>%
+  outpatient_referrals |>
   clean_names()
 
 # Remove first two entries (one is totals, other is blank)
 outpatient_referrals <-
-  outpatient_referrals %>%
+  outpatient_referrals |>
   slice(-(1:2))
 
 # Sort cols
 outpatient_referrals <-
-  outpatient_referrals %>%
-  select(-c(year:region_name)) %>%
+  outpatient_referrals |>
+  select(-c(year:region_name)) |>
   rename(name = org_name)
 
 # Save
-outpatient_referrals %>%
+outpatient_referrals |>
   write_csv("data/nhs_outpatients_referrals.csv")
 
 # ---- Referral to Treatment Waiting Times ----
@@ -475,24 +475,24 @@ rtt <-
 
 # Clean names
 rtt <-
-  rtt %>%
+  rtt |>
   clean_names()
 
 # Calculate 18 week count
 rtt <-
-  rtt %>%
-  rowwise() %>%
+  rtt |>
+  rowwise() |>
   mutate(
     gt_18_weeks_sum_1 = sum(
       c_across(gt_18_to_19_weeks_sum_1:gt_52_weeks_sum_1),
       na.rm = TRUE
     )
-  ) %>%
+  ) |>
   ungroup()
 
 # Select cols
 rtt <-
-  rtt %>%
+  rtt |>
   select(
     org_code = provider_org_code,
     name = provider_org_name,
@@ -505,28 +505,28 @@ rtt <-
 
 # Keep only treatment totals (not breakdowns)
 rtt <-
-  rtt %>%
-  filter(treatment == "Total") %>%
+  rtt |>
+  filter(treatment == "Total") |>
   select(-treatment)
 
 # Calculate summaries across trusts
 rtt <-
-  rtt %>%
+  rtt |>
   group_by(
     org_code,
     name,
     rtt_type
-  ) %>%
+  ) |>
   summarise(
     more_52_weeks = sum(more_52_weeks, na.rm = TRUE),
     more_18_weeks = sum(more_18_weeks, na.rm = TRUE),
     total = sum(total_all, na.rm = TRUE)
-  ) %>%
+  ) |>
   ungroup()
 
 # Calculate relative wait times
 rtt <-
-  rtt %>%
+  rtt |>
   mutate(
     perc_wait_more_18_weeks = more_18_weeks / total,
     perc_wait_more_52_weeks = more_52_weeks / total
@@ -534,7 +534,7 @@ rtt <-
 
 # Reorder and rename cols
 rtt <-
-  rtt %>%
+  rtt |>
   select(
     org_code,
     name,
@@ -547,5 +547,5 @@ rtt <-
   )
 
 # Save
-rtt %>%
+rtt |>
   write_csv("data/nhs_referral_treatment_waiting_times.csv")

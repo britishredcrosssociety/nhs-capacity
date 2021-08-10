@@ -7,10 +7,10 @@ library(sf)
 file_path <- "data/"
 
 file_names <-
-  list.files(file_path) %>%
+  list.files(file_path) |>
   .[str_detect(., "^nhs_")]
 
-file_names %>%
+file_names |>
   map(
     function(file_name) {
       assign(
@@ -27,9 +27,9 @@ points_trusts <-
 
 # Keep only open trusts to match to indicators
 open_trusts <-
-  points_trusts %>%
-  as_tibble() %>%
-  filter(status == "open") %>%
+  points_trusts |>
+  as_tibble() |>
+  filter(status == "open") |>
   select(
     org_name,
     org_code
@@ -37,16 +37,16 @@ open_trusts <-
 
 # ---- Match indicators to open trusts and save to app ----
 # AE
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_ae,
     by = "org_code"
-  ) %>%
-  select(-name) %>%
+  ) |>
+  select(-name) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   rename(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -60,10 +60,10 @@ open_trusts %>%
     `% Total <= 4 hours` = perc_4_hours_or_less_all,
     `No. patients >= 4h from decisiion to admit to admission` = num_patients_more_4_hours_from_decision_to_admit_to_admission,
     `No. patients >= 12h from decisiion to admit to admission` = num_patients_more_12_hours_from_decision_to_admit_to_admission
-  ) %>%
+  ) |>
   pivot_longer(
     cols = !starts_with("Trust")
-  ) %>%
+  ) |>
   write_rds("app/data/ae.rds")
 
 # Ambulance
@@ -81,16 +81,16 @@ nhs_ambulance <- read_csv(
   )
 )
 
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_ambulance,
     by = "org_code"
-  ) %>%
-  select(-ambulance_service) %>%
+  ) |>
+  select(-ambulance_service) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -99,22 +99,22 @@ open_trusts %>%
     `Total Response Time (h)` = total_hours,
     `Mean Response Time (min:sec)` = mean_min_sec,
     `90th Centile Response Time (min:sec)` = centile_90th_min_sec
-  ) %>%
-  mutate(`Total Response Time (h)` = round(`Total Response Time (h)`)) %>%
+  ) |>
+  mutate(`Total Response Time (h)` = round(`Total Response Time (h)`)) |>
   write_rds("app/data/ambulance.rds")
 
 # Beds
 beds_days <-
-  open_trusts %>%
+  open_trusts |>
   left_join(
     nhs_beds_days,
     by = "org_code"
-  ) %>%
-  select(-name) %>%
+  ) |>
+  select(-name) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   rename(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -128,21 +128,21 @@ beds_days <-
     `% Learning Disabilities Day Beds Occupied` = perc_bed_occupied_learning_disabilities,
     `% Maternity Day Beds Occupied` = perc_bed_occupied_maternity,
     `% Mental Illness Day Beds Occupied` = perc_bed_occupied_mental_illness
-  ) %>%
+  ) |>
   pivot_longer(
     cols = !starts_with("Trust")
   )
 
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_beds_nights,
     by = "org_code"
-  ) %>%
-  select(-name) %>%
+  ) |>
+  select(-name) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   rename(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -156,20 +156,20 @@ open_trusts %>%
     `% Learning Disabilities Night Beds Occupied` = perc_bed_occupied_learning_disabilities,
     `% Maternity Night Beds Occupied` = perc_bed_occupied_maternity,
     `% Mental Illness Night Beds Occupied` = perc_bed_occupied_mental_illness
-  ) %>%
+  ) |>
   pivot_longer(
     cols = !starts_with("Trust")
-  ) %>%
-  bind_rows(beds_days) %>%
-  arrange(`Trust Code`) %>%
+  ) |>
+  bind_rows(beds_days) |>
+  arrange(`Trust Code`) |>
   write_rds("app/data/beds.rds")
 
 # Cancer wait times
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_cancer_wait_times,
     by = "org_code"
-  ) %>%
+  ) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS"),
@@ -178,10 +178,10 @@ open_trusts %>%
       standard == "2WW Breast" ~ "2 Week Wait Breast",
       TRUE ~ standard
     )
-  ) %>%
+  ) |>
   mutate(
     across(where(is.double), ~ round(.x, 1))
-  ) %>%
+  ) |>
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -189,15 +189,15 @@ open_trusts %>%
     `Total Treated` = total_treated,
     `Within Standard` = within_standard,
     Breaches = breaches
-  ) %>%
+  ) |>
   write_rds("app/data/cancer_wait_times.rds")
 
 # Long form
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_cancer_wait_times,
     by = "org_code"
-  ) %>%
+  ) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS"),
@@ -206,10 +206,10 @@ open_trusts %>%
       standard == "2WW Breast" ~ "2 Week Wait Breast",
       TRUE ~ standard
     )
-  ) %>%
+  ) |>
   mutate(
     across(where(is.double), ~ round(.x, 1))
-  ) %>%
+  ) |>
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -217,44 +217,44 @@ open_trusts %>%
     `Total Treated` = total_treated,
     `Within Standard` = within_standard,
     Breaches = breaches
-  ) %>%
-  pivot_longer(cols = where(is.double)) %>%
+  ) |>
+  pivot_longer(cols = where(is.double)) |>
   write_rds("app/data/cancer_wait_times_long_form.rds")
 
 # Diagnostic wait times
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_diagnostic_waiting_times,
     by = "org_code"
-  ) %>%
-  select(-name) %>%
+  ) |>
+  select(-name) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
     `Waiting List Total` = count_total_waiting_list,
     `Waiting 6+ weeks` = count_waiting_6_plus_weeks,
     `Waiting 13+ weeks` = count_waiting_13_plus_weeks
-  ) %>%
+  ) |>
   pivot_longer(
     cols = !starts_with("Trust")
-  ) %>%
+  ) |>
   write_rds("app/data/diagnostic_wait_times.rds")
 
 # Monthly outpatient referrals
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_outpatients_referrals,
     by = "org_code"
-  ) %>%
-  select(-name) %>%
+  ) |>
+  select(-name) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -262,26 +262,26 @@ open_trusts %>%
     `Other Referrals Made (All)` = other_referrals_made_all,
     `GP Referrals Made (Specific Acute)` = gp_referrals_made_specific_acute,
     `Other Referrals Made (Specific Acute)` = other_referrals_made_specific_acute
-  ) %>%
+  ) |>
   pivot_longer(
     cols = !starts_with("Trust")
-  ) %>%
+  ) |>
   write_rds("app/data/outpatients_referrals.rds")
 
 # Referral Treatment Waiting Times
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_referral_treatment_waiting_times,
     by = "org_code"
-  ) %>%
-  select(-name) %>%
+  ) |>
+  select(-name) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   mutate(
     across(where(is.double), ~ round(.x, 1))
-  ) %>%
+  ) |>
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -291,22 +291,22 @@ open_trusts %>%
     `% Waiting 18+ Weeks` = perc_wait_more_18_weeks,
     `% Waiting 52+ Weeks` = perc_wait_more_52_weeks,
     `Total Waiting List` = count_total
-  ) %>%
+  ) |>
   write_rds("app/data/referral_treatment_waiting_times.rds")
 
-open_trusts %>%
+open_trusts |>
   left_join(
     nhs_referral_treatment_waiting_times,
     by = "org_code"
-  ) %>%
-  select(-name) %>%
+  ) |>
+  select(-name) |>
   mutate(
     org_name = str_to_title(org_name),
     org_name = str_replace(org_name, "Nhs", "NHS")
-  ) %>%
+  ) |>
   mutate(
     across(where(is.double), ~ round(.x, 1))
-  ) %>%
+  ) |>
   select(
     `Trust Name` = org_name,
     `Trust Code` = org_code,
@@ -316,6 +316,6 @@ open_trusts %>%
     `% Waiting 18+ Weeks` = perc_wait_more_18_weeks,
     `% Waiting 52+ Weeks` = perc_wait_more_52_weeks,
     `Total Waiting List` = count_total
-  ) %>%
-  pivot_longer(cols = where(is.double)) %>%
+  ) |>
+  pivot_longer(cols = where(is.double)) |>
   write_rds("app/data/referral_treatment_waiting_times_long_form.rds")

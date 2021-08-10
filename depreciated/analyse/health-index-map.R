@@ -40,8 +40,8 @@ quantise <-
     
     if (
       !(
-        tibble(quantiles = quantiles) %>%
-        count(quantiles) %>%
+        tibble(quantiles = quantiles) |>
+        count(quantiles) |>
         mutate(
           equal_bins = if_else(
             n >= (length(vec) / num_quantiles) - 1 &
@@ -49,8 +49,8 @@ quantise <-
             TRUE,
             FALSE
           )
-        ) %>%
-        pull(equal_bins) %>%
+        ) |>
+        pull(equal_bins) |>
         all()
       )
       
@@ -113,13 +113,13 @@ eng_hi_shp <- read_rds("app/data/health_index.rds")
 sco_hi <- read_csv("https://raw.githubusercontent.com/britishredcrosssociety/resilience-index/main/data/vulnerability/health-inequalities/scotland/index-unweighted.csv")
   
 sco_hi_shp <-
-  boundaries_lad %>% 
-  filter(str_detect(lad_code, "^S")) %>% 
+  boundaries_lad |> 
+  filter(str_detect(lad_code, "^S")) |> 
   left_join(sco_hi, by = "lad_code")
 
 # ---- Quantise Eng HI ----
 eng_hi_shp <- 
-  eng_hi_shp %>% 
+  eng_hi_shp |> 
   mutate(
     healthy_lives_rank = inverse_rank(healthy_lives),
     healthy_lives_domain_quantiles = quantise(healthy_lives_rank),
@@ -129,7 +129,7 @@ eng_hi_shp <-
     healthy_people_domain_quantiles = quantise(healthy_people_rank),
     overall_health_index_rank = inverse_rank(overall_health_index),
     health_inequalities_composite_quantiles = quantise(overall_health_index_rank)
-  ) %>%
+  ) |>
   select(
     starts_with("county_"), 
     ends_with("quantiles")
@@ -137,59 +137,59 @@ eng_hi_shp <-
 
 # ---- Worst scoring places ----
 sco_worst_hli <-
-  sco_hi_shp %>% 
-  as_tibble() %>% 
-  select(lad_name, healthy_lives_domain_quantiles) %>% 
-  filter(healthy_lives_domain_quantiles == 10) %>% 
+  sco_hi_shp |> 
+  as_tibble() |> 
+  select(lad_name, healthy_lives_domain_quantiles) |> 
+  filter(healthy_lives_domain_quantiles == 10) |> 
   pull(lad_name)
 
 sco_worst_hpl <-
-  sco_hi_shp %>% 
-  as_tibble() %>% 
-  select(lad_name, healthy_places_domain_quantiles) %>% 
-  filter(healthy_places_domain_quantiles == 10) %>% 
+  sco_hi_shp |> 
+  as_tibble() |> 
+  select(lad_name, healthy_places_domain_quantiles) |> 
+  filter(healthy_places_domain_quantiles == 10) |> 
   pull(lad_name)
 
 sco_worst_hpe <-
-  sco_hi_shp %>% 
-  as_tibble() %>% 
-  select(lad_name, healthy_people_domain_quantiles) %>% 
-  filter(healthy_people_domain_quantiles == 10) %>% 
+  sco_hi_shp |> 
+  as_tibble() |> 
+  select(lad_name, healthy_people_domain_quantiles) |> 
+  filter(healthy_people_domain_quantiles == 10) |> 
   pull(lad_name)
 
 sco_worst_overall <-
-  sco_hi_shp %>% 
-  as_tibble() %>% 
-  select(lad_name, health_inequalities_composite_quantiles) %>% 
-  filter(health_inequalities_composite_quantiles == 10) %>% 
+  sco_hi_shp |> 
+  as_tibble() |> 
+  select(lad_name, health_inequalities_composite_quantiles) |> 
+  filter(health_inequalities_composite_quantiles == 10) |> 
   pull(lad_name)
 
 eng_worst_hli <-
-  eng_hi_shp %>% 
-  as_tibble() %>% 
-  select(county_ua_name, healthy_lives_domain_quantiles) %>% 
-  filter(healthy_lives_domain_quantiles == 10) %>% 
+  eng_hi_shp |> 
+  as_tibble() |> 
+  select(county_ua_name, healthy_lives_domain_quantiles) |> 
+  filter(healthy_lives_domain_quantiles == 10) |> 
   pull(county_ua_name)
 
 eng_worst_hpl <-
-  eng_hi_shp %>% 
-  as_tibble() %>% 
-  select(county_ua_name, healthy_places_domain_quantiles) %>% 
-  filter(healthy_places_domain_quantiles == 10) %>% 
+  eng_hi_shp |> 
+  as_tibble() |> 
+  select(county_ua_name, healthy_places_domain_quantiles) |> 
+  filter(healthy_places_domain_quantiles == 10) |> 
   pull(county_ua_name)
 
 eng_worst_hpe <-
-  eng_hi_shp %>% 
-  as_tibble() %>% 
-  select(county_ua_name, healthy_people_domain_quantiles) %>% 
-  filter(healthy_people_domain_quantiles == 10) %>% 
+  eng_hi_shp |> 
+  as_tibble() |> 
+  select(county_ua_name, healthy_people_domain_quantiles) |> 
+  filter(healthy_people_domain_quantiles == 10) |> 
   pull(county_ua_name)
 
 eng_worst_overall <-
-  eng_hi_shp %>% 
-  as_tibble() %>% 
-  select(county_ua_name, health_inequalities_composite_quantiles) %>% 
-  filter(health_inequalities_composite_quantiles == 10) %>% 
+  eng_hi_shp |> 
+  as_tibble() |> 
+  select(county_ua_name, health_inequalities_composite_quantiles) |> 
+  filter(health_inequalities_composite_quantiles == 10) |> 
   pull(county_ua_name)
 
 # ---- Plot ----

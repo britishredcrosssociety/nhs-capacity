@@ -65,38 +65,38 @@ theme_map <- function(...) {
 # ---- England Cat 4 ----
 # - Prep data -
 ambulance_cleaned <-
-  ambulance %>% 
-  filter(Category == "cat4") %>% 
+  ambulance |> 
+  filter(Category == "cat4") |> 
   select(
     trust_code = `Trust Code`,
     mean_response_time = `Mean Response Time (min:sec)`
-  ) %>% 
-  mutate(mean_response_seconds = period_to_seconds(ms(mean_response_time))) %>% 
+  ) |> 
+  mutate(mean_response_seconds = period_to_seconds(ms(mean_response_time))) |> 
   mutate(
     response_mins = str_extract(mean_response_time, "^.{2}"),
     response_mins = as.double(response_mins)
   )
 
 ambulance_points <-
-  points_nhs_trusts %>% 
-  right_join(ambulance_cleaned, by = c("nhs_trust_code" = "trust_code")) %>% 
+  points_nhs_trusts |> 
+  right_join(ambulance_cleaned, by = c("nhs_trust_code" = "trust_code")) |> 
   mutate(
     nhs_trust_name = str_to_title(nhs_trust_name),
     nhs_trust_name = str_replace(nhs_trust_name, "Nhs", "NHS")
-  ) %>% 
+  ) |> 
   mutate(
     nhs_trust_name = str_remove_all(
       nhs_trust_name, "Service|Ambulance|NHS|Trust|Foundation|University"
       ),
     nhs_trust_name = str_squish(nhs_trust_name)
-    ) %>% 
+    ) |> 
   mutate(
     label = str_c(nhs_trust_name, " \n", "Mean time: ", mean_response_time)
   )
 
 # - Plot -
-boundaries_counties_ua %>% 
-  filter(str_detect(county_ua_code, "^E")) %>% 
+boundaries_counties_ua |> 
+  filter(str_detect(county_ua_code, "^E")) |> 
   ggplot() +
   geom_sf(fill = NA, size = .2) +
   geom_sf(
@@ -127,38 +127,38 @@ ggsave("charts/england-ambulance-cat-4.png", height = 275, width = 275, units = 
 # ---- England Cat 1 ----
 # - Prep data -
 ambulance_cleaned <-
-  ambulance %>% 
-  filter(Category == "cat1") %>% 
+  ambulance |> 
+  filter(Category == "cat1") |> 
   select(
     trust_code = `Trust Code`,
     mean_response_time = `Mean Response Time (min:sec)`
-  ) %>% 
-  mutate(mean_response_seconds = period_to_seconds(ms(mean_response_time))) %>% 
+  ) |> 
+  mutate(mean_response_seconds = period_to_seconds(ms(mean_response_time))) |> 
   mutate(
     response_mins = str_extract(mean_response_time, "^.{2}"),
     response_mins = as.double(response_mins)
   )
 
 ambulance_points <-
-  points_nhs_trusts %>% 
-  right_join(ambulance_cleaned, by = c("nhs_trust_code" = "trust_code")) %>% 
+  points_nhs_trusts |> 
+  right_join(ambulance_cleaned, by = c("nhs_trust_code" = "trust_code")) |> 
   mutate(
     nhs_trust_name = str_to_title(nhs_trust_name),
     nhs_trust_name = str_replace(nhs_trust_name, "Nhs", "NHS")
-  ) %>% 
+  ) |> 
   mutate(
     nhs_trust_name = str_remove_all(
       nhs_trust_name, "Service|Ambulance|NHS|Trust|Foundation|University"
     ),
     nhs_trust_name = str_squish(nhs_trust_name)
-  ) %>% 
+  ) |> 
   mutate(
     label = str_c(nhs_trust_name, " \n", "Mean time: ", mean_response_time)
   )
 
 # - Plot -
-boundaries_counties_ua %>% 
-  filter(str_detect(county_ua_code, "^E")) %>% 
+boundaries_counties_ua |> 
+  filter(str_detect(county_ua_code, "^E")) |> 
   ggplot() +
   geom_sf(fill = NA, size = .2) +
   geom_sf(
@@ -188,15 +188,15 @@ ggsave("charts/england-ambulance-cat-1.png", height = 250, width = 250, units = 
 
 # ---- Wales red ----
 wales_ambo_points <- 
-  points_wales_health_boards %>% 
-  right_join(wales_ambo, by = c("hb_code" = "HB_code")) %>% 
+  points_wales_health_boards |> 
+  right_join(wales_ambo, by = c("hb_code" = "HB_code")) |> 
   mutate(
     label = str_c(HB, " \n", "Calls arriving within 8 mins: ", round(`Red calls - % of emergency responses arriving at the scene within 8 minutes`, 1), "%")
   )
 
 # - Plot -
-boundaries_lad %>% 
-  filter(str_detect(lad_code, "^W")) %>% 
+boundaries_lad |> 
+  filter(str_detect(lad_code, "^W")) |> 
   ggplot() +
   geom_sf(fill = NA, size = .2) +
   geom_sf(

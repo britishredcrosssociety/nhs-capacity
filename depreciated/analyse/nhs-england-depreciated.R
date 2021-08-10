@@ -21,17 +21,17 @@ rm(tf)
 
 # remove first two entries (one is totals, other is blank)
 eng_ae <-
-  eng_ae %>%
+  eng_ae |>
   slice(-(1:2))
 
 # Remove empty rows at the end of the spreadsheet
 eng_ae <-
-  eng_ae %>%
+  eng_ae |>
   drop_na()
 
 # Keep vars of interest
 eng_ae <-
-  eng_ae %>%
+  eng_ae |>
   select(
     provider_code = Code,
     total_attendances_more_4_hours = `Total Attendances > 4 hours`,
@@ -43,7 +43,7 @@ eng_ae <-
 
 # Replace '-' character with NA
 eng_ae <-
-  eng_ae %>%
+  eng_ae |>
   mutate(
     across(
       .cols = everything(),
@@ -53,7 +53,7 @@ eng_ae <-
 
 # Change cols to double
 eng_ae <-
-  eng_ae %>%
+  eng_ae |>
   mutate(
     across(
       .cols = !provider_code,
@@ -62,7 +62,7 @@ eng_ae <-
   )
 
 # Save
-eng_ae %>%
+eng_ae |>
   write_csv("data/processed/nhs_eng_ae_provider.csv")
 
 # - STP -
@@ -78,12 +78,12 @@ rm(tf)
 
 # remove first two entries (one is totals, other is blank)
 eng_ae_stp <-
-  eng_ae_stp %>%
+  eng_ae_stp |>
   slice(-(1:2))
 
 # Keep vars of interest
 eng_ae_stp <-
-  eng_ae_stp %>%
+  eng_ae_stp |>
   select(
     stp_code = Code,
     total_attendances_more_4_hours = `Total Attendances > 4 hours`,
@@ -95,7 +95,7 @@ eng_ae_stp <-
 
 # Replace '-' character with NA
 eng_ae_stp <-
-  eng_ae_stp %>%
+  eng_ae_stp |>
   mutate(
     across(
       .cols = everything(),
@@ -105,7 +105,7 @@ eng_ae_stp <-
 
 # Change cols to double
 eng_ae_stp <-
-  eng_ae_stp %>%
+  eng_ae_stp |>
   mutate(
     across(
       .cols = !stp_code,
@@ -114,7 +114,7 @@ eng_ae_stp <-
   )
 
 # Save
-eng_ae_stp %>%
+eng_ae_stp |>
   write_csv("data/processed/nhs_eng_ae_stp.csv")
 
 # # ---- Ambulance Quality Indicators ----
@@ -136,8 +136,8 @@ eng_ambo_cat1 <-
     range = "C8:I18",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat1")
 
 # Category 1T
@@ -148,8 +148,8 @@ eng_ambo_cat1t <-
     range = "C22:I32",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat1t")
 
 # Category 2
@@ -160,8 +160,8 @@ eng_ambo_cat2 <-
     range = "C36:I46",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat2")
 
 # Category 3
@@ -172,8 +172,8 @@ eng_ambo_cat3 <-
     range = "C50:I60",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat3")
 
 # Category 4
@@ -184,8 +184,8 @@ eng_ambo_cat4 <-
     range = "C64:I74",
     col_names = ambo_colnames,
     col_types = ambo_types
-  ) %>%
-  remove_empty("cols") %>%
+  ) |>
+  remove_empty("cols") |>
   mutate(category = "cat4")
 
 unlink(tf)
@@ -202,14 +202,14 @@ eng_ambo <- bind_rows(
 
 # Reformat dates
 eng_ambo <-
-  eng_ambo %>%
+  eng_ambo |>
   mutate(
     mean_min_sec = format(mean_min_sec, format = "%M:%S"),
     centile_90th_min_sec = format(centile_90th_min_sec, format = "%M:%S")
   )
 
 # Save to raw
-eng_ambo %>%
+eng_ambo |>
   write_csv("data/processed/nhs_eng_ambulance_provider.csv")
 
 # # ---- Bed Occupancy ----
@@ -230,24 +230,24 @@ rm(tf)
 
 # remove first two entries (one is totals, other is blank)
 eng_beds_nights <-
-  eng_beds_nights %>%
+  eng_beds_nights |>
   slice(-(1:2))
 
 # Select cols
 eng_beds_nights <-
-  eng_beds_nights %>%
+  eng_beds_nights |>
   select(org_code = `Org Code`, perc_bed_occupied = Total...18)
 
 # Replace '-' with NA and convert to double
 eng_beds_nights <-
-  eng_beds_nights %>%
+  eng_beds_nights |>
   mutate(
     perc_bed_occupied = str_replace_all(perc_bed_occupied, "-", NA_character_),
     perc_bed_occupied = as.double(perc_bed_occupied)
   )
 
 # Save
-eng_beds_nights %>%
+eng_beds_nights |>
   write_csv("data/processed/nhs_eng_beds_nights_provider.csv")
 
 # - Day -
@@ -263,24 +263,24 @@ rm(tf)
 
 # remove first two entries (one is totals, other is blank)
 eng_beds_days <-
-  eng_beds_days %>%
+  eng_beds_days |>
   slice(-(1:2))
 
 # Select cols
 eng_beds_days <-
-  eng_beds_days %>%
+  eng_beds_days |>
   select(org_code = `Org Code`, perc_bed_occupied = Total...18)
 
 # Replace '-' with NA and convert to double
 eng_beds_days <-
-  eng_beds_days %>%
+  eng_beds_days |>
   mutate(
     perc_bed_occupied = str_replace_all(perc_bed_occupied, "-", NA_character_),
     perc_bed_occupied = as.double(perc_bed_occupied)
   )
 
 # save to raw
-eng_beds_days %>%
+eng_beds_days |>
   write_csv("data/processed/nhs_eng_beds_days_provider.csv")
 
 # # ---- DToC ----
@@ -296,9 +296,9 @@ unlink(tf)
 rm(tf)
 
 eng_dtoc <-
-  eng_dtoc %>%
-  slice(-(1:2)) %>%
-  remove_empty("cols") %>%
+  eng_dtoc |>
+  slice(-(1:2)) |>
+  remove_empty("cols") |>
   select(
     provider_code = Code,
     nhs_dtoc_days = NHS...5,
@@ -306,7 +306,7 @@ eng_dtoc <-
   )
 
 # Save to raw
-eng_dtoc %>%
+eng_dtoc |>
   write_csv("data/processed/nhs_eng_dtoc_provider.csv")
 
 # # ---- Inpatients (elective) & Outpatients ----
@@ -323,8 +323,8 @@ unlink(tf)
 rm(tf)
 
 eng_in_out <-
-  eng_in_out %>%
-  slice(-(1:2)) %>%
+  eng_in_out |>
+  slice(-(1:2)) |>
   select(
     org_code = `Org Code`,
     inpatient_admissions = Admissions,
@@ -336,7 +336,7 @@ eng_in_out <-
   )
 
 # Save to raw
-eng_in_out %>%
+eng_in_out |>
   write_csv("data/processed/nhs_eng_in_out_provider.csv")
 
 
@@ -360,17 +360,17 @@ unlink(tf)
 rm(tf)
 
 eng_diagnostics <-
-  eng_diagnostics %>%
+  eng_diagnostics |>
   select(
     code = `Provider Code`,
     trust_name = `Provider Name`,
     total_waiting_list = `Total Waiting List`,
     perc_waiting_6_plus_weeks = `Percentage waiting 6+ weeks`
-  ) %>%
+  ) |>
   slice(-(1:2))
 
 # Save
-eng_diagnostics %>%
+eng_diagnostics |>
   write_csv("data/processed/nhs_eng_diagnostics_provider.csv")
 
 # ---- Referral to Treatment Waiting Times (RTT) ----
@@ -386,16 +386,16 @@ eng_rtt <- read_csv(list.files(tempdir(), pattern = "*.csv", full.names = TRUE))
 
 # Calculate STP/ICS totals
 eng_rtt <-
-  eng_rtt %>%
-  mutate(`Gt 18 Weeks SUM 1` = rowSums(across(`Gt 18 To 19 Weeks SUM 1`:`Gt 52 Weeks SUM 1`), na.rm = TRUE)) %>%
-  group_by(`Provider Parent Org Code`, `Provider Parent Name`, `Treatment Function Name`) %>%
+  eng_rtt |>
+  mutate(`Gt 18 Weeks SUM 1` = rowSums(across(`Gt 18 To 19 Weeks SUM 1`:`Gt 52 Weeks SUM 1`), na.rm = TRUE)) |>
+  group_by(`Provider Parent Org Code`, `Provider Parent Name`, `Treatment Function Name`) |>
   summarise(
     `Total waiting > 52 weeks` = sum(`Gt 52 Weeks SUM 1`, na.rm = TRUE),
     `Total waiting > 18 weeks` = sum(`Gt 18 Weeks SUM 1`, na.rm = TRUE)
   )
 
 # Save
-eng_rtt %>%
+eng_rtt |>
   write_csv("data/processed/nhs_eng_rtt_provider.csv")
 
 
@@ -414,77 +414,77 @@ rm(tf)
 
 # Remove long vars making printing difficult to read
 eng_care_home <-
-  eng_care_home %>%
+  eng_care_home |>
   select(-contains("(note;"))
 
 # Care home beds LA
 eng_care_home_beds_la <-
-  eng_care_home %>%
-  group_by(`Location Local Authority`) %>%
-  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>%
+  eng_care_home |>
+  group_by(`Location Local Authority`) |>
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) |>
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) |>
   rename(lad_name = `Location Local Authority`, care_home_beds = `No. care home beds`)
 
 # Save
-eng_care_home_beds_la %>%
+eng_care_home_beds_la |>
   write_csv("data/processed/nhs_eng_care_home_beds_la.csv")
 
 # Care home beds without nursing LA
 eng_care_home_beds_without_nursing_la <-
-  eng_care_home %>%
-  filter(`Service type - Care home service with nursing` == "Y") %>%
-  group_by(`Location Local Authority`) %>%
-  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds without nursing` = sum(`Care homes beds`, na.rm = TRUE)) %>%
+  eng_care_home |>
+  filter(`Service type - Care home service with nursing` == "Y") |>
+  group_by(`Location Local Authority`) |>
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) |>
+  summarise(`No. care home beds without nursing` = sum(`Care homes beds`, na.rm = TRUE)) |>
   rename(lad_name = `Location Local Authority`, care_home_beds_without_nursing = `No. care home beds without nursing`)
 
 # Save
-eng_care_home_beds_without_nursing_la %>%
+eng_care_home_beds_without_nursing_la |>
   write_csv("data/processed/nhs_eng_care_home_beds_without_nursing_la.csv")
 
 # Care home beds CCG
 eng_care_home_beds_ccg <-
-  eng_care_home %>%
-  group_by(`Location ONSPD CCG Code`) %>%
-  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) %>%
+  eng_care_home |>
+  group_by(`Location ONSPD CCG Code`) |>
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) |>
+  summarise(`No. care home beds` = sum(`Care homes beds`, na.rm = TRUE)) |>
   rename(ccg_code = `Location ONSPD CCG Code`, care_home_beds = `No. care home beds`)
 
 # Save
-eng_care_home_beds_la %>%
+eng_care_home_beds_la |>
   write_csv("data/processed/nhs_eng_care_home_beds_ccg.csv")
 
 # Care home beds without nursing CCG
 eng_care_home_beds_without_nursing_ccg <-
-  eng_care_home %>%
-  filter(`Service type - Care home service with nursing` == "Y") %>%
-  group_by(`Location ONSPD CCG Code`) %>%
-  mutate(`Care homes beds` = as.double(`Care homes beds`)) %>%
-  summarise(`No. care home beds without nursing` = sum(`Care homes beds`, na.rm = TRUE)) %>%
+  eng_care_home |>
+  filter(`Service type - Care home service with nursing` == "Y") |>
+  group_by(`Location ONSPD CCG Code`) |>
+  mutate(`Care homes beds` = as.double(`Care homes beds`)) |>
+  summarise(`No. care home beds without nursing` = sum(`Care homes beds`, na.rm = TRUE)) |>
   rename(ccg_code = `Location ONSPD CCG Code`, care_home_beds_without_nursing = `No. care home beds without nursing`)
 
 # Save
-eng_care_home_beds_without_nursing_ccg %>%
+eng_care_home_beds_without_nursing_ccg |>
   write_csv("data/processed/nhs_eng_care_home_beds_without_nursing_ccg.csv")
 
 # Domiciliary care services registered
 eng_dom_care_la <-
-  eng_care_home %>%
-  filter(`Service type - Domiciliary care service` == "Y") %>%
-  count(`Location Local Authority`) %>%
+  eng_care_home |>
+  filter(`Service type - Domiciliary care service` == "Y") |>
+  count(`Location Local Authority`) |>
   select(lad_name = `Location Local Authority`, num_domiciliary_services = n)
 
 # Save
-eng_dom_care_la %>%
+eng_dom_care_la |>
   write_csv("data/processed/nhs_eng_dom_care_la.csv")
 
 # CCG
 eng_dom_care_ccg <-
-  eng_care_home %>%
-  filter(`Service type - Domiciliary care service` == "Y") %>%
-  count(`Location ONSPD CCG Code`) %>%
+  eng_care_home |>
+  filter(`Service type - Domiciliary care service` == "Y") |>
+  count(`Location ONSPD CCG Code`) |>
   select(ccg_name = `Location ONSPD CCG Code`, num_domiciliary_services = n)
 
 # Save
-eng_dom_care_ccg %>%
+eng_dom_care_ccg |>
   write_csv("data/processed/nhs_eng_dom_care_ccg.csv")
