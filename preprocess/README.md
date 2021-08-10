@@ -1,0 +1,1 @@
+The files in this folder preprocess raw NHS data from the web. Each indicator occupies an individual `.R` file with the output being saved into `/data` using `usethis::use_data()`. These data sets are then loaded into the shiny app using `pkgload::load_all(".")`.
