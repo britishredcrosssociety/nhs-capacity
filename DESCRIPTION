@@ -1,0 +1,14 @@
+Package: nhs-capacity
+Title: NHS System Capacity
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Mike", "Page", email = "mpage@redcross.org.uk", role = "cre"),
+    person("Matt", "Thomas", email = "mattthomas@redcross.org.uk", role = "aut"),
+    person(family = "British Red Cross", role = "cph")
+    )
+Description: Shiny app to model pressures on the NHS.
+License: GPL (>= 3) + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
