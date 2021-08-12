@@ -13,3 +13,4 @@
 | Northern Ireland | Reattendance | 2019-20 | [Department of Health](https://www.health-ni.gov.uk/) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
 | Northern Ireland | Cancer Waiting Lists | March 2021 | [Department of Health](https://www.health-ni.gov.uk/publications/northern-ireland-waiting-time-statistics-cancer-waiting-times-january-march-2021) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
 | Northern Ireland | Outpatient Waiting Times | March 2021 | [Department of Health](https://www.health-ni.gov.uk/publications/northern-ireland-waiting-time-statistics-outpatient-waiting-times-march-2021) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
+| Northern Ireland | Inpatient Waiting Times | March 2021 | [Department of Health](https://www.health-ni.gov.uk/publications/northern-ireland-waiting-time-statistics-inpatient-and-day-case-waiting-times-march-2021) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
