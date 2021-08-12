@@ -163,7 +163,7 @@ beds_night <-
   )
 
 # ---- Join ----
-bed_occupancy <-
+england_bed_occupancy <-
   bind_rows(
     beds_day,
     beds_night
@@ -171,4 +171,4 @@ bed_occupancy <-
   arrange(`Trust Code`)
 
 # ---- Save ----
-use_data(bed_occupancy, overwrite = TRUE)
+use_data(england_bed_occupancy, overwrite = TRUE)

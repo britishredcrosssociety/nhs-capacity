@@ -64,11 +64,11 @@ outpatient_open <-
   )
 
 # Pivot longer
-outpatient_referrals <-
+england_outpatient_referrals <-
   outpatient_open |>
   pivot_longer(
     cols = !starts_with("Trust")
   )
 
 # Save
-use_data(outpatient_referrals, overwrite = TRUE)
+use_data(england_outpatient_referrals, overwrite = TRUE)

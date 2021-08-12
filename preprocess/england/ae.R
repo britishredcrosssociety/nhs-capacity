@@ -89,11 +89,11 @@ ae_open <-
   )
 
 # Pivot longer
-ae <-
+england_ae <-
   ae_open |>
   pivot_longer(
     cols = !starts_with("Trust")
   )
 
 # Save
-use_data(ae, overwrite = TRUE)
+use_data(england_ae, overwrite = TRUE)

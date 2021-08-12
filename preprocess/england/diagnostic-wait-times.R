@@ -65,11 +65,11 @@ diagnostics_open <-
   )
 
 # Pivot longer
-diagnostic_wait_times <-
+england_diagnostic_wait_times <-
   diagnostics_open|>
   pivot_longer(
     cols = !starts_with("Trust")
   )
 
 # Save
-use_data(diagnostic_wait_times, overwrite = TRUE)
+use_data(england_diagnostic_wait_times, overwrite = TRUE)

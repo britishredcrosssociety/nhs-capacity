@@ -90,7 +90,7 @@ cancer_wait_times_rounded <-
   )
 
 # Filter to only open trusts
-cancer_wait_times <-
+england_cancer_wait_times <-
   open_trusts |>
   left_join(
     cancer_wait_times_rounded,
@@ -98,4 +98,4 @@ cancer_wait_times <-
   )
 
 # Save
-use_data(cancer_wait_times, overwrite = TRUE)
+use_data(england_cancer_wait_times, overwrite = TRUE)

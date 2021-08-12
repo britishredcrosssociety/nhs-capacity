@@ -106,7 +106,7 @@ rtt_rounded <-
   )
 
 # Filter to only open trusts
-referral_treatment_waiting_times <-
+england_referral_treatment_waiting_times <-
   open_trusts |>
   left_join(
     rtt_rounded,
@@ -114,12 +114,12 @@ referral_treatment_waiting_times <-
   )
 
 # Pivot longer
-referral_treatment_waiting_times_longer <-
-  referral_treatment_waiting_times |>
+england_referral_treatment_waiting_times_longer <-
+  england_referral_treatment_waiting_times |>
   pivot_longer(
     cols = where(is.double)
   )
 
 # Save
-use_data(referral_treatment_waiting_times, overwrite = TRUE)
-use_data(referral_treatment_waiting_times_longer, overwrite = TRUE)
+use_data(england_referral_treatment_waiting_times, overwrite = TRUE)
+use_data(england_referral_treatment_waiting_times_longer, overwrite = TRUE)

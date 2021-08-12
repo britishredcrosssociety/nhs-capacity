@@ -130,7 +130,7 @@ eng_ambo_dates <-
   )
 
 # Filter to only open trusts
-ambulance_quality_indicators <-
+england_ambulance_quality_indicators <-
   open_trusts |>
   left_join(
     eng_ambo_dates,
@@ -138,4 +138,4 @@ ambulance_quality_indicators <-
   )
 
 # Save
-use_data(ambulance_quality_indicators, overwrite = TRUE)
+use_data(england_ambulance_quality_indicators, overwrite = TRUE)
