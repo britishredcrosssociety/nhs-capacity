@@ -17,4 +17,8 @@ The files in this folder preprocess raw NHS data from the web. Where web data ca
 | Northern Ireland | Cancer Waiting Lists | March 2021 | [Department of Health](https://www.health-ni.gov.uk/publications/northern-ireland-waiting-time-statistics-cancer-waiting-times-january-march-2021) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
 | Northern Ireland | Outpatient Waiting Times | March 2021 | [Department of Health](https://www.health-ni.gov.uk/publications/northern-ireland-waiting-time-statistics-outpatient-waiting-times-march-2021) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
 | Northern Ireland | Inpatient Waiting Times | March 2021 | [Department of Health](https://www.health-ni.gov.uk/publications/northern-ireland-waiting-time-statistics-inpatient-and-day-case-waiting-times-march-2021) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
-|
+| Scotland | A&E | June 2021 | 
+| Scotland | Bed Availability | December 2020 | 
+| Scotland | Cancer Waiting Times | March 2021 | 
+| Scotland | Delayed Transfer of Care | April 2021 | 
+| Scotland | Referral to Treatment Waiting Times | March 2021 | 
