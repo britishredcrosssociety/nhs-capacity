@@ -66,8 +66,8 @@ for (hosp_id in scotland_hospitals$HospitalID) {
 # ---- Process indicators ----
 # Open each of the downloaded files and grab the `HospitalValue` for the most recent date (first row)
 # then merge all into a single file
-for (hosp_id in scot_hosp$HospitalID) {
-  for (ind_id in scot_inds$IndicatorID) {
+for (hosp_id in scotland_hospitals$HospitalID) {
+  for (ind_id in scotland_indicators$IndicatorID) {
     tmp_file <-
       paste0(
         "hospital ",
@@ -138,7 +138,7 @@ scot_stats$HospitalValue <-
 scot_stats <-
   scot_stats |>
   left_join(
-    scot_inds |> select(IndicatorID, IndicatorName),
+    scotland_indicators |> select(IndicatorID, IndicatorName),
     by = "IndicatorID"
   )
 
@@ -158,10 +158,10 @@ scot_stats_wide <-
   )
 
 # merge indicators into main hospital table
-scot_hosp_stats <-
-  scot_hosp |>
+scotland_hospitals_stats <-
+  scotland_hospitals |>
   select(HospitalID, `NHS Board`, `Location Code`, `Location Name`) |>
   left_join(scot_stats_wide, by = "HospitalID")
 
-scot_hosp_stats |>
+scotland_hospitals_stats |>
 write_csv("data/scotland-hospital-indicators.csv")
