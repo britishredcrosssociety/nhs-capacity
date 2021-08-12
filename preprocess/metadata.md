@@ -10,3 +10,4 @@
 | England | Outpatient Referrals | May 2021 | [NHS England](https://www.england.nhs.uk/statistics/statistical-work-areas/outpatient-referrals/) | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) |
 | England | Referral to Treatment Waiting Times | May 2021 | [NHS England](https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/) | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) |
 | Northern Ireland | A&E | March 2021 | [Department of Health](https://www.health-ni.gov.uk/articles/emergency-care-waiting-times) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
+| Northern Ireland | Reattendance | 2019-20 | [Department of Health](https://www.health-ni.gov.uk/) | [OGLv3](https://www.health-ni.gov.uk/crown-copyright) |
