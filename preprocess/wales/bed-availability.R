@@ -1,9 +1,8 @@
 # ---- Load ----
+library(tidyverse)
 library(jsonlite)
 library(httr)
 library(RCurl)
-library(dplyr)
-library(readr)
 library(tidyr)
 library(lubridate)
 library(usethis)
@@ -33,38 +32,39 @@ download.wales <- function(url) {
 }
 
 # ---- Wrangle ----
-raw <- download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0092")
+raw <-
+  download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0092")
 
-bed_availability <- 
-  beds_daily_all |> 
+bed_availability <-
+  raw |>
+  as_tibble() |>
   filter(
-    str_detect(Date_Code, "^202106") & 
-      LocalHealthBoard_ItemName_ENG != "Wales" & 
+    str_detect(Date_Code, "^202108") &
+      LocalHealthBoard_ItemName_ENG != "Wales" &
       HospitalType_Code == "NHS" &
-      Indicator_ItemName_ENG %in% c("General and acute beds available&#10;", "General and acute beds occupied&#10;") 
+      Indicator_ItemName_ENG %in% c("General and acute beds available&#10;", "General and acute beds occupied&#10;")
   )
 
-wales_bed_availability <- 
-  beds_daily |> 
-  as_tibble() |> 
-  select(Day = Date_Code, HB_code = LocalHealthBoard_Code, HB = LocalHealthBoard_ItemName_ENG, Indicator_ItemName_ENG, Data) |> 
+wales_bed_availability <-
+  bed_availability |>
+  select(
+    Day = Date_Code,
+    HB_code = LocalHealthBoard_Code,
+    HB = LocalHealthBoard_ItemName_ENG,
+    Indicator_ItemName_ENG, Data
+  ) |>
   mutate(
     Data = as.numeric(Data),
     Day = ymd(Day)
-  ) |> 
-  pivot_wider(names_from = Indicator_ItemName_ENG, values_from = Data) |> 
-  
-  # Calculate daily % occupancy
-  group_by(Day, HB_code, HB) |> 
-  mutate(`% general and acute beds occupied` = `General and acute beds occupied&#10;` / `General and acute beds available&#10;`) |> 
-  ungroup() |> 
-  
-  # Just keep month and year for the date column now
-  mutate(Date = paste0(month.name[month(Day)], " ", year(Day))) |> 
-  
-  # Calculate average % occupancy over the month
-  group_by(Date, HB_code, HB) |> 
-  summarise(`% general and acute beds occupied` = mean(`% general and acute beds occupied`, na.rm = TRUE)) |> 
-  ungroup() 
+  ) |>
+  pivot_wider(names_from = Indicator_ItemName_ENG, values_from = Data) |>
+  group_by(Day, HB_code, HB) |>
+  mutate(`% general and acute beds occupied` = `General and acute beds occupied&#10;` / `General and acute beds available&#10;`) |>
+  ungroup() |>
+  mutate(Date = paste0(month.name[month(Day)], " ", year(Day))) |>
+  group_by(Date, HB_code, HB) |>
+  summarise(`% general and acute beds occupied` = mean(`% general and acute beds occupied`, na.rm = TRUE)) |>
+  ungroup() |>
+  select(-Date)
 
-# use_data(wales_bed_availability, overwrite = TRUE)
+use_data(wales_bed_availability, overwrite = TRUE)
