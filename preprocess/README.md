@@ -2,7 +2,6 @@
 The files in this folder preprocess raw NHS data from the web. Where web data can't be scraped, it is stored in the `preprocess/data` subfolder. Each indicator occupies an individual `.R` file with the output being saved into `/data` using `usethis::use_data()`. These data sets are then loaded into the shiny app using `pkgload::load_all(".")`.
 
 ## Metadata
-
 | Nation | Indicator | Date | Source | License |
 | --- | --- | --- | --- | --- |
 | England | A&E | June 2021 | [NHS England](https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/) | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) |
@@ -26,3 +25,4 @@ The files in this folder preprocess raw NHS data from the web. Where web data ca
 | Wales | Bed Availability | August 2021 | [StatsWales](https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Activity/nhs-activity-and-capacity-during-the-coronavirus-pandemic/nhsbeds-by-date-localhealthboard) | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) |
 | Wales | Ambulance Services | June 2021 |[StatsWales](https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Performance/Ambulance-Services) | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) |
 | Wales | Cancer Waiting Times | May 2021 | [StatsWales](https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Waiting-Times/Cancer-Waiting-Times/Monthly/suspectedcancerpathwayclosedpathways-by-localhealthboard-tumoursite-agegroup-gender-measure-month) | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) | 
+| Wales | Referral to Treatment Waiting Times | May 2021 | [StatsWales](https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Waiting-Times/Referral-to-Treatment/patientpathwayswaitingtostarttreatment-by-month-groupedweeks-treatmentfunction) |[OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) |
