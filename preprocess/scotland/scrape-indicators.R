@@ -11,7 +11,7 @@ library(readxl)
 # Hospital IDs came from manual matching with hospital URLs on http://www.nhsperforms.scot/
 scotland_hospitals <-
   read_excel(
-    "preprocess/data/scotland-hospital-indicator-list.xlsx",
+    "preprocess/data/raw/scotland-hospital-indicator-list.xlsx",
     sheet = "Hospitals"
   )
 
@@ -20,7 +20,7 @@ scotland_hospitals <-
 # (you'll need to click on any hospital first to see the full set of available data)
 scotland_indicators <-
   read_excel(
-    "preprocess/data/scotland-hospital-indicator-list.xlsx",
+    "preprocess/data/raw/scotland-hospital-indicator-list.xlsx",
     sheet = "Indicators"
   )
 
@@ -54,9 +54,9 @@ for (hosp_id in scotland_hospitals$HospitalID) {
         ".csv"
       )
 
-    if (!file.exists(file.path("preprocess/data/scotland-raw-data", out_file))) {
+    if (!file.exists(file.path("preprocess/data/raw/scotland-raw-data", out_file))) {
       download.file(url,
-        file.path("preprocess/data/scotland-raw-data", out_file),
+        file.path("preprocess/data/raw/scotland-raw-data", out_file),
         mode = "wb"
       )
     }
@@ -80,7 +80,7 @@ for (hosp_id in scotland_hospitals$HospitalID) {
     tmp_stats <-
       read_csv(
         file.path(
-          "preprocess/data/scotland-raw-data",
+          "preprocess/data/raw/scotland-raw-data",
           tmp_file
         )
       )
@@ -124,7 +124,7 @@ for (hosp_id in scotland_hospitals$HospitalID) {
 }
 
 scot_stats |>
-write_csv("preprocess/data/scotland-raw-data/all-scotland-stats.csv")
+write_csv("preprocess/data/raw/scotland-raw-data/all-scotland-stats.csv")
 
 # If hospital value is NA, use the board value
 scot_stats$HospitalValue <-
@@ -164,4 +164,4 @@ scotland_hospitals_stats <-
   left_join(scot_stats_wide, by = "HospitalID")
 
 scotland_hospitals_stats |>
-write_csv("data/scotland-hospital-indicators.csv")
+write_csv("data/raw/scotland-hospital-indicators.csv")

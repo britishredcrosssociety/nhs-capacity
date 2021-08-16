@@ -28,9 +28,9 @@ for (hosp_id in scot_hosp$HospitalID) {
     
     out_file <- paste0("hospital ", hosp_id, " - ind ", ind_id, ".csv")
     
-    if (!file.exists(file.path("data/scotland-raw-data", out_file))) {
+    if (!file.exists(file.path("data/raw/scotland-raw-data", out_file))) {
       download.file(url,
-                    file.path("data/scotland-raw-data", out_file),
+                    file.path("data/raw/scotland-raw-data", out_file),
                     mode = "wb")
     }
   }
@@ -42,7 +42,7 @@ for (hosp_id in scot_hosp$HospitalID) {
 for (hosp_id in scot_hosp$HospitalID) {
   for (ind_id in scot_inds$IndicatorID) {
     tmp_file <- paste0("hospital ", hosp_id, " - ind ", ind_id, ".csv")
-    tmp_stats <- read_csv(file.path("data/scotland-raw-data", tmp_file))
+    tmp_stats <- read_csv(file.path("data/raw/scotland-raw-data", tmp_file))
     
     tmp_stats <- tmp_stats[1,]  # keep first row (most recent stat)
     
@@ -78,7 +78,7 @@ for (hosp_id in scot_hosp$HospitalID) {
 }
 
 scot_stats |> 
-  write_csv("data/scotland-raw-data/all-scotland-stats.csv")
+  write_csv("data/raw/scotland-raw-data/all-scotland-stats.csv")
 
 # If hospital value is NA, use the board value
 scot_stats$HospitalValue <- ifelse(is.na(scot_stats$HospitalValue), scot_stats$BoardValue, scot_stats$HospitalValue)
@@ -111,4 +111,4 @@ scot_hosp_stats <-
   left_join(scot_stats_wide, by="HospitalID")
 
 scot_hosp_stats |> 
-  write_csv("data/scotland-hospital-indicators.csv")
+  write_csv("data/raw/scotland-hospital-indicators.csv")

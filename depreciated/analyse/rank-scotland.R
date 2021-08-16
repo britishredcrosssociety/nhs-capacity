@@ -10,7 +10,7 @@ inverse_rank <- function(x) (length(x) + 1) - rank(x, na.last = FALSE)
 count_if_worst <- function(x, q = 5) ifelse(!is.na(x) & x == q, 1, 0)
 
 # ---- Load data ----
-scotland <- read_csv("data/scotland-hospital-indicators.csv")
+scotland <- read_csv("data/raw/scotland-hospital-indicators.csv")
 
 # ---- Find worst-performing Health Boards across all metrics ----
 # Bin each metric into quintiles and look for HBs in the worst-performing quintile across multiple metrics

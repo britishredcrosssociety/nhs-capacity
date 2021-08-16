@@ -4,7 +4,7 @@ library(usethis)
 
 raw <-
   read_csv(
-    "preprocess/data/northern-ireland-ae-raw.csv"
+    "preprocess/data/raw/northern-ireland-ae-raw.csv"
   )
 
 northern_ireland_ae <-

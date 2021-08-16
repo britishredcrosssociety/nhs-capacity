@@ -3,7 +3,7 @@ library(usethis)
 
 # Raw data generated from preprocess/scotland/scrape-indicators.R
 raw <-
-  read_csv("depreciated/data/scotland-hospital-indicators.csv")
+  read_csv("depreciated/data/raw/scotland-hospital-indicators.csv")
 
 # Pick worst performance stats in each Health Board
 referral_to_treatment_waiting_times <-
