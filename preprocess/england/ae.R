@@ -80,19 +80,19 @@ ae_double <-
   )
 
 # Filter to only open trusts
-ae_open <-
+england_ae <-
   open_trusts |>
   left_join(
     ae_double,
     by = "Trust Code"
   )
 
-# Pivot longer
-england_ae <-
-  ae_open |>
-  pivot_longer(
-    cols = !starts_with("Trust")
-  )
+# # Pivot longer
+# england_ae_longer <-
+#   england_ae |>
+#   pivot_longer(
+#     cols = !starts_with("Trust")
+#   )
 
 # Save
 england_ae |>

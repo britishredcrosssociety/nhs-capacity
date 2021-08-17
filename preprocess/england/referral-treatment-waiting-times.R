@@ -112,16 +112,13 @@ england_referral_treatment_waiting_times <-
     by = "Trust Code"
   )
 
-# Pivot longer
-england_referral_treatment_waiting_times_longer <-
-  england_referral_treatment_waiting_times |>
-  pivot_longer(
-    cols = where(is.double)
-  )
+# # Pivot longer
+# england_referral_treatment_waiting_times_longer <-
+#   england_referral_treatment_waiting_times |>
+#   pivot_longer(
+#     cols = where(is.double)
+#   )
 
 # Save
 england_referral_treatment_waiting_times |>
 write_rds("preprocess/data/england_referral_treatment_waiting_times.rds")
-
-england_referral_treatment_waiting_times_longer |>
-write_rds("preprocess/data/england_referral_treatment_waiting_times_longer.rds")

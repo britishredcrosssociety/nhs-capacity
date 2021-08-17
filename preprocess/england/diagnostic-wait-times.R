@@ -56,19 +56,19 @@ diagnostics_scores <-
   )
 
 # Filter to only open trusts
-diagnostics_open <-
+england_diagnostic_wait_times <-
   open_trusts |>
   left_join(
     diagnostics_scores,
     by = "Trust Code"
   )
 
-# Pivot longer
-england_diagnostic_wait_times <-
-  diagnostics_open|>
-  pivot_longer(
-    cols = !starts_with("Trust")
-  )
+# # Pivot longer
+# england_diagnostic_wait_times_longer <-
+#   england_diagnostic_wait_times |>
+#   pivot_longer(
+#     cols = !starts_with("Trust")
+#   )
 
 # Save
 england_diagnostic_wait_times |>

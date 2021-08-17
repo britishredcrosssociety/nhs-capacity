@@ -55,19 +55,19 @@ outpatient_vars <-
   )
 
 # Filter to only open trusts
-outpatient_open <-
+england_outpatient_referrals <-
   open_trusts |>
   left_join(
     outpatient_vars,
     by = "Trust Code"
   )
 
-# Pivot longer
-england_outpatient_referrals <-
-  outpatient_open |>
-  pivot_longer(
-    cols = !starts_with("Trust")
-  )
+# # Pivot longer
+# england_outpatient_referrals_longer <-
+#   england_outpatient_referrals  |>
+#   pivot_longer(
+#     cols = !starts_with("Trust")
+#   )
 
 # Save
 england_outpatient_referrals |>

@@ -76,19 +76,19 @@ beds_day_double <-
   )
 
 # Filter to only open trusts
-beds_day_open <-
+beds_day <-
   open_trusts |>
   left_join(
     beds_day_double,
     by = "Trust Code"
   )
 
-# Pivot longer
-beds_day <-
-  beds_day_open |>
-  pivot_longer(
-    cols = !starts_with("Trust")
-  )
+# # Pivot longer
+# beds_day_longer <-
+#   beds_day |>
+#   pivot_longer(
+#     cols = !starts_with("Trust")
+#   )
 
 # ---- Night ----
 # Load raw data
@@ -147,7 +147,7 @@ beds_night_double <-
   )
 
 # Filter to only open trusts
-beds_night_open <-
+beds_night <-
   open_trusts |>
   left_join(
     beds_night_double,
@@ -155,19 +155,16 @@ beds_night_open <-
   )
 
 # Pivot longer
-beds_night <-
-  beds_night_open |>
+beds_night_longer <-
+  beds_night |>
   pivot_longer(
     cols = !starts_with("Trust")
   )
 
 # ---- Join ----
 england_bed_occupancy <-
-  bind_rows(
-    beds_day,
-    beds_night
-  ) |>
-  arrange(`Trust Code`)
+  beds_day |>
+  left_join(beds_night, by = "Trust Code")
 
 # ---- Save ----
 england_bed_occupancy |>
