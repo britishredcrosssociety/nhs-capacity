@@ -1,5 +1,4 @@
 library(tidyverse)
-library(usethis)
 
 # Raw data generated from preprocess/scotland/scrape-indicators.R
 raw <-
@@ -15,4 +14,5 @@ scotland_bed_availability <-
   ) |>
   ungroup()
 
-use_data(scotland_bed_availability, overwrite = TRUE)
+scotland_bed_availability |>
+write_rds("preprocess/data/scotland_bed_availability.rds")

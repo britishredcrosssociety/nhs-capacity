@@ -1,6 +1,5 @@
 library(tidyverse)
 library(lubridate)
-library(usethis)
 
 raw <-
   read_csv(
@@ -19,4 +18,5 @@ northern_ireland_ae <-
   ungroup() |>
   select(Month, Trust, `Percent Under 4 Hours`)
 
-use_data(northern_ireland_ae, overwrite = TRUE)
+northern_ireland_ae |>
+write_rds("preprocess/data/northern_ireland_ae.rds")

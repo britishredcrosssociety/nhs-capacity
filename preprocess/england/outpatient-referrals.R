@@ -5,7 +5,6 @@ library(readxl)
 library(janitor)
 library(sf)
 library(geographr)
-library(usethis)
 
 # Create trust lookup of open trusts
 open_trusts <-
@@ -71,4 +70,5 @@ england_outpatient_referrals <-
   )
 
 # Save
-use_data(england_outpatient_referrals, overwrite = TRUE)
+england_outpatient_referrals |>
+write_rds("preprocess/data/england_outpatient_referrals.rds")

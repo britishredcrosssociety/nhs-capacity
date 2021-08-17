@@ -5,7 +5,6 @@ library(httr)
 library(RCurl)
 library(tidyr)
 library(lubridate)
-library(usethis)
 
 # Function to scrape Wales data
 download.wales <- function(url) {
@@ -67,4 +66,5 @@ wales_bed_availability <-
   ungroup() |>
   select(-Date)
 
-use_data(wales_bed_availability, overwrite = TRUE)
+wales_bed_availability |>
+write_rds("preprocess/data/wales_bed_availability.rds")

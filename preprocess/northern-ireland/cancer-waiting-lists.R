@@ -1,5 +1,4 @@
 library(tidyverse)
-library(usethis)
 library(lubridate)
 
 raw <-
@@ -14,4 +13,5 @@ northern_ireland_cancer_waiting_lists <-
   filter(Month == max(Month)) |>
   select(-Month)
 
-use_data(northern_ireland_cancer_waiting_lists, overwrite = TRUE)
+northern_ireland_cancer_waiting_lists |>
+write_rds("preprocess/data/northern_ireland_cancer_waiting_lists.rds")

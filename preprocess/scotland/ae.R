@@ -1,5 +1,4 @@
 library(tidyverse)
-library(usethis)
 
 # Raw data generated from preprocess/scotland/scrape-indicators.R
 raw <-
@@ -15,4 +14,5 @@ scotland_ae <-
   ) |>
   ungroup()
 
-use_data(scotland_ae, overwrite = TRUE)
+scotland_ae |>
+write_rds("preprocess/data/scotland_ae.rds")

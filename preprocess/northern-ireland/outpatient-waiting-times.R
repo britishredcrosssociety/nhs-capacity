@@ -1,6 +1,5 @@
 library(tidyverse)
 library(lubridate)
-library(usethis)
 
 raw <-
   read_csv(
@@ -61,4 +60,5 @@ northern_ireland_outpatient_waiting_times <-
   select(-Date) |>
   filter(Trust != "Day Case Procedure Centre")
 
-use_data(northern_ireland_outpatient_waiting_times, overwrite = TRUE)
+northern_ireland_outpatient_waiting_times |>
+write_rds("preprocess/data/northern_ireland_outpatient_waiting_times.rds")

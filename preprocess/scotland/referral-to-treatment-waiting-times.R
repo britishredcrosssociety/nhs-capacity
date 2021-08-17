@@ -1,12 +1,11 @@
 library(tidyverse)
-library(usethis)
 
 # Raw data generated from preprocess/scotland/scrape-indicators.R
 raw <-
-  read_csv("depreciated/data/raw/scotland-hospital-indicators.csv")
+  read_csv("preprocess/data/raw/scotland-hospital-indicators.csv")
 
 # Pick worst performance stats in each Health Board
-referral_to_treatment_waiting_times <-
+scotland_referral_to_treatment_waiting_times <-
   raw |>
   filter(`NHS Board` != "National") |>
   group_by(`NHS Board`) |>
@@ -15,4 +14,5 @@ referral_to_treatment_waiting_times <-
   ) |>
   ungroup()
 
-use_data(referral_to_treatment_waiting_times, overwrite = TRUE)
+scotland_referral_to_treatment_waiting_times |>
+write_rds("preprocess/data/scotland_referral_to_treatment_waiting_times.rds")

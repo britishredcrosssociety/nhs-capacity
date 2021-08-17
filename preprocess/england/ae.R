@@ -4,7 +4,6 @@ library(httr)
 library(readxl)
 library(sf)
 library(geographr)
-library(usethis)
 
 # Create trust lookup of open trusts
 open_trusts <-
@@ -96,4 +95,5 @@ england_ae <-
   )
 
 # Save
-use_data(england_ae, overwrite = TRUE)
+england_ae |>
+write_rds("preprocess/data/england_ae.rds")

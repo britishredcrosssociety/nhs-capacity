@@ -4,7 +4,6 @@ library(httr)
 library(readxl)
 library(sf)
 library(geographr)
-library(usethis)
 
 # Create trust lookup of open trusts
 open_trusts <-
@@ -171,4 +170,5 @@ england_bed_occupancy <-
   arrange(`Trust Code`)
 
 # ---- Save ----
-use_data(england_bed_occupancy, overwrite = TRUE)
+england_bed_occupancy |>
+write_rds("preprocess/data/england_bed_occupancy.rds")

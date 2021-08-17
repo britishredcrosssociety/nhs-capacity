@@ -6,7 +6,6 @@ library(dplyr)
 library(readr)
 library(tidyr)
 library(lubridate)
-library(usethis)
 
 # Function to scrape Wales data
 download.wales <- function(url) {
@@ -54,4 +53,5 @@ wales_ae <-
   distinct() |>
   pivot_wider(names_from = Measure_Code, values_from = Data)
 
-use_data(wales_ae, overwrite = TRUE)
+wales_ae |>
+write_rds("preprocess/data/wales_ae.rds")

@@ -1,7 +1,6 @@
 library(tidyverse)
 library(httr)
 library(readxl)
-library(usethis)
 
 GET(
   "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-emergency-care-tables-19-20.xls",
@@ -16,7 +15,7 @@ raw <-
   )
 
 # Clean up columns and keep only Trusts
-northern_ireland_reattend <-
+northern_ireland_reattendance <-
   raw |>
   rename(Trust = ...1, Reattend = `2019/20`) |>
   select(Trust, Reattend) |>
@@ -26,4 +25,5 @@ northern_ireland_reattend <-
   mutate(Reattend = round(Reattend * 100, 1)) |>
   mutate(Trust = str_remove(Trust, " Trust"))
 
-use_data(northern_ireland_reattend, overwrite = TRUE)
+northern_ireland_reattendance |>
+write_rds("preprocess/data/northern_ireland_reattendance.rds")

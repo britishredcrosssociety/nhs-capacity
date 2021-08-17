@@ -5,7 +5,6 @@ library(httr)
 library(RCurl)
 library(tidyr)
 library(lubridate)
-library(usethis)
 
 # Function to scrape Wales data
 download.wales <- function(url) {
@@ -81,4 +80,5 @@ wales_referral_treatment_waiting_times <-
     `% waiting 53+ weeks`
   )
 
-use_data(wales_referral_treatment_waiting_times, overwrite = TRUE)
+wales_referral_treatment_waiting_times |>
+write_rds("preprocess/data/wales_referral_treatment_waiting_times.rds")

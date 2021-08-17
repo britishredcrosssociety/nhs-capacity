@@ -5,7 +5,6 @@ library(httr)
 library(RCurl)
 library(tidyr)
 library(lubridate)
-library(usethis)
 
 # Function to scrape Wales data
 download.wales <- function(url) {
@@ -35,7 +34,7 @@ download.wales <- function(url) {
 raw <-
   download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0055")
 
-wales_cancer_times <-
+wales_cancer_waiting_times <-
   raw |>
   as_tibble() |>
   mutate(Month_SortOrder = as.integer(Month_SortOrder)) |>
@@ -53,4 +52,5 @@ wales_cancer_times <-
     `% starting treatment within 62 days` = Data
   )
 
-use_data(wales_cancer_times, overwrite = TRUE)
+wales_cancer_waiting_times |>
+write_rds("preprocess/data/wales_cancer_waiting_times.rds")
