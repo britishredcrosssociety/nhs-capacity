@@ -3,8 +3,10 @@ library(tidyverse)
 library(usethis)
 
 # ---- Load funs ----
-# Make a higher value rank lowest (lowest = 1)
-inverse_rank <- function(x) (length(x) + 1) - rank(x, na.last = FALSE)
+source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
+
+# Return 1 if `x` is in the worst-performing quintile
+count_if_worst <- function(x, q = 5) ifelse(!is.na(x) & x == q, 1, 0)
 
 # ---- Load data ----
 ae <- read_rds("preprocess/data/northern_ireland_ae.rds")
@@ -36,7 +38,7 @@ bins <-
   ) |>
   select(Trust, ends_with("bin"))
 
-bin_sum <-
+bins_sum <-
   bins |>
   rowwise() |>
   mutate(
@@ -45,25 +47,33 @@ bin_sum <-
       na.rm = TRUE
     )
   ) |>
-  ungroup()
-
-bins_ranked <-
-  bin_sum |>
+  ungroup() |>
   mutate(
-    bin_rank = rank(bin_sum)
+    overall_bin = rank(bin_sum)
   ) |>
-  arrange(desc(bin_rank))
+  arrange(desc(overall_bin))
+
+bins_worst_count <-
+  bins_sum |>
+  mutate(
+    sum_of_5s = count_if_worst(ae_bin) +
+      count_if_worst(cancer_bin) +
+      count_if_worst(rtt_in_bin) +
+      count_if_worst(rtt_out_bin) +
+      count_if_worst(reattend_bin)
+  )
 
 northern_ireland_performance <-
-  bins_ranked |>
-  rename(
-    `Reattendance performance (5 = worst performing)` = reattend_bin,
+  bins_worst_count |>
+  select(
+    Trust,
     `A&E performance (5 = worst performing)` = ae_bin,
     `Cancer waiting list performance (5 = worst performing)` = cancer_bin,
     `Inpatient and day case waiting list performance (5 = worst performing)` = rtt_in_bin,
     `Outpatient waiting list performance (5 = worst performing)` = rtt_out_bin,
-    `Overall rank (5 = worst performing)` = bin_rank
-  ) |>
-  select(-bin_sum)
+    `Reattendance performance (5 = worst performing)` = reattend_bin,
+    `Overall performance (5 = worst performing)` = overall_bin,
+    `No. of services (out of 5) scoring worst in performance` = sum_of_5s
+  )
 
 use_data(northern_ireland_performance, overwrite = TRUE)
