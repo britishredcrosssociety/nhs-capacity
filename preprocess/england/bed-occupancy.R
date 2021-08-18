@@ -152,14 +152,15 @@ beds_night <-
   left_join(
     beds_night_double,
     by = "Trust Code"
-  )
+  ) |>
+  select(-`Trust Name`)
 
-# Pivot longer
-beds_night_longer <-
-  beds_night |>
-  pivot_longer(
-    cols = !starts_with("Trust")
-  )
+# # Pivot longer
+# beds_night_longer <-
+#   beds_night |>
+#   pivot_longer(
+#     cols = !starts_with("Trust")
+#   )
 
 # ---- Join ----
 england_bed_occupancy <-
