@@ -206,8 +206,8 @@ stp_performance <-
   )
 
 # ---- Join boundary data ----
-england_stp_performance_boundaries <-
+england_performance <-
   boundaries_stp |>
   left_join(stp_performance)
 
-use_data(england_stp_performance_boundaries, overwrite = TRUE)
+use_data(england_performance, overwrite = TRUE)
