@@ -30,7 +30,8 @@ unzip(tf, exdir = tempdir())
 
 raw <-
   read_csv(
-    list.files(tempdir(),
+    list.files(
+      tempdir(),
       pattern = "*.csv",
       full.names = TRUE
     )
@@ -97,18 +98,11 @@ rtt_relative <-
     `% Waiting 52+ Weeks` = `Waiting 52+ Weeks` / `Total Waiting List`
   )
 
-# Round values
-rtt_rounded <-
-  rtt_relative |>
-  mutate(
-    across(where(is.double), ~ round(.x, 1))
-  )
-
 # Filter to only open trusts
 england_referral_treatment_waiting_times <-
   open_trusts |>
   left_join(
-    rtt_rounded,
+    rtt_relative,
     by = "Trust Code"
   )
 
