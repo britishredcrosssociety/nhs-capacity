@@ -1,6 +1,8 @@
 # ---- Load libs ----
 library(tidyverse)
 library(usethis)
+library(geographr)
+library(sf)
 
 # ---- Load funs ----
 source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
@@ -63,10 +65,10 @@ bins_worst_count <-
       count_if_worst(reattend_bin)
   )
 
-northern_ireland_performance <-
+performance <-
   bins_worst_count |>
   select(
-    Trust,
+    trust_name = Trust,
     `A&E performance (5 = worst performing)` = ae_bin,
     `Cancer waiting list performance (5 = worst performing)` = cancer_bin,
     `Inpatient and day case waiting list performance (5 = worst performing)` = rtt_in_bin,
@@ -74,6 +76,14 @@ northern_ireland_performance <-
     `Reattendance performance (5 = worst performing)` = reattend_bin,
     `Overall performance (5 = worst performing)` = overall_bin,
     `No. of services (out of 5) scoring worst in performance` = sum_of_5s
+  ) |>
+  mutate(
+    trust_name = str_c(trust_name, " Health and Social Care Trust")
   )
+
+# ---- Join boundary data ----
+northern_ireland_performance <-
+  boundaries_trusts_ni |>
+  left_join(performance)
 
 use_data(northern_ireland_performance, overwrite = TRUE)
