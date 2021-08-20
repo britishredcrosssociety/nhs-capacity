@@ -1,6 +1,8 @@
 # ---- Load libs ----
 library(tidyverse)
 library(usethis)
+library(geographr)
+library(sf)
 
 # ---- Load funs ----
 source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
@@ -103,10 +105,10 @@ bins_worst_count <-
       count_if_worst(rtt_bin)
   )
 
-wales_performance <-
+performance <-
   bins_worst_count |>
   select(
-    `Health Board`,
+    lhb_name = `Health Board`,
     `A&E performance (5 = worst performing)` = ae_bin,
     `Ambulance performance (5 = worst performing)` = ambulance_bin,
     `Bed occupancy performance (5 = worst performing)` = beds_bin,
@@ -114,6 +116,18 @@ wales_performance <-
     `RTT performance (5 = worst performing)` = rtt_bin,
     `Overall performance (5 = worst performing)` = overall_bin,
     `No. of services (out of 5) scoring worst in performance` = sum_of_5s
+  ) |>
+  mutate(
+    lhb_name = str_replace_all(
+      lhb_name,
+      "Local Health Board",
+      "Health Board"
+    )
   )
+
+# ---- Join boundary data ----
+wales_performance <-
+  boundaries_lhb |>
+  left_join(performance)
 
 use_data(wales_performance, overwrite = TRUE)
