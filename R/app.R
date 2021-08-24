@@ -2,6 +2,24 @@
 library(shiny)
 library(sf)
 library(leaflet)
+library(dplyr)
+
+# ---- Combine data ----
+# Data loaded into app automatically with pkgload::load_all(".")
+# Should this be extracted into a single dataframe in /preprocess?
+bind_rows(
+  england_performance |> 
+  select(geo_name = stp_name, geo_code = stp_code, geometry),
+
+  wales_performance |> 
+  select(geo_name = lhb_name, geo_code = lhb_code, geometry),
+
+  scotland_performance |> 
+  select(geo_name = hb_name, geo_code = hb_code, geometry),
+
+  northern_ireland_performance |> 
+  select(geo_name = trust_name, geo_code = trust_code, geometry)
+)
 
 # ---- Function that calls the app ----
 nhsCapacityApp <- function() {
