@@ -1,0 +1,29 @@
+.capacity-logo {
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.brc-logo {
+  padding-top: 10px;
+}
+
+.github-logo {
+  padding-top: 15px;
+  padding-right: 10px;
+  color: #262626;
+}
+
+.fa-github {
+  color:#262626;
+}
+
+h1 {
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+p1 {
+  width:600px;
+  padding-top: 12px;
+  padding-bottom:12px;
+}

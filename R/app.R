@@ -10,37 +10,45 @@ nhscapacity <- function() {
   # ---- UI ----
   ui <- fluidPage(
 
+    # - Set CSS -
+    includeCSS("inst/www/styles.css"),
+
     # - Top bar with logos -
+
+    # Capacity logo
     fluidRow(
       column(
         width = 4,
         tags$div(
-          style = "padding-top: 10px; padding-right: 10px;",
+          class = "capacity-logo",
           img(src = "www/capacity-logo.jpg", width = 150)
         )
       ),
+
+      # BRC logo
       column(
         width = 4,
         align = "center",
         tags$div(
-          style = "padding-top: 10px;",
+          class = "brc-logo",
           tags$a(
             href = "https://redcross.org.uk",
             target = "_blank",
             img(src = "www/brc-team-logo.jpg", width = 400)
-          ) # a
-        ) # Div
-      ), # Column
+          )
+        )
+      ),
+
+      # GitHub logo
       column(
         width = 4,
         align = "right",
         tags$div(
-          style = "padding-top: 15px; padding-right: 10px;",
+          class = "github-logo",
           tags$a(
             href = "https://github.com/britishredcrosssociety/nhs-capacity",
             target = "_blank",
-            icon("github", "fa-2x"),
-            tags$style(".fa-github {color:#262626}")
+            icon("github", "fa-2x")
           )
         )
       )
@@ -53,20 +61,11 @@ nhscapacity <- function() {
         width = 8,
         align = "center",
         tags$h1(
-          style = "padding-top: 12px; padding-bottom: 8px",
-          "What is the Capacity of Your Local NHS Trust?"
+          "What is the Capacity of Your Local NHS Area?"
         ),
         tags$p(
-          style = "width:600px; padding-top: 12px; padding-bottom:12px",
-          "Enter your Trust in the box below, or click it on the map, to explore
-        the different pressures it is facing. Click on the 'Data' tabs above
-        each plot to see more metrics. Use the toggle in the
-        top-right corner of the map to view different domains of the",
-          a(
-            href = "https://healthindex.lcp.uk.com/",
-            target = "_blank",
-            "ONS Health Index."
-          )
+          "Enter your area in the box below, or click it on the map to explore
+          the pressures it is facing."
         )
       ),
       column(width = 2)
