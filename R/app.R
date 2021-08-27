@@ -109,36 +109,39 @@ nhscapacity <- function() {
   # ---- Server ----
   server <- function(input, output, session) {
 
-    # # - Track user area selection -
-    # selected_area <- reactiveVal("")
+    # - Track user area selection -
+    selected_area <- reactiveVal("")
 
-    # observeEvent(input$map_shape_click, {
-    #   input$map_shape_click$id |>
-    #   selected_area()
+    # Track map click events and update reactives selectbox
+    observeEvent(input$map_shape_click, {
+      input$map_shape_click$id |>
+      selected_area()
 
-    #   # retrieve the lad name for the polygon chosen on map
-    #   selected_in_dropdown <- imd_with_boundaries |>
-    #   st_drop_geometry() |>
-    #   filter(lad_code == selected_area()) |>
-    #   select(lad_name)
+      selected_geo_name <-
+        uk_shp |>
+        st_drop_geometry() |>
+        filter(geo_code == selected_area()) |>
+        select(geo_name)
 
-    #   # update the name selected on the selectInput so reflects that chosen on map
-    #   updateSelectInput(session, "selectbox", selected = selected_in_dropdown)
-    # })
+      updateSelectInput(
+        session,
+        "selectbox",
+        selected = selected_geo_name
+      )
+    })
 
-    # observeEvent(input$selectbox,
-    #   {
-
-    #     # retrieve the lad_code for the lad_name selected on the dropdown
-    #     imd_with_boundaries |>
-    #     st_drop_geometry() |>
-    #     filter(lad_name == input$selectbox) |>
-    #     select(lad_code) |>
-    #     pull() |>
-    #     selected_area()
-    #   },
-    #   ignoreInit = TRUE
-    # )
+    # Track selectbox events
+    observeEvent(input$selectbox,
+      {
+        uk_shp |>
+        st_drop_geometry() |>
+        filter(geo_name == input$selectbox) |>
+        select(geo_code) |>
+        pull() |>
+        selected_area()
+      },
+      ignoreInit = TRUE
+    )
 
     # - Map -
     output$map <-
