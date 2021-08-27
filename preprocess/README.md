@@ -5,7 +5,8 @@ The files in this folder preprocess NHS data to be fed into the Shiny app.
 - Each devolved nation occupies a single subfolder
 - In each subfolder, each indicator occupies an individual `.R` file. Cleaned data is saved into `/prepcoess/data`
 - Where web data can't be scraped, it is stored in the `preprocess/data/raw` subfolder
-- Each subfolder also contains a `performance.R` script for aggregating all indicators into a single table. These data are then fed into the shiny app using `usethis::use_data()`. These data sets are then loaded into the shiny app using `pkgload::load_all(".")`.
+- Each subfolder also contains a `performance.R` script for aggregating all indicators into a single table. 
+- Each aggregated nation table are then combined into UK wide data sets in the `/uk` subfolder. These UK data sets are then fed into the shiny app using `usethis::use_data()`. These data sets are then loaded into the shiny app using `pkgload::load_all(".")`.
 
 ## Metadata
 | Nation | Indicator | Date | Source | License |
