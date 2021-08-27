@@ -87,4 +87,4 @@ northern_ireland_performance <-
   left_join(performance)
 
 northern_ireland_performance |>
-write_rds("preprocess/data/northern_ireland_performance")
+write_rds("preprocess/data/northern_ireland_performance.rds")

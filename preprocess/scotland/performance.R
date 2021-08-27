@@ -95,4 +95,4 @@ scotland_performance <-
   left_join(performance, by = "hb_name")
 
 scotland_performance |>
-write_rds("preprocess/data/scotland_performance")
+write_rds("preprocess/data/scotland_performance.rds")
