@@ -172,6 +172,14 @@ nhscapacity <- function() {
           label = uk_shp$geo_name
         )
       })
+
+    # - Plot -
+    # validate(
+    #   need(
+    #     !is.null(selected_area()),
+    #     "Choose an area"
+    #   )
+    # )
   }
   shinyApp(ui, server)
 }
