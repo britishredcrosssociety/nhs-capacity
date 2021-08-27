@@ -131,4 +131,4 @@ wales_performance <-
   left_join(performance)
 
 wales_performance |>
-write_rds("preprocess/data/wales_performance")
+write_rds("preprocess/data/wales_performance.rds")
