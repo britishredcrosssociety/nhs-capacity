@@ -3,6 +3,7 @@ library(tidyverse)
 library(sf)
 library(geographr)
 library(usethis)
+library(rmapshaper)
 
 # ---- Load performance data ----
 england_performance <-
@@ -32,6 +33,9 @@ uk_shp <-
   )
 
 # Minimise shapefile size to improve leaflet loading performance
+uk_shp <-
+  uk_shp |>
+  ms_simplify()
 
 # ---- Create UK data set ----
 # Convert each performance data set to long format
