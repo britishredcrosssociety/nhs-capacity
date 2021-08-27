@@ -81,7 +81,7 @@ nhscapacity <- function() {
           label = NULL,
           choices = sort(unique(uk_shp$geo_name)),
           options = list(
-            placeholder = "Select an NHS Trust",
+            placeholder = "Select an NHS area",
             onInitialize = I('function() { this.setValue(""); }')
           )
         )
