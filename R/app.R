@@ -110,7 +110,7 @@ nhscapacity <- function() {
   server <- function(input, output, session) {
 
     # - Track user area selection -
-    selected_area <- reactiveVal("")
+    selected_area <- reactiveVal()
 
     # Track map click events and update reactives selectbox
     observeEvent(input$map_shape_click, {
@@ -142,6 +142,11 @@ nhscapacity <- function() {
       },
       ignoreInit = TRUE
     )
+
+    # Debug
+    # observe({
+    #   print(selected_area())
+    # })
 
     # - Map -
     output$map <-
