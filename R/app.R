@@ -86,12 +86,84 @@ nhscapacity <- function() {
           )
         )
       )
+    ),
+
+    # - Map & Plot -
+    fluidRow(
+
+      # Map
+      column(
+        width = 6,
+        align = "center",
+        leafletOutput("map", height = 600)
+      ),
+
+      # Plot
+      column(
+        width = 6,
+        align = "center"
+      )
     )
   )
 
   # ---- Server ----
   server <- function(input, output, session) {
 
+    # # - Track user area selection -
+    # selected_area <- reactiveVal("")
+
+    # observeEvent(input$map_shape_click, {
+    #   input$map_shape_click$id |>
+    #   selected_area()
+
+    #   # retrieve the lad name for the polygon chosen on map
+    #   selected_in_dropdown <- imd_with_boundaries |>
+    #   st_drop_geometry() |>
+    #   filter(lad_code == selected_area()) |>
+    #   select(lad_name)
+
+    #   # update the name selected on the selectInput so reflects that chosen on map
+    #   updateSelectInput(session, "selectbox", selected = selected_in_dropdown)
+    # })
+
+    # observeEvent(input$selectbox,
+    #   {
+
+    #     # retrieve the lad_code for the lad_name selected on the dropdown
+    #     imd_with_boundaries |>
+    #     st_drop_geometry() |>
+    #     filter(lad_name == input$selectbox) |>
+    #     select(lad_code) |>
+    #     pull() |>
+    #     selected_area()
+    #   },
+    #   ignoreInit = TRUE
+    # )
+
+    # - Map -
+    output$map <-
+      renderLeaflet({
+        leaflet() |>
+        setView(lat = 52.75, lng = -2.0, zoom = 6) |>
+        addProviderTiles(providers$CartoDB.Positron) |>
+        addPolygons(
+          data = uk_shp,
+          layerId = ~geo_code,
+          weight = 0.7,
+          opacity = 0.5,
+          # color = "#bf4aee",
+          dashArray = "0.1",
+          fillOpacity = 0.4,
+          highlight = highlightOptions(
+            weight = 5,
+            color = "#666",
+            dashArray = "",
+            fillOpacity = 0.7,
+            bringToFront = TRUE
+          ),
+          label = uk_shp$geo_name
+        )
+      })
   }
   shinyApp(ui, server)
 }
