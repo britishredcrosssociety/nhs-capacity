@@ -1,4 +1,4 @@
-Package: nhs-capacity
+Package: nhscapacity
 Title: NHS System Capacity
 Version: 0.0.0.9000
 Authors@R: c(

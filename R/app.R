@@ -5,7 +5,7 @@ library(leaflet)
 library(dplyr)
 
 # ---- Function that calls the app ----
-nhsCapacityApp <- function() {
+nhscapacity <- function() {
 
   # ---- UI ----
   ui <- fluidPage(
@@ -80,7 +80,7 @@ nhsCapacityApp <- function() {
         selectizeInput(
           "selectbox",
           label = NULL,
-          choices = sort(england_performance$stp_name),
+          choices = sort(unique(uk_shp$geo_name)),
           options = list(
             placeholder = "Select an NHS Trust",
             onInitialize = I('function() { this.setValue(""); }')
