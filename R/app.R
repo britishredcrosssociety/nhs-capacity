@@ -16,7 +16,7 @@ nhscapacity <- function() {
         width = 4,
         tags$div(
           style = "padding-top: 10px; padding-right: 10px;",
-          img(src = "capacity-logo.jpg", width = 150)
+          img(src = "www/capacity-logo.jpg", width = 150)
         )
       ),
       column(
@@ -27,7 +27,7 @@ nhscapacity <- function() {
           tags$a(
             href = "https://redcross.org.uk",
             target = "_blank",
-            img(src = "brc-team-logo.jpg", width = 400)
+            img(src = "www/brc-team-logo.jpg", width = 400)
           ) # a
         ) # Div
       ), # Column
