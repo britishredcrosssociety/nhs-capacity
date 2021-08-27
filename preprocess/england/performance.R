@@ -1,6 +1,5 @@
 # ---- Load libs ----
 library(tidyverse)
-library(usethis)
 library(geographr)
 library(sf)
 
@@ -210,4 +209,5 @@ england_performance <-
   boundaries_stp |>
   left_join(stp_performance)
 
-use_data(england_performance, overwrite = TRUE)
+england_performance |>
+write_rds("preprocess/data/england_performance.rds")

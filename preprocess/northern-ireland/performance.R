@@ -86,4 +86,5 @@ northern_ireland_performance <-
   boundaries_trusts_ni |>
   left_join(performance)
 
-use_data(northern_ireland_performance, overwrite = TRUE)
+northern_ireland_performance |>
+write_rds("preprocess/data/northern_ireland_performance")

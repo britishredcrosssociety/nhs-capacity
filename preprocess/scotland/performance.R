@@ -94,4 +94,5 @@ scotland_performance <-
   boundaries_hb |>
   left_join(performance, by = "hb_name")
 
-use_data(scotland_performance, overwrite = TRUE)
+scotland_performance |>
+write_rds("preprocess/data/scotland_performance")
