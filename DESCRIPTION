@@ -14,3 +14,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: 
     R (>= 2.10)
+Imports: 
+    sf,
+    pkgload,
+    shiny,
+    leaflet,
+    dplyr,
+    ggiraph,
+    ggplot2
