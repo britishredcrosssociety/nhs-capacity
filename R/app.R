@@ -191,19 +191,27 @@ nhscapacity <- function() {
       lollipop_plot <-
         uk_long |>
         filter(geo_code == selected_area()) |>
-        arrange(score) |> 
-        mutate(variable = factor(variable, levels = variable)) |> 
-        ggplot(aes(x = variable, y = score)) +
+        arrange(score) |>
+        mutate(variable = factor(variable, levels = variable)) |>
+        ggplot(
+          aes(
+            x = variable,
+            y = score,
+            colour = if_else(variable == "Overall", "Red", "Blue")
+          )
+        ) +
         geom_segment(
           aes(x = variable, xend = variable, y = 1, yend = score),
-          color = "#5C747A"
+          show.legend = FALSE
         ) +
         geom_point_interactive(
           aes(tooltip = score),
-          color = "#6A9EAA",
           size = 5,
-          alpha = 0.7
+          show.legend = FALSE
         ) +
+        scale_colour_manual(
+          values = c(Red = "#AD1220", Blue = "#475C74")
+          ) +
         coord_flip() +
         labs(x = NULL, y = "Performance Score (5 = Worst)") +
         theme_light() +
