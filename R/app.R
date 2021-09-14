@@ -178,6 +178,16 @@ nhscapacity <- function() {
 
     # - Plot -
     output$plot <- renderGirafe({
+
+      # Require user to validate input
+      validate(
+        need(
+          !is.null(selected_area()),
+          "Select an area to display some metrics here."
+        )
+      )
+
+      # Build lollipop plot
       lollipop_plot <-
         uk_long |>
         filter(geo_code == selected_area()) |>
@@ -202,15 +212,9 @@ nhscapacity <- function() {
           axis.ticks.y = element_blank()
         )
 
+      # conver plot to SVG object
       girafe(ggobj = lollipop_plot)
     })
-    
-    # validate(
-    #   need(
-    #     !is.null(selected_area()),
-    #     "Choose an area"
-    #   )
-    # )
   }
   shinyApp(ui, server)
 }
