@@ -191,7 +191,8 @@ nhscapacity <- function() {
       lollipop_plot <-
         uk_long |>
         filter(geo_code == selected_area()) |>
-        filter(!grepl("^No. of services", variable)) |>
+        arrange(score) |> 
+        mutate(variable = factor(variable, levels = variable)) |> 
         ggplot(aes(x = variable, y = score)) +
         geom_segment(
           aes(x = variable, xend = variable, y = 1, yend = score),
