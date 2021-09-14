@@ -3,6 +3,8 @@ library(shiny)
 library(sf)
 library(leaflet)
 library(dplyr)
+library(ggiraph)
+library(ggplot2)
 
 # ---- Function that calls the app ----
 nhscapacity <- function() {
@@ -101,7 +103,8 @@ nhscapacity <- function() {
       # Plot
       column(
         width = 6,
-        align = "center"
+        align = "center",
+        girafeOutput("plot", height = 600)
       )
     )
   )
@@ -115,7 +118,7 @@ nhscapacity <- function() {
     # Track map click events and update reactives selectbox
     observeEvent(input$map_shape_click, {
       input$map_shape_click$id |>
-      selected_area()
+        selected_area()
 
       selected_geo_name <-
         uk_shp |>
@@ -134,11 +137,11 @@ nhscapacity <- function() {
     observeEvent(input$selectbox,
       {
         uk_shp |>
-        st_drop_geometry() |>
-        filter(geo_name == input$selectbox) |>
-        select(geo_code) |>
-        pull() |>
-        selected_area()
+          st_drop_geometry() |>
+          filter(geo_name == input$selectbox) |>
+          select(geo_code) |>
+          pull() |>
+          selected_area()
       },
       ignoreInit = TRUE
     )
@@ -152,28 +155,56 @@ nhscapacity <- function() {
     output$map <-
       renderLeaflet({
         leaflet() |>
-        setView(lat = 52.75, lng = -2.0, zoom = 6) |>
-        addProviderTiles(providers$CartoDB.Positron) |>
-        addPolygons(
-          data = uk_shp,
-          layerId = ~geo_code,
-          weight = 0.7,
-          opacity = 0.5,
-          # color = "#bf4aee",
-          dashArray = "0.1",
-          fillOpacity = 0.4,
-          highlight = highlightOptions(
-            weight = 5,
-            color = "#666",
-            dashArray = "",
-            fillOpacity = 0.7,
-            bringToFront = TRUE
-          ),
-          label = uk_shp$geo_name
-        )
+          setView(lat = 52.75, lng = -2.0, zoom = 6) |>
+          addProviderTiles(providers$CartoDB.Positron) |>
+          addPolygons(
+            data = uk_shp,
+            layerId = ~geo_code,
+            weight = 0.7,
+            opacity = 0.5,
+            color = "#5C747A",
+            dashArray = "0.1",
+            fillOpacity = 0.4,
+            highlight = highlightOptions(
+              weight = 5,
+              color = "#666",
+              dashArray = "",
+              fillOpacity = 0.7,
+              bringToFront = TRUE
+            ),
+            label = uk_shp$geo_name
+          )
       })
 
     # - Plot -
+    output$plot <- renderGirafe({
+      lollipop_plot <-
+        uk_long |>
+        filter(geo_code == selected_area()) |>
+        filter(!grepl("^No. of services", variable)) |>
+        ggplot(aes(x = variable, y = score)) +
+        geom_segment(
+          aes(x = variable, xend = variable, y = 1, yend = score),
+          color = "#5C747A"
+        ) +
+        geom_point_interactive(
+          aes(tooltip = score),
+          color = "#6A9EAA",
+          size = 5,
+          alpha = 0.7
+        ) +
+        coord_flip() +
+        labs(x = NULL, y = "Performance Score (5 = Worst)") +
+        theme_light() +
+        theme(
+          panel.grid.major.y = element_blank(),
+          panel.border = element_blank(),
+          axis.ticks.y = element_blank()
+        )
+
+      girafe(ggobj = lollipop_plot)
+    })
+    
     # validate(
     #   need(
     #     !is.null(selected_area()),
