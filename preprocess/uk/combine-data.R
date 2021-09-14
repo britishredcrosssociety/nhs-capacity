@@ -97,10 +97,28 @@ uk_long_all_vars <-
   )
 
 # Remove unneeded var & shorten names for prettier plotting in Shiny app
-uk_long <-
+uk_long_selected_vars <-
   uk_long_all_vars |>
   filter(!str_detect(variable, "^No. of services")) |>
-  mutate(variable = str_remove_all(variable, " performance \\(5 = worst performing\\)"))
+  mutate(
+    variable = str_remove_all(
+      variable,
+      " performance \\(5 = worst performing\\)"
+    )
+  )
+
+# Drop empty rows
+uk_long_dropped <-
+  uk_long_selected_vars |>
+  drop_na()
+
+# Reorder factor for prettier printing in shiny app
+uk_long <-
+  uk_long_dropped |>
+  group_by(geo_code) |>
+  arrange(desc(score)) |>
+  mutate(variable = factor(variable, levels = variable)) |>
+  ungroup()
 
 # ---- Save to /data ----
 use_data(uk_shp, overwrite = TRUE)
