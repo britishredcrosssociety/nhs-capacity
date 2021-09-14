@@ -23,13 +23,13 @@ northern_ireland_performance <-
 uk_shp <-
   bind_rows(
     england_performance |>
-    select(geo_name = stp_name, geo_code = stp_code, geometry),
+      select(geo_name = stp_name, geo_code = stp_code, geometry),
     wales_performance |>
-    select(geo_name = lhb_name, geo_code = lhb_code, geometry),
+      select(geo_name = lhb_name, geo_code = lhb_code, geometry),
     scotland_performance |>
-    select(geo_name = hb_name, geo_code = hb_code, geometry),
+      select(geo_name = hb_name, geo_code = hb_code, geometry),
     northern_ireland_performance |>
-    select(geo_name = trust_name, geo_code = trust_code, geometry)
+      select(geo_name = trust_name, geo_code = trust_code, geometry)
   )
 
 # Minimise shapefile size to improve leaflet loading performance
@@ -88,13 +88,19 @@ northern_ireland_long <-
   mutate(nation = "Nothern Ireland")
 
 # Join
-uk_long <-
+uk_long_all_vars <-
   bind_rows(
     england_long,
     wales_long,
     scotland_long,
     northern_ireland_long
   )
+
+# Remove unneeded var & shorten names for prettier plotting in Shiny app
+uk_long <-
+  uk_long_all_vars |>
+  filter(!str_detect(variable, "^No. of services")) |>
+  mutate(variable = str_remove_all(variable, " performance \\(5 = worst performing\\)"))
 
 # ---- Save to /data ----
 use_data(uk_shp, overwrite = TRUE)
