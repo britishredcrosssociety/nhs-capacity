@@ -1,14 +1,10 @@
 # ---- Load libs ----
 library(tidyverse)
-library(usethis)
 library(geographr)
 library(sf)
 
 # ---- Load funs ----
 source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
-
-# Return 1 if `x` is in the worst-performing quintile
-count_if_worst <- function(x, q = 5) ifelse(!is.na(x) & x == q, 1, 0)
 
 # ---- Load data ----
 ae <- read_rds("preprocess/data/northern_ireland_ae.rds")
@@ -23,68 +19,62 @@ combined <-
   left_join(cancer, by = "Trust") |>
   left_join(inpatient, by = "Trust") |>
   left_join(outpatient, by = "Trust") |>
-  left_join(reattendance, by = "Trust")
+  left_join(reattendance, by = "Trust") |>
+  select(
+    Trust,
+    `Percent Under 4 Hours`,
+    `% treated within 62 days`,
+    `Inpatient and day case: % waiting > 52 weeks`,
+    `Outpatient: % waiting > 52 weeks`,
+    Reattend
+  )
 
 # ---- Find worst-performing Trusts across all metrics ----
-# Bin each metric into quintiles and look for Trustss in the worst-performing
-# quintile across multiple metrics. There are only five Trusts in NI, so can
-# just rank them rather than quantise.
-bins <-
+# Lower rank (e.g., 2 is lower than 1) = lower (worse) rank
+ranks <-
   combined |>
   mutate(
-    ae_bin = inverse_rank(`Percent Under 4 Hours`),
-    cancer_bin = inverse_rank(`% treated within 62 days`),
-    rtt_in_bin = rank(`Inpatient and day case: % waiting > 52 weeks`),
-    rtt_out_bin = rank(`Outpatient: % waiting > 52 weeks`),
-    reattend_bin = rank(Reattend)
+    ae_rank = inverse_rank(`Percent Under 4 Hours`),
+    cancer_rank = inverse_rank(`% treated within 62 days`),
+    rtt_in_rank = rank(`Inpatient and day case: % waiting > 52 weeks`),
+    rtt_out_rank = rank(`Outpatient: % waiting > 52 weeks`),
+    reattend_rank = rank(Reattend)
   ) |>
-  select(Trust, ends_with("bin"))
+  select(Trust, ends_with("_rank"))
 
-bins_sum <-
-  bins |>
+ranks_sum <-
+  ranks |>
   rowwise() |>
   mutate(
-    bin_sum = sum(
+    rank_sum = sum(
       c_across(!Trust),
       na.rm = TRUE
     )
   ) |>
   ungroup() |>
   mutate(
-    overall_bin = rank(bin_sum)
+    overall_rank = rank(rank_sum)
   ) |>
-  arrange(desc(overall_bin))
+  arrange(desc(overall_rank)) |>
+  select(-rank_sum)
 
-bins_worst_count <-
-  bins_sum |>
-  mutate(
-    sum_of_5s = count_if_worst(ae_bin) +
-      count_if_worst(cancer_bin) +
-      count_if_worst(rtt_in_bin) +
-      count_if_worst(rtt_out_bin) +
-      count_if_worst(reattend_bin)
-  )
-
-performance <-
-  bins_worst_count |>
-  select(
-    trust_name = Trust,
-    `A&E performance (5 = worst performing)` = ae_bin,
-    `Cancer waiting list performance (5 = worst performing)` = cancer_bin,
-    `Inpatient and day case waiting list performance (5 = worst performing)` = rtt_in_bin,
-    `Outpatient waiting list performance (5 = worst performing)` = rtt_out_bin,
-    `Reattendance performance (5 = worst performing)` = reattend_bin,
-    `Overall performance (5 = worst performing)` = overall_bin,
-    `No. of services (out of 5) scoring worst in performance` = sum_of_5s
-  ) |>
-  mutate(
-    trust_name = str_c(trust_name, " Health and Social Care Trust")
-  )
+# ---- Join raw (combined) data back to ranks ----
+ranks_and_raw <-
+  ranks_sum |>
+  left_join(combined)
 
 # ---- Join boundary data ----
+# Make Trust names match
+ranks_and_raw_renamed <-
+  ranks_and_raw |>
+  mutate(
+    Trust = str_c(Trust, " Health and Social Care Trust")
+  ) |>
+  rename(trust_name = Trust)
+
 northern_ireland_performance <-
   boundaries_trusts_ni |>
-  left_join(performance)
+  left_join(ranks_and_raw_renamed)
 
 northern_ireland_performance |>
-write_rds("preprocess/data/northern_ireland_performance.rds")
+  write_rds("preprocess/data/northern_ireland_performance.rds")
