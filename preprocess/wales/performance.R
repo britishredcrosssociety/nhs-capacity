@@ -87,10 +87,20 @@ ranks_sum <-
   arrange(desc(overall_rank)) |>
   select(-rank_sum)
 
+ranks_sum_renamed <-
+  ranks_sum |>
+  rename(
+    `A&E rank` = ae_rank,
+    `Ambulance rank` = ambulance_rank,
+    `Bed occupancy rank` = beds_rank,
+    `Cancer waiting list rank` = cancer_rank,
+    `RTT rank` = rtt_rank,
+    `Overall rank` = overall_rank
+  )
 
 # ---- Join raw (combined) data back to ranks ----
 ranks_and_raw <-
-  ranks_sum |>
+  ranks_sum_renamed |>
   left_join(combined)
 
 
