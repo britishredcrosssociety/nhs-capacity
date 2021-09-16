@@ -42,10 +42,12 @@ uk_shp <-
 england_long <-
   england_performance |>
   st_drop_geometry() |>
-  select(-stp_name) |>
-  rename(geo_code = stp_code) |>
+  rename(
+    geo_name = stp_name,
+    geo_code = stp_code
+  ) |>
   pivot_longer(
-    cols = !geo_code,
+    cols = !c(geo_name, geo_code),
     names_to = "variable",
     values_to = "score"
   ) |>
@@ -54,22 +56,27 @@ england_long <-
 wales_long <-
   wales_performance |>
   st_drop_geometry() |>
-  select(-lhb_name) |>
-  rename(geo_code = lhb_code) |>
+  rename(
+    geo_name = lhb_name,
+    geo_code = lhb_code
+  ) |>
   pivot_longer(
-    cols = !geo_code,
+    cols = !c(geo_name, geo_code),
     names_to = "variable",
     values_to = "score"
   ) |>
-  mutate(nation = "Wales")
+  mutate(nation = "Wales") |>
+  mutate(geo_name = str_remove_all(geo_name, " Health Board$"))
 
 scotland_long <-
   scotland_performance |>
   st_drop_geometry() |>
-  select(-hb_name) |>
-  rename(geo_code = hb_code) |>
+  rename(
+    geo_name = hb_name,
+    geo_code = hb_code
+  ) |>
   pivot_longer(
-    cols = !geo_code,
+    cols = !c(geo_name, geo_code),
     names_to = "variable",
     values_to = "score"
   ) |>
@@ -78,14 +85,17 @@ scotland_long <-
 northern_ireland_long <-
   northern_ireland_performance |>
   st_drop_geometry() |>
-  select(-trust_name) |>
-  rename(geo_code = trust_code) |>
+  rename(
+    geo_name = trust_name,
+    geo_code = trust_code
+  ) |>
   pivot_longer(
-    cols = !geo_code,
+    cols = !c(geo_name, geo_code),
     names_to = "variable",
     values_to = "score"
   ) |>
-  mutate(nation = "Nothern Ireland")
+  mutate(nation = "Nothern Ireland") |>
+  mutate(geo_name = str_remove_all(geo_name, " Health and Social Care Trust$"))
 
 # Join
 uk_long_all_vars <-
@@ -97,9 +107,14 @@ uk_long_all_vars <-
   )
 
 # Drop empty rows
-uk_long <-
+uk_long_dropped <-
   uk_long_all_vars |>
   drop_na()
+
+# Move cols
+uk_long <-
+  uk_long_dropped |>
+  relocate(nation, .after = geo_code)
 
 # ---- Save to /data ----
 use_data(uk_shp, overwrite = TRUE)
