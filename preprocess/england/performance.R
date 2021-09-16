@@ -4,10 +4,8 @@ library(geographr)
 library(sf)
 
 # ---- Load funs ----
-source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
-
 # Inverse rank - override imported to make NA's last
-inverse_rank <- function(x) (length(x) + 1) - rank(x, na.last = "keep")
+inverse_rank <- function(x) (length(x) + 1) - rank(x, na.last = "keep", ties.method = "max")
 
 # ---- Load data ----
 ae <- read_rds("preprocess/data/england_ae.rds")
@@ -106,11 +104,11 @@ ranks <-
   complete_data |>
   mutate(
     ae_rank = inverse_rank(`% Total <= 4 hours`),
-    beds_night_rank = rank(`% Total Night Beds Occupied`, na.last = "keep"),
-    beds_day_rank = rank(`% Total Day Beds Occupied`, na.last = "keep"),
-    cancer_rank = rank(`% Breaches`, na.last = "keep"),
-    diagnostic_rank = rank(`% waiting 13+ weeks`, na.last = "keep"),
-    rtt_rank = rank(`% Waiting 52+ Weeks`, na.last = "keep")
+    beds_night_rank = rank(`% Total Night Beds Occupied`, na.last = "keep", ties.method = "max"),
+    beds_day_rank = rank(`% Total Day Beds Occupied`, na.last = "keep", ties.method = "max"),
+    cancer_rank = rank(`% Breaches`, na.last = "keep", ties.method = "max"),
+    diagnostic_rank = rank(`% waiting 13+ weeks`, na.last = "keep", ties.method = "max"),
+    rtt_rank = rank(`% Waiting 52+ Weeks`, na.last = "keep", ties.method = "max")
   ) |>
   select(
     `Trust Code`,
@@ -129,7 +127,7 @@ ranks_sum <-
   ) |>
   ungroup() |>
   mutate(
-    overall_rank = rank(rank_sum)
+    overall_rank = rank(rank_sum, ties.method = "max")
   ) |>
   arrange(desc(overall_rank)) |>
   select(-rank_sum)
@@ -150,7 +148,7 @@ stp_rank <-
   mutate(
     across(
       !c(`Trust Code`, stp_code),
-      rank
+      ~ rank(.x, ties.method = "max")
     )
   )
 

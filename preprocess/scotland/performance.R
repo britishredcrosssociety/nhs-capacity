@@ -4,7 +4,7 @@ library(geographr)
 library(sf)
 
 # ---- Load funs ----
-source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
+inverse_rank <- function(x) (length(x) + 1) - rank(x, na.last = FALSE, ties.method = "max")
 
 # ---- Load data ----
 ae <- read_rds("preprocess/data/scotland_ae.rds")
@@ -27,8 +27,8 @@ ranks <-
   mutate(
     ae_rank = inverse_rank(`Percentage seen within 4 hours`),
     beds_rank = inverse_rank(`Average number of available staffed beds`),
-    cancer_rank = rank(`Average number of days waited from receipt of an urgent referral with suspicion of cancer to first cancer treatment (62 day standard)`),
-    dtoc_rank = rank(`Bed days occupied by delayed discharge patients`),
+    cancer_rank = rank(`Average number of days waited from receipt of an urgent referral with suspicion of cancer to first cancer treatment (62 day standard)`, ties.method = "max"),
+    dtoc_rank = rank(`Bed days occupied by delayed discharge patients`, ties.method = "max"),
     rtt_rank = inverse_rank(`Percentage seen within 18 weeks`)
   ) |>
   select(`NHS Board`, ends_with("_rank"))

@@ -4,7 +4,7 @@ library(geographr)
 library(sf)
 
 # ---- Load funs ----
-source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
+inverse_rank <- function(x) (length(x) + 1) - rank(x, na.last = FALSE, ties.method = "max")
 
 # ---- Load data ----
 ae <- read_rds("preprocess/data/wales_ae.rds")
@@ -63,11 +63,11 @@ combined <-
 ranks <-
   combined |>
   mutate(
-    ae_rank = rank(`Percentage breached`),
+    ae_rank = rank(`Percentage breached`, ties.method = "max"),
     ambulance_rank = inverse_rank(`Red calls - % of emergency responses arriving at the scene within 8 minutes`),
-    beds_rank = rank(`% general and acute beds occupied`),
+    beds_rank = rank(`% general and acute beds occupied`, ties.method = "max"),
     cancer_rank = inverse_rank(`% starting treatment within 62 days`),
-    rtt_rank = rank(`% waiting 53+ weeks`)
+    rtt_rank = rank(`% waiting 53+ weeks`, ties.method = "max")
   ) |>
   select(lhb_name, ends_with("_rank"))
 
@@ -102,7 +102,6 @@ ranks_sum_renamed <-
 ranks_and_raw <-
   ranks_sum_renamed |>
   left_join(combined)
-
 
 # Match Health Boundary names
 ranks_and_raw_renamed <-

@@ -4,7 +4,7 @@ library(geographr)
 library(sf)
 
 # ---- Load funs ----
-source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
+inverse_rank <- function(x) (length(x) + 1) - rank(x, na.last = FALSE, ties.method = "max")
 
 # ---- Load data ----
 ae <- read_rds("preprocess/data/northern_ireland_ae.rds")
@@ -36,9 +36,9 @@ ranks <-
   mutate(
     ae_rank = inverse_rank(`Percent Under 4 Hours`),
     cancer_rank = inverse_rank(`% treated within 62 days`),
-    rtt_in_rank = rank(`Inpatient and day case: % waiting > 52 weeks`),
-    rtt_out_rank = rank(`Outpatient: % waiting > 52 weeks`),
-    reattend_rank = rank(Reattend)
+    rtt_in_rank = rank(`Inpatient and day case: % waiting > 52 weeks`, ties.method = "max"),
+    rtt_out_rank = rank(`Outpatient: % waiting > 52 weeks`, ties.method = "max"),
+    reattend_rank = rank(Reattend, ties.method = "max")
   ) |>
   select(Trust, ends_with("_rank"))
 
@@ -53,7 +53,7 @@ ranks_sum <-
   ) |>
   ungroup() |>
   mutate(
-    overall_rank = rank(rank_sum)
+    overall_rank = rank(rank_sum, ties.method = "max")
   ) |>
   arrange(desc(overall_rank)) |>
   select(-rank_sum)
