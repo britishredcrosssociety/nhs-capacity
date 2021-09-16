@@ -1,14 +1,10 @@
 # ---- Load libs ----
 library(tidyverse)
-library(usethis)
 library(geographr)
 library(sf)
 
 # ---- Load funs ----
 source("https://github.com/britishredcrosssociety/resilience-index/raw/main/R/utils.R")
-
-# Return 1 if `x` is in the worst-performing quintile
-count_if_worst <- function(x, q = 5) ifelse(!is.na(x) & x == q, 1, 0)
 
 # ---- Load data ----
 ae <- read_rds("preprocess/data/scotland_ae.rds")
@@ -25,8 +21,7 @@ combined <-
   left_join(rtt, by = "NHS Board")
 
 # ---- Find worst-performing Trusts across all metrics ----
-# Bin each metric into quintiles and look for HBs in the worst-performing
-# quintile across multiple metrics
+# Lower rank (e.g., 2 is lower than 1) = lower (worse) rank
 ranks <-
   combined |>
   mutate(
@@ -38,61 +33,37 @@ ranks <-
   ) |>
   select(`NHS Board`, ends_with("_rank"))
 
-bins <-
+ranks_sum <-
   ranks |>
-  mutate(
-    ae_bin = quantise(ae_rank, num_quantiles = 5),
-    beds_bin = quantise(beds_rank, num_quantiles = 5),
-    cancer_bin = quantise(beds_rank, num_quantiles = 5),
-    dtoc_bin = quantise(dtoc_rank, num_quantiles = 5),
-    rtt_bin = quantise(rtt_rank, num_quantiles = 5)
-  ) |>
-  select(`NHS Board`, ends_with("_bin"))
-
-bins_sum <-
-  bins |>
   rowwise() |>
   mutate(
-    bin_sum = sum(
+    rank_sum = sum(
       c_across(!`NHS Board`),
       na.rm = TRUE
     )
   ) |>
   ungroup() |>
   mutate(
-    overall_rank = rank(bin_sum),
-    overall_bin = quantise(overall_rank, num_quantiles = 5)
+    overall_rank = rank(rank_sum)
   ) |>
-  arrange(desc(overall_bin))
+  arrange(desc(overall_rank)) |>
+  select(-rank_sum)
 
-bins_worst_count <-
-  bins_sum |>
-  mutate(
-    sum_of_5s = count_if_worst(ae_bin) +
-      count_if_worst(beds_bin) +
-      count_if_worst(cancer_bin) +
-      count_if_worst(dtoc_bin) +
-      count_if_worst(rtt_bin)
-  )
-
-performance <-
-  bins_worst_count |>
-  select(
-    hb_name = `NHS Board`,
-    `A&E performance (5 = worst performing)` = ae_bin,
-    `Bed occupancy performance (5 = worst performing)` = beds_bin,
-    `Cancer waiting list performance (5 = worst performing)` = cancer_bin,
-    `DToC performance (5 = worst performing)` = dtoc_bin,
-    `RTT performance (5 = worst performing)` = rtt_bin,
-    `Overall performance (5 = worst performing)` = overall_bin,
-    `No. of services (out of 5) scoring worst in performance` = sum_of_5s
-  ) |>
-  mutate(hb_name = str_replace_all(hb_name, "&", "and"))
+# ---- Join raw (combined) data back to ranks ----
+ranks_and_raw <-
+  ranks_sum |>
+  left_join(combined)
 
 # ---- Join boundaries ----
+# Match Health Boundary names
+ranks_and_raw_renamed <-
+  ranks_and_raw |>
+  rename(hb_name = `NHS Board`) |>
+  mutate(hb_name = str_replace_all(hb_name, "&", "and"))
+
 scotland_performance <-
   boundaries_hb |>
-  left_join(performance, by = "hb_name")
+  left_join(ranks_and_raw_renamed, by = "hb_name")
 
 scotland_performance |>
-write_rds("preprocess/data/scotland_performance.rds")
+  write_rds("preprocess/data/scotland_performance.rds")
