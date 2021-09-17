@@ -1,16 +1,21 @@
+# ---- Load libs ----
 library(tidyverse)
 library(leaflet)
 library(geographr)
 library(sf)
 
+# ---- Load BRC tactical cell boundaries for England ----
 boundaries_tc <-
-  read_sf("preprocess/tactical-cell-lookup/tactical-cell-boundaries/Tactical_cells.shp")
+  read_sf("preprocess/uk/tactical-cell-lookup/tactical-cell-boundaries/Tactical_cells.shp")
 
+# Align geometries
 boundaries_tc <-
   boundaries_tc |>
   st_transform(crs = 4326) |>
   st_make_valid(stp)
 
+# ---- Create leaflet map -----
+# Inspect overlap between tactical cells and STP's
 leaflet(
   options = leafletOptions(minZoom = 5, maxZoom = 15, attributionControl = F)
 ) %>%
@@ -64,8 +69,9 @@ leaflet(
     options = layersControlOptions(collapsed = FALSE)
   )
 
-# stp_tc_lookup <-
-boundaries_stp |>
+# Manually fill table
+england_lookup <-
+  boundaries_stp |>
   st_drop_geometry() |>
   mutate(
     tactical_cell = case_when(
@@ -112,4 +118,35 @@ boundaries_stp |>
       stp_code == "E54000053" ~ "South East",
       stp_code == "E54000054" ~ "North"
     )
+  ) |>
+  select(geo_code = stp_code, tactical_cell)
+
+# ---- Create other nation lookups ----
+wales_lookup <-
+  boundaries_lhb |>
+  st_drop_geometry() |>
+  mutate(tactical_cell = "Wales") |>
+  select(geo_code = lhb_code, tactical_cell)
+
+scotland_lookup <-
+  boundaries_hb |>
+  st_drop_geometry() |>
+  mutate(tactical_cell = "Scotland") |>
+  select(geo_code = hb_code, tactical_cell)
+
+northern_ireland_lookup <-
+  boundaries_trusts_ni |>
+  st_drop_geometry() |>
+  mutate(tactical_cell = "Northern Ireland and Isle of Man") |>
+  select(geo_code = trust_code, tactical_cell)
+
+# ---- Join lookups ----
+tactical_cell_lookup <-
+  bind_rows(
+    england_lookup,
+    wales_lookup,
+    scotland_lookup,
+    northern_ireland_lookup
   )
+
+write_rds(tactical_cell_lookup, "preprocess/uk/tactical-cell-lookup/tactical_cell_lookup.rds")
