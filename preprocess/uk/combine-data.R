@@ -121,9 +121,14 @@ uk_long_tactical_cells <-
   left_join(tactical_cell_lookup)
 
 # Move cols
-uk_long <-
+uk_long_reordered <-
   uk_long_tactical_cells |>
   relocate(nation, tactical_cell, .after = geo_code)
+
+# Wrap labels for prettier printing in shiny app
+uk_long <-
+  uk_long_reordered |>
+  mutate(geo_name = str_wrap(geo_name, width = 20))
 
 # ---- Save to /data ----
 use_data(uk_shp, overwrite = TRUE)
