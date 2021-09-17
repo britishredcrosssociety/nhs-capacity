@@ -5,6 +5,10 @@ library(geographr)
 library(usethis)
 library(rmapshaper)
 
+# ---- Load Tactical Cell lookup ----
+tactical_cell_lookup <-
+  read_rds("preprocess/uk/tactical-cell-lookup/tactical_cell_lookup.rds")
+
 # ---- Load performance data ----
 england_performance <-
   read_rds("preprocess/data/england_performance.rds")
@@ -111,10 +115,15 @@ uk_long_dropped <-
   uk_long_all_vars |>
   drop_na()
 
+# Add tactical cells
+uk_long_tactical_cells <-
+  uk_long_dropped |>
+  left_join(tactical_cell_lookup)
+
 # Move cols
 uk_long <-
-  uk_long_dropped |>
-  relocate(nation, .after = geo_code)
+  uk_long_tactical_cells |>
+  relocate(nation, tactical_cell, .after = geo_code)
 
 # ---- Save to /data ----
 use_data(uk_shp, overwrite = TRUE)
