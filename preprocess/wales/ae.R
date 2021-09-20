@@ -54,4 +54,4 @@ wales_ae <-
   pivot_wider(names_from = Measure_Code, values_from = Data)
 
 wales_ae |>
-write_rds("preprocess/data/wales_ae.rds")
+  write_rds("preprocess/data/wales_ae.rds")
