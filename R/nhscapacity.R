@@ -3,7 +3,6 @@ library(shiny)
 library(sf)
 library(leaflet)
 library(dplyr)
-library(ggiraph)
 library(ggplot2)
 
 # ---- Function that calls the app ----
