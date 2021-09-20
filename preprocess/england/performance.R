@@ -71,7 +71,8 @@ combined <-
   left_join(beds_day_processed) |>
   left_join(cancer_processed) |>
   left_join(diagnostic_processed) |>
-  left_join(rtt_processed)
+  left_join(rtt_processed) |>
+  mutate(across(starts_with("%"), ~ .x * 100))
 
 # ---- Remove Missing Data ----
 # Count the number of NA's across each row
