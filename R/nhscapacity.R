@@ -89,7 +89,7 @@ nhsCapacity <- function() {
       )
     ),
 
-    # - Map & Plot -
+    # - Map & Plot/Table -
     fluidRow(
 
       # Map
@@ -99,11 +99,14 @@ nhsCapacity <- function() {
         leafletOutput("map", height = 1000)
       ),
 
-      # Plot
+      # Plot/Table
       column(
         width = 7,
         align = "center",
-        plotOutput("plot", height = 1000)
+        tabsetPanel(
+          tabPanel("Plot", plotOutput("plot", height = 1000)),
+          tabPanel("Data")
+        )
       )
     )
   )
