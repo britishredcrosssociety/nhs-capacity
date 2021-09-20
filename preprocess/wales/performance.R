@@ -56,6 +56,12 @@ combined <-
     `% general and acute beds occupied`,
     `% starting treatment within 62 days`,
     `% waiting 53+ weeks`
+  ) |>
+  mutate(
+    across(
+      c(`% general and acute beds occupied`, `% waiting 53+ weeks`),
+      ~ .x * 100
+    )
   )
 
 # ---- Find worst-performing Trusts across all metrics ----
