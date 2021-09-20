@@ -125,9 +125,14 @@ uk_long_reordered <-
   uk_long_tactical_cells |>
   relocate(nation, tactical_cell, .after = geo_code)
 
-# Wrap labels for prettier printing in shiny app
-uk_long <-
+# Round values for pretty priting in Shiny table
+uk_long_rounded <-
   uk_long_reordered |>
+  mutate(score = round(score, digits = 3))
+
+# Wrap labels for prettier printing in Shiny plots
+uk_long <-
+  uk_long_rounded |>
   mutate(geo_name = str_wrap(geo_name, width = 20))
 
 # ---- Save to /data ----
