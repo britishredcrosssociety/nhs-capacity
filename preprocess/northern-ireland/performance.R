@@ -83,7 +83,7 @@ ranks_and_raw_renamed <-
     `Cancer Wait Times: % treated within 62 days` = `% treated within 62 days`,
     `Referral to Treatment Inpatient & day case: % waiting > 52 weeks` = `Inpatient and day case: % waiting > 52 weeks`,
     `Referral Outpatient: % waiting > 52 weeks` = `Outpatient: % waiting > 52 weeks`,
-    `Reattendance within 7 days: %` = Reattend
+    `Emergency Care: Reattendance within 7 days: %` = Reattend
   )
 
 # ---- Join boundary data ----
