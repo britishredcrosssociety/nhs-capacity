@@ -58,19 +58,22 @@ nhsCapacity <- function() {
 
     # - Instructions -
     fluidRow(
-      column(width = 2),
+      column(width = 3),
       column(
-        width = 8,
+        width = 6,
         align = "center",
         tags$h1(
           "What is the Capacity of Your Local NHS Area?"
         ),
         tags$p(
-          "Enter your area in the box below, or click it on the map to explore
-          the pressures it is facing."
+          "Enter your area in the box below, or click it on the map to populate
+          the plots and table. The plots show how your selected NHS area
+          (highlighted in red) performs across different services in comparison
+          to other areas in the same tactical cell. Each plot shows the service
+          ranked on a national scale. Explore the table for more statistics."
         )
       ),
-      column(width = 2)
+      column(width = 3)
     ),
 
     # - Trust Search Box -
