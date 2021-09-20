@@ -27,7 +27,8 @@ combined <-
     `Inpatient and day case: % waiting > 52 weeks`,
     `Outpatient: % waiting > 52 weeks`,
     Reattend
-  )
+  ) |>
+  mutate(across(ends_with("> 52 weeks"), ~ .x * 100))
 
 # ---- Find worst-performing Trusts across all metrics ----
 # Lower rank (e.g., 2 is lower than 1) = lower (worse) rank
