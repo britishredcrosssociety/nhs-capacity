@@ -4,6 +4,7 @@ library(sf)
 library(leaflet)
 library(dplyr)
 library(ggplot2)
+library(DT)
 
 # ---- Function that calls the app ----
 nhsCapacity <- function() {
@@ -105,7 +106,7 @@ nhsCapacity <- function() {
         align = "center",
         tabsetPanel(
           tabPanel("Plot", plotOutput("plot", height = 1000)),
-          tabPanel("Data")
+          tabPanel("Data", DTOutput("table"))
         )
       )
     )
@@ -179,104 +180,126 @@ nhsCapacity <- function() {
       })
 
     # - Plot -
-    output$plot <- renderPlot({
+    output$plot <-
+      renderPlot({
 
-      # Require user to validate input
-      validate(
-        need(
-          !is.null(selected_area()),
-          "Select an area to display some metrics here."
-        )
-      )
-
-      selected_tactical_cell <-
-        uk_long |>
-        filter(geo_code == selected_area()) |>
-        distinct(tactical_cell) |>
-        pull(tactical_cell)
-
-      # This is calculated to vertically center the labels in geom_text below
-      num_tactical_cell_areas <-
-        uk_long |>
-        filter(tactical_cell == selected_tactical_cell) |>
-        filter(grepl("rank$", variable)) |>
-        distinct(geo_name) |>
-        pull(geo_name) |>
-        length()
-
-      # Build lollipop plot
-      uk_long |>
-        filter(tactical_cell == selected_tactical_cell) |>
-        filter(grepl("rank$", variable)) |>
-        mutate(variable = as.factor(variable)) |>
-        mutate(geo_name = reorder_within(geo_name, score, variable)) |>
-        ggplot(
-          aes(
-            x = geo_name,
-            y = score,
-            colour = if_else(geo_code == selected_area(), "Red", "Blue")
+        # Require user to validate input
+        validate(
+          need(
+            !is.null(selected_area()),
+            "Select an area to display some plots here."
           )
-        ) +
-        facet_wrap(vars(variable), scales = "free_y") +
-        geom_segment(
-          aes(x = geo_name, xend = geo_name, y = 0, yend = score),
-          show.legend = FALSE
-        ) +
-        geom_point(
-          size = 5,
-          show.legend = FALSE
-        ) +
-        scale_colour_manual(
-          values = c(Red = "#AD1220", Blue = "#475C74")
-        ) +
-        geom_rect(
-          aes(xmin = -Inf, xmax = Inf, ymin = max(score) * .8, ymax = Inf),
-          alpha = .025,
-          fill = "#9CAAAE",
-          color = NA,
-          show.legend = FALSE
-        ) +
-        geom_rect(
-          aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = max(score) * .2),
-          alpha = .025,
-          fill = "#475C74",
-          color = NA,
-          show.legend = FALSE
-        ) +
-        geom_text(
-          aes(
-            x = num_tactical_cell_areas / 2,
-            y = max(score) * .9,
-            label = "Worse Performance",
-            angle = 270,
-            hjust = "middle",
-            vjust = "middle"
-          ),
-          show.legend = FALSE
-        ) +
-        geom_text(
-          aes(
-            x = num_tactical_cell_areas / 2,
-            y = max(score) * .1,
-            label = "Best Performance",
-            angle = 270,
-            hjust = "middle",
-            vjust = "middle"
-          ),
-          show.legend = FALSE
-        ) +
-        coord_flip() +
-        scale_x_reordered() +
-        theme_minimal(
-          base_size = 9
-        ) +
-        theme(
-          panel.grid.major.y = element_blank(),
-          panel.border = element_blank(),
-          axis.ticks.y = element_blank()
-        ) +
-        labs(x = NULL, y = NULL)
-    })
+        )
+
+        selected_tactical_cell <-
+          uk_long |>
+          filter(geo_code == selected_area()) |>
+          distinct(tactical_cell) |>
+          pull(tactical_cell)
+
+        # This is calculated to vertically center the labels in geom_text below
+        num_tactical_cell_areas <-
+          uk_long |>
+          filter(tactical_cell == selected_tactical_cell) |>
+          filter(grepl("rank$", variable)) |>
+          distinct(geo_name) |>
+          pull(geo_name) |>
+          length()
+
+        # Build lollipop plot
+        uk_long |>
+          filter(tactical_cell == selected_tactical_cell) |>
+          filter(grepl("rank$", variable)) |>
+          mutate(variable = as.factor(variable)) |>
+          mutate(geo_name = reorder_within(geo_name, score, variable)) |>
+          ggplot(
+            aes(
+              x = geo_name,
+              y = score,
+              colour = if_else(geo_code == selected_area(), "Red", "Blue")
+            )
+          ) +
+          facet_wrap(vars(variable), scales = "free_y") +
+          geom_segment(
+            aes(x = geo_name, xend = geo_name, y = 0, yend = score),
+            show.legend = FALSE
+          ) +
+          geom_point(
+            size = 5,
+            show.legend = FALSE
+          ) +
+          scale_colour_manual(
+            values = c(Red = "#AD1220", Blue = "#475C74")
+          ) +
+          geom_rect(
+            aes(xmin = -Inf, xmax = Inf, ymin = max(score) * .8, ymax = Inf),
+            alpha = .025,
+            fill = "#9CAAAE",
+            color = NA,
+            show.legend = FALSE
+          ) +
+          geom_rect(
+            aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = max(score) * .2),
+            alpha = .025,
+            fill = "#475C74",
+            color = NA,
+            show.legend = FALSE
+          ) +
+          geom_text(
+            aes(
+              x = num_tactical_cell_areas / 2,
+              y = max(score) * .9,
+              label = "Worse Performance",
+              angle = 270,
+              hjust = "middle",
+              vjust = "middle"
+            ),
+            show.legend = FALSE
+          ) +
+          geom_text(
+            aes(
+              x = num_tactical_cell_areas / 2,
+              y = max(score) * .1,
+              label = "Best Performance",
+              angle = 270,
+              hjust = "middle",
+              vjust = "middle"
+            ),
+            show.legend = FALSE
+          ) +
+          coord_flip() +
+          scale_x_reordered() +
+          theme_minimal(
+            base_size = 9
+          ) +
+          theme(
+            panel.grid.major.y = element_blank(),
+            panel.border = element_blank(),
+            axis.ticks.y = element_blank()
+          ) +
+          labs(x = NULL, y = NULL)
+      })
+
+    # Table
+    output$table <-
+      renderDT({
+
+        # Require user to validate input
+        validate(
+          need(
+            !is.null(selected_area()),
+            "Select an area to display a table here."
+          )
+        )
+
+        datatable(
+          uk_long |> 
+          filter(geo_code == selected_area()) |> 
+          select(-geo_code, -geo_name, -nation, -tactical_cell),
+          rownames = FALSE,
+          options = list(dom = "t", pageLength = 100)
+        )
+      })
   }
   shinyApp(ui, server)
 }
