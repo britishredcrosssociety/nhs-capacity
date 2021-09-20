@@ -128,7 +128,7 @@ uk_long_reordered <-
 # Round values for pretty priting in Shiny table
 uk_long_rounded <-
   uk_long_reordered |>
-  mutate(score = round(score, digits = 3))
+  mutate(score = round(score, digits = 1))
 
 # Wrap labels for prettier printing in Shiny plots
 uk_long <-
