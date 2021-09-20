@@ -109,9 +109,21 @@ ranks_and_raw <-
   ranks_sum_renamed |>
   left_join(combined)
 
-# Match Health Boundary names
+# ---- Rename vars ----
 ranks_and_raw_renamed <-
   ranks_and_raw |>
+  rename(
+    `A&E: Percentage breached (4hr)` = `Percentage breached`,
+    `Ambulance: Red calls - % of emergency responses arriving at the scene within 8 minutes` = `Red calls - % of emergency responses arriving at the scene within 8 minutes`,
+    `Bed Occupancy: % general and acute beds occupied` = `% general and acute beds occupied`,
+    `Cancer Wait Times: % starting treatment within 62 days` = `% starting treatment within 62 days`,
+    `Referral to Treatment Wait Times: % waiting 53+ weeks` = `% waiting 53+ weeks`
+  )
+
+# ---- Join boundary data ----
+# Match Health Boundary names
+ranks_and_raw_matched <-
+  ranks_and_raw_renamed |>
   mutate(
     lhb_name = str_replace_all(
       lhb_name,
@@ -120,10 +132,9 @@ ranks_and_raw_renamed <-
     )
   )
 
-# ---- Join boundary data ----
 wales_performance <-
   boundaries_lhb |>
-  left_join(ranks_and_raw_renamed)
+  left_join(ranks_and_raw_matched)
 
 wales_performance |>
   write_rds("preprocess/data/wales_performance.rds")

@@ -171,10 +171,22 @@ ranks_and_raw <-
   left_join(complete_data) |>
   select(-`Trust Code`)
 
+# ---- Rename vars ----
+ranks_and_raw_renamed <-
+  ranks_and_raw |>
+  rename(
+    `A&E: % Total <= 4 hours` = `% Total <= 4 hours`,
+    `Bed Occupancy: % Total Night Beds Occupied` = `% Total Night Beds Occupied`,
+    `Bed Occupancy: % Total Day Beds Occupied` = `% Total Day Beds Occupied`,
+    `Cancer Wait Times: % Breaches` = `% Breaches`,
+    `Diagnostic Wait Times: % waiting 13+ weeks` = `% waiting 13+ weeks`,
+    `Referral to Treatment Wait Times:% Waiting 52+ Weeks` = `% Waiting 52+ Weeks`
+  )
+
 # ---- Join boundary data ----
 england_performance <-
   boundaries_stp |>
-  left_join(ranks_and_raw)
+  left_join(ranks_and_raw_renamed)
 
 england_performance |>
   write_rds("preprocess/data/england_performance.rds")

@@ -66,16 +66,25 @@ ranks_and_raw <-
   ranks_sum_renamed |>
   left_join(combined)
 
-# ---- Join boundaries ----
-# Match Health Boundary names
+# ---- Vars ----
 ranks_and_raw_renamed <-
   ranks_and_raw |>
+  rename(
+    `A&E: Percentage seen within 4 hours` = `Percentage seen within 4 hours`,
+    `Bed Occupancy: Average number of available staffed beds` = `Average number of available staffed beds`,
+    `Delayed Transfer of Care: Bed days occupied by delayed discharge patients` = `Bed days occupied by delayed discharge patients`,
+    `Referral to Treatment Wait Times: Percentage seen within 18 weeks` = `Percentage seen within 18 weeks`
+  )
+# ---- Join boundaries ----
+# Match Health Boundary names
+ranks_and_raw_matched <-
+  ranks_and_raw_renamed |>
   rename(hb_name = `NHS Board`) |>
   mutate(hb_name = str_replace_all(hb_name, "&", "and"))
 
 scotland_performance <-
   boundaries_hb |>
-  left_join(ranks_and_raw_renamed, by = "hb_name")
+  left_join(ranks_and_raw_matched, by = "hb_name")
 
 scotland_performance |>
   write_rds("preprocess/data/scotland_performance.rds")
