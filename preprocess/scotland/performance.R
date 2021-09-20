@@ -18,7 +18,8 @@ combined <-
   left_join(bed_availability, by = "NHS Board") |>
   left_join(cancer, by = "NHS Board") |>
   left_join(dtoc, by = "NHS Board") |>
-  left_join(rtt, by = "NHS Board")
+  left_join(rtt, by = "NHS Board") |>
+  mutate(across(starts_with("Percentage"), ~ .x * 100))
 
 # ---- Find worst-performing Trusts across all metrics ----
 # Lower rank (e.g., 2 is lower than 1) = lower (worse) rank
