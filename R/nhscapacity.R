@@ -95,16 +95,16 @@ nhsCapacity <- function() {
 
       # Map
       column(
-        width = 6,
+        width = 5,
         align = "center",
-        leafletOutput("map", height = 600)
+        leafletOutput("map", height = 900)
       ),
 
       # Plot
       column(
-        width = 6,
+        width = 7,
         align = "center",
-        girafeOutput("plot", height = 600)
+        plotOutput("plot", height = 900)
       )
     )
   )
@@ -177,7 +177,7 @@ nhsCapacity <- function() {
       })
 
     # - Plot -
-    output$plot <- renderGirafe({
+    output$plot <- renderPlot({
 
       # Require user to validate input
       validate(
@@ -187,42 +187,91 @@ nhsCapacity <- function() {
         )
       )
 
-      # Build lollipop plot
-      lollipop_plot <-
+      selected_tactical_cell <-
         uk_long |>
         filter(geo_code == selected_area()) |>
-        arrange(score) |>
-        mutate(variable = factor(variable, levels = variable)) |>
+        distinct(tactical_cell) |>
+        pull(tactical_cell)
+
+      # This is calculated to vertically center the labels in geom_text below
+      num_tactical_cell_areas <-
+        uk_long |>
+        filter(tactical_cell == selected_tactical_cell) |>
+        filter(grepl("rank$", variable)) |>
+        distinct(geo_name) |>
+        pull(geo_name) |>
+        length()
+
+      # Build lollipop plot
+      uk_long |>
+        filter(tactical_cell == selected_tactical_cell) |>
+        filter(grepl("rank$", variable)) |>
+        mutate(variable = as.factor(variable)) |>
+        mutate(geo_name = reorder_within(geo_name, score, variable)) |>
         ggplot(
           aes(
-            x = variable,
+            x = geo_name,
             y = score,
-            colour = if_else(variable == "Overall", "Red", "Blue")
+            colour = if_else(geo_code == selected_area(), "Red", "Blue")
           )
         ) +
+        facet_wrap(vars(variable), scales = "free_y") +
         geom_segment(
-          aes(x = variable, xend = variable, y = 1, yend = score),
+          aes(x = geo_name, xend = geo_name, y = 0, yend = score),
           show.legend = FALSE
         ) +
-        geom_point_interactive(
-          aes(tooltip = score),
+        geom_point(
           size = 5,
           show.legend = FALSE
         ) +
         scale_colour_manual(
           values = c(Red = "#AD1220", Blue = "#475C74")
-          ) +
+        ) +
+        geom_rect(
+          aes(xmin = -Inf, xmax = Inf, ymin = max(score) * .8, ymax = Inf),
+          alpha = .025,
+          fill = "#9CAAAE",
+          color = NA,
+          show.legend = FALSE
+        ) +
+        geom_rect(
+          aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = max(score) * .2),
+          alpha = .025,
+          fill = "#475C74",
+          color = NA,
+          show.legend = FALSE
+        ) +
+        geom_text(
+          aes(
+            x = num_tactical_cell_areas / 2,
+            y = max(score) * .9,
+            label = "Worse Performance",
+            angle = 270,
+            hjust = "middle",
+            vjust = "middle"
+          ),
+          show.legend = FALSE
+        ) +
+        geom_text(
+          aes(
+            x = num_tactical_cell_areas / 2,
+            y = max(score) * .1,
+            label = "Best Performance",
+            angle = 270,
+            hjust = "middle",
+            vjust = "middle"
+          ),
+          show.legend = FALSE
+        ) +
         coord_flip() +
-        labs(x = NULL, y = "Performance Score (5 = Worst)") +
-        theme_light() +
+        scale_x_reordered() +
+        theme_minimal() +
         theme(
           panel.grid.major.y = element_blank(),
           panel.border = element_blank(),
           axis.ticks.y = element_blank()
-        )
-
-      # conver plot to SVG object
-      girafe(ggobj = lollipop_plot)
+        ) +
+        labs(x = NULL, y = NULL)
     })
   }
   shinyApp(ui, server)
