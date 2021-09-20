@@ -20,4 +20,5 @@ Imports:
     shiny,
     leaflet,
     dplyr,
-    ggplot2
+    ggplot2,
+    DT
