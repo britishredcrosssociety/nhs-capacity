@@ -97,14 +97,14 @@ nhsCapacity <- function() {
       column(
         width = 5,
         align = "center",
-        leafletOutput("map", height = 900)
+        leafletOutput("map", height = 1000)
       ),
 
       # Plot
       column(
         width = 7,
         align = "center",
-        plotOutput("plot", height = 900)
+        plotOutput("plot", height = 1000)
       )
     )
   )
@@ -265,7 +265,9 @@ nhsCapacity <- function() {
         ) +
         coord_flip() +
         scale_x_reordered() +
-        theme_minimal() +
+        theme_minimal(
+          base_size = 9
+        ) +
         theme(
           panel.grid.major.y = element_blank(),
           panel.border = element_blank(),
