@@ -100,7 +100,7 @@ nhsCapacity <- function() {
       column(
         width = 5,
         align = "center",
-        leafletOutput("map", height = 1000)
+        leafletOutput("map", height = 1200)
       ),
 
       # Plot/Table
@@ -108,7 +108,7 @@ nhsCapacity <- function() {
         width = 7,
         align = "center",
         tabsetPanel(
-          tabPanel("Plot", plotOutput("plot", height = 1000)),
+          tabPanel("Plot", plotOutput("plot", height = 1200)),
           tabPanel("Data", DTOutput("table"))
         )
       )
@@ -224,15 +224,21 @@ nhsCapacity <- function() {
           ) +
           facet_wrap(vars(variable), scales = "free_y") +
           geom_segment(
-            aes(x = geo_name, xend = geo_name, y = 0, yend = score),
+            aes(
+              x = geo_name,
+              xend = geo_name,
+              y = 0,
+              yend = score,
+              alpha = if_else(geo_code == selected_area(), "1", "0.5")
+              ),
             show.legend = FALSE
           ) +
           geom_point(
-            size = 5,
+            aes(
+              alpha = if_else(geo_code == selected_area(), "1", "0.5")
+            ),
+            size = 6,
             show.legend = FALSE
-          ) +
-          scale_colour_manual(
-            values = c(Red = "#AD1220", Blue = "#475C74")
           ) +
           geom_rect(
             aes(xmin = -Inf, xmax = Inf, ymin = max(score) * .8, ymax = Inf),
@@ -252,11 +258,12 @@ nhsCapacity <- function() {
             aes(
               x = num_tactical_cell_areas / 2,
               y = max(score) * .9,
-              label = "Worse Performance",
+              label = "Worst Performance",
               angle = 270,
               hjust = "middle",
               vjust = "middle"
             ),
+            colour = "#5c5c5c",
             show.legend = FALSE
           ) +
           geom_text(
@@ -268,17 +275,23 @@ nhsCapacity <- function() {
               hjust = "middle",
               vjust = "middle"
             ),
+            colour = "#5c5c5c",
             show.legend = FALSE
           ) +
+          scale_colour_manual(
+            values = c(Red = "#AD1220", Blue = "#475C74")
+          ) +
+          scale_alpha_discrete(range=c(0.4, 1)) +
           coord_flip() +
           scale_x_reordered() +
           theme_minimal(
-            base_size = 9
+            base_size = 10
           ) +
           theme(
             panel.grid.major.y = element_blank(),
             panel.border = element_blank(),
-            axis.ticks.y = element_blank()
+            axis.ticks.y = element_blank(),
+            strip.text.x = element_text(size = 14)
           ) +
           labs(x = NULL, y = NULL)
       })
@@ -296,9 +309,9 @@ nhsCapacity <- function() {
         )
 
         datatable(
-          uk_long |> 
-          filter(geo_code == selected_area()) |> 
-          select(-geo_code, -geo_name, -nation, -tactical_cell),
+          uk_long |>
+            filter(geo_code == selected_area()) |>
+            select(-geo_code, -geo_name, -nation, -tactical_cell),
           rownames = FALSE,
           options = list(dom = "t", pageLength = 100)
         )
