@@ -67,10 +67,12 @@ nhsCapacity <- function() {
         ),
         tags$p(
           "Enter your area in the box below, or click it on the map to populate
-          the plots and table. The plots show how your selected NHS area
+          the plots and data. The plots show how your selected NHS area
           (highlighted in red) performs across different services in comparison
-          to other areas in the same tactical cell. Each plot shows the service
-          ranked on a national scale. Explore the table for more statistics."
+          to other areas (STP's for England, Trusts for NI, and Health Boards
+          for Scotland & Wales) in the same tactical cell. Each plot shows the
+          service ranked on a national scale. Explore the 'Data' tab for more
+          statistics."
         )
       ),
       column(width = 3)
@@ -230,7 +232,7 @@ nhsCapacity <- function() {
               y = 0,
               yend = score,
               alpha = if_else(geo_code == selected_area(), "1", "0.5")
-              ),
+            ),
             show.legend = FALSE
           ) +
           geom_point(
@@ -281,7 +283,7 @@ nhsCapacity <- function() {
           scale_colour_manual(
             values = c(Red = "#AD1220", Blue = "#475C74")
           ) +
-          scale_alpha_discrete(range=c(0.4, 1)) +
+          scale_alpha_discrete(range = c(0.4, 1)) +
           coord_flip() +
           scale_x_reordered() +
           theme_minimal(
