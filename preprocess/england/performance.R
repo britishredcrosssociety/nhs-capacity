@@ -13,6 +13,7 @@ ambulance <- read_rds("preprocess/data/england_ambulance_quality_indicators.rds"
 beds <- read_rds("preprocess/data/england_bed_occupancy.rds")
 cancer <- read_rds("preprocess/data/england_cancer_wait_times.rds")
 diagnostic <- read_rds("preprocess/data/england_diagnostic_wait_times.rds")
+iapt <- read_rds("preprocess/data/england_iapt.rds")
 outpatient <- read_rds("preprocess/data/england_outpatient_referrals.rds")
 rtt <- read_rds("preprocess/data/england_referral_treatment_waiting_times.rds")
 
@@ -171,16 +172,29 @@ ranks_and_raw <-
   left_join(complete_data) |>
   select(-`Trust Code`)
 
+# ---- Join on IAPT data which already at the STP level ----
+iapt_processed <-
+  iapt |>
+  left_join(stp_codes) |>
+  select(-stp_code_short) |>
+  mutate(`IAPT rank` = inverse_rank(`Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment`))
+
+ranks_and_raw_and_iapt <-
+  ranks_and_raw |>
+  left_join(iapt_processed) |>
+  relocate(`IAPT rank`, .after = `RTT rank`)
+
 # ---- Rename vars ----
 ranks_and_raw_renamed <-
-  ranks_and_raw |>
+  ranks_and_raw_and_iapt |>
   rename(
     `A&E: % Total <= 4 hours` = `% Total <= 4 hours`,
     `Bed Occupancy: % Total Night Beds Occupied` = `% Total Night Beds Occupied`,
     `Bed Occupancy: % Total Day Beds Occupied` = `% Total Day Beds Occupied`,
     `Cancer Wait Times: % Breaches` = `% Breaches`,
     `Diagnostic Wait Times: % waiting 13+ weeks` = `% waiting 13+ weeks`,
-    `Referral to Treatment Wait Times:% Waiting 52+ Weeks` = `% Waiting 52+ Weeks`
+    `Referral to Treatment Wait Times:% Waiting 52+ Weeks` = `% Waiting 52+ Weeks`,
+    `IAPT: % Finished Course Waiting 126 Days or Less for First Treatment ` = `Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment`
   )
 
 # ---- Join boundary data ----
