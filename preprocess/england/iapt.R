@@ -40,7 +40,7 @@ iapt_double <-
   mutate(`Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment` = as.double(`Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment`))
 
 england_iapt <-
-  iapt_selected
+  iapt_double
 
 # Save
 england_iapt |>
