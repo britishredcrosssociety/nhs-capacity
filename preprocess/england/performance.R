@@ -194,7 +194,7 @@ ranks_and_raw_renamed <-
     `Cancer Wait Times: % Breaches` = `% Breaches`,
     `Diagnostic Wait Times: % waiting 13+ weeks` = `% waiting 13+ weeks`,
     `Referral to Treatment Wait Times:% Waiting 52+ Weeks` = `% Waiting 52+ Weeks`,
-    `IAPT: % Finished Course Waiting 126 Days or Less for First Treatment ` = `Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment`
+    `IAPT: % Finished Course in the Month Waiting 126 Days or Less for First Treatment ` = `Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment`
   )
 
 # ---- Join boundary data ----
