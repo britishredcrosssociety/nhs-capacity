@@ -31,9 +31,8 @@ iapt_filtered <-
 iapt_selected <-
   iapt_filtered |>
   select(
-    stp_code = STP,
-    variable = MEASURE_NAME,
-    score = MEASURE_VALUE_SUPPRESSED
+    stp_code_short = STP,
+    `Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment` = MEASURE_VALUE_SUPPRESSED
   )
 
 england_iapt <-
