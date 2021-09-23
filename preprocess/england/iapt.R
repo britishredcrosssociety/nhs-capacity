@@ -35,6 +35,10 @@ iapt_selected <-
     `Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment` = MEASURE_VALUE_SUPPRESSED
   )
 
+iapt_double <-
+  iapt_selected |>
+  mutate(`Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment` = as.double(`Referrals that finished a course of treatment in the month waiting 126 days or less for first treatment`))
+
 england_iapt <-
   iapt_selected
 
