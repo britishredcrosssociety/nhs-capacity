@@ -70,9 +70,9 @@ nhsCapacity <- function() {
           the plots and data. The plots show how your selected NHS area
           (highlighted in red) performs across different services in comparison
           to other areas (STP's for England, Trusts for NI, and Health Boards
-          for Scotland & Wales) in the same tactical cell. Each plot shows the
-          service ranked on a national scale. Explore the 'Data' tab for more
-          statistics."
+          for Scotland & Wales) in the same tactical cell. This means Each plot
+          shows services grouped by tactical cell, but ranked on a national
+          scale. Explore the 'Data' tab for more statistics."
         )
       ),
       column(width = 3)
