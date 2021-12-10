@@ -22,7 +22,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/07/Cancer-Waiting-Times-Apr-May-2021-Data-Extract-Provider.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/Cancer-Waiting-Times-Apr-Oct-2021-Data-Extract-Provider.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -98,4 +98,4 @@ england_cancer_wait_times <-
 
 # Save
 england_cancer_wait_times |>
-write_rds("preprocess/data/england_cancer_wait_times.rds")
+  write_rds("preprocess/data/england_cancer_wait_times.rds")

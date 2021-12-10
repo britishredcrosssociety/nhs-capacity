@@ -22,7 +22,7 @@ open_trusts <-
 # ---- Day ----
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/Beds-Open-Day-Only-Web_File-Final-Q4-2020-21-Final-THSDF.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/11/Beds-Open-Day-Only-Web_File-Q2-2021-22-Final-XCVFG.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -93,7 +93,7 @@ beds_day <-
 # ---- Night ----
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/05/Beds-Open-Overnight-Web_File-Final-Q4-2020-21-Final-THSDF.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/11/Beds-Open-Overnight-Web_File-Q2-2021-22-Final-XCVFG.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -169,4 +169,4 @@ england_bed_occupancy <-
 
 # ---- Save ----
 england_bed_occupancy |>
-write_rds("preprocess/data/england_bed_occupancy.rds")
+  write_rds("preprocess/data/england_bed_occupancy.rds")

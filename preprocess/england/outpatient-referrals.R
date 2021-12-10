@@ -22,7 +22,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/07/MRR_Prov-Web-file-May-21-0P6EL.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/MRR_Prov-Web-file-October-21-VC0IO.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -71,4 +71,4 @@ england_outpatient_referrals <-
 
 # Save
 england_outpatient_referrals |>
-write_rds("preprocess/data/england_outpatient_referrals.rds")
+  write_rds("preprocess/data/england_outpatient_referrals.rds")

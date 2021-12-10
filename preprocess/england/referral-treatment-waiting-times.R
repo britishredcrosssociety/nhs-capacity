@@ -22,7 +22,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/07/Full-CSV-data-file-May21-ZIP-3163K-69343.zip",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/Full-CSV-data-file-Oct21-ZIP-3282K-03857.zip",
   write_disk(tf <- tempfile(fileext = ".zip"))
 )
 
@@ -44,7 +44,7 @@ rtt_clean_names <-
 
 # Calculate 18 week count
 rtt_count <-
-  rtt_clean_names|>
+  rtt_clean_names |>
   rowwise() |>
   mutate(
     gt_18_weeks_sum_1 = sum(
@@ -115,4 +115,4 @@ england_referral_treatment_waiting_times <-
 
 # Save
 england_referral_treatment_waiting_times |>
-write_rds("preprocess/data/england_referral_treatment_waiting_times.rds")
+  write_rds("preprocess/data/england_referral_treatment_waiting_times.rds")

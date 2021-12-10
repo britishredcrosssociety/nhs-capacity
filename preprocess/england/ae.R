@@ -21,7 +21,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/07/June-2021-AE-by-provider-j47iI.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/November-2021-AE-by-provider-Q42gt.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -96,4 +96,4 @@ england_ae <-
 
 # Save
 england_ae |>
-write_rds("preprocess/data/england_ae.rds")
+  write_rds("preprocess/data/england_ae.rds")

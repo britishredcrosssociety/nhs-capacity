@@ -22,7 +22,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/07/AmbSYS-Jun21.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/AmbSYS-Nov21.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
@@ -138,4 +138,4 @@ england_ambulance_quality_indicators <-
 
 # Save
 england_ambulance_quality_indicators |>
-write_rds("preprocess/data/england_ambulance_quality_indicators.rds")
+  write_rds("preprocess/data/england_ambulance_quality_indicators.rds")

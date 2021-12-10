@@ -21,7 +21,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/07/Monthly-Diagnostics-Web-File-Provider-May-2021_84CSC.xls",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/Monthly-Diagnostics-Web-File-Provider-October-2021_M43D4.xls",
   write_disk(tf <- tempfile(fileext = ".xls"))
 )
 
@@ -72,4 +72,4 @@ england_diagnostic_wait_times <-
 
 # Save
 england_diagnostic_wait_times |>
-write_rds("preprocess/data/england_diagnostic_wait_times.rds")
+  write_rds("preprocess/data/england_diagnostic_wait_times.rds")
