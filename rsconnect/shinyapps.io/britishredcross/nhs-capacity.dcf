@@ -5,6 +5,7 @@ account: britishredcross
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3962663
-bundleId: 5065052
+bundleId: 5355637
 url: https://britishredcross.shinyapps.io/nhs-capacity/
-when: 1632417737.89537
+when: 1639144935.19773
+lastSyncTime: 1639144935.19775
