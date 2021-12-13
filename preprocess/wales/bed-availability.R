@@ -34,11 +34,13 @@ download.wales <- function(url) {
 raw <-
   download.wales("http://open.statswales.gov.wales/en-gb/dataset/hlth0092")
 
+# Find max data code and update below
+# raw |> as_tibble() |> pull(Date_Code) |> max()
 bed_availability <-
   raw |>
   as_tibble() |>
   filter(
-    str_detect(Date_Code, "^202108") &
+    str_detect(Date_Code, "^20211210") &
       LocalHealthBoard_ItemName_ENG != "Wales" &
       HospitalType_Code == "NHS" &
       Indicator_ItemName_ENG %in% c("General and acute beds available&#10;", "General and acute beds occupied&#10;")
