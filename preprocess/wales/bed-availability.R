@@ -67,4 +67,4 @@ wales_bed_availability <-
   select(-Date)
 
 wales_bed_availability |>
-write_rds("preprocess/data/wales_bed_availability.rds")
+  write_rds("preprocess/data/wales_bed_availability.rds")
