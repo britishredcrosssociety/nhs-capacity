@@ -41,7 +41,7 @@ wales_cancer_waiting_times <-
   filter(
     Month_SortOrder == max(Month_SortOrder) &
       Localhealthboard_ItemName_ENG != "Wales" &
-      Agegroup_ItemName_ENG == "Total" &
+      AgeGroup_ItemName_ENG == "Total" &
       Sex_ItemName_ENG == "Total" &
       Tumoursite_ItemName_ENG == "All sites" &
       str_detect(Measure_ItemName_ENG, "percentage")
@@ -53,4 +53,4 @@ wales_cancer_waiting_times <-
   )
 
 wales_cancer_waiting_times |>
-write_rds("preprocess/data/wales_cancer_waiting_times.rds")
+  write_rds("preprocess/data/wales_cancer_waiting_times.rds")
