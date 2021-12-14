@@ -54,4 +54,4 @@ wales_amublance_services <-
   select(-Date)
 
 wales_amublance_services |>
-write_rds("preprocess/data/wales_ambulance_services.rds")
+  write_rds("preprocess/data/wales_ambulance_services.rds")
