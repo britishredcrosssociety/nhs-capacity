@@ -81,4 +81,4 @@ wales_referral_treatment_waiting_times <-
   )
 
 wales_referral_treatment_waiting_times |>
-write_rds("preprocess/data/wales_referral_treatment_waiting_times.rds")
+  write_rds("preprocess/data/wales_referral_treatment_waiting_times.rds")
