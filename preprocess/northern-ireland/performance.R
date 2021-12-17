@@ -83,21 +83,14 @@ ranks_and_raw_renamed <-
     `Cancer Wait Times: % treated within 62 days` = `% treated within 62 days`,
     `Referral to Treatment Inpatient & day case: % waiting > 52 weeks` = `Inpatient and day case: % waiting > 52 weeks`,
     `Referral Outpatient: % waiting > 52 weeks` = `Outpatient: % waiting > 52 weeks`,
-    `Emergency Care: Reattendance within 7 days: %` = Reattend
+    `Emergency Care: Reattendance within 7 days: %` = Reattend,
+    trust_name = Trust
   )
 
 # ---- Join boundary data ----
-# Make Trust names match
-ranks_and_raw_matched <-
-  ranks_and_raw_renamed |>
-  mutate(
-    Trust = str_c(Trust, " Health and Social Care Trust")
-  ) |>
-  rename(trust_name = Trust)
-
 northern_ireland_performance <-
   boundaries_trusts_ni |>
-  left_join(ranks_and_raw_matched)
+  left_join(ranks_and_raw_renamed)
 
 northern_ireland_performance |>
   write_rds("preprocess/data/northern_ireland_performance.rds")
