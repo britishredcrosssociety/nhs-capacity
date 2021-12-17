@@ -38,11 +38,3 @@ The files in this folder preprocess NHS data to be fed into the Shiny app.
 | Wales            | Ambulance Services                  | October 2021        | [StatsWales](https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Performance/Ambulance-Services)                                                                                                                        | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)     | 14.12.21     | :heavy_check_mark:     |
 | Wales            | Cancer Waiting Times                | September 2021      | [StatsWales](https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Waiting-Times/Cancer-Waiting-Times/Monthly/suspectedcancerpathwayclosedpathways-by-localhealthboard-tumoursite-agegroup-gender-measure-month) | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)     | 14.12.21     | :heavy_check_mark:     |
 | Wales            | Referral to Treatment Waiting Times | September 2021      | [StatsWales](https://statswales.gov.wales/Catalogue/Health-and-Social-Care/NHS-Hospital-Waiting-Times/Referral-to-Treatment/patientpathwayswaitingtostarttreatment-by-month-groupedweeks-treatmentfunction)                           | [OGLv3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)     | 14.12.21     | :heavy_check_mark:     |
-
-[
-
-### Web Extensions - Visual Studio Code
-
-https://code.visualstudio.com** › api › extension-guides**
-
-](https://code.visualstudio.com/api/extension-guides/web-extensions)
