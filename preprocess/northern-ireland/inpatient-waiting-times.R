@@ -3,11 +3,11 @@ library(lubridate)
 
 raw <-
   read_csv(
-    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-total-waiting-q4-20-21.csv",
+    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-total-waiting-q2-21-22.csv",
     col_types = cols(
       .default = col_double(),
       `Quarter Ending` = col_character(),
-      `HSC Trust` = col_character(),
+      `HSCTrust` = col_character(),
       Specialty = col_character(),
       `Programme of Care` = col_character()
     )
@@ -15,7 +15,7 @@ raw <-
 
 inpatient_max_date <-
   raw |>
-  rename(Trust = `HSC Trust`) |>
+  rename(Trust = `HSCTrust`) |>
   mutate(Date = dmy(`Quarter Ending`)) |>
   filter(Date == max(Date, na.rm = TRUE))
 
@@ -23,8 +23,8 @@ inpatient_summaries <-
   inpatient_max_date |>
   group_by(Date, Trust, Specialty) |>
   summarise(
-    `Total waiting > 52 weeks` = sum(`Sum of >52 weeks`, na.rm = TRUE),
-    `Total waiting` = sum(`Sum of Total`, na.rm = TRUE)
+    `Total waiting > 52 weeks` = sum(`>52 weeks`, na.rm = TRUE),
+    `Total waiting` = sum(`Total`, na.rm = TRUE)
   ) |>
   ungroup() |>
   group_by(Date, Trust) |>
@@ -41,4 +41,4 @@ northern_ireland_inpatient_waiting_times <-
   filter(Trust != "DPC")
 
 northern_ireland_inpatient_waiting_times |>
-write_rds("preprocess/data/northern_ireland_inpatient_waiting_times.rds")
+  write_rds("preprocess/data/northern_ireland_inpatient_waiting_times.rds")
