@@ -19,4 +19,4 @@ northern_ireland_ae <-
   select(Month, Trust, `Percent Under 4 Hours`)
 
 northern_ireland_ae |>
-write_rds("preprocess/data/northern_ireland_ae.rds")
+  write_rds("preprocess/data/northern_ireland_ae.rds")
