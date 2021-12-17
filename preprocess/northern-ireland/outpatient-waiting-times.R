@@ -3,24 +3,20 @@ library(lubridate)
 
 raw <-
   read_csv(
-    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-outpatients-q4-20-21.csv",
+    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-outpatients-q2-21-22.csv",
     col_types = cols(
       .default = col_character(),
       `Quarter Ending` = col_character(),
       `HSC Trust` = col_character(),
       Specialty = col_character(),
-      `Programme of Care` = col_character()
+      `Programme Of Care` = col_character()
     )
   )
 
-outpatient_vars <-
-  raw|>
-  select(-X25, -X26) |>
-  rename(Trust = `HSC Trust`)
-
 # Remove commas from the data columns
 outpatient_commas <-
-  outpatient_vars |>
+  raw |>
+  rename(Trust = `HSC Trust`) |>
   mutate(
     across(
       `0 - 6 weeks`:`Total Waiting`,
@@ -61,4 +57,4 @@ northern_ireland_outpatient_waiting_times <-
   filter(Trust != "Day Case Procedure Centre")
 
 northern_ireland_outpatient_waiting_times |>
-write_rds("preprocess/data/northern_ireland_outpatient_waiting_times.rds")
+  write_rds("preprocess/data/northern_ireland_outpatient_waiting_times.rds")
