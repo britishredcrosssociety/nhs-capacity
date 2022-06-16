@@ -29,11 +29,11 @@ uk_shp <-
     england_performance |>
       select(geo_name = stp_name, geo_code = stp_code, geometry),
     wales_performance |>
-      select(geo_name = lhb_name, geo_code = lhb_code, geometry),
+      select(geo_name = lhb20_name, geo_code = lhb20_code, geometry),
     scotland_performance |>
-      select(geo_name = hb_name, geo_code = hb_code, geometry),
+      select(geo_name = hb19_name, geo_code = hb19_code, geometry),
     northern_ireland_performance |>
-      select(geo_name = trust_name, geo_code = trust_code, geometry)
+      select(geo_name = trust18_name, geo_code = trust18_code, geometry)
   )
 
 # Minimise shapefile size to improve leaflet loading performance
@@ -61,8 +61,8 @@ wales_long <-
   wales_performance |>
   st_drop_geometry() |>
   rename(
-    geo_name = lhb_name,
-    geo_code = lhb_code
+    geo_name = lhb20_name,
+    geo_code = lhb20_code
   ) |>
   pivot_longer(
     cols = !c(geo_name, geo_code),
@@ -76,8 +76,8 @@ scotland_long <-
   scotland_performance |>
   st_drop_geometry() |>
   rename(
-    geo_name = hb_name,
-    geo_code = hb_code
+    geo_name = hb19_name,
+    geo_code = hb19_code
   ) |>
   pivot_longer(
     cols = !c(geo_name, geo_code),
@@ -90,8 +90,8 @@ northern_ireland_long <-
   northern_ireland_performance |>
   st_drop_geometry() |>
   rename(
-    geo_name = trust_name,
-    geo_code = trust_code
+    geo_name = trust18_name,
+    geo_code = trust18_code
   ) |>
   pivot_longer(
     cols = !c(geo_name, geo_code),
