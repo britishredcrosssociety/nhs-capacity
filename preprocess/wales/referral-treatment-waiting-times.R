@@ -44,22 +44,25 @@ rtt <-
   select(
     HB_code = LHBProvider_Code,
     HB = LHBProvider_ItemName_ENG,
-    WeeksWaiting_SortOrder, Data
+    Weekswaiting_SortOrder, Data
   ) |>
-  mutate(WeeksWaiting_SortOrder = as.integer(WeeksWaiting_SortOrder))
+  mutate(
+    Weekswaiting_SortOrder = as.integer(Weekswaiting_SortOrder),
+    Data = as.integer(Data)
+  )
 
 # Calculate total across all TreatmentFunction_ItemName_ENG items
 rtt_total <-
   rtt |>
-  group_by(HB_code, HB, WeeksWaiting_SortOrder) |>
+  group_by(HB_code, HB, Weekswaiting_SortOrder) |>
   summarise(Data = sum(Data)) |>
   ungroup() |>
-  arrange(HB, WeeksWaiting_SortOrder)
+  arrange(HB, Weekswaiting_SortOrder)
 
-# Calculate 18+ weeks (WeeksWaiting_SortOrder >= 20) and 52+ weeks (WeeksWaiting_SortOrder >= 48), as well as total waiting list sizes
+# Calculate 18+ weeks (Weekswaiting_SortOrder >= 20) and 52+ weeks (Weekswaiting_SortOrder >= 48), as well as total waiting list sizes
 wales_referral_treatment_waiting_times <-
   rtt_total |>
-  pivot_wider(names_from = WeeksWaiting_SortOrder, values_from = Data) |>
+  pivot_wider(names_from = Weekswaiting_SortOrder, values_from = Data) |>
   rowwise() |>
   mutate(
     `Total on waiting list` = sum(c_across(`2`:`61`), na.rm = TRUE),

@@ -40,7 +40,8 @@ bed_availability <-
   raw |>
   as_tibble() |>
   filter(
-    str_detect(Date_Code, "^20211210") &
+    Date_Code == max(Date_Code) &
+    # str_detect(Date_Code, "^20211210") &
       LocalHealthBoard_ItemName_ENG != "Wales" &
       HospitalType_Code == "NHS" &
       Indicator_ItemName_ENG %in% c("General and acute beds available&#10;", "General and acute beds occupied&#10;")

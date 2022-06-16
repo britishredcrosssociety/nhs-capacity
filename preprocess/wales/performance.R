@@ -130,10 +130,11 @@ ranks_and_raw_matched <-
       "Local Health Board",
       "Health Board"
     )
-  )
+  ) %>% 
+  rename(lhb20_name = lhb_name)
 
 wales_performance <-
-  boundaries_lhb |>
+  boundaries_lhb20 |>
   left_join(ranks_and_raw_matched)
 
 wales_performance |>
