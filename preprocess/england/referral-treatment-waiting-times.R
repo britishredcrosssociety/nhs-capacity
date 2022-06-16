@@ -8,12 +8,12 @@ library(geographr)
 
 # Create trust lookup of open trusts
 open_trusts <-
-  points_nhs_trusts |>
+  points_nhs_trusts22 |>
   as_tibble() |>
   filter(status == "open") |>
   select(
-    `Trust Code` = nhs_trust_code,
-    `Trust Name` = nhs_trust_name
+    `Trust Code` = nhs_trust22_code,
+    `Trust Name` = nhs_trust22_name
   ) |>
   mutate(
     `Trust Name` = str_to_title(`Trust Name`),
@@ -22,7 +22,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/Full-CSV-data-file-Oct21-ZIP-3282K-03857.zip",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2022/06/Full-CSV-data-file-Apr22-ZIP-3300K-57873-1.zip",
   write_disk(tf <- tempfile(fileext = ".zip"))
 )
 
@@ -32,7 +32,7 @@ raw <-
   read_csv(
     list.files(
       tempdir(),
-      pattern = "*.csv",
+      pattern = ".*RTT.*.csv",
       full.names = TRUE
     )
   )
@@ -45,6 +45,7 @@ rtt_clean_names <-
 # Calculate 18 week count
 rtt_count <-
   rtt_clean_names |>
+  filter(treatment_function_name == "Total") |>
   rowwise() |>
   mutate(
     gt_18_weeks_sum_1 = sum(

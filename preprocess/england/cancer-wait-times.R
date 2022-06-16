@@ -8,12 +8,12 @@ library(geographr)
 
 # Create trust lookup of open trusts
 open_trusts <-
-  points_nhs_trusts |>
+  points_nhs_trusts22 |>
   as_tibble() |>
   filter(status == "open") |>
   select(
-    `Trust Code` = nhs_trust_code,
-    `Trust Name` = nhs_trust_name
+    `Trust Code` = nhs_trust22_code,
+    `Trust Name` = nhs_trust22_name
   ) |>
   mutate(
     `Trust Name` = str_to_title(`Trust Name`),
@@ -22,7 +22,7 @@ open_trusts <-
 
 # Load raw data
 GET(
-  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2021/12/Cancer-Waiting-Times-Apr-Oct-2021-Data-Extract-Provider.xlsx",
+  "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2022/06/Cancer-Waiting-Times-Apr-Apr-2022-Data-Extract-Provider.xlsx",
   write_disk(tf <- tempfile(fileext = ".xlsx"))
 )
 
