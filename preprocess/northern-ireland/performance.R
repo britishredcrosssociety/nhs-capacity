@@ -84,12 +84,12 @@ ranks_and_raw_renamed <-
     `Referral to Treatment Inpatient & day case: % waiting > 52 weeks` = `Inpatient and day case: % waiting > 52 weeks`,
     `Referral Outpatient: % waiting > 52 weeks` = `Outpatient: % waiting > 52 weeks`,
     `Emergency Care: Reattendance within 7 days: %` = Reattend,
-    trust_name = Trust
+    trust18_name = Trust
   )
 
 # ---- Join boundary data ----
 northern_ireland_performance <-
-  boundaries_trusts_ni |>
+  boundaries_trusts_ni18 |>
   left_join(ranks_and_raw_renamed)
 
 northern_ireland_performance |>

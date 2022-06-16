@@ -3,7 +3,7 @@ library(lubridate)
 
 raw <-
   read_csv(
-    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-outpatients-q2-21-22.csv",
+    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-outpatients-q4-21-22.csv",
     col_types = cols(
       .default = col_character(),
       `Quarter Ending` = col_character(),
@@ -34,8 +34,9 @@ outpatient_summaries <-
   outpatient_date |>
   group_by(Date, Trust, Specialty) |>
   summarise(
-    `Total waiting > 18 weeks` = sum(`>18-52 weeks`, na.rm = TRUE) + sum(`>52 weeks`, na.rm = TRUE),
-    `Total waiting > 52 weeks` = sum(`>52 weeks`, na.rm = TRUE),
+    `Total waiting > 18 weeks` = sum(`>18 weeks`, na.rm = TRUE),  # sum(`>18-52 weeks`, na.rm = TRUE) + sum(`>52 weeks`, na.rm = TRUE),
+    # `Total waiting > 52 weeks` = sum(`>52 weeks`, na.rm = TRUE),
+    `Total waiting > 52 weeks` = sum(`>52-65 weeks`, na.rm = TRUE) + sum(`>65-78 weeks`, na.rm = TRUE) + sum(`>78-91 weeks`, na.rm = TRUE) + sum(`>91-104 weeks`, na.rm = TRUE) + sum(`>104 weeks`, na.rm = TRUE), 
     `Total waiting` = sum(`Total Waiting`, na.rm = TRUE)
   ) |>
   ungroup() |>

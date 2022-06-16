@@ -3,7 +3,7 @@ library(lubridate)
 
 raw <-
   read_csv(
-    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-cwt-62-day-wait-by-trust-q1-21-22.csv"
+    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-cwt-62-day-wait-by-trust-q3-21-22.csv"
   )
 
 northern_ireland_cancer_waiting_lists <-

@@ -19,6 +19,8 @@ northern_ireland_reattendance <-
   raw |>
   select(Trust = ...1, Reattend = `2020/21`) |>
   filter(str_detect(Trust, "Trust$")) |>
+  # filter(Trust %in% c("Belfast Trust", "Northern Trust", "South Eastern Trust", "Southern Trust", "Western Trust")) |>
+  mutate(Trust = gsub(" [0-9]", "", Trust)) |> # get rid of footnotes
   mutate(Reattend = as.numeric(Reattend)) |>
   mutate(Reattend = round(Reattend * 100, 1)) |>
   mutate(Trust = str_remove(Trust, " Trust"))

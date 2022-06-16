@@ -3,7 +3,7 @@ library(lubridate)
 
 raw <-
   read_csv(
-    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-total-waiting-q2-21-22.csv",
+    "https://www.health-ni.gov.uk/sites/default/files/publications/health/hs-niwts-tables-total-waiting-q4-21-22.csv",
     col_types = cols(
       .default = col_double(),
       `Quarter Ending` = col_character(),
