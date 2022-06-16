@@ -79,12 +79,12 @@ ranks_and_raw_renamed <-
 # Match Health Boundary names
 ranks_and_raw_matched <-
   ranks_and_raw_renamed |>
-  rename(hb_name = `NHS Board`) |>
-  mutate(hb_name = str_replace_all(hb_name, "&", "and"))
+  rename(hb19_name = `NHS Board`) |>
+  mutate(hb19_name = str_replace_all(hb19_name, "&", "and"))
 
 scotland_performance <-
-  boundaries_hb |>
-  left_join(ranks_and_raw_matched, by = "hb_name")
+  boundaries_hb19 |>
+  left_join(ranks_and_raw_matched, by = "hb19_name")
 
 scotland_performance |>
   write_rds("preprocess/data/scotland_performance.rds")

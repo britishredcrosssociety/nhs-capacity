@@ -124,7 +124,7 @@ for (hosp_id in scotland_hospitals$HospitalID) {
 }
 
 scot_stats |>
-write_csv("preprocess/data/raw/scotland-raw-data/all-scotland-stats.csv")
+  write_csv("preprocess/data/raw/scotland-raw-data/all-scotland-stats.csv")
 
 # If hospital value is NA, use the board value
 scot_stats$HospitalValue <-
@@ -164,4 +164,4 @@ scotland_hospitals_stats <-
   left_join(scot_stats_wide, by = "HospitalID")
 
 scotland_hospitals_stats |>
-write_csv("data/raw/scotland-hospital-indicators.csv")
+  write_csv("preprocess/data/raw/scotland-hospital-indicators.csv")
